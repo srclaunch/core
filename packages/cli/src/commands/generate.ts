@@ -1,0 +1,99 @@
+import { Project } from '@srclaunch/types';
+import { transformObjectToYAML } from '@srclaunch/logic';
+import { Command } from '../lib/command';
+import { TypedFlags } from 'meow';
+import { createNewProjectInteractive } from '../lib/project/create';
+
+export type GenerateSrcLaunchProjectFlags = TypedFlags<{
+  name: {
+    type: 'string';
+    required: true;
+  };
+  description: {
+    type: 'string';
+    required: true;
+  };
+  type: {
+    type: 'string';
+    required: true;
+  };
+}>;
+
+export default new Command({
+  name: 'generate',
+  description: `Generate code, configuration, and files for various patterns and libraries.`,
+  commands: [
+    new Command<Project>({
+      name: 'github-actions',
+      description:
+        'Generate GitHub Actions workflows from the SrcLaunch config file.',
+      async run({ config, flags }): Promise<void> {
+        const repositoryWorkflows = config?.repository?.workflows;
+
+        if (repositoryWorkflows) {
+          // for (const workflow of repositoryWorkflows) {
+          //   const workflowPath = path.join(
+          //     process.cwd(),
+          //     'github-actions',
+          //     `${workflow.name}.yml`,
+          //   );
+
+          //   await writeFile(workflowPath, transformObjectToYAML(workflow));
+          // }
+          // const yaml = transformObjectToYAML(repositoryWorkflows);
+          // console.log('yaml', yaml);
+        }
+      },
+    }),
+    new Command<Project, GenerateSrcLaunchProjectFlags>({
+      name: 'srclaunch-project-config',
+      description:
+        "Generates a SrcLaunch project config file if one doesn't exist already.",
+      async run({ config, flags }): Promise<void> {
+        const result = await createNewProjectInteractive({
+          name: flags.name,
+          description: flags.description,
+          type: flags.type,
+        });
+
+        console.info('resulttt', result);
+      },
+    }),
+    new Command<Project>({
+      name: 'package-yml',
+      description:
+        'Generates a package.yml file that can be used as a replacement for packageon',
+      async run({ config, flags }): Promise<void> {
+        // await shellExec(
+        //   'yarn plugin import https://raw.githubusercontent.com/lyleunderwood/yarn-plugin-yaml-manifest/master/bundles/%40yarnpkg/plugin-yaml-manifest',
+        // );
+        // const yml = Yaml.dump({
+        //   ...updatedPackageJsonContents,
+        //   version: updatedPackageJsonContents.version,
+        // });
+        // await writeFile(path.resolve('./package.yml'), yml.toString());
+        // const existingPackageYml = (await fileExists('./package.yml'))
+        //   ? await readFile('./package.yml')
+        //   : null;
+        // const parsedPackageYml: { version: string } | null = existingPackageYml
+        //   ? (Yaml.load(existingPackageYml.toString()) as {
+        //       version: string;
+        //     })
+        //   : null;
+        // /*
+        //     Write package.yml which will be used by the `yarn-plugin-yaml-manifest`
+        //     plugin to generate a packageon manifest.
+        //   */
+        // const packageYml = Yaml.dump(newPackageMetadata);
+        // await writeFile(path.resolve('./package.yml'), packageYml.toString());
+        // console.info(`${chalk.green('✔')} created package.yml`);
+        // console.info('resulttt', result);
+        // await createChangeset({
+        //   files: ['package.yml'],
+        //   type: ChangeType.Release,
+        //   message: `Release ${updatedPackageJsonContents.version}`,
+        // });
+      },
+    }),
+  ],
+});

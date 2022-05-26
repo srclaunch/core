@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "./dist",
+    "paths": {
+      "@srclaunch/cli": [
+        "../cli"
+      ],
+      "@srclaunch/exceptions": ["../exceptions"],
+      "@srclaunch/http-client": ["../http-client"],
+      "@srclaunch/i18n": ["../i18n"],
+      "@srclaunch/logger": ["../logger"],
+      "@srclaunch/themes": ["../themes"],
+
+      "@srclaunch/types": [
+        "../types"
+      ],
+      "@srclaunch/web-environment": ["../web-environment"],
+
+
+    },
+    "rootDir": "./src",
+  },
+  "references": [
+
+    {
+      "path": "../cli"
+    },
+    {
+      "path": "../exceptions"
+    },
+    {
+      "path": "../http-client"
+    },
+    {
+      "path": "../i18n/",
+    },
+    {
+      "path": "../logger"
+    },
+    {
+      "path": "../themes"
+    },
+      {
+      "path": "../types"
+    },
+    {
+      "path": "../web-environment"
+    },
+  ],
+  "include": [
+    "src/**/*.ts"
+  ]
+}

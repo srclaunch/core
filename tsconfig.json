@@ -1,0 +1,38 @@
+{
+  "extends": "./packages/dx/tsconfig.json",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "paths": {
+      "@srclaunch/dx": [
+        "./packages/dx"
+      ],
+    },
+  },
+  // "include": ["packages/**/src"],
+  "references": [
+    { "path": "./packages/a11y" },
+    { "path": "./packages/cli", "extends": "./packages/dx/tsconfig.ui.json" },
+    { "path": "./packages/core-api-server" },
+    { "path": "./packages/data-client" },
+    { "path": "./packages/dx" },
+    { "path": "./packages/exceptions" },
+    { "path": "./packages/http-client" },
+    { "path": "./packages/http-server" },
+    { "path": "./packages/i18n" },
+    { "path": "./packages/icons", "extends": "./packages/dx/tsconfig.ui.json" },
+    { "path": "./packages/logger" },
+    { "path": "./packages/logic" },
+    { "path": "./packages/node-environment" },
+    { "path": "./packages/secrets" },
+    { "path": "./packages/themes", "extends": "./packages/dx/tsconfig.ui.json" },
+    { "path": "./packages/types" },
+    { "path": "./packages/ui", "extends": "./packages/dx/tsconfig.ui.json" },
+    {
+      "path": "./packages/web-environment",
+      "extends": "./packages/dx/tsconfig.ui.json"
+    }
+  ],
+  
+  "files": [],
+  "exclude": [".github", "coverage", "node_modules", "dist", "*.d.ts"]
+}

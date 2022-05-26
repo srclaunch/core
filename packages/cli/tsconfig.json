@@ -1,0 +1,48 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "paths": {
+      "@srclaunch/dx": [
+        "../dx"
+      ],
+      "@srclaunch/exceptions": [
+        "../exceptions"
+      ],
+      "@srclaunch/logic": [
+        "../logic"
+      ],
+      "@srclaunch/node-environment": [
+        "../node-environment"
+      ],
+      "@srclaunch/types": [
+        "../types"
+      ],
+
+    },
+    "rootDir": "./src",
+  },
+  "references": [
+    {
+      "path": "../dx"
+    },
+    {
+      "path": "../exceptions"
+    },    {
+      "path": "../logic"
+    }
+    ,    {
+      "path": "../node-environment"
+    }
+    ,    {
+      "path": "../types"
+    }
+  ],
+  "include": [
+    "src/**/*.ts"
+  ]
+}

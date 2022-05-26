@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "./dist",
+    "paths": {
+      "@srclaunch/cli": [
+        "../cli"
+      ],
+  
+      "@srclaunch/types": [
+        "../types"
+      ],
+
+    },
+    "rootDir": "./src",
+  },
+  "references": [
+
+    {
+      "path": "../cli"
+    },
+  
+      {
+      "path": "../types"
+    }
+  ],
+  "include": [
+    "src/**/*.ts"
+  ]
+}
