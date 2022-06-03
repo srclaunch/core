@@ -1,18 +1,18 @@
-import { RouteRole, Route } from '@srclaunch/types';
+import { Route, RouteRole } from '@srclaunch/types';
 import { memo, ReactElement } from 'react';
 
-import { Introduction } from './pages/Introduction';
-
-import { PageNotFound } from './pages/PageNotFound';
-
-// import { LinearGauge, RadialGauge } from '../../dist';
-import { Component } from './types/component';
-import { ComponentCategoryPage } from './pages/ComponentCategory';
-import { ComponentPage } from './pages/Component';
 import { RouterView } from '../components/navigation/RouterView';
 import componentLibrary from './component-library';
+import { ComponentPage } from './pages/Component';
+import { ComponentCategoryPage } from './pages/ComponentCategory';
+import { Introduction } from './pages/Introduction';
+import { PageNotFound } from './pages/PageNotFound';
+// import { LinearGauge, RadialGauge } from '../../dist';
+import { Component } from './types/component';
 
-export const getRoutes = (components?: Component[]): Component[] => {
+export const getRoutes = (
+  components?: readonly Component[],
+): readonly Component[] => {
   if (!components || components.length === 0) {
     return [];
   }
@@ -42,8 +42,8 @@ export const ComponentLibraryPage = memo((): ReactElement => {
     <RouterView
       routes={[
         ...routes.map(route => ({
-          path: route.path,
           component: route.component ? ComponentPage : ComponentCategoryPage,
+          path: route.path,
         })),
         {
           component: PageNotFound,
@@ -64,4 +64,4 @@ export default [
     component: Introduction,
     role: RouteRole.Index,
   },
-] as Route[];
+] as readonly Route[];

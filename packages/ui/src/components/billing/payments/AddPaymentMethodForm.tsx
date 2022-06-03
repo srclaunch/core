@@ -4,9 +4,10 @@ import {
   useDispatch,
 } from '@srclaunch/web-application-state';
 // import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { PaymentMethod, StripeError } from '@stripe/stripe-js';
+// import { PaymentMethod, StripeError } from '@stripe/stripe-js';
 import { memo, ReactElement, useState } from 'react';
 import styled, { css } from 'styled-components';
+
 import { Button } from '../../forms/buttons/Button';
 import { ProgressSpinner } from '../../progress/ProgressSpinner';
 

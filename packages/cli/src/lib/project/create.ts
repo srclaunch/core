@@ -1,7 +1,7 @@
 import { ProjectType } from '@srclaunch/types';
 import pc from 'picocolors';
-import { generateSrcLaunchProjectConfig, writeFile } from '@srclaunch/logic';
 
+// import { generateSrcLaunchProjectConfig, writeFile } from '@srclaunch/logic';
 import {
   promptForProjectCreate,
   promptForProjectDescription,
@@ -14,9 +14,9 @@ export async function createNewProjectInteractive({
   description,
   type,
 }: {
-  name?: string;
-  description?: string;
-  type?: ProjectType | string;
+  readonly name?: string;
+  readonly description?: string;
+  readonly type?: ProjectType | string;
 }) {
   const createProject = await promptForProjectCreate();
 
@@ -35,13 +35,13 @@ export async function createNewProjectInteractive({
 
     const projectType = type ?? (await promptForProjectType());
 
-    return await writeFile(
-      '.srclaunchrc.ts',
-      await generateSrcLaunchProjectConfig({
-        description: projectDescription,
-        type: projectType as ProjectType,
-        name: projectName,
-      }),
-    );
+    // return await writeFile(
+    //   '.srclaunchrc.ts',
+    //   await generateSrcLaunchProjectConfig({
+    //     description: projectDescription,
+    //     type: projectType as ProjectType,
+    //     name: projectName,
+    //   }),
+    // );
   }
 }

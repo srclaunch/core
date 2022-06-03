@@ -1,18 +1,3 @@
-import latestVersion from 'latest-version';
-import pc from 'picocolors';
-import { SemVer, maxSatisfying } from 'semver';
-import semverDiff from 'semver/functions/diff';
-import semver from 'semver/functions/parse';
-import {
-  AsyncFunction,
-  AsyncFunctionEx,
-  AsyncResultObjectCallback,
-  AsyncAutoTask,
-  Dictionary,
-  parallelLimit,
-  AsyncAutoTasks,
-} from 'async';
-import { shellExec } from '../cli';
 import {
   BrowserPackage,
   Dependencies,
@@ -22,6 +7,9 @@ import {
   ProjectType,
   UniversalPackage,
 } from '@srclaunch/types';
+import latestVersion from 'latest-version';
+import SemVer from 'semver';
+
 import {
   AMAZON_COGNITO_IDENTITY_JS_DEPENDENCIES,
   ASYNC_EXIT_HOOK_DEPENDENCIES,
@@ -34,16 +22,19 @@ import {
   CORS_DEPENDENCIES,
   CRYPTO_JS_DEPENDENCIES,
   CURRENCY_CODES_DEPEENDENCIES,
-  HISTORY_DEPENDENCIES,
   EMAIL_VALIDATOR_DEPENDENCIES,
   EXPRESS_DEPENDENCIES,
+  FS_EXTRA_DEPENDENCIES,
   HEX_RGB_DEPENDENCIES,
+  HISTORY_DEPENDENCIES,
   JS_FILE_DOWNLOAD_DEPENDENCIES,
+  JS_YAML_DEPENDENCIES,
   KEYGRIP_DEPENDENCIES,
   LUXON_DEPENDENCIES,
   MULTER_DEPENDENCIES,
   NANOID_DEPENDENCIES,
   PASSWORD_VALIDATOR_DEPENDENCIES,
+  PICO_COLORS_DEPENDENCIES,
   PLAID_DEPENDENCIES,
   PLURALIZE_DEPENDENCIES,
   QUERY_STRING_DEPENDENCIES,
@@ -60,26 +51,23 @@ import {
   REDUX_DEPENDENCIES,
   REDUX_TOOLKIT_DEPENDENCIES,
   RGB_HEX_DEPENDENCIES,
+  SERIALIZE_ERROR_DEPENDENCIES,
   SRCLAUNCH_DATA_CLIENT_DEPENDENCIES,
-  SRCLAUNCH_HTTP_SERVER_DEPENDENCIES,
-  SRCLAUNCH_NODE_ENVIRONMENT_DEPENDENCIES,
   SRCLAUNCH_EXCEPTIONS_DEPENDENCIES,
   SRCLAUNCH_HTTP_CLIENT_DEPENDENCIES,
+  SRCLAUNCH_HTTP_SERVER_DEPENDENCIES,
   SRCLAUNCH_I18N_DEPENDENCIES,
   SRCLAUNCH_ICONS_DEPENDENCIES,
   SRCLAUNCH_LOGGER_DEPENDENCIES,
+  SRCLAUNCH_NODE_ENVIRONMENT_DEPENDENCIES,
+  SRCLAUNCH_THEMES_DEPENDENCIES,
   SRCLAUNCH_TRANSFORM_DEPENDENCIES,
   SRCLAUNCH_VALIDATION_DEPENDENCIES,
-  STYLED_COMPONENTS_DEPENDENCIES,
-  SRCLAUNCH_THEMES_DEPENDENCIES,
-  UUID_DEPENDENCIES,
   SRCLAUNCH_WEB_APPLICATION_STATE_DEPENDENCIES,
   SRCLAUNCH_WEB_ENVIRONMENT_DEPENDENCIES,
+  STYLED_COMPONENTS_DEPENDENCIES,
+  UUID_DEPENDENCIES,
   ZXCVBN_DEPENDENCIES,
-  PICO_COLORS_DEPENDENCIES,
-  SERIALIZE_ERROR_DEPENDENCIES,
-  JS_YAML_DEPENDENCIES,
-  FS_EXTRA_DEPENDENCIES,
 } from '../../constants/dependencies';
 import {
   ASYNC_EXIT_HOOK_DEV_DEPENDENCIES,
@@ -107,16 +95,15 @@ import {
   TEST_COVERAGE_DEV_DEPENDENCIES,
   TYPESCRIPT_DEV_DEPENDENCIES,
 } from '../../constants/dev-dependencies';
-import { MapLike } from 'typescript';
-import { ValidationException } from '@srclaunch/exceptions';
+import { shellExec } from '../cli';
 
 const emoji = {
-  log: '\u26aa\ufe0f',
-  info: '\ud83d\udd35',
-  warn: '\u26a0\ufe0f',
-  warning: '\ud83d\udfe1',
-  error: '\ud83d\udd34',
+  error: '\uD83D\uDD34',
+  info: '\uD83D\uDD35',
+  log: '\u26AA\uFE0F',
   success: '\u2705',
+  warn: '\u26A0\uFE0F',
+  warning: '\uD83D\uDFE1',
 };
 
 export function getPlatformDependencies(platform?: Platform) {
@@ -380,7 +367,7 @@ export function sortDependencies(dependencies: Dependencies): Dependencies {
   if (
     dependencies === undefined ||
     !dependencies ||
-    !Object.keys(dependencies).length
+    Object.keys(dependencies).length === 0
   ) {
     return dependencies;
   }
@@ -405,8 +392,8 @@ export async function getDependencyLatestVersion(
   );
   const parsedVersions = await JSON.parse(versions);
 
-  if (parsedVersions && parsedVersions.length && version) {
-    const maxVersion = await maxSatisfying(parsedVersions, version);
+  if (parsedVersions && parsedVersions.length > 0 && version) {
+    const maxVersion = await SemVer.maxSatisfying(parsedVersions, version);
 
     if (maxVersion) {
       return typeof maxVersion === 'object'
@@ -442,8 +429,8 @@ export async function getDependenciesLatestVersions(
     }
 
     return depsDict;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
     return dependencies;
   }
 }
@@ -452,8 +439,8 @@ export async function getDependencies({
   dev = false,
   packages = [],
 }: {
-  dev?: boolean;
-  packages?: Package[];
+  readonly dev?: boolean;
+  readonly packages?: readonly Package[];
 }): Promise<Dependencies> {
   if (!packages) {
     return {};
@@ -494,24 +481,24 @@ export async function getDevDependencies({
   testCoverage,
   typescript,
 }: {
-  ava?: boolean;
-  eslint?: boolean;
-  github?: boolean;
-  jest?: boolean;
-  jestReact?: boolean;
-  packages?: Package[];
-  prettier?: boolean;
-  react?: boolean;
-  reactRouter?: boolean;
-  srclaunch?: {
-    cli?: boolean;
-    dx?: boolean;
-    types?: boolean;
+  readonly ava?: boolean;
+  readonly eslint?: boolean;
+  readonly github?: boolean;
+  readonly jest?: boolean;
+  readonly jestReact?: boolean;
+  readonly packages?: readonly Package[];
+  readonly prettier?: boolean;
+  readonly react?: boolean;
+  readonly reactRouter?: boolean;
+  readonly srclaunch?: {
+    readonly cli?: boolean;
+    readonly dx?: boolean;
+    readonly types?: boolean;
   };
-  styledComponents?: boolean;
-  stylelint?: boolean;
-  testCoverage?: boolean;
-  typescript?: boolean;
+  readonly styledComponents?: boolean;
+  readonly stylelint?: boolean;
+  readonly testCoverage?: boolean;
+  readonly typescript?: boolean;
 }): Promise<Dependencies> {
   return await getDependenciesLatestVersions({
     ...(ava ? AVA_TESTING_DEV_DEPENDENCIES : {}),

@@ -1,5 +1,6 @@
 import { cloneElement, ElementType, memo, ReactElement } from 'react';
-import { useTitle } from '@srclaunch/react-hooks';
+
+// import { useTitle } from '@srclaunch/react-hooks';
 import {
   AlignHorizontal,
   AlignVertical,
@@ -41,7 +42,7 @@ export const Workspace = memo(
     title,
     ...props
   }: WorkspaceProps): ReactElement => {
-    useTitle(title ?? '');
+    // useTitle(title ?? '');
 
     const WorkspaceComp = (props2: any) => (
       <Container

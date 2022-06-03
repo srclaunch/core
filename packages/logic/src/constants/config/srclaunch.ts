@@ -10,17 +10,17 @@ import {
   StaticTypingTool,
   TestReporter,
   TestTool,
-} from "@srclaunch/types";
+} from '@srclaunch/types';
 
-export const SRCLAUNCH_CONFIG_FILE_NAMES = [".srclaunchrc", "srclaunch.config"];
+export const SRCLAUNCH_CONFIG_FILE_NAMES = ['.srclaunchrc', 'srclaunch.config'];
 
-export const DEFAULT_SRCLAUNCH_CONFIG: Omit<Project, "name" | "description"> = {
+export const DEFAULT_SRCLAUNCH_CONFIG: Omit<Project, 'name' | 'description'> = {
   build: {
-    input: {
-      directory: "src",
-      file: "index.ts",
-    },
     formats: [BuildFormat.ESM, BuildFormat.UMD],
+    input: {
+      directory: 'src',
+      file: 'index.ts',
+    },
     platform: BuildPlatform.Universal,
     target: BuildTarget.ESNext,
     tool: BuildTool.Vite,
@@ -32,6 +32,14 @@ export const DEFAULT_SRCLAUNCH_CONFIG: Omit<Project, "name" | "description"> = {
       staticTyping: [StaticTypingTool.TypeScript],
     },
   },
+  requirements: {
+    node: '>=16',
+    srclaunch: {
+      cli: true,
+      dx: true,
+      types: true,
+    },
+  },
   test: {
     coverage: {
       reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
@@ -39,13 +47,4 @@ export const DEFAULT_SRCLAUNCH_CONFIG: Omit<Project, "name" | "description"> = {
     tool: TestTool.Ava,
   },
   type: ProjectType.Library,
-  requirements: {
-    node: ">=16",
-    yarn: ">=3.2.0",
-    srclaunch: {
-      dx: true,
-      cli: true,
-      types: true,
-    },
-  },
 };

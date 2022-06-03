@@ -1,17 +1,18 @@
 import { Project } from '@srclaunch/types';
-import { Command } from '../lib/command.js';
 import { TypedFlags } from 'meow';
+
+import { Command } from '../lib/command';
 
 export type WorkflowFlags = TypedFlags<{}>;
 
 export default new Command({
-  name: 'workflow',
-  description: `Commands for interacting with SrcLaunch Workflows.`,
   commands: [
     new Command<Project, WorkflowFlags>({
-      name: 'run',
       description: 'Runs a SrcLaunch Workflow definition.',
+      name: 'run',
       async run({ config, flags }): Promise<void> {},
     }),
   ],
+  description: `Commands for interacting with SrcLaunch Workflows.`,
+  name: 'workflow',
 });

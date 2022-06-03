@@ -1,32 +1,31 @@
 import { Project } from '@srclaunch/types';
-import { transformObjectToYAML } from '@srclaunch/logic';
-import { Command } from '../lib/command';
 import { TypedFlags } from 'meow';
+
+// import { transformObjectToYAML } from '@srclaunch/logic';
+import { Command } from '../lib/command';
 import { createNewProjectInteractive } from '../lib/project/create';
 
 export type GenerateSrcLaunchProjectFlags = TypedFlags<{
-  name: {
-    type: 'string';
-    required: true;
+  readonly name: {
+    readonly type: 'string';
+    readonly required: true;
   };
-  description: {
-    type: 'string';
-    required: true;
+  readonly description: {
+    readonly type: 'string';
+    readonly required: true;
   };
-  type: {
-    type: 'string';
-    required: true;
+  readonly type: {
+    readonly type: 'string';
+    readonly required: true;
   };
 }>;
 
 export default new Command({
-  name: 'generate',
-  description: `Generate code, configuration, and files for various patterns and libraries.`,
   commands: [
     new Command<Project>({
-      name: 'github-actions',
       description:
         'Generate GitHub Actions workflows from the SrcLaunch config file.',
+      name: 'github-actions',
       async run({ config, flags }): Promise<void> {
         const repositoryWorkflows = config?.repository?.workflows;
 
@@ -37,7 +36,6 @@ export default new Command({
           //     'github-actions',
           //     `${workflow.name}.yml`,
           //   );
-
           //   await writeFile(workflowPath, transformObjectToYAML(workflow));
           // }
           // const yaml = transformObjectToYAML(repositoryWorkflows);
@@ -46,13 +44,13 @@ export default new Command({
       },
     }),
     new Command<Project, GenerateSrcLaunchProjectFlags>({
-      name: 'srclaunch-project-config',
       description:
         "Generates a SrcLaunch project config file if one doesn't exist already.",
+      name: 'srclaunch-project-config',
       async run({ config, flags }): Promise<void> {
         const result = await createNewProjectInteractive({
-          name: flags.name,
           description: flags.description,
+          name: flags.name,
           type: flags.type,
         });
 
@@ -60,9 +58,9 @@ export default new Command({
       },
     }),
     new Command<Project>({
-      name: 'package-yml',
       description:
         'Generates a package.yml file that can be used as a replacement for packageon',
+      name: 'package-yml',
       async run({ config, flags }): Promise<void> {
         // await shellExec(
         //   'yarn plugin import https://raw.githubusercontent.com/lyleunderwood/yarn-plugin-yaml-manifest/master/bundles/%40yarnpkg/plugin-yaml-manifest',
@@ -96,4 +94,6 @@ export default new Command({
       },
     }),
   ],
+  description: `Generate code, configuration, and files for various patterns and libraries.`,
+  name: 'generate',
 });

@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "composite": true,
     "declaration": true,
     "declarationDir": "dist",
     "declarationMap": true,
@@ -12,25 +11,18 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noUncheckedIndexedAccess": true,
-    "paths": {
-      "@srclaunch/cli": ["../cli"],
-      "@srclaunch/types": ["../types"]
-    },
     "resolveJsonModule": true,
-    "rootDir": "./",
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "target": "esnext"
   },
-  "exclude": ["src/**/*.test.ts", "src/**/*.spec.ts"],
-  "include": ["index.mts"],
-  "references": [
-    {
-      "path": "../cli"
-    },
-    {
-      "path": "../types"
-    }
-  ]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "__tests__",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts"
+  ],
+  "include": ["./index.ts"]
 }

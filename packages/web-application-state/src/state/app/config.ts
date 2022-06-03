@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { WebApplicationConfig } from '@srclaunch/types';
+import { WebApplicationConfiguration } from '@srclaunch/types';
 
-type AppState = WebApplicationConfig | undefined;
+type AppState = WebApplicationConfiguration | undefined;
 
 const initialState: AppState = {
   aws: {},
@@ -13,7 +13,7 @@ const slice = createSlice({
   reducers: {
     setConfig: (
       state,
-      action: PayloadAction<WebApplicationConfig | undefined>,
+      action: PayloadAction<WebApplicationConfiguration | undefined>,
     ) => {
       if (action.payload) {
         const { aws } = action.payload;

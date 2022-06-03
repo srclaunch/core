@@ -1,18 +1,7 @@
 {
+  "extends": "@srclaunch/dx/tsconfig.json",
   "compilerOptions": {
-    "composite": true,
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "outDir": "./dist",
-    "paths": {
-      "@srclaunch/cli": ["../cli"],
-    },
-    "rootDir": "./src"
+    "declarationDir": "./dist"
   },
-  "references": [
-    {
-      "path": "../cli"
-    },
-  ],
-  "include": ["src/**/*.ts"]
+  "include": ["./src"]
 }

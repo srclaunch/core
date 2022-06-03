@@ -1,8 +1,8 @@
 import { Environment, LogLevel } from '@srclaunch/types';
-import pc from 'picocolors';
 import { DateTime } from 'luxon';
 // import { getBrowserEnvironment, getNodeEnvironment } from '@srclaunch/environment';
 import { nanoid } from 'nanoid';
+import pc from 'picocolors';
 
 // import winston from 'winston';
 // import { CloudWatchConfig } from '../types/cloudwatch';
@@ -10,20 +10,19 @@ import {
   AnalyticsEventProps,
   CriticalEventProps,
   DebugEventProps,
-  LogEvent,
   ExceptionEventProps,
   HttpEventProps,
   InfoEventProps,
+  LogEvent,
   WarningEventProps,
 } from '../types/events';
 import { LoggerConfig } from '../types/index';
-import pc from 'picocolors';
 
 // import { LogLevel } from '../types/levels';
 // import { getCloudwatchTransport } from './cloudwatch.js';
 
 export class Logger {
-  private level: LogLevel;
+  private readonly level: LogLevel;
   public readonly environment?: Environment;
 
   public constructor(config?: LoggerConfig) {

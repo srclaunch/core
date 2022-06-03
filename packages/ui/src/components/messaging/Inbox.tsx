@@ -1,5 +1,6 @@
-import { ReactElement, memo } from 'react';
 import { ChatMessage } from '@srclaunch/types';
+import { memo, ReactElement } from 'react';
+
 import { Container, ContainerProps } from '../../components/layout/Container';
 import {
   AlignHorizontal,
@@ -8,10 +9,10 @@ import {
   Fill,
   Orientation,
 } from '../../types';
-import { MessageComposer } from './MessageComposer';
 import { RouterView } from '../navigation/RouterView';
 import { ConversationList } from './ConversationList';
 import { ConversationNavigation } from './ConversationNavigation';
+import { MessageComposer } from './MessageComposer';
 
 export type InboxProps = ContainerProps;
 

@@ -13,11 +13,11 @@ import {
   TestReporter,
   TestTool,
   UniversalPackage,
-} from "@srclaunch/types";
+} from '@srclaunch/types';
 
-const config: Project = {
-  name: "@srclaunch/exceptions",
-  description: "Exception handling utilities",
+export default <Project>{
+  name: '@srclaunch/exceptions',
+  description: 'Exception handling utilities',
   type: ProjectType.Library,
   environments: {
     development: {
@@ -42,14 +42,12 @@ const config: Project = {
     publish: {
       access: PublishAccess.Public,
       license: License.MIT,
-      registry: "https://registry.npmjs.org/",
+      registry: 'https://registry.npmjs.org/',
     },
   },
   requirements: {
-    node: ">=16",
-    yarn: ">=3.2.0",
+    node: '>=16',
     packages: [
-      UniversalPackage.SrcLaunchLogger,
       UniversalPackage.Luxon,
       UniversalPackage.NanoID,
       UniversalPackage.SerializeError,
@@ -61,5 +59,3 @@ const config: Project = {
     },
   },
 };
-
-export default config;

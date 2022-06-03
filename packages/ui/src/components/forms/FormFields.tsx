@@ -1,4 +1,4 @@
-import { Primitives, ValidationProblem } from '@srclaunch/types';
+import { Primitives } from '@srclaunch/types';
 import { memo, ReactElement, useEffect, useState } from 'react';
 
 import { getInputElementByFieldType } from '../../lib/forms/inputs';

@@ -1,12 +1,12 @@
 import { Exception } from '@srclaunch/exceptions';
-import { ValidationProblem } from '@srclaunch/types';
+import { ValidationProblem } from '@srclaunch/validation';
 
 export function getErrorMessage(
   error:
     | Exception
-    | Exception[]
+    | readonly Exception[]
     | ValidationProblem
-    | ValidationProblem[]
+    | readonly ValidationProblem[]
     | string,
 ): string | null {
   if (error instanceof Exception) {

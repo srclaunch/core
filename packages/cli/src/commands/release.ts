@@ -1,5 +1,5 @@
 import { ChangeType, Project } from '@srclaunch/types';
-import { readFile, writeFile } from '@srclaunch/logic';
+// import { readFile, writeFile } from '@srclaunch/logic';
 import path from 'path';
 import pc from 'picocolors';
 import { TypedFlags } from 'meow';
@@ -34,11 +34,11 @@ export default new Command<Project, ReleaseFlags>({
         push: flags.push,
       });
 
-      console.log(
-        `${pc.green('✔')} created release ${pc.bold(result.version)} ${
-          flags.push ? `and pushed to ${pc.bold(result.repo)}` : ``
-        } on branch ${pc.bold(result.branch)}`,
-      );
+      // console.log(
+      //   `${pc.green('✔')} created release ${pc.bold(result.version)} ${
+      //     flags.push ? `and pushed to ${pc.bold(result.repo)}` : ``
+      //   } on branch ${pc.bold(result.branch)}`,
+      // );
     } catch (err) {
       console.error('err', err);
     }

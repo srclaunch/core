@@ -1,7 +1,8 @@
-import { Condition, SSN, ValidationProblem } from '@srclaunch/types';
+import { Condition, SSN } from '@srclaunch/types';
 import {
   // getValidationProblemLabel,
   validate,
+  ValidationProblem,
 } from '@srclaunch/validation';
 import {
   createRef,
@@ -33,7 +34,6 @@ import {
 } from '../../../../types';
 import { ErrorLabel } from '../../../errors/ErrorLabel';
 import { Container } from '../../../layout/Container';
-
 import { ProgressSpinner } from '../../../progress/ProgressSpinner';
 import { Label } from '../../../typography/Label';
 import { InputLabel } from '../../labels/InputLabel';
@@ -84,11 +84,11 @@ export const SSNInput = memo(
 
       if (valueChanged) {
         if (validation && validation.conditions) {
-          const probs = validate(
-            value,
-            validation.conditions,
-          ) as ValidationProblem[];
-
+          // const probs = validate(
+          //   value,
+          //   validation.conditions,
+          // ) as ValidationProblem[];
+          const probs: ValidationProblem[] = [];
           setProblems(probs);
 
           if (events.input?.onValueChange && value)

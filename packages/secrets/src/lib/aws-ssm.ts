@@ -1,62 +1,64 @@
 import { Exception } from '@srclaunch/exceptions';
-import Logger from '@srclaunch/logger';
-import AWS from 'aws-sdk';
+// import { Logger } from '@srclaunch/logger';
+import * as AWS from 'aws-sdk';
+
+import { ExceptionObject } from '../../../types/src';
 
 AWS.config.update({ region: process.env.AWS_REGION });
 
-const logger = new Logger();
+// const logger = new Logger();
 
 export async function getSecrets(
-  paths: string[],
+  paths: readonly string[],
 ): Promise<AWS.SSM.ParameterList | void> {
   try {
     const ssm = new AWS.SSM({ region: process.env.AWS_REGION });
 
     const options = {
-      Names: paths /* required */,
+      Names: paths as string[],
       WithDecryption: false,
     };
 
     const parameterPromise = await ssm.getParameters(options).promise();
 
-    logger.debug({
-      data: parameterPromise.Parameters,
-      message: 'AWS SSM Secrets',
-    });
+    // logger.debug({
+    //   data: parameterPromise.Parameters,
+    //   message: 'AWS SSM Secrets',
+    // });
 
     return parameterPromise.Parameters;
-  } catch (err: any) {
+  } catch (error: any) {
     const exception = new Exception(
-      `Error caught in getSecret(): ${err.name}`,
+      `Error caught in getSecret(): ${error.name}`,
 
       {
-        cause: err,
+        cause: error as Error,
         tags: {
           file: '',
         },
       },
     );
 
-    logger.exception(exception);
+    // logger.exception(exception.toJSON());
   }
 }
 
 export async function getParameters(
-  paths: string[],
+  paths: readonly string[],
 ): Promise<AWS.SSM.ParameterList | void> {
   try {
     const ssm = new AWS.SSM({ region: process.env.AWS_REGION });
 
     const options = {
-      Names: paths /* required */,
+      Names: paths as string[],
       WithDecryption: false,
     };
     const parameterPromise = await ssm.getParameters(options).promise();
 
-    logger.debug({
-      data: parameterPromise.Parameters,
-      message: 'AWS SSM Parameters',
-    });
+    // logger.debug({
+    //   data: parameterPromise.Parameters,
+    //   message: 'AWS SSM Parameters',
+    // });
 
     return parameterPromise.Parameters;
     // parameterPromise.then(
@@ -69,17 +71,17 @@ export async function getParameters(
     //     return data; // successful response
     //   },
     // );
-  } catch (err: any) {
+  } catch (error: any) {
     const exception = new Exception(
-      `Error caught in getParameters(): ${err.name}`,
+      `Error caught in getParameters(): ${error.name}`,
       {
-        cause: err,
+        cause: error as Error,
         tags: {
           file: '',
         },
       },
     );
 
-    logger.exception(exception);
+    // logger.exception(exception.toJSON() as ExceptionObject);
   }
 }

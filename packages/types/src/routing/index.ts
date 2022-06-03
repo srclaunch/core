@@ -10,6 +10,6 @@ export enum RouteRole {
 export type Route = {
   readonly loginRequired?: boolean;
   readonly path?: string;
-  readonly component: Element;
+  readonly component: React.ElementType;
   readonly role?: RouteRole;
 };

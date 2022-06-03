@@ -1,15 +1,17 @@
 import { AppLabLightTheme } from '@srclaunch/themes';
-import { WebApplicationConfig } from '@srclaunch/types';
+import { WebApplicationConfiguration } from '@srclaunch/types';
 import {
   createStore,
   renderReduxWebApp,
 } from '@srclaunch/web-application-state';
+import React from 'react';
 
-import reducers from './state/index';
-import routes from './routes';
 import { WebApplication } from '../components/containers/WebApplication';
+import routes from './routes';
+import reducers from './state/index';
 
-const config: WebApplicationConfig = {
+console.log('React', React);
+const config: WebApplicationConfiguration = {
   ui: {
     themes: {
       default: AppLabLightTheme.id,
@@ -22,6 +24,7 @@ const store = createStore({
   reducers,
 });
 
+console.log('routes', routes);
 renderReduxWebApp({
   authentication: false,
   config,

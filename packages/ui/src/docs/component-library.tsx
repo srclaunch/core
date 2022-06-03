@@ -2,6 +2,8 @@ import { Exception } from '@srclaunch/exceptions';
 import { BasicIcons, DualLightIcons } from '@srclaunch/icons';
 import { Primitives } from '@srclaunch/types';
 import { useState } from 'react';
+
+import { PricingPlans } from '../components/billing/subscriptions/plans/PricingPlans';
 import { Workspace } from '../components/containers/Workspace';
 import DataGrid from '../components/data/DataGrid';
 import { MenuButton } from '../components/forms/buttons/MenuButton';
@@ -12,8 +14,8 @@ import { Container } from '../components/layout/Container';
 import { MediaGrid } from '../components/media/MediaGrid';
 import { Menu } from '../components/menus/Menu';
 import { MoreMenu } from '../components/menus/MoreMenu';
-import { MessageComposer } from '../components/messaging/MessageComposer';
 import { Inbox } from '../components/messaging/Inbox';
+import { MessageComposer } from '../components/messaging/MessageComposer';
 import { CloseButton } from '../components/modals/CloseButton';
 import { ModalHeader } from '../components/modals/ModalHeader';
 import { SlidePanel } from '../components/modals/SlidePanel';
@@ -32,9 +34,9 @@ import {
   InputLabel,
   LoginForm,
   NumberInput,
+  SignupForm,
   TextInput,
   TitleCard,
-  SignupForm,
   Validation,
 } from '../index';
 import {
@@ -46,38 +48,20 @@ import {
   TextColors,
 } from '../types';
 import { ComponentLibrary } from './types/component';
-import { PricingPlans } from '../components/billing/subscriptions/plans/PricingPlans';
 
 export default {
-  name: 'AppLab UI',
-  description: 'A library of UI components for AppLab applications',
   components: [
     {
-      title: 'Animation',
       path: '/animation',
+      title: 'Animation',
     },
     {
-      title: 'Authentication',
-      description: 'Components used for authentication',
-      path: '/authentication',
       components: [
         {
           component: CodeVerificationForm,
           description: 'A form for verifying a user’s code',
-          title: 'CodeVerificationForm',
-          path: '/authentication/code-verification-form',
           examples: [
             {
-              title: 'Default',
-              properties: {
-                onSubmit: ({
-                  fields,
-                }: {
-                  fields?: Record<string, unknown>;
-                }) => {
-                  console.log(fields);
-                },
-              },
               code: `import { CodeVerificationForm } from '@srclaunch/ui';
 
 <CodeVerificationForm
@@ -90,26 +74,26 @@ export default {
   }}
 />
               `,
-            },
-          ],
-        },
-        {
-          component: ForgotPasswordForm,
-          description: 'A form for resetting a user’s password',
-          title: 'ForgotPasswordForm',
-          path: '/authentication/forgot-password-form',
-          examples: [
-            {
-              title: 'Default',
               properties: {
                 onSubmit: ({
                   fields,
                 }: {
-                  fields?: Record<string, unknown>;
+                  readonly fields?: Record<string, unknown>;
                 }) => {
                   console.log(fields);
                 },
               },
+              title: 'Default',
+            },
+          ],
+          path: '/authentication/code-verification-form',
+          title: 'CodeVerificationForm',
+        },
+        {
+          component: ForgotPasswordForm,
+          description: 'A form for resetting a user’s password',
+          examples: [
+            {
               code: `import { ForgotPasswordForm } from '@srclaunch/ui';
 
 <ForgotPasswordForm
@@ -122,26 +106,26 @@ export default {
   }}
 />
               `,
-            },
-          ],
-        },
-        {
-          component: LoginForm,
-          description: 'A form for logging in a user',
-          title: 'LoginForm',
-          path: '/authentication/login-form',
-          examples: [
-            {
-              title: 'Default',
               properties: {
                 onSubmit: ({
                   fields,
                 }: {
-                  fields?: Record<string, unknown>;
+                  readonly fields?: Record<string, unknown>;
                 }) => {
                   console.log(fields);
                 },
               },
+              title: 'Default',
+            },
+          ],
+          path: '/authentication/forgot-password-form',
+          title: 'ForgotPasswordForm',
+        },
+        {
+          component: LoginForm,
+          description: 'A form for logging in a user',
+          examples: [
+            {
               code: `import { LoginForm } from '@srclaunch/ui';
 
 <LoginForm
@@ -154,26 +138,26 @@ export default {
   }}
 />
               `,
-            },
-          ],
-        },
-        {
-          component: SignupForm,
-          description: 'A form for signing up a user',
-          title: 'SignupForm',
-          path: '/authentication/signup-form',
-          examples: [
-            {
-              title: 'Default',
               properties: {
                 onSubmit: ({
                   fields,
                 }: {
-                  fields?: Record<string, unknown>;
+                  readonly fields?: Record<string, unknown>;
                 }) => {
                   console.log(fields);
                 },
               },
+              title: 'Default',
+            },
+          ],
+          path: '/authentication/login-form',
+          title: 'LoginForm',
+        },
+        {
+          component: SignupForm,
+          description: 'A form for signing up a user',
+          examples: [
+            {
               code: `import { SignupForm } from '@srclaunch/ui';
 
 <SignupForm
@@ -186,43 +170,61 @@ export default {
   }}
 />
               `,
+              properties: {
+                onSubmit: ({
+                  fields,
+                }: {
+                  readonly fields?: Record<string, unknown>;
+                }) => {
+                  console.log(fields);
+                },
+              },
+              title: 'Default',
             },
           ],
+          path: '/authentication/signup-form',
+          title: 'SignupForm',
         },
       ],
+      description: 'Components used for authentication',
+      path: '/authentication',
+      title: 'Authentication',
     },
     {
-      title: 'Billing',
-      description: 'Billing, payments, and subscription related components.',
-      path: '/billing',
       components: [
         {
           component: PricingPlans,
-          title: 'PricingPlans',
           description: 'A list of pricing plans',
-          path: '/billing/pricing-plans',
           examples: [
             {
               properties: {},
             },
           ],
+          path: '/billing/pricing-plans',
+          title: 'PricingPlans',
         },
       ],
+      description: 'Billing, payments, and subscription related components.',
+      path: '/billing',
+      title: 'Billing',
     },
     {
-      title: 'Cards',
-      path: '/cards',
-      description: 'Cards for various purpose',
       components: [
         {
           component: TitleCard,
-          title: 'TitleCard',
-          path: '/cards/title-card',
           description:
             'A card with an icon, title, subtitle, and a metric or value',
           examples: [
             {
-              title: 'Default',
+              code: `import { TitleCard } from '@srclaunch/ui';
+
+<TitleCard
+  icon: {
+    name: DualLightIcons.Alarm
+  },
+  label: 'Title',
+  value: 43
+/>`,
               properties: {
                 icon: {
                   name: DualLightIcons.Tool,
@@ -234,43 +236,29 @@ export default {
                 label: 'Title',
                 value: 43,
               },
-              code: `import { TitleCard } from '@srclaunch/ui';
-
-<TitleCard
-  icon: {
-    name: DualLightIcons.Alarm
-  },
-  label: 'Title',
-  value: 43
-/>`,
+              title: 'Default',
             },
           ],
+          path: '/cards/title-card',
+          title: 'TitleCard',
         },
       ],
+      description: 'Cards for various purpose',
+      path: '/cards',
+      title: 'Cards',
     },
     {
-      title: 'Charts',
       path: '/charts',
+      title: 'Charts',
     },
     {
-      title: 'Containers',
-      description: 'Containers for various purpose',
-      path: '/containers',
       components: [
         {
           component: Workspace,
-          title: 'Workspace',
           description:
             'A container that provides functionality for dashboard workspaces.',
-          path: '/containers/workspace',
           examples: [
             {
-              title: 'Default',
-              properties: {
-                header: {
-                  title: 'Workspace',
-                },
-              },
               code: `import { Workspace } from '@srclaunch/ui';
 
 const Example = () => (
@@ -283,15 +271,14 @@ const Example = () => (
   </Workspace>
 );
 `,
-            },
-            {
-              title: 'With Subtitle',
               properties: {
                 header: {
                   title: 'Workspace',
-                  subTitle: 'SubTitle',
                 },
               },
+              title: 'Default',
+            },
+            {
               code: `import { Workspace } from '@srclaunch/ui';
 
 const Example = () => (
@@ -305,16 +292,15 @@ const Example = () => (
   </Workspace>
 );
 `,
-            },
-            {
-              title: 'With action',
               properties: {
                 header: {
-                  actions: <Button type={ButtonType.Primary}>Action</Button>,
-                  title: 'Workspace',
                   subTitle: 'SubTitle',
+                  title: 'Workspace',
                 },
               },
+              title: 'With Subtitle',
+            },
+            {
               code: `import { Workspace } from '@srclaunch/ui';
 
 const Example = () => (
@@ -329,48 +315,31 @@ const Example = () => (
   </Workspace>
 );
 `,
+              properties: {
+                header: {
+                  actions: <Button type={ButtonType.Primary}>Action</Button>,
+                  subTitle: 'SubTitle',
+                  title: 'Workspace',
+                },
+              },
+              title: 'With action',
             },
           ],
+          path: '/containers/workspace',
+          title: 'Workspace',
         },
       ],
+      description: 'Containers for various purpose',
+      path: '/containers',
+      title: 'Containers',
     },
     {
-      title: 'Data',
-      description: 'Components for displaying data of various types.',
-      path: '/data',
       components: [
         {
           component: DataGrid,
-          title: 'DataGrid',
-          path: '/data/data-grid',
           description: 'A grid of data',
           examples: [
             {
-              title: 'Default',
-              properties: {
-                columns: [
-                  {
-                    label: 'Name',
-                    field: 'name',
-                    type: Primitives.String,
-                  },
-                  {
-                    label: 'Age',
-                    field: 'age',
-                    type: Primitives.Number,
-                  },
-                ],
-                data: [
-                  {
-                    name: 'John',
-                    age: '42',
-                  },
-                  {
-                    name: 'Jane',
-                    age: '43',
-                  },
-                ],
-              },
               code: `import { DataGrid } from '@srclaunch/ui';
 
 <DataGrid
@@ -397,38 +366,33 @@ const Example = () => (
     },
   ]
 />`,
-            },
-            {
-              title: 'With header and search',
               properties: {
                 columns: [
                   {
-                    label: 'Name',
                     field: 'name',
+                    label: 'Name',
                     type: Primitives.String,
                   },
                   {
-                    label: 'Age',
                     field: 'age',
+                    label: 'Age',
                     type: Primitives.Number,
                   },
                 ],
                 data: [
                   {
-                    name: 'John',
                     age: '42',
+                    name: 'John',
                   },
                   {
-                    name: 'Jane',
                     age: '43',
+                    name: 'Jane',
                   },
                 ],
-                header: {
-                  search: {
-                    placeholder: 'Search examples',
-                  },
-                },
               },
+              title: 'Default',
+            },
+            {
               code: `import { DataGrid } from '@srclaunch/ui';
 
 <DataGrid
@@ -460,39 +424,38 @@ const Example = () => (
     },
   }}
 />`,
-            },
-            {
-              title: 'With search input and export button',
               properties: {
                 columns: [
                   {
-                    label: 'Name',
                     field: 'name',
+                    label: 'Name',
                     type: Primitives.String,
                   },
                   {
-                    label: 'Age',
                     field: 'age',
+                    label: 'Age',
                     type: Primitives.Number,
                   },
                 ],
                 data: [
                   {
-                    name: 'John',
                     age: '42',
+                    name: 'John',
                   },
                   {
-                    name: 'Jane',
                     age: '43',
+                    name: 'Jane',
                   },
                 ],
                 header: {
-                  export: true,
                   search: {
                     placeholder: 'Search examples',
                   },
                 },
               },
+              title: 'With header and search',
+            },
+            {
               code: `import { DataGrid } from '@srclaunch/ui';
     
     <DataGrid
@@ -525,41 +488,39 @@ const Example = () => (
         },
       }}
     />`,
-            },
-            {
-              title: 'With search input and create button',
               properties: {
                 columns: [
                   {
-                    label: 'Name',
                     field: 'name',
+                    label: 'Name',
                     type: Primitives.String,
                   },
                   {
-                    label: 'Age',
                     field: 'age',
+                    label: 'Age',
                     type: Primitives.Number,
                   },
                 ],
                 data: [
                   {
-                    name: 'John',
                     age: '42',
+                    name: 'John',
                   },
                   {
-                    name: 'Jane',
                     age: '43',
+                    name: 'Jane',
                   },
                 ],
                 header: {
-                  create: {
-                    label: 'Create new example',
-                  },
+                  export: true,
                   search: {
                     placeholder: 'Search examples',
                   },
                 },
               },
+              title: 'With search input and export button',
+            },
+            {
               code: `import { DataGrid } from '@srclaunch/ui';
     
               <DataGrid
@@ -592,38 +553,69 @@ const Example = () => (
                   },
                 }}
               />`,
+              properties: {
+                columns: [
+                  {
+                    field: 'name',
+                    label: 'Name',
+                    type: Primitives.String,
+                  },
+                  {
+                    field: 'age',
+                    label: 'Age',
+                    type: Primitives.Number,
+                  },
+                ],
+                data: [
+                  {
+                    age: '42',
+                    name: 'John',
+                  },
+                  {
+                    age: '43',
+                    name: 'Jane',
+                  },
+                ],
+                header: {
+                  create: {
+                    label: 'Create new example',
+                  },
+                  search: {
+                    placeholder: 'Search examples',
+                  },
+                },
+              },
+              title: 'With search input and create button',
             },
           ],
+          path: '/data/data-grid',
+          title: 'DataGrid',
         },
       ],
+      description: 'Components for displaying data of various types.',
+      path: '/data',
+      title: 'Data',
     },
 
     {
-      title: 'Editors',
       path: '/editors',
+      title: 'Editors',
     },
     {
-      title: 'Engineering',
       path: '/engineering',
+      title: 'Engineering',
     },
     {
-      title: 'Errors',
       path: '/errors',
+      title: 'Errors',
     },
     {
-      title: 'Feeds',
       path: '/feeds',
+      title: 'Feeds',
     },
     {
-      title: 'Forms',
-      description: 'Forms are used to collect user input',
-      path: '/forms',
       components: [
         {
-          title: 'Buttons',
-          description:
-            'Buttons are elements users interact with to perform an action',
-          path: '/forms/buttons',
           components: [
             {
               component: Button,
@@ -631,47 +623,51 @@ const Example = () => (
                 'A button is a clickable element that performs an action',
               examples: [
                 {
-                  title: 'Basic',
+                  code: `import { Button } from '@srclaunch/ui';
+
+                  const Example = () => (
+                    <Button>Click me</Button>
+                  );`,
 
                   description: 'A basic button',
                   properties: {
                     children: 'Click me',
                   },
+                  title: 'Basic',
+                },
+                {
                   code: `import { Button } from '@srclaunch/ui';
 
                   const Example = () => (
                     <Button>Click me</Button>
                   );`,
-                },
-                {
-                  title: 'Primary',
                   description: 'A primary button',
                   properties: {
                     children: 'Hi ARI!!!',
                     type: ButtonType.Primary,
                   },
+                  title: 'Primary',
+                },
+                {
                   code: `import { Button } from '@srclaunch/ui';
 
                   const Example = () => (
                     <Button>Click me</Button>
                   );`,
-                },
-                {
-                  title: 'Secondary',
                   description: 'A secondary button',
                   properties: {
                     borderRadius: { all: Amount.Least },
                     children: 'Click me',
                     type: ButtonType.Secondary,
                   },
+                  title: 'Secondary',
+                },
+                {
                   code: `import { Button } from '@srclaunch/ui';
 
                   const Example = () => (
                     <Button>Click me</Button>
                   );`,
-                },
-                {
-                  title: 'Inline',
                   description: 'An inline button',
                   properties: {
                     children: 'Do something',
@@ -679,39 +675,37 @@ const Example = () => (
                       fill: Fill.None,
                     },
                   },
-                  code: `import { Button } from '@srclaunch/ui';
-
-                  const Example = () => (
-                    <Button>Click me</Button>
-                  );`,
+                  title: 'Inline',
                 },
               ],
               path: '/forms/buttons/button',
               properties: {
                 children: {
-                  types: ['ReactElement', 'string'],
                   required: true,
+                  types: ['ReactElement', 'string'],
                 },
                 disabled: {
-                  types: ['boolean'],
                   required: false,
+                  types: ['boolean'],
                 },
                 form: {
-                  types: ['string'],
                   required: false,
+                  types: ['string'],
                 },
               },
               title: 'Button',
             },
             {
               component: MenuButton,
-              title: 'MenuButton',
-              path: '/forms/buttons/menu-button',
               description:
                 'A menu button is a button that opens a menu when clicked',
               examples: [
                 {
-                  title: 'Basic',
+                  code: `import { MenuButton } from '@srclaunch/ui';
+
+                  const Example = () => (
+                    <MenuButton>Click me</MenuButton>
+                  );`,
                   description: 'A basic menu button',
                   properties: {
                     label: 'Click me',
@@ -722,14 +716,14 @@ const Example = () => (
                       },
                     ],
                   },
+                  title: 'Basic',
+                },
+                {
                   code: `import { MenuButton } from '@srclaunch/ui';
 
                   const Example = () => (
                     <MenuButton>Click me</MenuButton>
                   );`,
-                },
-                {
-                  title: 'With menu visible',
                   description: 'With menu visible',
                   properties: {
                     label: 'Click me',
@@ -747,35 +741,27 @@ const Example = () => (
                       },
                     },
                   },
-                  code: `import { MenuButton } from '@srclaunch/ui';
-
-                  const Example = () => (
-                    <MenuButton>Click me</MenuButton>
-                  );`,
+                  title: 'With menu visible',
                 },
               ],
+              path: '/forms/buttons/menu-button',
+              title: 'MenuButton',
             },
           ],
+          description:
+            'Buttons are elements users interact with to perform an action',
+          path: '/forms/buttons',
+          title: 'Buttons',
         },
 
         {
-          title: 'Inputs',
-          description:
-            'Inputs are elements users interact with to collect user input',
-          path: '/forms/inputs',
           components: [
             {
-              title: 'Boolean',
-              description:
-                'True/false inputs are used to collect a boolean value',
-              path: '/forms/inputs/boolean',
               components: [
                 {
-                  title: 'Checkbox',
+                  component: Checkbox,
                   description:
                     'A checkbox is a boolean input that can be checked or unchecked',
-                  component: Checkbox,
-                  path: '/forms/inputs/boolean/checkbox',
                   examples: [
                     {
                       code: `import { Checkbox } from '@srclaunch/ui';
@@ -789,18 +775,18 @@ const Example = () => (
                       description: '',
                       properties: {
                         label: 'Enabled',
-                        onChange: ({ value }: { value: string }) =>
+                        onChange: ({ value }: { readonly value: string }) =>
                           console.log(value),
                       },
                     },
                   ],
+                  path: '/forms/inputs/boolean/checkbox',
+                  title: 'Checkbox',
                 },
                 {
-                  title: 'ToggleInput',
+                  component: ToggleInput,
                   description:
                     'A toggle input is a boolean input that can be turned on or off',
-                  component: ToggleInput,
-                  path: '/forms/inputs/boolean/toggle-input',
                   examples: [
                     {
                       code: `import { ToggleInput } from '@srclaunch/ui';
@@ -814,26 +800,26 @@ const Example = () => (
                       description: '',
                       properties: {
                         label: 'Enabled',
-                        onChange: ({ value }: { value: string }) =>
+                        onChange: ({ value }: { readonly value: string }) =>
                           console.log(value),
                       },
                     },
                   ],
+                  path: '/forms/inputs/boolean/toggle-input',
+                  title: 'ToggleInput',
                 },
               ],
+              description:
+                'True/false inputs are used to collect a boolean value',
+              path: '/forms/inputs/boolean',
+              title: 'Boolean',
             },
             {
-              title: 'Media',
-              description:
-                'Form input components for media, including images and videos',
-              path: '/forms/inputs/media',
               components: [
                 {
-                  title: 'ImageInput',
+                  component: ImageInput,
                   description:
                     'Form input components for media, including images and videos',
-                  component: ImageInput,
-                  path: '/forms/inputs/media/image-input',
                   examples: [
                     {
                       code: `import { ImageInput } from '@srclaunch/ui';
@@ -847,33 +833,33 @@ const Example = () => (
                       description: 'A basic image input',
                       properties: {
                         label: 'Images',
-                        onChange: ({ value }: { value: string }) =>
+                        onChange: ({ value }: { readonly value: string }) =>
                           console.log(value),
                       },
                     },
                   ],
+                  path: '/forms/inputs/media/image-input',
+                  title: 'ImageInput',
                 },
               ],
+              description:
+                'Form input components for media, including images and videos',
+              path: '/forms/inputs/media',
+              title: 'Media',
             },
             {
-              title: 'Menus',
-              description: 'Menu and list user inputs',
-              path: '/forms/inputs/menus',
               components: [
                 {
                   component: DropdownInput,
                   description: 'A dropdown menu input',
-                  title: 'DropdownInput',
-                  path: '/forms/inputs/menus/dropdown-input',
                   examples: [
                     {
-                      title: 'Default',
                       properties: {
                         label: 'Dropdown',
                       },
+                      title: 'Default',
                     },
                     {
-                      title: 'With a menu',
                       properties: {
                         label: 'Dropdown',
                         menu: [
@@ -890,39 +876,24 @@ const Example = () => (
                           },
                         },
                       },
+                      title: 'With a menu',
                     },
                   ],
+                  path: '/forms/inputs/menus/dropdown-input',
+                  title: 'DropdownInput',
                 },
               ],
+              description: 'Menu and list user inputs',
+              path: '/forms/inputs/menus',
+              title: 'Menus',
             },
             {
-              title: 'Numbers',
-              description: 'Menu and list user inputs',
-              path: '/forms/inputs/numbers',
               components: [
                 {
                   component: NumberInput,
                   description: 'An input for entering numbers',
-                  title: 'NumberInput',
-                  path: '/forms/inputs/numbers/number-input',
                   examples: [
                     {
-                      title: 'Default',
-                      properties: {
-                        events: {
-                          input: {
-                            onValueChange: ({
-                              validation,
-                              value,
-                            }: {
-                              validation?: Validation;
-                              value?: string;
-                            }) => {
-                              console.log(validation, value);
-                            },
-                          },
-                        },
-                      },
                       code: `import { NumberInput } from '@srclaunch/ui';
         
 <NumberInput
@@ -934,24 +905,6 @@ const Example = () => (
     }
   }}
 />`,
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              title: 'Text',
-              description: 'Text and string user inputs',
-              path: '/forms/inputs/text',
-              components: [
-                {
-                  component: TextInput,
-                  description: 'A form for signing up a user',
-                  title: 'TextInput',
-                  path: '/forms/inputs/text/text-input',
-                  examples: [
-                    {
-                      title: 'Default',
                       properties: {
                         events: {
                           input: {
@@ -959,14 +912,32 @@ const Example = () => (
                               validation,
                               value,
                             }: {
-                              validation?: Validation;
-                              value?: string;
+                              readonly validation?: Validation;
+                              readonly value?: string;
                             }) => {
                               console.log(validation, value);
                             },
                           },
                         },
                       },
+                      title: 'Default',
+                    },
+                  ],
+                  path: '/forms/inputs/numbers/number-input',
+                  title: 'NumberInput',
+                },
+              ],
+              description: 'Menu and list user inputs',
+              path: '/forms/inputs/numbers',
+              title: 'Numbers',
+            },
+            {
+              components: [
+                {
+                  component: TextInput,
+                  description: 'A form for signing up a user',
+                  examples: [
+                    {
                       code: `import { TextInput } from '@srclaunch/ui';
         
 <TextInput
@@ -978,9 +949,6 @@ const Example = () => (
     }
   }}
 />`,
-                    },
-                    {
-                      title: 'With a label',
                       properties: {
                         events: {
                           input: {
@@ -988,15 +956,17 @@ const Example = () => (
                               validation,
                               value,
                             }: {
-                              validation?: Validation;
-                              value?: string;
+                              readonly validation?: Validation;
+                              readonly value?: string;
                             }) => {
                               console.log(validation, value);
                             },
                           },
                         },
-                        label: 'Enter your name',
                       },
+                      title: 'Default',
+                    },
+                    {
                       code: `import { TextInput } from '@srclaunch/ui';
         
 <TextInput
@@ -1009,14 +979,31 @@ const Example = () => (
   }}
   label="Enter your name"
 />`,
+                      properties: {
+                        events: {
+                          input: {
+                            onValueChange: ({
+                              validation,
+                              value,
+                            }: {
+                              readonly validation?: Validation;
+                              readonly value?: string;
+                            }) => {
+                              console.log(validation, value);
+                            },
+                          },
+                        },
+                        label: 'Enter your name',
+                      },
+                      title: 'With a label',
                     },
                   ],
+                  path: '/forms/inputs/text/text-input',
+                  title: 'TextInput',
                 },
                 {
-                  title: 'SearchInput',
-                  description: 'A search input',
-                  path: '/forms/inputs/text/search-input',
                   component: SearchInput,
+                  description: 'A search input',
                   examples: [
                     {
                       code: `import { SearchInput } from '@srclaunch/ui';
@@ -1026,29 +1013,32 @@ const Example = () => (
     />`,
                       description: '',
                       properties: {
-                        onChange: ({ value }: { value: string }) =>
+                        onChange: ({ value }: { readonly value: string }) =>
                           console.log(value),
                       },
                     },
                   ],
+                  path: '/forms/inputs/text/search-input',
+                  title: 'SearchInput',
                 },
               ],
+              description: 'Text and string user inputs',
+              path: '/forms/inputs/text',
+              title: 'Text',
             },
           ],
+          description:
+            'Inputs are elements users interact with to collect user input',
+          path: '/forms/inputs',
+          title: 'Inputs',
         },
         {
-          title: 'Labels',
-          description: 'Labels used in forms',
-          path: '/forms/labels',
           components: [
             {
-              title: 'InputLabel',
-              description: 'Label displayed above inputs',
               component: InputLabel,
-              path: '/forms/labels/input-label',
+              description: 'Label displayed above inputs',
               examples: [
                 {
-                  name: 'Basic',
                   code: `import { InputLabel } from '@srclaunch/ui';
 
 const Example = () => (
@@ -1056,12 +1046,12 @@ const Example = () => (
     Input name
   </InputLabel>
 );`,
+                  name: 'Basic',
                   properties: {
                     children: 'Input name',
                   },
                 },
                 {
-                  title: 'With error',
                   code: `import { InputLabel } from '@srclaunch/ui';
 import { Exception } from '@srclaunch/exceptions';
 
@@ -1076,34 +1066,37 @@ const Example = () => (
                     children: 'Input name',
                     error: [new Exception('An error occurred')],
                   },
+                  title: 'With error',
                 },
               ],
+              path: '/forms/labels/input-label',
+              title: 'InputLabel',
             },
           ],
+          description: 'Labels used in forms',
+          path: '/forms/labels',
+          title: 'Labels',
         },
       ],
+      description: 'Forms are used to collect user input',
+      path: '/forms',
+      title: 'Forms',
     },
     {
-      title: 'Layout',
       path: '/layout',
+      title: 'Layout',
     },
     {
-      title: 'Lists',
       path: '/lists',
+      title: 'Lists',
     },
     {
-      title: 'Media',
-      path: '/media',
-      description: 'Components used for displaying different media types',
       components: [
         {
           component: MediaGrid,
-          title: 'MediaGrid',
-          path: '/media/media-grid',
           description: 'A grid of media',
           examples: [
             {
-              title: 'Basic',
               code: `import { MediaGrid } from '@srclaunch/ui';
 
               const Example = () => (
@@ -1117,9 +1110,9 @@ const Example = () => (
                   },
                 ],
               },
+              title: 'Basic',
             },
             {
-              title: 'With titles',
               code: `import { MediaGrid } from '@srclaunch/ui';
 
               const Example = () => (
@@ -1133,9 +1126,9 @@ const Example = () => (
                   },
                 ],
               },
+              title: 'With titles',
             },
             {
-              title: 'With titles and more menu',
               code: `import { MediaGrid } from '@srclaunch/ui';
 
               const Example = () => (
@@ -1145,30 +1138,29 @@ const Example = () => (
                 items: [
                   {
                     image: { path: 'asdfasdf' },
-                    title: 'Example',
                     menu: [{ label: 'Edit' }],
+                    title: 'Example',
                   },
                 ],
               },
+              title: 'With titles and more menu',
             },
           ],
+          path: '/media/media-grid',
+          title: 'MediaGrid',
         },
       ],
+      description: 'Components used for displaying different media types',
+      path: '/media',
+      title: 'Media',
     },
     {
-      title: 'Menus',
-      description:
-        'Menu components for displaying lists of items that can be interacted with.',
-      path: '/menus',
       components: [
         {
           component: Menu,
           description: 'Displays a list of items',
-          title: 'Menu',
-          path: '/menus/menu',
           examples: [
             {
-              title: 'Default',
               properties: {
                 menu: [
                   {
@@ -1184,9 +1176,9 @@ const Example = () => (
                   minWidth: 200,
                 },
               },
+              title: 'Default',
             },
             {
-              title: 'With a selected item',
               properties: {
                 menu: [
                   {
@@ -1212,9 +1204,9 @@ const Example = () => (
                   minWidth: 200,
                 },
               },
+              title: 'With a selected item',
             },
             {
-              title: 'With an icon and background color',
               properties: {
                 menu: [
                   {
@@ -1233,34 +1225,34 @@ const Example = () => (
                     background: {
                       color: BackgroundColors.Error,
                     },
-                    label: 'Kitters',
-                    value: 'menu-item',
                     icon: {
+                      color: Colors.White,
                       name: BasicIcons.Alert,
                       size: {
                         height: Sizes.Smaller,
                         width: Sizes.Smaller,
                       },
-                      color: Colors.White,
                     },
+                    label: 'Kitters',
                     textColor: TextColors.White,
+                    value: 'menu-item',
                   },
                 ],
                 size: {
                   minWidth: 200,
                 },
               },
+              title: 'With an icon and background color',
             },
           ],
+          path: '/menus/menu',
+          title: 'Menu',
         },
         {
           component: MoreMenu,
           description: 'A button that displays a menu when clicked.',
-          title: 'MoreMenu',
-          path: '/menus/more-menu',
           examples: [
             {
-              title: 'Default',
               render: () => (
                 <Container alignment={{ horizontal: AlignHorizontal.Center }}>
                   <MoreMenu
@@ -1277,89 +1269,90 @@ const Example = () => (
                   />
                 </Container>
               ),
+              title: 'Default',
             },
           ],
+          path: '/menus/more-menu',
+          title: 'MoreMenu',
         },
       ],
+      description:
+        'Menu components for displaying lists of items that can be interacted with.',
+      path: '/menus',
+      title: 'Menus',
     },
     {
-      title: 'Messaging',
-      description: 'Components related to messaging.',
-      path: '/messaging',
       components: [
         {
           component: Inbox,
-          title: 'Inbox',
           description:
             'A combined navigation, message list and composition view.',
-          path: '/messaging/inbox',
           examples: [
             {
-              title: 'Default',
               properties: {},
               size: {
                 minHeight: 800,
               },
+              title: 'Default',
             },
           ],
+          path: '/messaging/inbox',
+          title: 'Inbox',
         },
         {
           component: MessageComposer,
-          title: 'MessageComposer',
           description: 'Message composition component',
-          path: '/messaging/message-composer',
           examples: [
             {
-              title: 'Default',
               properties: {},
+              title: 'Default',
             },
           ],
+          path: '/messaging/message-composer',
+          title: 'MessageComposer',
         },
       ],
+      description: 'Components related to messaging.',
+      path: '/messaging',
+      title: 'Messaging',
     },
     {
-      title: 'Modals',
-      description: 'Modal components for displaying modal dialogs',
-      path: '/modals',
       components: [
         {
           component: CloseButton,
-          title: 'CloseButton',
           description: 'A button that can be used to close modals',
-          path: '/modals/close-button',
           examples: [
             {
-              title: 'Default',
               properties: {},
+              title: 'Default',
             },
           ],
+          path: '/modals/close-button',
+          title: 'CloseButton',
         },
         {
           component: ModalHeader,
-          title: 'ModalHeader',
           description: 'A header for a modal',
-          path: '/modals/modal-header',
           examples: [
             {
-              title: 'Default',
               properties: {
                 size: {
                   width: 300,
                 },
                 title: 'Example Title',
               },
+              title: 'Default',
             },
           ],
+          path: '/modals/modal-header',
+          title: 'ModalHeader',
         },
         {
           component: SlidePanel,
-          title: 'SlidePanel',
           description:
             'A modal panel that slides out from the edge of thes screen.',
-          path: '/modals/slide-panel',
           examples: [
             {
-              title: 'Default',
               render: () => {
                 const [slidePanelVisible, setSlidePanelVisible] =
                   useState(false);
@@ -1370,7 +1363,7 @@ const Example = () => (
                       states={{ state: { visible: slidePanelVisible } }}
                     >
                       <ModalHeader
-                        title="Example"
+                        title={<>Example</>}
                         onCloseClick={() => setSlidePanelVisible(false)}
                       />
                     </SlidePanel>
@@ -1388,15 +1381,18 @@ const Example = () => (
                   </Container>
                 );
               },
+              title: 'Default',
             },
           ],
+          path: '/modals/slide-panel',
+          title: 'SlidePanel',
         },
       ],
+      description: 'Modal components for displaying modal dialogs',
+      path: '/modals',
+      title: 'Modals',
     },
     {
-      title: 'Navigation',
-      description: 'Components useful for navigating through the application.',
-      path: '/navigation',
       components: [
         {
           component: BreadcrumbNavigation,
@@ -1427,9 +1423,7 @@ const Example = () => (
         },
         {
           component: Tabs,
-          title: 'Tabs',
           description: 'A tab navigation component.',
-          path: '/navigation/tabs',
           examples: [
             {
               properties: {
@@ -1443,29 +1437,28 @@ const Example = () => (
               },
             },
           ],
+          path: '/navigation/tabs',
+          title: 'Tabs',
         },
       ],
+      description: 'Components useful for navigating through the application.',
+      path: '/navigation',
+      title: 'Navigation',
     },
     {
-      title: 'Networking',
       path: '/networking',
+      title: 'Networking',
     },
     {
-      title: 'Notifications',
       path: '/notifications',
+      title: 'Notifications',
     },
     {
-      title: 'Progress',
-      path: '/progress',
-      description: 'Components for displaying progress states.',
       components: [
         {
           component: LoadingOverlay,
-          title: 'LoadingOverlay',
-          path: '/progress/loading-overlay',
           examples: [
             {
-              title: 'Default',
               properties: {
                 states: {
                   state: {
@@ -1473,36 +1466,37 @@ const Example = () => (
                   },
                 },
               },
+              title: 'Default',
             },
           ],
+          path: '/progress/loading-overlay',
+          title: 'LoadingOverlay',
         },
       ],
+      description: 'Components for displaying progress states.',
+      path: '/progress',
+      title: 'Progress',
     },
     {
-      title: 'Search',
       path: '/search',
+      title: 'Search',
     },
     {
-      title: 'Themes',
       path: '/themes',
+      title: 'Themes',
     },
     {
-      title: 'Typography',
       path: '/typography',
+      title: 'Typography',
     },
     {
-      title: 'User',
-      path: '/user',
-      description: 'Components for displaying user information.',
       components: [
         {
           component: UserMenu,
-          title: 'UserMenu',
-          path: '/user/user-menu',
-          name: 'UserMenu',
           description: 'A user menu component.',
           examples: [
             {
+              name: 'Basic',
               properties: {
                 states: {
                   state: {
@@ -1510,11 +1504,18 @@ const Example = () => (
                   },
                 },
               },
-              name: 'Basic',
             },
           ],
+          name: 'UserMenu',
+          path: '/user/user-menu',
+          title: 'UserMenu',
         },
       ],
+      description: 'Components for displaying user information.',
+      path: '/user',
+      title: 'User',
     },
   ],
+  description: 'A library of UI components for AppLab applications',
+  name: 'AppLab UI',
 } as ComponentLibrary;

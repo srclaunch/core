@@ -11,14 +11,14 @@ const testEnvironment: Environment = {
   description: 'Test environment',
   id: Environments.QA,
   name: 'Test',
-  type: EnvironmentType.NonProduction,
+  type: EnvironmentType.CI,
 };
 
 const previewEnvironment: Environment = {
   description: 'Preview environment',
   id: Environments.Preview,
   name: 'Preview',
-  type: EnvironmentType.NonProduction,
+  type: EnvironmentType.Production,
 };
 
 const productionEnvironment: Environment = {

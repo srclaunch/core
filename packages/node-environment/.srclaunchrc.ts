@@ -12,17 +12,17 @@ import {
   PublishAccess,
   TestReporter,
   TestTool,
-} from "@srclaunch/types";
+} from '@srclaunch/types';
 
 export default <Project>{
-  name: "@srclaunch/node-environment",
-  description: "Node.js environment specific utilities for SrcLaunch services",
+  name: '@srclaunch/node-environment',
+  description: 'Node.js environment specific utilities for SrcLaunch services',
   type: ProjectType.Library,
   build: {
-    formats: [BuildFormat.ESM, BuildFormat.UMD],
+    formats: [BuildFormat.ESM, BuildFormat.IIFE],
     platform: BuildPlatform.Node,
     target: BuildTarget.ESNext,
-    tool: BuildTool.Vite,
+    tool: BuildTool.ESBuild,
   },
   test: {
     coverage: {
@@ -41,12 +41,11 @@ export default <Project>{
     publish: {
       access: PublishAccess.Public,
       license: License.MIT,
-      registry: "https://registry.npmjs.org/",
+      registry: 'https://registry.npmjs.org/',
     },
   },
   requirements: {
-    node: ">=16",
-    yarn: ">=3.2.0",
+    node: '>=16',
     srclaunch: {
       dx: true,
       cli: true,

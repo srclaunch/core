@@ -1,12 +1,14 @@
-import { Model, ValidationProblem } from '@srclaunch/types';
+import { Model } from '@srclaunch/types';
+import { ValidationProblem } from '@srclaunch/validation';
 import {
-  memo,
   FormEvent,
+  memo,
   ReactElement,
   useEffect,
   useRef,
   useState,
 } from 'react';
+
 import { Amount, FormField, States } from '../../types';
 // import { getFormFieldsFromModel } from '../../lib/forms/fields';
 import { Container, ContainerProps } from '../layout/Container';

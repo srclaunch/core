@@ -1,18 +1,36 @@
 {
   "name": "@srclaunch/core",
   "description": "Monorepository containing core libraries that comprise the SrcLaunch platform",
-  "version": "0.0.0",
-  "type": "module",
-  "workspaces": [
-    "packages/*"
-  ],
-  "packageManager": "yarn@3.2.1",
+  "version": "0.2.0",
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=7.1.5"
+  },
+  "packageManager": "pnpm@7.1.5",
+  "pnpm": {
+    "packageExtensions": {
+      "eslint-plugin-flowtype": {
+        "peerDependenciesMeta": {
+          "@babel/plugin-syntax-flow": {
+            "optional": true
+          },
+          "@babel/plugin-transform-react-jsx": {
+            "optional": true
+          }
+        }
+      }
+    }
+  },
   "devDependencies": {
-    "@microsoft/eslint-plugin-sdl": "0.2.0",
-    "@srclaunch/dx": "workspace:packages/dx",
-    "@typescript-eslint/eslint-plugin": "5.23.0",
-    "@typescript-eslint/parser": "5.23.0",
-    "eslint": "8.15.0",
+    "@swc/cli": "^0.1.57",
+    "@swc/core": "^1.2.194",
+    "@types/jest": "27.5.0",
+    "@types/node": "^17.0.36",
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
+    "ava": "^4.2.0",
+    "esbuild": "^0.14.39",
+    "eslint": "^8.15.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-config-stylelint": "^15.1.0",
@@ -24,7 +42,6 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^26.1.5",
     "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-only-warn": "^1.0.3",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
@@ -35,6 +52,7 @@
     "eslint-plugin-sort-requires": "^2.1.0",
     "eslint-plugin-testing-library": "^5.5.0",
     "eslint-plugin-unicorn": "^42.0.0",
+    "madge": "^5.0.1",
     "prettier": "^2.6.2",
     "stylelint": "^14.8.2",
     "stylelint-config-idiomatic-order": "^8.1.0",
@@ -42,6 +60,7 @@
     "stylelint-config-recommended": "^7.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-order": "^5.0.0",
-    "typescript": "4.6.4"
+    "turbo": "^1.2.14",
+    "typescript": "^4.6.4"
   }
 }

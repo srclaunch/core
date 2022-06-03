@@ -1,4 +1,4 @@
-import fs from 'fs-extra';
+// import fs from 'fs-extra';
 import path from 'node:path';
 import pluralize from 'pluralize';
 
@@ -507,46 +507,46 @@ export async function buildReduxSlices({
     const BUILD_PATH = path.join(path.resolve(), projectPath, 'src');
     const DIST_PATH = path.join(path.resolve(), projectPath, 'dist');
 
-    await fs.emptyDir(BUILD_PATH);
-    await fs.emptyDir(DIST_PATH);
+    // await fs.emptyDir(BUILD_PATH);
+    // await fs.emptyDir(DIST_PATH);
 
-    const files = await fs.readdir(MODELS_PATH);
+    // const files = await fs.readdir(MODELS_PATH);
 
-    for (const file of files) {
-      if (file !== 'index.ts') {
-        const name = pluralize(
-          file[0]?.toLowerCase() + file.slice(1).replace('.ts', ''),
-        );
+    // for (const file of files) {
+    //   if (file !== 'index.ts') {
+    //     const name = pluralize(
+    //       file[0]?.toLowerCase() + file.slice(1).replace('.ts', ''),
+    //     );
 
-        const reduxSlice = getModelSlice({
-          httpClientProjectName,
-          modelName: file.replace('.ts', ''),
-          typesProjectName,
-        });
+    //     const reduxSlice = getModelSlice({
+    //       httpClientProjectName,
+    //       modelName: file.replace('.ts', ''),
+    //       typesProjectName,
+    //     });
 
-        // logger.info(`Writing ${name} Redux slice`);
+    //     // logger.info(`Writing ${name} Redux slice`);
 
-        await fs.writeFile(
-          path.join(BUILD_PATH, `${name}.ts`),
-          reduxSlice,
-          'utf8',
-        );
-      }
-    }
+    //     // await fs.writeFile(
+    //     //   path.join(BUILD_PATH, `${name}.ts`),
+    //     //   reduxSlice,
+    //     //   'utf8',
+    //     // );
+    //   }
+    // }
 
     // logger.info(`Writing ${BUILD_PATH}/index.ts`);
 
-    const indexFileContent = constructReduxReducersIndexScript(
-      files
-        .filter(f => f !== 'index.ts')
-        .map(file => pluralize(file).replace('.ts', '')),
-    );
+    // const indexFileContent = constructReduxReducersIndexScript(
+    //   files
+    //     .filter(f => f !== 'index.ts')
+    //     .map(file => pluralize(file).replace('.ts', '')),
+    // );
 
-    await fs.writeFile(
-      path.join(BUILD_PATH, 'index.ts'),
-      indexFileContent,
-      'utf8',
-    );
+    // await fs.writeFile(
+    //   path.join(BUILD_PATH, 'index.ts'),
+    //   indexFileContent,
+    //   'utf8',
+    // );
   } catch (error: any) {
     console.error(error);
     throw error;

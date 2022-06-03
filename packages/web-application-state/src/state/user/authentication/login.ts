@@ -1,16 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  AuthenticationLoginException,
-  Exception,
-  InvalidArgumentException,
-  MissingArgumentException,
-} from '@srclaunch/exceptions';
+import { AuthenticationLoginException, Exception } from '@srclaunch/exceptions';
 import { Logger } from '@srclaunch/logger';
-import {
-  Condition,
-  FormValidationProblem,
-  ISO8601String,
-} from '@srclaunch/types';
+import { ISO8601String } from '@srclaunch/types';
 import { validate } from '@srclaunch/validation';
 import {
   AuthenticationDetails,
@@ -78,59 +69,61 @@ export const login =
   }): AppThunk =>
   async (dispatch, getState) => {
     try {
-      dispatch(setLoginInProgress(true));
+      // dispatch(setLoginInProgress(true));
 
       if (!username) {
-        const err = new MissingArgumentException(
-          `"username" property is required.`,
-          {
-            form: {
-              field: 'username',
-              problem: FormValidationProblem.Required,
-            },
-          },
-        );
+        throw new Error('Username is required');
+        // const err = new MissingArgumentException(
+        //   `"username" property is required.`,
+        //   {
+        //     form: {
+        //       field: 'username',
+        //       problem: FormValidationProblem.Required,
+        //     },
+        //   },
+        // );
 
-        dispatch(setLoginFailure(err.toJSON()));
+        // dispatch(setLoginFailure(err.toJSON()));
 
-        return;
+        // return;
       }
 
       if (!password) {
-        const err = new MissingArgumentException(
-          `"password" property is required.`,
-          {
-            form: {
-              field: 'password',
-              problem: FormValidationProblem.Required,
-            },
-          },
-        );
+        throw new Error('Password is required');
+        // const err = new MissingArgumentException(
+        //   `"password" property is required.`,
+        //   {
+        //     form: {
+        //       field: 'password',
+        //       problem: FormValidationProblem.Required,
+        //     },
+        //   },
+        // );
 
-        dispatch(setLoginFailure(err.toJSON()));
+        // dispatch(setLoginFailure(err.toJSON()));
 
-        return;
+        // return;
       }
 
-      const problems = validate(username, {
-        [Condition.IsEmailAddress]: true,
-      });
+      // const problems = validate(username, {
+      //   [Condition.IsEmailAddress]: true,
+      // });
 
-      if (problems.length > 0) {
-        const err = new InvalidArgumentException(
-          `"username" value is not valid email.`,
-          {
-            form: {
-              field: 'username',
-              problem: FormValidationProblem.NotValidEmail,
-            },
-          },
-        );
+      // if (problems.length > 0) {
+      //   const err = new InvalidArgumentException(
+      //     `"username" value is not valid email.`,
+      //     {
+      //       form: {
+      //         field: 'username',
+      //         problem: FormValidationProblem.NotValidEmail,
+      //       },
+      //     },
+      //   );
 
-        dispatch(setLoginFailure(err.toJSON()));
+      //   dispatch(setLoginFailure(err.toJSON()));
 
-        return;
-      }
+      //   return;
+      // }
 
       const config = getState().app.config;
 

@@ -9,10 +9,10 @@ export const PROJECT_PACKAGE_JSON_PUBLISH_CONFIG = {
 };
 
 export const PROJECT_PACKAGE_JSON_TYPE = PackageType.Module;
-export const PROJECT_PACKAGE_JSON_MAIN = './dist/index.mjs';
+export const PROJECT_PACKAGE_JSON_MAIN = './dist/index.esm.js';
 export const PROJECT_PACKAGE_JSON_TYPES = './dist/index.d.ts';
 export const PROJECT_PACKAGE_JSON_FILES = ['package.json', 'dist'];
-export const PROJECT_PACKAGE_JSON_MODULE = './dist/index.mjs';
+export const PROJECT_PACKAGE_JSON_MODULE = './dist/index.esm.js';
 export const PROJECT_PACKAGE_JSON_COMMON_SCRIPTS = {
   yui: 'yarn upgrade-interactive',
   qr: 'yarn srclaunch changesets add --files "." --message "Quick release" --type "chore" && yarn srclaunch release --push',

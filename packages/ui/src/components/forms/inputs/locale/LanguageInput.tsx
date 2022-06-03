@@ -1,6 +1,7 @@
+import { CountryCode, LanguageCode } from '@srclaunch/types';
 import { memo, ReactElement } from 'react';
 import ReactCountryFlag from 'react-country-flag';
-import { CountryCode, LanguageCode, ValidationProblem } from '@srclaunch/types';
+
 import { Sizes } from '../../../../types';
 import { DropdownInput, DropdownInputProps } from '../menu/DropdownInput';
 

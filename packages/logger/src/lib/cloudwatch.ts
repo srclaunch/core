@@ -9,13 +9,13 @@ export function getCloudwatchTransport({
   logStreamName,
   retentionInDays = 90,
 }: {
-  awsAccessKeyId: string;
-  awsRegion: string;
-  awsSecretKey: string;
-  level?: string;
-  logGroupName: string;
-  logStreamName: string;
-  retentionInDays?: number;
+  readonly awsAccessKeyId: string;
+  readonly awsRegion: string;
+  readonly awsSecretKey: string;
+  readonly level?: string;
+  readonly logGroupName: string;
+  readonly logStreamName: string;
+  readonly retentionInDays?: number;
 }) {
   // : WinstonCloudWatch
   // const cloudwatchConfig =

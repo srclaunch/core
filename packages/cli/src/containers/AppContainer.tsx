@@ -1,8 +1,8 @@
-import { Box, Newline, Spacer, Static, Text, useInput } from 'ink';
+// import { Box, Newline, Spacer, Static, Text, useInput } from 'ink';
 import { TypedFlags } from 'meow';
 import { ReactElement, useEffect, useState } from 'react';
 import { Worker } from 'worker_threads';
-import MultiSelect from 'ink-multi-select';
+// import MultiSelect from 'ink-multi-select';
 
 // import { getAppLabMetadata } from '../applab';
 // import { startThread } from '../worker-thread';
@@ -26,7 +26,7 @@ type AppContainerProps = {
 export const AppContainer = ({
   initialTab,
   cliVersion,
-}: AppContainerProps): ReactElement => {
+}: AppContainerProps) => {
   const [mainOutput, setMainOutput] = useState<string[]>([]);
   const [serviceStatus, setServiceStatus] = useState<undefined | string>(
     undefined,
@@ -36,25 +36,25 @@ export const AppContainer = ({
     setMainOutput(currentState => [...currentState, str]);
   };
 
-  useInput(async (input, key) => {
-    if (input === 'q') {
-      addToLogs('Quitting');
+  // useInput(async (input, key) => {
+  //   if (input === 'q') {
+  //     addToLogs('Quitting');
 
-      throw new Error('Quitting');
-      // Exit program
-    }
+  //     throw new Error('Quitting');
+  //     // Exit program
+  //   }
 
-    // if (input === "r") {
-    //   console.info("Restarting");
-    //   await restart();
-    //   process.exit(0);
-    //   // Exit program
-    // }
+  //   // if (input === "r") {
+  //   //   console.info("Restarting");
+  //   //   await restart();
+  //   //   process.exit(0);
+  //   //   // Exit program
+  //   // }
 
-    if (key.leftArrow) {
-      // Left arrow key pressed
-    }
-  });
+  //   if (key.leftArrow) {
+  //     // Left arrow key pressed
+  //   }
+  // });
 
   // useEffect(() => {
   //   setMainScrollCursor(m => (m += 1));
@@ -104,35 +104,35 @@ export const AppContainer = ({
     handleFlags();
   }, []);
 
-  return (
-    <FullScreen
-      borderStyle="round"
-      borderColor="lightgrey"
-      flexDirection="column"
-    >
-      <Tabs>
-        <Tab initial={initialTab === 'Overview'} label="Overview">
-          <Overview />
-        </Tab>
-        <Tab initial={initialTab === 'Build'} label="Build">
-          <Build />
-        </Tab>
-        <Tab initial={initialTab === 'Tests'} label="Tests">
-          <Tests />
-        </Tab>
-        <Tab initial={initialTab === 'Changes'} label="Changes">
-          <Changes />
-        </Tab>
-        <Tab initial={initialTab === 'Release'} label="Release">
-          <Release />
-        </Tab>
-      </Tabs>
-      <Box flexDirection="row">
-        <Spacer />
-        <Box alignItems="flex-end" paddingRight={1}>
-          <Text>{cliVersion}</Text>
-        </Box>
-      </Box>
-    </FullScreen>
-  );
+  // return (
+  //   <FullScreen
+  //     borderStyle="round"
+  //     borderColor="lightgrey"
+  //     flexDirection="column"
+  //   >
+  //     <Tabs>
+  //       <Tab initial={initialTab === 'Overview'} label="Overview">
+  //         <Overview />
+  //       </Tab>
+  //       <Tab initial={initialTab === 'Build'} label="Build">
+  //         <Build />
+  //       </Tab>
+  //       <Tab initial={initialTab === 'Tests'} label="Tests">
+  //         <Tests />
+  //       </Tab>
+  //       <Tab initial={initialTab === 'Changes'} label="Changes">
+  //         <Changes />
+  //       </Tab>
+  //       <Tab initial={initialTab === 'Release'} label="Release">
+  //         <Release />
+  //       </Tab>
+  //     </Tabs>
+  //     {/* <Box flexDirection="row">
+  //       <Spacer />
+  //       <Box alignItems="flex-end" paddingRight={1}>
+  //         <Text>{cliVersion}</Text>
+  //       </Box>
+  //     </Box> */}
+  //   </FullScreen>
+  // );
 };

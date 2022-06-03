@@ -3,7 +3,7 @@
   "description": "Wrapper around Sequelize for basic CRUD operations",
   "author": "Steven Bennett <steven@srclaunch.com>",
   "license": "MIT",
-  "version": "0.1.38",
+  "version": "0.2.0",
   "engines": {
     "node": ">=16"
   },
@@ -22,35 +22,31 @@
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs.js"
+      "require": "./dist/index.cjs.js.js"
     }
   },
   "scripts": {
-    "build": "yarn clean && yarn build:applab",
-    "build:applab": "applab build",
-    "clean": "rm -fr ./dist",
+    "build": "srclaunch build --clean --types",
     "git:push": "git push --follow-tags origin main",
-    "qr": "yarn build && git add . && git commit -m \"Quick release - patch\" && yarn release",
+    "qr": "pnpm build && git add . && git commit -m \"Quick release - patch\" && yarn release",
     "release": "yarn version:patch && yarn git:push",
     "test": "ava",
     "version:patch": "standard-version",
     "yui": "yarn upgrade-interactive"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.17.10",
-    "@babel/preset-typescript": "^7.16.7",
-    "@srclaunch/cli": "workspace:packages/cli",
-    "@srclaunch/types": "workspace:packages/types",
-    "@types/jest": "^27.4.1",
+    "@srclaunch/cli": "workspace:*",
+    "@srclaunch/dx": "workspace:*",
+    "@srclaunch/types": "workspace:*",
     "@types/node": "^17.0.30",
     "@types/pg": "^8.6.5",
     "@types/pluralize": "^0.0.29",
     "@types/tunnel-ssh": "^4.1.1"
   },
   "dependencies": {
-    "@srclaunch/exceptions": "workspace:packages/exceptions",
-    "@srclaunch/logger": "workspace:packages/logger",
-    "@srclaunch/node-environment": "workspace:packages/node-environment",
+    "@srclaunch/exceptions": "workspace:*",
+    "@srclaunch/logger": "workspace:*",
+    "@srclaunch/node-environment": "workspace:*",
     "change-case": "^4.1.2",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",

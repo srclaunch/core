@@ -1,4 +1,5 @@
 import { Project } from '@srclaunch/types';
+
 import {
   PROJECT_PACKAGE_JSON_BUILD_SCRIPTS,
   PROJECT_PACKAGE_JSON_COMMON_SCRIPTS,
@@ -16,10 +17,10 @@ export function getPackageScripts({
   run,
   test = true,
 }: {
-  build?: boolean;
-  release?: boolean;
-  run?: Project['run'];
-  test?: boolean;
+  readonly build?: boolean;
+  readonly release?: boolean;
+  readonly run?: Project['environments'];
+  readonly test?: boolean;
 }): Record<string, string> {
   let scripts = {
     ...PROJECT_PACKAGE_JSON_COMMON_SCRIPTS,

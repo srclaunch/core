@@ -24,18 +24,18 @@ export type CoreAPIServerOptions = {
   readonly logger?: Logger;
   readonly security?: {
     readonly trustedOrigins?: {
-      readonly [environment: Environment['id']]: string[];
+      readonly [environment: string]: readonly string[];
     };
   };
 };
 
 export class CoreAPIServer {
-  private config?: CoreAPIServerOptions;
-  private db?: DataClient;
-  private environment: Environment;
+  private readonly config?: CoreAPIServerOptions;
+  private readonly db?: DataClient;
+  private readonly environment: Environment;
   private readonly models?: CoreAPIServerOptions['db']['models'];
-  private logger: Logger;
-  private server: HttpServer;
+  private readonly logger: Logger;
+  private readonly server: HttpServer;
 
   constructor(config: CoreAPIServerOptions) {
     this.config = config;
@@ -113,8 +113,8 @@ export class CoreAPIServer {
         },
       ],
       environment: this.environment,
-      name: 'core-api',
       logger: this.logger,
+      name: 'core-api',
       options: {
         trustedOrigins: this.config.security?.trustedOrigins,
       },
@@ -143,8 +143,8 @@ export class CoreAPIServer {
       }
 
       this.logger.info('Core API Server started');
-    } catch (err: any) {
-      const exception = new Exception(err.name, { cause: err });
+    } catch (error: any) {
+      const exception = new Exception(error.name, { cause: error });
 
       this.logger.exception(exception.toJSON());
 

@@ -13,23 +13,23 @@ import {
   StaticTypingTool,
   TestReporter,
   TestTool,
-} from "@srclaunch/types";
+} from '@srclaunch/types';
 
 export default <Project>{
-  name: "@srclaunch/themes",
+  name: '@srclaunch/themes',
   description:
-    "CSS variables and styled-component based themes used by SrcLaunch applications",
+    'CSS variables and styled-component based themes used by SrcLaunch applications',
   type: ProjectType.Library,
   build: {
     bundle: {
-      exclude: ["react", "styled-components"],
+      exclude: ['react', 'styled-components'],
       globals: {
-        react: "React",
-        "styled-components": "styled",
+        react: 'React',
+        'styled-components': 'styled',
       },
     },
     formats: [BuildFormat.ESM, BuildFormat.UMD],
-    platform: BuildPlatform.Node,
+    platform: BuildPlatform.Browser,
     target: BuildTarget.ESNext,
     tool: BuildTool.Vite,
   },
@@ -50,12 +50,12 @@ export default <Project>{
     publish: {
       access: PublishAccess.Public,
       license: License.MIT,
-      registry: "https://registry.npmjs.org/",
+      registry: 'https://registry.npmjs.org/',
     },
   },
   requirements: {
-    node: ">=16",
-    yarn: ">=3.2.0",
+    node: '>=16',
+    yarn: '>=3.2.0',
     peerPackages: [BrowserPackage.React, BrowserPackage.StyledComponents],
     srclaunch: {
       dx: true,

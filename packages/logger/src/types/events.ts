@@ -1,11 +1,11 @@
 import {
+  ExceptionObject,
   HttpRequest,
   HttpResponse,
   ISO8601String,
   Model,
   ModelField,
 } from '@srclaunch/types';
-import { ExceptionObject } from '@srclaunch/exceptions';
 
 export type LogEvent = {
   readonly context?: Record<string, unknown>;

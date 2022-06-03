@@ -1,4 +1,4 @@
-import { access, readFile as fsReadFile, remove, writeFile as fsWriteFile } from 'fs-extra';
+import fs from 'fs-extra';
 
 export const deleteFile = async (file: string): Promise<void> => {
   if (!file) {
@@ -10,7 +10,7 @@ export const deleteFile = async (file: string): Promise<void> => {
   }
 
   try {
-    await remove(file);
+    await fs.remove(file);
   } catch (err) {
     throw new Error(`Could not delete file: ${file}`);
   }
@@ -22,7 +22,7 @@ export async function readFile(filePath: string) {
   }
 
   try {
-    return (await fsReadFile(filePath)).toString();
+    return (await fs.readFile(filePath)).toString();
   } catch (err) {
     throw new Error(`Could not read file: ${filePath}`);
   }
@@ -34,7 +34,7 @@ export async function writeFile(filePath: string, data: string) {
   }
 
   try {
-    return await fsWriteFile(filePath, data);
+    return await fs.writeFile(filePath, data);
   } catch (err) {
     throw new Error(`Could not write file: ${filePath}`);
   }
@@ -43,7 +43,7 @@ export async function writeFile(filePath: string, data: string) {
 
 export const fileExists = async (path: string): Promise<boolean> => {
   try {
-    await access(path);
+    await fs.access(path);
     return true;
   } catch (err) {
     return false;

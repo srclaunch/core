@@ -13,23 +13,23 @@ import {
   StaticTypingTool,
   TestReporter,
   TestTool,
-} from "@srclaunch/types";
+} from '@srclaunch/types';
 
 export default <Project>{
-  name: "@srclaunch/icons",
-  description: "React icon components",
-  type: ProjectType.Library,
+  name: '@srclaunch/icons',
+  description: 'React icon components',
+  type: ProjectType.ComponentLibrary,
   build: {
     bundle: {
-      exclude: ["react", "./src/docs"],
+      exclude: ['react'],
       globals: {
-        react: "React",
+        react: 'React',
       },
     },
     formats: [BuildFormat.ESM, BuildFormat.UMD],
     input: {
-      directory: "src",
-      file: "index.tsx",
+      directory: 'src',
+      file: 'index.tsx',
     },
     platform: BuildPlatform.Browser,
     target: BuildTarget.ESNext,
@@ -53,12 +53,11 @@ export default <Project>{
     publish: {
       access: PublishAccess.Public,
       license: License.MIT,
-      registry: "https://registry.npmjs.org/",
+      registry: 'https://registry.npmjs.org/',
     },
   },
   requirements: {
-    node: ">=16",
-    yarn: ">=3.2.0",
+    node: '>=16',
     peerPackages: [BrowserPackage.React],
     srclaunch: {
       dx: true,

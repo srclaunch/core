@@ -14,22 +14,24 @@ import {
   TestReporter,
   TestTool,
   UniversalPackage,
-} from "@srclaunch/types";
+} from '@srclaunch/types';
 
 export default <Project>{
-  name: "@srclaunch/web-application-state",
-  description: "Redux state and utilities used by AppLab web applications",
+  name: '@srclaunch/web-application-state',
+  description: 'Redux state and utilities used by AppLab web applications',
   type: ProjectType.Library,
   build: {
     bundle: {
-      exclude: ["react", "react-dom", "styled-components"],
+      exclude: ['react', 'react-dom/client', 'styled-components'],
       globals: {
-        react: "React",
+        react: 'React',
+        'react-dom/client': 'ReactDOMClient',
+        'styled-components': 'styled',
       },
     },
     input: {
-      directory: "src",
-      file: "index.tsx",
+      directory: 'src',
+      file: 'index.tsx',
     },
     formats: [BuildFormat.ESM, BuildFormat.UMD],
     platform: BuildPlatform.Browser,
@@ -53,12 +55,11 @@ export default <Project>{
     publish: {
       access: PublishAccess.Public,
       license: License.MIT,
-      registry: "https://registry.npmjs.org/",
+      registry: 'https://registry.npmjs.org/',
     },
   },
   requirements: {
-    node: ">=16",
-    yarn: ">=3.2.0",
+    node: '>=16',
     packages: [
       BrowserPackage.AmazonCognitoIdentityJS,
       BrowserPackage.History,

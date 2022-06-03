@@ -1,12 +1,11 @@
-import { ValidationProblem } from '@srclaunch/types';
-import { validate } from '@srclaunch/validation';
+import { validate, ValidationProblem } from '@srclaunch/validation';
 import { memo, ReactElement, useEffect, useRef, useState } from 'react';
+
 import { getDropdownMinHeight } from '../../../../lib/forms/dropdowns';
 import { Amount, Depth, DepthShadow, Sizes } from '../../../../types';
 import { Container, ContainerProps } from '../../../layout/Container';
 import { Menu, MenuProps } from '../../../menus/Menu';
 import { MenuItemProps } from '../../../menus/MenuItem';
-
 import { InputLabel } from '../../labels/InputLabel';
 import { DropdownControl } from '../shared/DropdownControl';
 import { DropdownPanel } from '../shared/DropdownPanel';
@@ -55,11 +54,12 @@ export const DropdownInput = memo(
     useEffect(() => {
       if (valueChanged) {
         if (validation && validation?.conditions) {
-          const probs = validate(
-            item,
-            validation.conditions,
-          ) as ValidationProblem[];
+          // const probs = validate(
+          //   item,
+          //   validation.conditions,
+          // ) as ValidationProblem[];
 
+          const probs: ValidationProblem[] = [];
           setProblems(probs);
 
           if (events.input?.onValueChange)
@@ -149,8 +149,8 @@ export const DropdownInput = memo(
             placeholder={placeholder}
             states={{
               state: {
-                error: problems,
                 dropdown: { visible: menuVisibleRef.current },
+                error: problems,
                 // focused: focusedRef.current,
               },
               ...states,

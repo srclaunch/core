@@ -1,5 +1,5 @@
 // import { AuthenticationService } from '@srclaunch/http-services';
-import { Condition, ValidationProblem } from '@srclaunch/types';
+import { Condition } from '@srclaunch/types';
 import { memo, ReactElement, useState } from 'react';
 
 import { AutoComplete } from '../../../../types';

@@ -1,38 +1,17 @@
-import { RepositoryEvent, Project, GitHubRunnerOS } from './src';
+import { Project } from './src';
 
 export default <Project>{
   name: '@srclaunch/types',
   description:
     'TypeScript definitions used by SrcLaunch projects and workspaces.',
   type: 'library',
-  build: [
-    {
-      library: {
-        name: '@srclaunch/types',
-      },
-      formats: ['umd'],
-      output: {
-        clean: true,
-        directory: 'dist',
-        file: 'index.umd',
-      },
-      tool: 'vite',
+  build: {
+    library: {
+      name: '@srclaunch/types',
     },
-    {
-      bundle: {
-        preserveModules: true,
-      },
-      library: {
-        name: '@srclaunch/types',
-      },
-      formats: ['esm'],
-      output: {
-        clean: false,
-        directory: 'dist',
-      },
-      tool: 'vite',
-    },
-  ],
+    format: 'esm',
+    tool: 'esbuild',
+  },
   environment: {
     development: {
       formatters: ['prettier'],
@@ -44,7 +23,7 @@ export default <Project>{
     exports: [
       {
         path: '.',
-        import: './dist/index.mjs',
+        import: './dist/index.esm.js',
         require: './dist/index.js',
       },
       {
@@ -73,7 +52,7 @@ export default <Project>{
       {
         name: 'Deploy package',
         on: {
-          [RepositoryEvent.Push]: {
+          push: {
             branches: ['main'],
           },
         },
@@ -85,7 +64,7 @@ export default <Project>{
                 branch: '${{ steps.get-branch.outputs.name }}',
                 version: '${{ steps.get-version.outputs.tag }}',
               },
-              runsOn: GitHubRunnerOS.UbuntuLatest,
+              runsOn: 'ubuntu-latest',
               steps: [
                 {
                   name: 'Checkout',
@@ -110,7 +89,7 @@ export default <Project>{
             build: {
               name: 'Build package',
               needs: ['metadata'],
-              runsOn: GitHubRunnerOS.UbuntuLatest,
+              runsOn: 'ubuntu-latest',
               steps: [
                 {
                   name: 'Checkout',
@@ -247,7 +226,7 @@ export default <Project>{
             publish: {
               name: 'Publish package',
               needs: ['metadata', 'build', 'test'],
-              runsOn: GitHubRunnerOS.UbuntuLatest,
+              runsOn: 'ubuntu-latest',
               steps: [
                 {
                   name: 'Download production build artifact',

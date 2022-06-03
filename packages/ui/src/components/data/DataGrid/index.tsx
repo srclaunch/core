@@ -1,15 +1,19 @@
+import { Model, Primitives } from '@srclaunch/types';
 import {
-  memo,
   createElement,
+  memo,
   ReactElement,
   SyntheticEvent,
   useState,
 } from 'react';
 import styled from 'styled-components';
-import { Model, Primitives } from '@srclaunch/types';
-import { downloadDataAsFile } from '@srclaunch/actions';
-import { formatObjectToCSVData } from '@srclaunch/transform';
+
+import { fetchFromObject } from '../../../lib/data/object';
+// import { downloadDataAsFile } from '@srclaunch/actions';
+// import { formatObjectToCSVData } from '@srclaunch/transform';
 import {
+  AlignHorizontal,
+  AlignVertical,
   Amount,
   BackgroundColors,
   BorderColors,
@@ -17,29 +21,26 @@ import {
   Cursor,
   Depth,
   DepthShadow,
+  Fill,
   Orientation,
   Overflow,
   Size,
   Sizes,
   TextColors,
-  AlignVertical,
-  AlignHorizontal,
   TextSize,
-  Fill,
 } from '../../../types';
-import { fetchFromObject } from '../../../lib/data/object';
-import { Container, ContainerProps } from '../../layout/Container';
-import { Label } from '../../typography/Label';
-import { LoadingOverlay } from '../../progress/LoadingOverlay';
-import { DataGridCell } from './DataGridCell';
+import { Button, ButtonProps, ButtonType } from '../../forms/buttons/Button';
+import { MenuButton, MenuButtonProps } from '../../forms/buttons/MenuButton';
 import {
   SearchInput,
   SearchInputProps,
 } from '../../forms/inputs/text/SearchInput';
-import { MenuButton, MenuButtonProps } from '../../forms/buttons/MenuButton';
-import { Button, ButtonProps, ButtonType } from '../../forms/buttons/Button';
-import { Spacer } from '../../layout/Spacer';
+import { Container, ContainerProps } from '../../layout/Container';
 import { Scrollable } from '../../layout/Scrollable';
+import { Spacer } from '../../layout/Spacer';
+import { LoadingOverlay } from '../../progress/LoadingOverlay';
+import { Label } from '../../typography/Label';
+import { DataGridCell } from './DataGridCell';
 
 export enum DataGridDisplayType {
   Card = 'card',
@@ -47,45 +48,45 @@ export enum DataGridDisplayType {
 }
 
 export type DataGridColumn = {
-  align?: AlignHorizontal;
-  label: string;
-  fallbackField?: string;
-  field: string;
-  fields?: string[];
-  size?: Size;
-  type: Primitives;
+  readonly align?: AlignHorizontal;
+  readonly label: string;
+  readonly fallbackField?: string;
+  readonly field: string;
+  readonly fields?: readonly string[];
+  readonly size?: Size;
+  readonly type: Primitives;
 };
 
 export type DataGridProps = ContainerProps & {
-  className?: string;
-  columns: DataGridColumn[];
-  columnCount?: number;
-  data?: Record<string, Primitives | any>[];
-  display?: DataGridDisplayType;
-  header?: {
-    create?: ButtonProps;
-    search?: SearchInputProps;
-    export?: MenuButtonProps;
+  readonly className?: string;
+  readonly columns: readonly DataGridColumn[];
+  readonly columnCount?: number;
+  readonly data?: readonly Record<string, Primitives | any>[];
+  readonly display?: DataGridDisplayType;
+  readonly header?: {
+    readonly create?: ButtonProps;
+    readonly search?: SearchInputProps;
+    readonly export?: MenuButtonProps;
   };
-  hideOnProp?: string;
-  loading?: boolean;
-  loaded?: boolean;
-  model?: Model;
-  onItemClick?: (row: Record<string, unknown>) => unknown;
-  template?: {
-    card?: ({
+  readonly hideOnProp?: string;
+  readonly loading?: boolean;
+  readonly loaded?: boolean;
+  readonly model?: Model;
+  readonly onItemClick?: (row: Record<string, unknown>) => unknown;
+  readonly template?: {
+    readonly card?: ({
       // onClick,
       row,
     }: {
       // onClick?: (row: Record<string, Primitives>) => unknown;
-      row: Record<string, Primitives>;
+      readonly row: Record<string, Primitives>;
     } & ContainerProps) => ReactElement;
-    row?: ({
+    readonly row?: ({
       // onClick,
       row,
     }: {
       // onClick?: (row: Record<string, Primitives>) => unknown;
-      row: Record<string, Primitives>;
+      readonly row: Record<string, Primitives>;
     } & ContainerProps) => ReactElement;
   };
 };
@@ -225,14 +226,14 @@ export const DataGrid = memo(
                   {
                     events: {
                       mouse: {
-                        onClick: () =>
-                          downloadDataAsFile({
-                            data: formatObjectToCSVData({
-                              // data: [],
-                              objectType: 'EXPENSE',
-                            }),
-                            fileName: 'expenses',
-                          }),
+                        // onClick: () =>
+                        // downloadDataAsFile({
+                        //   data: formatObjectToCSVData({
+                        //     // data: [],
+                        //     objectType: 'EXPENSE',
+                        //   }),
+                        //   fileName: 'expenses',
+                        // }),
                       },
                     },
                     label: 'Export to CSV',
@@ -433,9 +434,8 @@ export const DataGrid = memo(
               ) : (
                 data &&
                 data.map((row, key) => {
-                  if (template && template.card) {
-                    return createElement(template.card, {
-                      key,
+                  return template && template.card ? (
+                    createElement(template.card, {
                       events: {
                         mouse: {
                           onClick: () => {
@@ -443,15 +443,16 @@ export const DataGrid = memo(
                           },
                         },
                       },
+                      key,
                       margin: {
                         bottom: Amount.Default,
                       },
 
                       row,
-                    });
-                  } else {
-                    return <>Need a card template here</>;
-                  }
+                    })
+                  ) : (
+                    <>Need a card template here</>
+                  );
                 })
               )}
             </Container>

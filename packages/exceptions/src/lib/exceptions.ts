@@ -1,39 +1,33 @@
-import { ExceptionCode } from '../types/exception';
+import { ExceptionCode } from '../types/index';
 import { Exception } from './exception';
-import { AuthenticationPasswordResetRequiredException } from './exceptions/authentication/challenges';
 import {
+  AuthenticationAliasExistException,
+  AuthenticationCodeDeliveryFailureException,
+  AuthenticationCodeMismatchException,
   AuthenticationException,
+  AuthenticationExpiredCodeException,
+  AuthenticationExpiredRefreshTokenException,
+  AuthenticationInvalidRefreshTokenException,
   AuthenticationLimitExceededException,
-  AuthenticationNotAuthorizedException,
-  AuthenticationTooManyRequestsException,
-  AuthenticationUnauthorizedAccessException,
-  AuthenticationUserNotFoundException,
-} from './exceptions/authentication/index';
-import {
   AuthenticationLoginException,
   AuthenticationLoginInvalidCredentialsException,
   AuthenticationLoginTooManyFailedAttemptsException,
-} from './exceptions/authentication/login';
-import { AuthenticationMFAMethodNotFoundException } from './exceptions/authentication/mfa';
-import { AuthenticationSignupException } from './exceptions/authentication/signup';
-import {
-  AuthenticationExpiredRefreshTokenException,
-  AuthenticationInvalidRefreshTokenException,
+  AuthenticationMFAMethodNotFoundException,
   AuthenticationMissingRefreshTokenException,
-} from './exceptions/authentication/tokens';
-import {
-  AuthenticationAliasExistException,
+  AuthenticationNotAuthorizedException,
+  AuthenticationPasswordResetRequiredException,
+  AuthenticationSignupException,
+  AuthenticationTooManyRequestsException,
+  AuthenticationUnauthorizedAccessException,
   AuthenticationUsernameAvailabilityCheckException,
   AuthenticationUsernameExistsException,
-} from './exceptions/authentication/username-availability';
-import {
-  AuthenticationCodeDeliveryFailureException,
-  AuthenticationCodeMismatchException,
-  AuthenticationExpiredCodeException,
   AuthenticationUserNotConfirmedException,
-} from './exceptions/authentication/verification';
-import { DatabaseException } from './exceptions/data/db/index';
-import { SequelizeNotInitializedException } from './exceptions/data/db/sequelize';
+  AuthenticationUserNotFoundException,
+} from './exceptions/authentication/index';
+import {
+  DatabaseException,
+  SequelizeNotInitializedException,
+} from './exceptions/data/index';
 import {
   FatalException,
   KillProcessException,
@@ -42,12 +36,13 @@ import {
   ProcessSigIntException,
   ProcessSigTermException,
   ProcessWarningException,
-} from './exceptions/environments/server/process';
+} from './exceptions/environments/index';
 import {
   CaughtException,
   UncaughtException,
   UnhandledPromiseRejectionException,
   UnmanagedException,
+  Warning,
 } from './exceptions/index';
 import {
   HttpException,
@@ -57,9 +52,11 @@ import {
   MissingCookieException,
   MissingRequestBodyPropertyException,
   MissingRequestUrlParameterException,
-} from './exceptions/networking/http/index';
-import { NetworkException } from './exceptions/networking/index';
+  NetworkException,
+} from './exceptions/networking/index';
 import {
+  AWSException,
+  AWSMissingAccessKeyException,
   CognitoException,
   CognitoInternalErrorException,
   CognitoInvalidEmailRoleAccessPolicyException,
@@ -73,18 +70,12 @@ import {
   CognitoResourceNotFoundException,
   CognitoUnexpectedLambdaException,
   CognitoUserLambdaValidationException,
-} from './exceptions/services/aws/cognito/index';
-import {
-  AWSException,
-  AWSMissingAccessKeyException,
-} from './exceptions/services/aws/index';
-import { ServiceProviderException } from './exceptions/services/index';
-import {
+  ServiceProviderException,
   StripeException,
   StripeMissingSecretKeyException,
   StripePaymentMethodRequiredException,
   StripeSubscriptionCreationFailedException,
-} from './exceptions/services/stripe/index';
+} from './exceptions/services/index';
 import {
   NullUserException,
   UserException,
@@ -100,6 +91,7 @@ import {
 } from './exceptions/validation/index';
 
 export const ExceptionMap: { readonly [code: number]: typeof Exception } = {
+  [ExceptionCode.Warning]: Warning,
   [ExceptionCode.Exception]: Exception,
   [ExceptionCode.UnmanagedException]: UnmanagedException,
   [ExceptionCode.CaughtException]: CaughtException,
@@ -226,3 +218,92 @@ export const ExceptionMap: { readonly [code: number]: typeof Exception } = {
 export function getExceptionInstance(code: ExceptionCode) {
   return ExceptionMap[code];
 }
+
+export {
+  AuthenticationAliasExistException,
+  AuthenticationCodeDeliveryFailureException,
+  AuthenticationCodeMismatchException,
+  AuthenticationException,
+  AuthenticationExpiredCodeException,
+  AuthenticationExpiredRefreshTokenException,
+  AuthenticationInvalidRefreshTokenException,
+  AuthenticationLimitExceededException,
+  AuthenticationLoginException,
+  AuthenticationLoginInvalidCredentialsException,
+  AuthenticationLoginTooManyFailedAttemptsException,
+  AuthenticationMFAMethodNotFoundException,
+  AuthenticationMissingRefreshTokenException,
+  AuthenticationNotAuthorizedException,
+  AuthenticationPasswordResetRequiredException,
+  AuthenticationSignupException,
+  AuthenticationTooManyRequestsException,
+  AuthenticationUnauthorizedAccessException,
+  AuthenticationUsernameAvailabilityCheckException,
+  AuthenticationUsernameExistsException,
+  AuthenticationUserNotConfirmedException,
+  AuthenticationUserNotFoundException,
+} from './exceptions/authentication/index';
+export {
+  DatabaseException,
+  SequelizeNotInitializedException,
+} from './exceptions/data/index';
+export {
+  FatalException,
+  KillProcessException,
+  MissingEnvironmentVariable,
+  ProcessException,
+  ProcessSigIntException,
+  ProcessSigTermException,
+  ProcessWarningException,
+} from './exceptions/environments/index';
+export {
+  CaughtException,
+  UncaughtException,
+  UnhandledPromiseRejectionException,
+  UnmanagedException,
+} from './exceptions/index';
+export {
+  HttpException,
+  HttpRequestException,
+  HttpRequestResourceNotFoundException,
+  HttpResponseException,
+  MissingCookieException,
+  MissingRequestBodyPropertyException,
+  MissingRequestUrlParameterException,
+} from './exceptions/networking/index';
+export { NetworkException } from './exceptions/networking/index';
+export {
+  AWSException,
+  AWSMissingAccessKeyException,
+  CognitoException,
+  CognitoInternalErrorException,
+  CognitoInvalidEmailRoleAccessPolicyException,
+  CognitoInvalidLambdaResponseException,
+  CognitoInvalidParameterException,
+  CognitoInvalidSmsRoleAccessPolicyException,
+  CognitoInvalidSmsRoleTrustRelationshipException,
+  CognitoInvalidUserPoolConfigurationException,
+  CognitoMissingUserPoolClientIdException,
+  CognitoMissingUserPoolIdException,
+  CognitoResourceNotFoundException,
+  CognitoUnexpectedLambdaException,
+  CognitoUserLambdaValidationException,
+  ServiceProviderException,
+  StripeException,
+  StripeMissingSecretKeyException,
+  StripePaymentMethodRequiredException,
+  StripeSubscriptionCreationFailedException,
+} from './exceptions/services/index';
+export {
+  NullUserException,
+  UserException,
+  UserStateConflictException,
+} from './exceptions/user/index';
+export {
+  InvalidArgumentException,
+  InvalidPropertyException,
+  InvalidTypeException,
+  MissingArgumentException,
+  MissingPropertyException,
+  ValidationException,
+} from './exceptions/validation/index';

@@ -3,13 +3,13 @@ import { BuildFormat } from '@srclaunch/types';
 export function getFormatFileExtension(format: BuildFormat) {
   switch (format) {
     case BuildFormat.CJS:
-      return '.cjs';
+      return '.cjs.js';
     case BuildFormat.ESM:
-      return '.mjs';
+      return '.esm.js';
     case BuildFormat.IIFE:
-      return '.iife.cjs';
+      return '.iife.js';
     case BuildFormat.UMD:
-      return '.umd.cjs';
+      return '.umd.js';
     default:
       return `${format}.js`;
   }
@@ -31,15 +31,15 @@ export function getViteFormatFileExtension(
   switch (format) {
     case 'cjs':
     case 'commonjs':
-      return '.cjs';
+      return '.cjs.js';
     case 'es':
     case 'esm':
     case 'module':
-      return '.mjs';
+      return '.esm.js';
     case 'iife':
-      return '.iife.cjs';
+      return '.iife.js';
     case 'umd':
-      return '.umd.cjs';
+      return '.umd.js';
     default:
       return `${format}.js`;
   }

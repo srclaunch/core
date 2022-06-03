@@ -67,7 +67,7 @@ export const LogLevels = {
     color: 'cyan',
     priority: 5,
   },
-  [LogLevel.Exception]: {
+  [LogLevel.Error]: {
     color: 'red',
     priority: 2,
   },

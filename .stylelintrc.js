@@ -1,5 +1,5 @@
-import base from '@srclaunch/dx/.stylelintrc.ui';
+import base from './packages/dx/.stylelintrc.mjs';
 
 export default {
-  ...base
+  ...base,
 };

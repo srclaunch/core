@@ -1,11 +1,10 @@
 import { memo, ReactElement } from 'react';
 
+import { Sizes, TextColors, TextSize } from '../../../../types';
 import { Label, LabelProps } from '../../../typography/Label';
 
-import { Sizes, TextColors, TextSize } from '../../../../types';
-
 type MarkdownDisplayProps = LabelProps & {
-  value: string;
+  readonly value: string;
 };
 
 export const MarkdownDisplay = memo(

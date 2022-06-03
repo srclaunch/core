@@ -1,17 +1,18 @@
-import { LogLevel } from '@srclaunch/types';
-import { Exception } from '../../exception.js';
-import { ExceptionCode } from '../../../types/index.js';
-import { ExceptionRemediation } from '../../../types/remediation';
+import { ExceptionRemediation, LogLevel } from '@srclaunch/types';
+
+import { ExceptionCode } from '../../../types/index';
+import { Exception } from '../../exception';
 
 /*************************/
 /* Validation exceptions */
 /*************************/
 
 export class ValidationException extends Exception {
-  override code = ExceptionCode.ValidationException;
-  override description = 'Generic or otherwise unknown input validation exception.';
-  override logLevel: Exception['logLevel'] = LogLevel.Exception;
-  override remediation: ExceptionRemediation = {
+  override readonly code: ExceptionCode = ExceptionCode.ValidationException;
+  override readonly description =
+    'Generic or otherwise unknown input validation exception.';
+  override readonly logLevel: Exception['logLevel'] = LogLevel.Error;
+  override readonly remediation: ExceptionRemediation = {
     response: {
       code: 400,
     },
@@ -20,10 +21,10 @@ export class ValidationException extends Exception {
 }
 
 export class InvalidTypeException extends Exception {
-  override code = ExceptionCode.InvalidTypeException;
-  override description = 'Instance type is invalid.';
-  override logLevel: Exception['logLevel'] = LogLevel.Exception;
-  override remediation: ExceptionRemediation = {
+  override readonly code = ExceptionCode.InvalidTypeException;
+  override readonly description = 'Instance type is invalid.';
+  override readonly logLevel: Exception['logLevel'] = LogLevel.Error;
+  override readonly remediation: ExceptionRemediation = {
     response: {
       code: 400,
     },
@@ -32,10 +33,10 @@ export class InvalidTypeException extends Exception {
 }
 
 export class MissingArgumentException extends Exception {
-  override code = ExceptionCode.MissingArgumentException;
-  override description = 'A required argument is missing.';
-  override logLevel: Exception['logLevel'] = LogLevel.Exception;
-  override remediation: ExceptionRemediation = {
+  override readonly code = ExceptionCode.MissingArgumentException;
+  override readonly description = 'A required argument is missing.';
+  override readonly logLevel: Exception['logLevel'] = LogLevel.Error;
+  override readonly remediation: ExceptionRemediation = {
     response: {
       code: 400,
     },
@@ -44,10 +45,10 @@ export class MissingArgumentException extends Exception {
 }
 
 export class MissingPropertyException extends Exception {
-  override code = ExceptionCode.MissingPropertyException;
-  override description = 'A required property is missing.';
-  override logLevel: Exception['logLevel'] = LogLevel.Exception;
-  override remediation: ExceptionRemediation = {
+  override readonly code = ExceptionCode.MissingPropertyException;
+  override readonly description = 'A required property is missing.';
+  override readonly logLevel: Exception['logLevel'] = LogLevel.Error;
+  override readonly remediation: ExceptionRemediation = {
     response: {
       code: 400,
     },
@@ -56,10 +57,10 @@ export class MissingPropertyException extends Exception {
 }
 
 export class InvalidArgumentException extends Exception {
-  override code = ExceptionCode.InvalidArgumentException;
-  override description = 'An argument is invalid.';
-  override logLevel: Exception['logLevel'] = LogLevel.Exception;
-  override remediation: ExceptionRemediation = {
+  override readonly code = ExceptionCode.InvalidArgumentException;
+  override readonly description = 'An argument is invalid.';
+  override readonly logLevel: Exception['logLevel'] = LogLevel.Error;
+  override readonly remediation: ExceptionRemediation = {
     response: {
       code: 400,
     },
@@ -68,10 +69,10 @@ export class InvalidArgumentException extends Exception {
 }
 
 export class InvalidPropertyException extends Exception {
-  override code = ExceptionCode.InvalidPropertyException;
-  override description = 'An object property is invalid.';
-  override logLevel: Exception['logLevel'] = LogLevel.Exception;
-  override remediation: ExceptionRemediation = {
+  override readonly code = ExceptionCode.InvalidPropertyException;
+  override readonly description = 'An object property is invalid.';
+  override readonly logLevel: Exception['logLevel'] = LogLevel.Error;
+  override readonly remediation: ExceptionRemediation = {
     response: {
       code: 400,
     },

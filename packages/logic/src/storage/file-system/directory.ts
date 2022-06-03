@@ -1,4 +1,4 @@
-import { emptyDir, ensureDir, mkdirs, readdir, remove,  } from 'fs-extra';
+import fs from 'fs-extra';
 
 export const createDirectory = async (directory: string): Promise<void> => {
   if (!directory) {
@@ -10,7 +10,7 @@ export const createDirectory = async (directory: string): Promise<void> => {
   }
 
   try {
-    await mkdirs(directory);
+    await fs.mkdirs(directory);
   } catch (err) {
     throw new Error(`Could not create directory: ${directory}`);
   }
@@ -26,7 +26,7 @@ export const deleteDirectory = async (directory: string): Promise<void> => {
   }
 
   try {
-    await remove(directory);
+    await fs.remove(directory);
   } catch (err) {
     throw new Error(`Could not delete directory: ${directory}`);
   }
@@ -42,7 +42,7 @@ export const emptyDirectory = async (directory: string): Promise<void> => {
   }
 
   try {
-    await emptyDir(directory);
+    await fs.emptyDir(directory);
   } catch (err) {
     throw new Error(`Could not empty directory: ${directory}`);
   }
@@ -60,7 +60,7 @@ export const ensureDirectoryExists = async (
   }
 
   try {
-    await ensureDir(directory);
+    await fs.ensureDir(directory);
   } catch (err) {
     throw new Error(`Could not ensure directory exists: ${directory}`);
   }
@@ -72,7 +72,7 @@ export const listDirectoryContents = async (path: string): Promise<string[]> => 
   }
 
   try {
-    const files = await readdir(path);
+    const files = await fs.readdir(path);
 
     return files;
   } catch (err) {

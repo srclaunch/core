@@ -1,8 +1,8 @@
-import test from 'ava';
-import { Logger } from '../lib/logger.js';
-import { getEnvironment } from '@srclaunch/node-environment';
-import { DateTime } from 'luxon';
 import { HttpRequestMethod } from '@srclaunch/types';
+import test from 'ava';
+import { DateTime } from 'luxon';
+
+import { Logger } from '../lib/logger.js';
 
 test('create new Logger instance', t => {
   const logger = new Logger();
@@ -21,7 +21,7 @@ test('create new Logger instance', t => {
 
 test('logging info to console', t => {
   const logger = new Logger({
-    environment: getEnvironment(),
+    // environment: getEnvironment(),
   });
 
   const result = logger.info('Test Info Log');
@@ -33,7 +33,7 @@ test('logging HTTP request to console', t => {
   const now = DateTime.now();
 
   const logger = new Logger({
-    environment: getEnvironment(),
+    // environment: getEnvironment(),
   });
   const result = logger.http({
     request: {

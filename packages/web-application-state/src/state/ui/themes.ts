@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { AppLabDarkTheme, AppLabLightTheme } from '@srclaunch/themes';
 import { Theme } from '@srclaunch/types';
-import { AppLabLightTheme, AppLabDarkTheme } from '@srclaunch/themes';
 
 type ThemeState = {
-  current?: Theme['id'];
-  list?: Theme[];
+  readonly current?: Theme['id'];
+  readonly list?: readonly Theme[];
 };
 
 const initialState: ThemeState = {

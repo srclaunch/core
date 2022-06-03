@@ -14,8 +14,6 @@ import {
   TestReporter,
   TestTool,
   UniversalPackage,
-  EnvironmentType,
-  PackageManager,
 } from '@srclaunch/types';
 import { build } from './src/workflows/github/actions/jobs/build';
 import { publish } from './src/workflows/github/actions/jobs/publish';
@@ -29,7 +27,7 @@ export default <Project>{
   type: ProjectType.Library,
   build: {
     bundle: {
-      exclude: ['fs-extra', 'unconfig'],
+      exclude: [],
     },
     formats: [BuildFormat.UMD, BuildFormat.ESM],
     library: {
@@ -55,7 +53,6 @@ export default <Project>{
   },
   requirements: {
     node: '>=16',
-    yarn: '>=3.2.0',
     packages: [
       UniversalPackage.JSYaml,
       UniversalPackage.EmailValidator,

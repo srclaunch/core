@@ -12,7 +12,7 @@ import {
   PublishAccess,
   TestReporter,
   TestTool,
-  RunTool,
+  Runner,
   UniversalPackage,
   BrowserPackage,
 } from '@srclaunch/types';
@@ -41,7 +41,7 @@ export default <Project>{
   },
   run: {
     development: {
-      tool: RunTool.Vite,
+      tool: Runner.Vite,
     },
   },
   test: {
@@ -54,6 +54,14 @@ export default <Project>{
     development: {
       formatters: [CodeFormatterTool.Prettier],
       linters: [CodeLinterTool.ESLint, CodeLinterTool.Stylelint],
+      run: {
+        bundle: {
+          optimize: {
+            exclude: ['@srclaunch/exceptions'],
+          },
+        },
+        runner: Runner.Vite,
+      },
       staticTyping: [StaticTypingTool.TypeScript],
     },
   },
@@ -66,7 +74,6 @@ export default <Project>{
   },
   requirements: {
     node: '>=16',
-    yarn: '>=3.2.0',
     packages: [
       BrowserPackage.AmazonCognitoIdentityJS,
       BrowserPackage.History,

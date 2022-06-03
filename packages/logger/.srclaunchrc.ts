@@ -13,11 +13,11 @@ import {
   TestReporter,
   TestTool,
   UniversalPackage,
-} from "@srclaunch/types";
+} from '@srclaunch/types';
 
 export default <Project>{
-  name: "@srclaunch/logger",
-  description: "Logging utilties",
+  name: '@srclaunch/logger',
+  description: 'Logging utilties',
   type: ProjectType.Library,
   environments: {
     development: {
@@ -42,12 +42,11 @@ export default <Project>{
     publish: {
       access: PublishAccess.Public,
       license: License.MIT,
-      registry: "https://registry.npmjs.org/",
+      registry: 'https://registry.npmjs.org/',
     },
   },
   requirements: {
-    node: ">=16",
-    yarn: ">=3.2.0",
+    node: '>=16',
     packages: [
       UniversalPackage.NanoID,
       UniversalPackage.Luxon,

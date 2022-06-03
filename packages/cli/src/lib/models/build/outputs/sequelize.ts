@@ -5,7 +5,7 @@ import {
   Primitives,
   Relationship,
 } from '@srclaunch/types';
-import fs from 'fs-extra';
+// import fs from 'fs-extra';
 import path from 'node:path';
 
 import { constructModelExportIndexScript } from '../exports.js';
@@ -349,8 +349,8 @@ export async function buildSequelizeModels(projectPath: string) {
     const BUILD_PATH = path.join(path.resolve(), projectPath, 'src');
     const DIST_PATH = path.join(path.resolve(), projectPath, 'dist');
 
-    await fs.emptyDir(BUILD_PATH);
-    await fs.emptyDir(DIST_PATH);
+    // await fs.emptyDir(BUILD_PATH);
+    // await fs.emptyDir(DIST_PATH);
 
     const Models = await import(MODELS_BUILD_PATH);
 
@@ -362,7 +362,7 @@ export async function buildSequelizeModels(projectPath: string) {
 
       // logger.info(`Writing ${modelName}.ts Sequelize model`);
 
-      await fs.writeFile(filePath, sequelizeModel, 'utf8');
+      // await fs.writeFile(filePath, sequelizeModel, 'utf8');
     }
 
     const indexFileContent = constructModelExportIndexScript(
@@ -372,11 +372,11 @@ export async function buildSequelizeModels(projectPath: string) {
 
     // logger.info(`Writing ${BUILD_PATH}/index.ts`);
 
-    await fs.writeFile(
-      path.join(BUILD_PATH, 'index.ts'),
-      indexFileContent,
-      'utf8',
-    );
+    // await fs.writeFile(
+    //   path.join(BUILD_PATH, 'index.ts'),
+    //   indexFileContent,
+    //   'utf8',
+    // );
   } catch (error: any) {
     console.error(error);
     throw error;

@@ -3,7 +3,7 @@ import { TypedFlags } from 'meow';
 import pc from 'picocolors';
 import { add, commit } from '../lib/git';
 import { Command, CommandType } from '../lib/command';
-import { render } from 'ink';
+// import { render } from 'ink';
 import { AppContainer } from '../containers/AppContainer';
 import { InteractiveModeFlag } from '../lib/flags';
 
@@ -49,14 +49,14 @@ export default new Command({
       run: async ({ cli, flags }) => {
         const { message, scope, type } = flags;
         if (flags.interactive) {
-          const { waitUntilExit } = render(
-            <AppContainer
-              initialTab="Changes"
-              cliVersion={cli.pkg.version}
-              flags={flags}
-            />,
-          );
-          await waitUntilExit();
+          // const { waitUntilExit } = render(
+          //   <AppContainer
+          //     initialTab="Changes"
+          //     cliVersion={cli.pkg.version}
+          //     flags={flags}
+          //   />,
+          // );
+          // await waitUntilExit();
         } else {
           try {
             const { commitMessage } = await createChangeset({

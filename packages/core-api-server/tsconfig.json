@@ -1,53 +1,7 @@
 {
+  "extends": "@srclaunch/dx/tsconfig.json",
   "compilerOptions": {
-    "composite": true,
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "outDir": "./dist",
-    "paths": {
-      "@srclaunch/cli": [
-        "../cli"
-      ],
-      "@srclaunch/data-client": ["../data-client"],
-      "@srclaunch/exceptions": ["../exceptions"],
-
-      "@srclaunch/http-server": ["../http-server"],
-      "@srclaunch/logger": ["../logger"],
-      "@srclaunch/node-environment": ["../node-environment"],
-
-      "@srclaunch/types": [
-        "../types"
-      ],
-
-    },
-    "rootDir": "./src",
+    "declarationDir": "./dist"
   },
-  "references": [
-
-    {
-      "path": "../cli"
-    },
-    {
-      "path": "../data-client"
-    },
-    {
-      "path": "../exceptions"
-    },
-
-    {
-      "path": "../http-server"
-    },
-    {
-      "path": "../logger"
-    },
-    {
-      "path": "../node-environment"
-    },
-      {
-      "path": "../types"
-    }
-  ],
-  "include": [
-    "src/**/*.ts"
-  ]
+  "include": ["./src"]
 }

@@ -1,23 +1,20 @@
-import { build as buildCommand, Format } from 'esbuild';
-import { build as buildTypes } from './types';
 import {
   BuildFormat,
-  BuildOptions,
   BuildPlatform,
   BuildTarget,
-  BundleOptions,
   ESBuildOptions,
-  Platform,
 } from '@srclaunch/types';
+import { build as buildCommand, Format } from 'esbuild';
+import * as fs from 'fs-extra';
+import path from 'node:path';
 import pc from 'picocolors';
-import { emptyDirectory } from '@srclaunch/logic';
-import path from 'path';
-import { getFormatFileExtension } from './formats';
 
 import { BUILD_DIR } from '../../constants/build';
+import { getFormatFileExtension } from './formats';
 
 export async function build({
   bundle = true,
+  clean = true,
   format = BuildFormat.ESM,
   input,
   minify = true,
@@ -27,17 +24,14 @@ export async function build({
   splitting = true,
   target = BuildTarget.ESNext,
   treeShaking = true,
-  types = true,
 }: ESBuildOptions) {
   try {
     const entryPoints = [
-      ...[
-        path.join(
-          path.resolve(),
-          input?.directory ?? 'src',
-          input?.file ?? 'index.ts',
-        ),
-      ],
+      path.join(
+        path.resolve(),
+        input?.directory ?? 'src',
+        input?.file ?? 'index.ts',
+      ),
       ...(input?.files
         ? input.files.map(f =>
             path.join(path.resolve(), input?.directory ?? 'src', f),
@@ -45,14 +39,13 @@ export async function build({
         : []),
     ];
 
-    if (output?.clean) {
-      console.info('Cleaning output directory...');
-      await emptyDirectory(output?.directory ?? BUILD_DIR);
+    if (clean) {
+      await fs.emptyDir(BUILD_DIR);
     }
 
     const result = await buildCommand({
       bundle: Boolean(bundle),
-      entryPoints: entryPoints,
+      entryPoints,
       external: typeof bundle === 'object' ? (bundle.exclude as string[]) : [],
       format: format as Format,
       minify,
@@ -71,26 +64,21 @@ export async function build({
           ? 'node'
           : undefined,
       sourcemap,
-      splitting: format === 'esm' && splitting,
+      splitting: format === BuildFormat.ESM && splitting,
       target,
       treeShaking,
     });
 
     if (result.warnings) {
-      result.warnings.forEach(warning => {
+      for (const warning of result.warnings) {
         console.warn(warning.text);
-      });
+      }
     }
 
     if (result.errors) {
-      result.errors.forEach(error => {
+      for (const error of result.errors) {
         console.error(error.text);
-      });
-    }
-
-    if (types) {
-      await buildTypes({ input, types, output });
-      console.info(`${pc.green('✔')} compiled types`);
+      }
     }
 
     console.info(
@@ -98,7 +86,7 @@ export async function build({
         format.toLocaleUpperCase(),
       )} format`,
     );
-  } catch (err: any) {
-    console.error(err);
+  } catch (error: any) {
+    console.error(error);
   }
 }

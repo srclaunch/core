@@ -5,8 +5,10 @@ import {
   ProjectType,
   StaticTypingTool,
 } from '@srclaunch/types';
+import fs from 'fs-extra';
+import path from 'node:path';
 import pc from 'picocolors';
-import path from 'path';
+
 import { PRETTIER_CONFIG_CONTENT } from '../../constants/formatters';
 import {
   ESLINT_CONFIG_CONTENT,
@@ -18,7 +20,7 @@ import {
   TYPESCRIPT_CONFIG_CONTENT,
   TYPESCRIPT_UI_CONFIG_CONTENT,
 } from '../../constants/static-typing';
-import { writeFile } from '@srclaunch/logic';
+// import { writeFile } from '@srclaunch/logic';
 
 export async function writeToolingConfiguration({
   formatters = [],
@@ -26,10 +28,10 @@ export async function writeToolingConfiguration({
   project,
   staticTyping = [],
 }: {
-  formatters?: CodeFormatterTool[];
-  linters?: CodeLinterTool[];
-  project: Project;
-  staticTyping?: StaticTypingTool[];
+  readonly formatters?: readonly CodeFormatterTool[];
+  readonly linters?: readonly CodeLinterTool[];
+  readonly project: Project;
+  readonly staticTyping?: readonly StaticTypingTool[];
 }) {
   if (staticTyping) {
     for (const tool of staticTyping) {
@@ -39,7 +41,7 @@ export async function writeToolingConfiguration({
             project.type === ProjectType.WebApplication ||
             project.type === ProjectType.ComponentLibrary;
 
-          await writeFile(
+          await fs.writeFile(
             path.resolve('./tsconfig.json'),
             uiConfig ? TYPESCRIPT_UI_CONFIG_CONTENT : TYPESCRIPT_CONFIG_CONTENT,
           );
@@ -53,7 +55,7 @@ export async function writeToolingConfiguration({
       for (const formatter of formatters) {
         switch (formatter) {
           case CodeFormatterTool.Prettier:
-            await writeFile(
+            await fs.writeFile(
               path.resolve('./.prettierrc.cjs'),
               PRETTIER_CONFIG_CONTENT,
             );
@@ -73,14 +75,14 @@ export async function writeToolingConfiguration({
       for (const linter of linters) {
         switch (linter) {
           case CodeLinterTool.ESLint:
-            await writeFile(
+            await fs.writeFile(
               path.resolve('./.eslintrc.cjs'),
               ui ? ESLINT_UI_CONFIG_CONTENT : ESLINT_CONFIG_CONTENT,
             );
             // console.info(`${chalk.green('✔')} added ESLint config`);
             break;
           case CodeLinterTool.Stylelint:
-            await writeFile(
+            await fs.writeFile(
               path.resolve('./.stylelintrc.js'),
               ui ? STYLELINT_UI_CONFIG_CONTENT : STYLELINT_CONFIG_CONTENT,
             );

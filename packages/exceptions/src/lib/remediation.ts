@@ -10,6 +10,7 @@ export type ExceptionResponse = {
 };
 
 export class ExceptionRemediator {
+  // eslint-disable-next-line functional/prefer-readonly-type
   private exception?: Exception = undefined;
 
   handleException(
@@ -31,7 +32,7 @@ export class ExceptionRemediator {
     }
 
     return res.status(500).json({
-      code: 99999,
+      code: 99_999,
       description: 'An unknown error occurred.',
       friendlyMessage: 'An unknown error occurred.',
     });

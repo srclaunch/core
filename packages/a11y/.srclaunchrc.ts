@@ -46,7 +46,6 @@ export default <Project>{
   },
   requirements: {
     node: '>=16',
-    yarn: '>=3.2.0',
     srclaunch: {
       dx: true,
       cli: true,

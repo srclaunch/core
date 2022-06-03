@@ -1,4 +1,4 @@
-import { Workflow } from '.';
 import { ChangesetEvent } from '../event/changeset';
+import { Workflow } from '.';
 
-export interface ChangesetWorkflow extends Workflow<ChangesetEvent> {}
+export type ChangesetWorkflow = Workflow;

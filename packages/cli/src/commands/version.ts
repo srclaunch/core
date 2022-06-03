@@ -1,9 +1,9 @@
-import { Command } from '../lib/command.js';
+import { Command } from '../lib/command';
 
 export default new Command({
-  name: 'version',
   description:
     'Commands for bumping the version of the project according to semantic versioning.',
+  name: 'version',
   run: async ({ cli }) => {
     cli.showVersion();
   },

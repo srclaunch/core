@@ -1,5 +1,5 @@
 import { Model, ModelField, Primitives } from '@srclaunch/types';
-import fs from 'fs-extra';
+// import fs from 'fs-extra';
 import path from 'node:path';
 import pluralize from 'pluralize';
 
@@ -137,19 +137,19 @@ export async function buildModelTypes(projectPath: string) {
     const DIST_PATH = path.join(path.resolve(), projectPath, 'dist');
     const TYPES_DIR_PATH = path.join(path.resolve(), 'types');
 
-    await fs.emptyDir(BUILD_PATH);
-    await fs.emptyDir(DIST_PATH);
+    // await fs.emptyDir(BUILD_PATH);
+    // await fs.emptyDir(DIST_PATH);
 
-    const files = await fs.readdir(TYPES_DIR_PATH);
+    // const files = await fs.readdir(TYPES_DIR_PATH);
 
-    for (const file of files) {
-      const fileContents = await fs.readFile(
-        path.join(TYPES_DIR_PATH, file),
-        'utf8',
-      );
+    // for (const file of files) {
+    //   const fileContents = await fs.readFile(
+    //     path.join(TYPES_DIR_PATH, file),
+    //     'utf8',
+    //   );
 
-      await fs.writeFile(path.join(BUILD_PATH, file), fileContents, 'utf8');
-    }
+    //   // await fs.writeFile(path.join(BUILD_PATH, file), fileContents, 'utf8');
+    // }
 
     const Models = await import(MODELS_BUILD_PATH);
 
@@ -163,14 +163,14 @@ export async function buildModelTypes(projectPath: string) {
 
       // logger.info(`Writing model types to ${modelName}.ts`);
 
-      await fs.writeFile(filePath, types, 'utf8');
+      // await fs.writeFile(filePath, types, 'utf8');
 
       exportStr += getModelExports(model[1]);
     }
 
     // logger.info(`Writing ${BUILD_PATH}/index.ts`);
 
-    await fs.writeFile(path.join(BUILD_PATH, 'index.ts'), exportStr, 'utf8');
+    // await fs.writeFile(path.join(BUILD_PATH, 'index.ts'), exportStr, 'utf8');
   } catch (error: any) {
     console.error('err', error);
     throw error;

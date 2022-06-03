@@ -1,4 +1,4 @@
-const base = require("@srclaunch/dx");
+const base = require('./packages/dx/.prettierrc.cjs');
 
 module.exports = {
   ...base,

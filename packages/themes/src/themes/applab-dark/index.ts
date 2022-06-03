@@ -1,4 +1,5 @@
 import { Theme } from '@srclaunch/types';
+
 import styles from './theme.css';
 
 export const AppLabDarkTheme: Theme = {

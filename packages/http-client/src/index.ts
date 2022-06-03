@@ -1,7 +1,4 @@
-import {
-  getExceptionInstance,
-  HttpRequestException,
-} from '@srclaunch/exceptions';
+import { HttpRequestException } from '@srclaunch/exceptions';
 import { Logger } from '@srclaunch/logger';
 import {
   HttpRequestBody,
@@ -347,7 +344,8 @@ export class HttpClient {
     readonly resource: HttpRequestResource;
   }): Promise<HttpResponse<T>> {
     if (response.data?.code) {
-      const exception = getExceptionInstance(response.data?.code);
+      // const exception = getExceptionInstance(response.data?.code);
+      const exception = undefined;
 
       if (exception) {
         return {

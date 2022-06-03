@@ -1,5 +1,5 @@
 import { paramCase } from 'change-case';
-import fs from 'fs-extra';
+// import fs from 'fs-extra';
 import path from 'node:path';
 import pluralize from 'pluralize';
 
@@ -208,51 +208,51 @@ export async function buildHttpClient({
 }): Promise<void> {
   try {
     const projectConfigPath = path.join(path.resolve(), 'applab.config.json');
-    const projectConfigContents = await fs.readFile(projectConfigPath);
-    const projectConfig = await JSON.parse(projectConfigContents.toString());
+    // const projectConfigContents = await fs.readFile(projectConfigPath);
+    // const projectConfig = await JSON.parse(projectConfigContents.toString());
     const MODELS_PATH = path.join(path.resolve(), `${modelsPath}/src`);
     const BUILD_PATH = path.join(path.resolve(), `${projectPath}/src`);
     const DIST_PATH = path.join(path.resolve(), `${projectPath}/dist`);
 
-    await fs.emptyDir(BUILD_PATH);
-    await fs.emptyDir(DIST_PATH);
+    // await fs.emptyDir(BUILD_PATH);
+    // await fs.emptyDir(DIST_PATH);
 
-    const files = await fs.readdir(MODELS_PATH);
+    // const files = await fs.readdir(MODELS_PATH);
 
-    for (const file of files) {
-      if (file !== 'index.ts') {
-        const name = `${file.toLowerCase().replace('.ts', '')}Endpoints.ts`;
+    // for (const file of files) {
+    //   if (file !== 'index.ts') {
+    //     const name = `${file.toLowerCase().replace('.ts', '')}Endpoints.ts`;
 
-        const modelHttpClientEndpoints = getHttpClientEndpoints({
-          httpClientProjectName,
-          modelName: file.replace('.ts', ''),
-          typesProjectName,
-        });
+    //     const modelHttpClientEndpoints = getHttpClientEndpoints({
+    //       httpClientProjectName,
+    //       modelName: file.replace('.ts', ''),
+    //       typesProjectName,
+    //     });
 
-        // logger.info(`Writing ${name} HTTP client endpoints`);
+    //     // logger.info(`Writing ${name} HTTP client endpoints`);
 
-        await fs.writeFile(
-          path.join(BUILD_PATH, name),
-          modelHttpClientEndpoints,
-          'utf8',
-        );
-      }
-    }
+    //     // await fs.writeFile(
+    //     //   path.join(BUILD_PATH, name),
+    //     //   modelHttpClientEndpoints,
+    //     //   'utf8',
+    //     // );
+    //   }
+    // }
 
     // logger.info(`Writing ${BUILD_PATH}/index.ts`);
 
-    const indexFileContent = constructHttpClientIndexScript({
-      environments: projectConfig['core-api'].environments,
-      models: files
-        .filter(f => f !== 'index.ts')
-        .map(file => pluralize(file.toLowerCase()).replace('.ts', '')),
-    });
+    // const indexFileContent = constructHttpClientIndexScript({
+    //   environments: projectConfig['core-api'].environments,
+    //   models: files
+    //     .filter(f => f !== 'index.ts')
+    //     .map(file => pluralize(file.toLowerCase()).replace('.ts', '')),
+    // });
 
-    await fs.writeFile(
-      path.join(BUILD_PATH, 'index.ts'),
-      indexFileContent,
-      'utf8',
-    );
+    // await fs.writeFile(
+    //   path.join(BUILD_PATH, 'index.ts'),
+    //   indexFileContent,
+    //   'utf8',
+    // );
   } catch (error: any) {
     console.error(error);
     throw error;

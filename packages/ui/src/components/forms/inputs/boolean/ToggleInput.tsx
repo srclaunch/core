@@ -1,6 +1,6 @@
 import { BasicIcons } from '@srclaunch/icons';
-import { ValidationProblem } from '@srclaunch/types';
-import { memo, useEffect, useState, useRef } from 'react';
+import { ValidationProblem } from '@srclaunch/validation';
+import { memo, useEffect, useRef, useState } from 'react';
 
 import {
   AlignHorizontal,

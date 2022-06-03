@@ -1,6 +1,7 @@
 import { Route as RouteType } from '@srclaunch/types';
+import { Route, Router, Routes } from '@srclaunch/web-application-state';
 import { memo, ReactElement } from 'react';
-import { Router, Routes, Route } from '@srclaunch/web-application-state';
+
 import {
   Amount,
   BackgroundColors,
@@ -11,7 +12,7 @@ import {
 import { Container, ContainerProps } from '../layout/Container';
 
 export type RouterViewProps = {
-  routes: RouteType[];
+  readonly routes: readonly RouteType[];
 } & Omit<ContainerProps, 'children'>;
 
 export const RouterView = memo(

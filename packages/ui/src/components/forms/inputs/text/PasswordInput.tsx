@@ -1,11 +1,12 @@
-import { Condition, ValidationProblem } from '@srclaunch/types';
+import { Condition } from '@srclaunch/types';
 import {
   // getValidationProblemLabel,
   validate,
+  ValidationProblem,
 } from '@srclaunch/validation';
 import { memo, ReactElement, useEffect, useState } from 'react';
-// import PasswordStrengthBar from 'react-password-strength-bar';
 
+// import PasswordStrengthBar from 'react-password-strength-bar';
 import { Amount, AutoComplete, InputType } from '../../../../types';
 import { InputLabel } from '../../labels/InputLabel';
 import { InputRow } from '../../layout/InputRow';

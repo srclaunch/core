@@ -1,5 +1,6 @@
-import { useTitle } from '@srclaunch/react-hooks';
+// import { useTitle } from '@srclaunch/react-hooks';
 import { cloneElement, ElementType, memo, ReactElement } from 'react';
+
 import { AlignVertical, BackgroundColors, Fill, Overflow } from '../../types';
 import { Container, ContainerProps } from '../layout/Container';
 import { LoadingOverlay } from '../progress/LoadingOverlay';
@@ -23,7 +24,7 @@ export const Page = memo(
     title,
     ...props
   }: PageProps): ReactElement => {
-    useTitle(title ?? '');
+    // useTitle(title ?? '');
 
     const PageComp = () => (
       <Container

@@ -1,5 +1,5 @@
 import { TestOptions } from "@srclaunch/types";
-import { run as runJest } from "jest";
+import jest from "jest";
 import path from "path";
 import { DEFAULT_TEST_OPTIONS } from "./index";
 
@@ -42,7 +42,7 @@ export async function run({
       ...verbose,
       ...watchFlag,
     ];
-    await runJest(args, path.resolve());
+    await jest.run(args, path.resolve());
   } catch (err) {
     console.error(err);
   }

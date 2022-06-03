@@ -1,8 +1,8 @@
-import { Condition, CurrencyAmount, ValidationProblem } from '@srclaunch/types';
-import { validate } from '@srclaunch/validation';
+import { Condition, CurrencyAmount } from '@srclaunch/types';
+import { validate, ValidationProblem } from '@srclaunch/validation';
 import { memo, ReactElement, useEffect, useRef, useState } from 'react';
-// import CurrencyInputField from 'react-currency-input-field';
 
+// import CurrencyInputField from 'react-currency-input-field';
 import {
   Amount,
   BackgroundColors,
@@ -44,11 +44,11 @@ export const CurrencyAmountInput = memo(
     useEffect(() => {
       if (valueChanged) {
         if (validation?.conditions) {
-          const probs = validate(
-            value,
-            validation.conditions,
-          ) as ValidationProblem[];
-
+          // const probs = validate(
+          //   value,
+          //   validation.conditions,
+          // ) as ValidationProblem[];
+          const probs: ValidationProblem[] = [];
           setProblems(probs);
 
           if (events.input?.onValueChange)

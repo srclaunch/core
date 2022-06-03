@@ -4,9 +4,9 @@ import { EnvironmentOptions } from '../environment';
 import { PackageOptions } from '../package';
 import { Platform } from '../platform';
 import { ReleaseOptions } from '../release';
-import { RequirementOptions } from './requirements';
-import { TestOptions } from '../test';
 import { RepositoryOptions } from '../repository';
+import { TestOptions } from '../test';
+import { RequirementOptions } from './requirements';
 // import { ProjectWorkflow } from '../workflow/project';
 
 export enum ProjectType {

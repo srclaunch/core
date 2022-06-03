@@ -1,15 +1,16 @@
-import { ReactElement, useEffect, useState } from 'react';
 import { HttpClient } from '@srclaunch/http-client';
 import { ThemeProvider } from '@srclaunch/themes';
+import { Route, RouteRole } from '@srclaunch/types';
 import {
-  Outlet,
-  useLocation,
   matchPath,
-  useNavigate,
+  Outlet,
   RootState,
+  useLocation,
+  useNavigate,
   useSelector,
 } from '@srclaunch/web-application-state';
-import { RouteRole, Route } from '@srclaunch/types';
+import { ReactElement, useEffect, useState } from 'react';
+
 import { BackgroundColors, Fill, PositionBehavior } from '../../types';
 import { EntityPanel } from '../data/entities/EntityPanel';
 import { Container, ContainerProps } from '../layout/Container';
@@ -53,7 +54,7 @@ export const WebApplication = ({
     routes.find(r => r.role === RouteRole.Login)?.path ?? 'login';
 
   const checkAuth = () => {
-    routes.forEach(route => {
+    for (const route of routes) {
       const routePath = route?.path ?? '';
       const match = matchPath(route?.path ?? '', location.pathname);
 
@@ -79,7 +80,7 @@ export const WebApplication = ({
       ) {
         navigate(loginPagePath);
       }
-    });
+    }
   };
 
   useEffect(() => {

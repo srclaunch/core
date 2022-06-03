@@ -1,8 +1,7 @@
-import { ValidationProblem } from '@srclaunch/types';
-import { validate } from '@srclaunch/validation';
+import { validate, ValidationProblem } from '@srclaunch/validation';
 import {
-  memo,
   ChangeEvent,
+  memo,
   ReactElement,
   useEffect,
   useRef,
@@ -56,11 +55,11 @@ export const LongTextInput = memo(
     useEffect(() => {
       if (valueChanged) {
         if (validation && validation.conditions) {
-          const probs = validate(
-            value,
-            validation.conditions,
-          ) as ValidationProblem[];
-
+          // const probs = validate(
+          //   value,
+          //   validation.conditions,
+          // ) as ValidationProblem[];
+          const probs: ValidationProblem[] = [];
           setProblems(probs);
 
           if (events.input?.onValueChange)

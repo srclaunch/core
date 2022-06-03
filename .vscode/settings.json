@@ -12,20 +12,9 @@
     "stability"
   ],
   /* Colorize plugin */
-  "colorize.languages": [
-    "js",
-    "tsx"
-  ],
-  "colorize.include": [
-    "colors.css",
-    "themes.css"
-  ],
-  "colorize.colorized_colors": [
-    "BROWSERS_COLORS",
-    "HEXA",
-    "RGB",
-    "HSL"
-  ],
+  "colorize.languages": ["js", "tsx"],
+  "colorize.include": ["colors.css", "themes.css"],
+  "colorize.colorized_colors": ["BROWSERS_COLORS", "HEXA", "RGB", "HSL"],
   /* Editor Settings */
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
@@ -59,9 +48,7 @@
     "**/target": true
   },
   /* i18n */
-  "i18n-ally.localesPaths": [
-    "./translations"
-  ],
+  "i18n-ally.localesPaths": ["./translations"],
   /* Jest */
   "jestrunner.configPath": "jest.config.js",
   "jest.showCoverageOnLoad": true,
@@ -72,19 +59,14 @@
   "notebook.cellToolbarLocation": {
     "default": "left"
   },
-  "prettier.documentSelectors": [
-    "**/*.{ts,tsx,js,json}",
-    "*.{ts,tsx,js,json}"
-  ],
+  "prettier.documentSelectors": ["**/*.{ts,tsx,js,json}", "*.{ts,tsx,js,json}"],
   "prettier.enable": true,
   "prettier.eslintIntegration": true,
   "prettier.stylelintIntegration": true,
   "prettier.requireConfig": false,
   "prettier.useEditorConfig": false,
   /* Project manager plugin */
-  "projectManager.git.baseFolders": [
-    "/Users/steven/Projects"
-  ],
+  "projectManager.git.baseFolders": ["/Users/steven/Projects"],
   /* Tabnine */
   "tabnine.experimentalAutoImports": true,
   /* Terminal */
@@ -141,13 +123,14 @@
     "**/.yarn": true,
     "**/.pnp.*": true
   },
-  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "eslint.nodePath": ".yarn/sdks",
-  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+  "prettier.prettierPath": "",
   "[svg]": {
     "editor.defaultFormatter": "jock.svg"
   },
   "editor.definitionLinkOpensInPeek": false,
-  "prettier.configPath": ".prettierrc.cjs"
+  "prettier.configPath": ".prettierrc.cjs",
+  "monorepoTools.yarnInstallCommand": "yarn"
 }

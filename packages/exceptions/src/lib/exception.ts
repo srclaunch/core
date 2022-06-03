@@ -1,23 +1,18 @@
 import {
-  Environment,
-  FormValidationProblem,
+  ExceptionConstructorArgs,
+  ExceptionObject,
+  ExceptionRemediation,
   HttpRequest,
   ISO8601String,
   LogLevel,
   Model,
   ModelField,
-  ModelValidationProblem,
   Task,
 } from '@srclaunch/types';
 import { nanoid } from 'nanoid';
 import { serializeError } from 'serialize-error';
 
-import {
-  ExceptionCode,
-  ExceptionConstructorArgs,
-  ExceptionObject,
-} from '../types/exception';
-import { ExceptionRemediation } from '../types/remediation';
+import { ExceptionCode } from '../types/index';
 
 //
 // function getStack(error: Error): string {
@@ -56,7 +51,6 @@ import { ExceptionRemediation } from '../types/remediation';
  *
  */
 export class Exception extends Error {
-  // @ts-ignore
   override readonly cause?: Exception | Error;
   readonly code: ExceptionCode = ExceptionCode.Exception;
   readonly context?: Record<string, unknown>;
@@ -66,15 +60,15 @@ export class Exception extends Error {
   readonly model?: {
     readonly name: Model['name'];
     readonly field?: ModelField['name'];
-    readonly problem?: ModelValidationProblem;
+    // readonly problem?: ModelValidationProblem;
   };
   readonly form?: {
     readonly field?: ModelField['name'] | string;
-    readonly problem?: FormValidationProblem;
+    // readonly problem?: FormValidationProblem;
   };
   readonly friendlyMessage?: string = 'An unknown error has occurred. :(';
   readonly id?: string;
-  readonly logLevel?: LogLevel = LogLevel.Exception;
+  readonly logLevel?: LogLevel = LogLevel.Error;
   readonly origin?: {
     readonly block?: string;
     readonly file?: string;
@@ -153,7 +147,7 @@ export class Exception extends Error {
     }
   }
 
-  toJSON(): ExceptionObject {
+  public toJSON(): ExceptionObject {
     return serializeError(this) as ExceptionObject;
   }
 }

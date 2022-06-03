@@ -4,7 +4,7 @@ import {
   ProcessException,
   ProcessSigIntException,
   ProcessSigTermException,
-} from './exceptions/environments/server/process';
+} from './exceptions/environments/index';
 import {
   handleProcessExceptions,
   handleProcessInterupt,

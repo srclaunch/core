@@ -1,5 +1,5 @@
-import { Condition, ValidationProblem } from '@srclaunch/types';
-import { validate } from '@srclaunch/validation';
+import { Condition } from '@srclaunch/types';
+import { validate, ValidationProblem } from '@srclaunch/validation';
 import {
   ChangeEvent,
   memo,
@@ -83,14 +83,14 @@ export const VerificationCodeInput = memo(
         };
       };
 
-      const validation = {
-        [Condition.IsRequired]: true,
-        [Condition.IsLengthEqual]: length,
-        ...typeCondition,
-      };
+      // const validation = {
+      //   [Condition.IsRequired]: true,
+      //   [Condition.IsLengthEqual]: length,
+      //   ...typeCondition,
+      // };
 
-      const probs = validate(codeRef, validation) as ValidationProblem[];
-
+      // const probs = validate(codeRef, validation) as ValidationProblem[];
+      const probs: ValidationProblem[] = [];
       if (events.input?.onValueChange)
         events.input?.onValueChange({
           validation: {

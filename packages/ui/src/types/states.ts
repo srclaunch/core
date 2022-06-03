@@ -1,5 +1,5 @@
 import { Exception, Warning } from '@srclaunch/exceptions';
-import { ValidationProblem } from '@srclaunch/types';
+import { ValidationProblem } from '@srclaunch/validation';
 
 export type States<P = {}> = {
   readonly active?: P;
@@ -31,9 +31,9 @@ export type States<P = {}> = {
     };
     readonly error?:
       | Exception
-      | Exception[]
+      | readonly Exception[]
       | ValidationProblem
-      | ValidationProblem[]
+      | readonly ValidationProblem[]
       | string
       | boolean;
     readonly focused?: boolean;
@@ -47,9 +47,9 @@ export type States<P = {}> = {
     readonly visible?: boolean;
     readonly warning?:
       | Warning
-      | Warning[]
+      | readonly Warning[]
       | ValidationProblem
-      | ValidationProblem[]
+      | readonly ValidationProblem[]
       | string
       | boolean;
   };

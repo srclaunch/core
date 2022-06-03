@@ -1,5 +1,6 @@
 import { BasicIcons } from '@srclaunch/icons';
-import { UserVerificationStatus, ValidationProblem } from '@srclaunch/types';
+import { UserVerificationStatus } from '@srclaunch/types';
+import { ValidationProblem } from '@srclaunch/validation';
 import {
   getVerificationDetails,
   resendVerificationCode,

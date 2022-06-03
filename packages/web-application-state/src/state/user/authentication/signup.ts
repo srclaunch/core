@@ -6,13 +6,9 @@ import {
   InvalidArgumentException,
   MissingArgumentException,
 } from '@srclaunch/exceptions';
-import {
-  Condition,
-  FormValidationProblem,
-  ISO8601String,
-} from '@srclaunch/types';
+import { Condition, ISO8601String } from '@srclaunch/types';
 // import { AuthenticationService } from '@srclaunch/http-services';
-import { validate } from '@srclaunch/validation';
+import { validate, ValidationProblem } from '@srclaunch/validation';
 import {
   AuthenticationDetails,
   CognitoUser,
@@ -88,56 +84,61 @@ export const signUp =
       // const config = getState().app.config;
 
       if (!username) {
-        const err = new MissingArgumentException(
-          `"username" property is required.`,
-          {
-            form: {
-              field: 'username',
-              problem: FormValidationProblem.Required,
-            },
-          },
-        );
+        throw new Error('Username is required');
+        // const err = new MissingArgumentException(
+        //   `"username" property is required.`,
+        //   {
+        //     form: {
+        //       field: 'username',
+        //       problem: ValidationProblem.Required,
+        //     },
+        //   },
+        // );
 
-        dispatch(setSignupFailure(err.toJSON()));
+        // dispatch(setSignupFailure(err.toJSON()));
 
-        return;
+        // return;
       }
 
       if (!password) {
-        const err = new MissingArgumentException(
-          `"password" property is required.`,
-          {
-            form: {
-              field: 'password',
-              problem: FormValidationProblem.Required,
-            },
-          },
-        );
+        throw new Error('Password is required');
+        // const err = new MissingArgumentException(
+        //   `"password" property is required.`,
+        //   {
+        //     form: {
+        //       field: 'password',
+        //       problem: {
+        //         long: 'Password is required.',
+        //         short: 'Password is required.',
+        //       },
+        //     },
+        //   },
+        // );
 
-        dispatch(setSignupFailure(err.toJSON()));
+        // dispatch(setSignupFailure(err.toJSON()));
 
-        return;
+        // return;
       }
 
-      const problems = validate(username, {
-        [Condition.IsEmailAddress]: true,
-      });
+      // const problems = validate(username, {
+      //   [Condition.IsEmailAddress]: true,
+      // });
 
-      if (problems.length > 0) {
-        const err = new InvalidArgumentException(
-          `"username" value is not valid email.`,
-          {
-            form: {
-              field: 'username',
-              problem: FormValidationProblem.NotValidEmail,
-            },
-          },
-        );
+      // if (problems.length > 0) {
+      //   const err = new InvalidArgumentException(
+      //     `"username" value is not valid email.`,
+      //     {
+      //       form: {
+      //         field: 'username',
+      //         problem: ValidationProblem.NotValidEmail,
+      //       },
+      //     },
+      //   );
 
-        dispatch(setSignupFailure(err.toJSON()));
+      //   dispatch(setSignupFailure(err.toJSON()));
 
-        return;
-      }
+      //   return;
+      // }
       // analytics.sendEvent('User Login - Error');
 
       const config = getState().app.config;

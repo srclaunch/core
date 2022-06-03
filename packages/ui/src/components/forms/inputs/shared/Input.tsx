@@ -1,8 +1,7 @@
-import { ValidationProblem } from '@srclaunch/types';
-import { validate } from '@srclaunch/validation';
-import { ChangeEvent } from 'react';
-import { forwardRef } from 'react';
+import { validate, ValidationProblem } from '@srclaunch/validation';
 import {
+  ChangeEvent,
+  forwardRef,
   memo,
   ReactElement,
   ReactEventHandler,
@@ -11,6 +10,7 @@ import {
   useState,
 } from 'react';
 import styled, { css } from 'styled-components';
+
 import { getEventHandlers } from '../../../../lib/events';
 import { getInputStyles, InputStyles } from '../../../../styles/forms/input';
 import {
@@ -186,6 +186,8 @@ export const Input = memo(
   },
 );
 
-const InputElement = styled.input<InputProps<string> & { inputSize?: Size }>`
+const InputElement = styled.input<
+  InputProps<string> & { readonly inputSize?: Size }
+>`
   ${props => getInputStyles(props)}
 `;

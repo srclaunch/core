@@ -1,12 +1,11 @@
-import { emptyDirectory } from "@srclaunch/logic";
-import path from 'path';
-
+// import { emptyDirectory } from "@srclaunch/logic";
+import path from 'node:path';
 
 export async function cleanModels() {
   try {
     const MODEL_DEPS_PATH = path.join(path.resolve(), 'dependencies/models');
 
-    await emptyDirectory(path.join(MODEL_DEPS_PATH, 'src'));
+    // await emptyDirectory(path.join(MODEL_DEPS_PATH, 'src'));
 
     // const TYPES_DEPS_PATH = path.join(
     //   path.resolve(),

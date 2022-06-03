@@ -1,6 +1,6 @@
-import { spawn } from 'child_process';
-import { TestOptions } from '@srclaunch/types';
-import { DEFAULT_TEST_OPTIONS } from './index';
+import { spawn } from "child_process";
+import { TestOptions } from "@srclaunch/types";
+import { DEFAULT_TEST_OPTIONS } from "./index";
 // import {
 //   chunksToLinesAsync,
 //   streamWrite,
@@ -18,21 +18,21 @@ export async function run({
   watch?: boolean;
 }): Promise<void> {
   try {
-    const all = ['--all'];
-    const color = ['--color'];
+    const all = ["--all"];
+    const color = ["--color"];
     const concurrencyArg = config?.concurrency
-      ? ['--concurrency', config.concurrency.toString()]
+      ? ["--concurrency", config.concurrency.toString()]
       : [];
-    const configArg = ['--config', 'node_modules/@srclaunch/dx/ava.config.mjs'];
-    const failFast = config?.fail?.fast ? ['--fail-fast'] : [];
+    const configArg = ["--config", "node_modules/@srclaunch/dx/ava.config.mjs"];
+    const failFast = config?.fail?.fast ? ["--fail-fast"] : [];
     const failWithNoTests =
       config?.fail?.noTests ?? DEFAULT_TEST_OPTIONS.fail.noTests
         ? []
-        : ['--failWithoutAssertions'];
+        : ["--failWithoutAssertions"];
     const matchFlag = match ? [`--match='${match.toString()}'`] : [];
     // const tapReporter = ['--tap'];
-    const verbose = config?.verbose ? ['--verbose'] : [];
-    const watchFlag = watch ? ['--watch'] : [];
+    const verbose = config?.verbose ? ["--verbose"] : [];
+    const watchFlag = watch ? ["--watch"] : [];
 
     const args = [
       ...all,
@@ -46,7 +46,7 @@ export async function run({
       ...watchFlag,
     ];
 
-    const childProcess = await spawn('ava', args, {
+    const childProcess = await spawn("ava", args, {
       stdio: [process.stdin, process.stdout, process.stderr],
     });
 

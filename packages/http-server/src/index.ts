@@ -1,41 +1,46 @@
 import {
   Exception,
+  expressExceptionMiddleware,
   // ExceptionsClient,
   KillProcessException,
   ProcessException,
   ProcessSigIntException,
   ProcessSigTermException,
   UnmanagedException,
-  expressExceptionMiddleware,
 } from '@srclaunch/exceptions';
-import { Logger, expressLoggerMiddleware } from '@srclaunch/logger';
+import { expressLoggerMiddleware, Logger } from '@srclaunch/logger';
 import { Environment } from '@srclaunch/types';
 // import exitHook from 'async-exit-hook';
 import compression from 'compression';
 import cors from 'cors';
 import express, {
-  Express,
   ErrorRequestHandler,
+  Express,
   NextFunction,
   Request,
   Response,
 } from 'express';
 import multer from 'multer';
 import http from 'node:http';
+
 import { Endpoint } from './types/endpoint';
 import { ServerOptions } from './types/server';
 import { HealthcheckEndpoint, setupEndpoints } from './utils/endpoints.js';
 
 export class HttpServer {
-  readonly endpoints: Endpoint[] = [];
+  readonly endpoints: readonly Endpoint[] = [];
   readonly environment: Environment;
   // readonly exceptionsClient: ExceptionsClient;
-  listener?: http.Server;
-  readonly logger: Logger;
-  name: string;
+  // eslint-disable-next-line functional/prefer-readonly-type
+  private listener?: http.Server;
+  // eslint-disable-next-line functional/prefer-readonly-type
+  private logger: Logger;
+  readonly name: string;
   private readonly express: Express;
+  // eslint-disable-next-line functional/prefer-readonly-type
   private server?: Express;
-  readonly options: ServerOptions = {
+  // eslint-disable-next-line functional/prefer-readonly-type
+  private options: ServerOptions = {
     port: 8080,
   };
 
@@ -46,7 +51,7 @@ export class HttpServer {
     name,
     options = {},
   }: {
-    readonly endpoints: Endpoint[];
+    readonly endpoints: readonly Endpoint[];
     readonly environment: Environment;
     readonly logger?: Logger;
     readonly name: string;
@@ -85,7 +90,7 @@ export class HttpServer {
     this.logger.info('Setting up HTTP endpoints');
     this.server = await setupEndpoints({
       basePath: `/${this.name}`,
-      endpoints: this.endpoints,
+      endpoints: this.endpoints as Endpoint[],
       express: this.express,
     });
 
@@ -214,7 +219,7 @@ export class HttpServer {
 
       if (this.options.trustedOrigins && this.environment?.id) {
         const origins =
-          this.options.trustedOrigins?.[this.environment?.id] ?? [];
+          this.options.trustedOrigins?.[this.environment?.id.toString()] ?? [];
         const currentOrigin = req.get('origin');
 
         if (currentOrigin && origins.includes(currentOrigin)) {
@@ -266,7 +271,7 @@ export class HttpServer {
               function: 'HttpServer.close()()',
             },
           });
-        } catch (err) {}
+        } catch {}
       });
     }
   }

@@ -1,9 +1,10 @@
 import { BasicIcons } from '@srclaunch/icons';
-import { Image as ImageType, ValidationProblem } from '@srclaunch/types';
+import { Image as ImageType } from '@srclaunch/types';
+import { ValidationProblem } from '@srclaunch/validation';
 import {
-  memo,
   // useRef,
   forwardRef,
+  memo,
   ReactElement,
   useCallback,
   useEffect,
@@ -36,7 +37,7 @@ import { InputLabel } from '../../labels/InputLabel';
 import { InputProps } from '../shared/Input';
 
 export type ImageInputProps = ContainerProps &
-  InputProps<(File | ImageType)[]> & {
+  InputProps<readonly (File | ImageType)[]> & {
     readonly button?: ButtonProps;
     readonly icon?: IconProps;
     readonly maxImages?: number;

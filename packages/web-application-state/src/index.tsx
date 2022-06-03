@@ -1,8 +1,3 @@
-import { ReactElement, StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
 import {
   AnyAction,
   configureStore,
@@ -16,11 +11,17 @@ import {
   EnvironmentType,
   Model,
   ModelProps,
-  RouteRole,
   Route as RouteType,
-  WebApplicationConfig,
+  RouteRole,
+  WebApplicationConfiguration,
 } from '@srclaunch/types';
 import { getEnvironment } from '@srclaunch/web-environment';
+import { createBrowserHistory } from 'history';
+import { ReactElement, StrictMode } from 'react';
+import * as ReactDOMClient from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import { createMiddleware } from './middleware/index';
 import { createRootReducer } from './state';
 import { setConfig } from './state/app/config';
@@ -44,7 +45,7 @@ export const createStore = ({
   configureStore({
     devTools:
       environment.type === EnvironmentType.Development ||
-      environment.type === EnvironmentType.NonProduction,
+      environment.type === EnvironmentType.CI,
     middleware: getDefaultMiddleware => [
       ...getDefaultMiddleware(),
       ...createMiddleware(history, middleware),
@@ -64,7 +65,7 @@ export const renderReduxWebApp = async ({
   readonly actions?: Record<string, (...args: readonly any[]) => any>;
   readonly authentication?: boolean;
   readonly container?: ReactElement;
-  readonly config?: WebApplicationConfig;
+  readonly config?: WebApplicationConfiguration;
   readonly httpClient?: typeof HttpClient;
   readonly routes: readonly RouteType[];
   readonly store: RootState;
@@ -87,22 +88,21 @@ export const renderReduxWebApp = async ({
     await store.dispatch(refreshSession());
   }
 
-  createRoot(document.getElementById('root')!).render(
+  ReactDOMClient.createRoot(document.querySelector('#root')!).render(
     <StrictMode>
       <Provider store={store}>
         <Router>
           <Routes>
             <Route path="/" element={container}>
               {routes.map((route, k: number) => {
+                const Component = route.component;
                 if (route.role === RouteRole.Index) {
                   return (
                     <Route
                       index
                       element={
-                        <route.component
-                          actions={actions}
-                          httpClient={httpClient}
-                        />
+                        // @ts-ignore
+                        <Component actions={actions} httpClient={httpClient} />
                       }
                       key={k}
                     />
@@ -113,10 +113,8 @@ export const renderReduxWebApp = async ({
                   return (
                     <Route
                       element={
-                        <route.component
-                          actions={actions}
-                          httpClient={httpClient}
-                        />
+                        // @ts-ignore
+                        <Component actions={actions} httpClient={httpClient} />
                       }
                       key={k}
                       path={route.path}
@@ -127,6 +125,7 @@ export const renderReduxWebApp = async ({
                 return (
                   <Route
                     element={
+                      // @ts-ignore
                       <route.component
                         actions={actions}
                         httpClient={httpClient}

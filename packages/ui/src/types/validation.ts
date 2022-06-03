@@ -1,9 +1,10 @@
-import { Condition, ValidationProblem } from '@srclaunch/types';
+import { Condition } from '@srclaunch/types';
+import { ValidationProblem } from '@srclaunch/validation';
 
 export type Validation = {
-  conditions?: {
-    [key in Condition]?: string | number | boolean;
+  readonly conditions?: {
+    readonly [key in Condition]?: string | number | boolean;
   };
-  problems?: ValidationProblem[];
-  validated?: boolean;
+  readonly problems?: readonly ValidationProblem[];
+  readonly validated?: boolean;
 };

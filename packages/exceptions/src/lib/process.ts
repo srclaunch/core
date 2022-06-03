@@ -3,7 +3,7 @@ import {
   ProcessSigIntException,
   ProcessSigTermException,
   ProcessWarningException,
-} from './exceptions/environments/server/process';
+} from './exceptions/environments/index';
 import {
   UncaughtException,
   UnhandledPromiseRejectionException,

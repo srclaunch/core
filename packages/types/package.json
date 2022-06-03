@@ -3,38 +3,30 @@
   "description": "TypeScript definitions used by SrcLaunch projects and workspaces.",
   "author": "Steven Bennett <steven@srclaunch.com>",
   "license": "MIT",
-  "version": "0.1.292",
+  "version": "0.2.0",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "type": "module",
-  "main": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "package.json",
-    "dist"
+    "dist",
+    "package.json"
   ],
-  "module": "./dist/index.mjs",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
-    "./action": {
-      "import": "./dist/action"
-    }
-  },
   "scripts": {
-    "yui": "yarn upgrade-interactive",
-    "qr": "yarn srclaunch changesets add --files \".\" --message \"Quick release\" --type \"chore\" && yarn srclaunch release --push",
-    "build": "yarn srclaunch build",
-    "release": "yarn srclaunch release"
+    "build:esbuild": "esbuild --bundle --minify --outfile=dist/index.js --format=esm --target=esnext --platform=neutral src/index.ts",
+    "build:spack": "spack --config \"$PWD/spack.config.cjs\"",
+    "build:types": "tsc ",
+    "build": "rm -fr ./dist && pnpm build:esbuild && pnpm build:types"
   },
   "devDependencies": {
-    "@srclaunch/cli": "workspace:packages/cli"
+    "@srclaunch/dx": "workspace:*",
+    "@types/react": "^18.0.9"
   }
 }

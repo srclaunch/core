@@ -3,7 +3,7 @@ import {
   // exec,
 } from 'child_process';
 // import { readFile } from 'fs/promises';
-import fs from 'fs-extra';
+// import {ensureDirectoryExists} from '@srclaunch/logic'
 // import { nanoid } from 'nanoid';
 import path from 'path';
 // import React from 'react';
@@ -33,7 +33,7 @@ function sendMessage(message: string | number | Error) {
 if (srcPath) {
   sendMessage(`Starting CRA app in ${srcPath}`);
 
-  fs.ensureDirSync(srcPath);
+  // await ensureDirectoryExists(srcPath);
 
   const process = spawn('react-scripts', ['start'], {
     cwd: srcPath,

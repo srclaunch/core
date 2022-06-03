@@ -1,11 +1,4 @@
-import {
-  DefaultValue,
-  ModelField,
-  MenuField,
-  Model,
-  Primitives,
-  RoleRule,
-} from '@srclaunch/types';
+import { DefaultValue, MenuField, Model, Primitives } from '@srclaunch/types';
 import { DateTime } from 'luxon';
 
 // export declare type ModelProps<T = {}> = {
@@ -52,27 +45,27 @@ export enum RelationshipProperty {
 }
 
 export type StringValueChangeSet = {
-  status: ChangeStatus;
-  oldValue?: string;
-  newValue?: string;
+  readonly status: ChangeStatus;
+  readonly oldValue?: string;
+  readonly newValue?: string;
 };
 
 export type BooleanValueChangeSet = {
-  status: ChangeStatus;
-  oldValue?: boolean;
-  newValue?: boolean;
+  readonly status: ChangeStatus;
+  readonly oldValue?: boolean;
+  readonly newValue?: boolean;
 };
 
 export type DefaultValueChangeSet = {
-  status: ChangeStatus;
-  oldValue?:
+  readonly status: ChangeStatus;
+  readonly oldValue?:
     | DefaultValue.DateTime
     | DefaultValue.True
     | DefaultValue.False
     | string
     | number
     | Record<string, unknown>;
-  newValue?:
+  readonly newValue?:
     | DefaultValue.DateTime
     | DefaultValue.True
     | DefaultValue.False
@@ -82,37 +75,37 @@ export type DefaultValueChangeSet = {
 };
 
 export type MenuValueChangeSet = {
-  status: ChangeStatus;
-  oldValue?: MenuField[];
-  newValue?: MenuField[];
+  readonly status: ChangeStatus;
+  readonly oldValue?: readonly MenuField[];
+  readonly newValue?: readonly MenuField[];
 };
 export type ModelChangeSet = {
-  [ModelProperty.Description]?: StringValueChangeSet;
-  [ModelProperty.Fields]?: FieldChangeSet;
-  [ModelProperty.Name]?: StringValueChangeSet;
-  [ModelProperty.Relationships]?: RelationshipChangeSet;
+  readonly [ModelProperty.Description]?: StringValueChangeSet;
+  readonly [ModelProperty.Fields]?: FieldChangeSet;
+  readonly [ModelProperty.Name]?: StringValueChangeSet;
+  readonly [ModelProperty.Relationships]?: RelationshipChangeSet;
 };
 
 export type FieldChangeSet = {
-  [fieldName: string]: {
-    [FieldProperty.AutoIncrement]?: BooleanValueChangeSet;
-    [FieldProperty.DefaultValue]?: DefaultValueChangeSet;
-    [FieldProperty.Description]?: StringValueChangeSet;
-    [FieldProperty.Label]?: StringValueChangeSet;
-    [FieldProperty.Menu]?: MenuValueChangeSet;
-    [FieldProperty.Name]?: StringValueChangeSet;
-    [FieldProperty.Required]?: BooleanValueChangeSet;
+  readonly [fieldName: string]: {
+    readonly [FieldProperty.AutoIncrement]?: BooleanValueChangeSet;
+    readonly [FieldProperty.DefaultValue]?: DefaultValueChangeSet;
+    readonly [FieldProperty.Description]?: StringValueChangeSet;
+    readonly [FieldProperty.Label]?: StringValueChangeSet;
+    readonly [FieldProperty.Menu]?: MenuValueChangeSet;
+    readonly [FieldProperty.Name]?: StringValueChangeSet;
+    readonly [FieldProperty.Required]?: BooleanValueChangeSet;
     // [FieldProperty.Rules]?: RoleRuleChangeSet;
-    [FieldProperty.Type]?: Primitives;
-    [FieldProperty.Unique]?: BooleanValueChangeSet;
+    readonly [FieldProperty.Type]?: Primitives;
+    readonly [FieldProperty.Unique]?: BooleanValueChangeSet;
   };
 };
 
 export type RelationshipChangeSet = {
-  [key in RelationshipProperty]?: {
-    status: ChangeStatus;
-    oldValue?: any;
-    newValue?: any;
+  readonly [key in RelationshipProperty]?: {
+    readonly status: ChangeStatus;
+    readonly oldValue?: any;
+    readonly newValue?: any;
   };
 };
 
@@ -156,10 +149,10 @@ const relationshipChangeSet: ModelChangeSet = {
 // };
 
 export type ModelMigration = {
-  changeset: ModelChangeSet;
-  created?: DateTime;
-  executed?: DateTime;
-  version: number;
+  readonly changeset: ModelChangeSet;
+  readonly created?: DateTime;
+  readonly executed?: DateTime;
+  readonly version: number;
 };
 
 function getStringFieldChangeSet() {}
@@ -172,29 +165,29 @@ export function getModelDiff(oldModel: Model, newModel: Model) {
     [ModelProperty.Relationships]: {},
   };
 
-  if (oldModel.description !== newModel.description) {
-    changeset[ModelProperty.Description] = {
-      newValue: newModel.description,
-      oldValue: oldModel.description,
-      status: ChangeStatus.Modified,
-    };
-  }
+  // if (oldModel.description !== newModel.description) {
+  //   changeset[ModelProperty.Description] = {
+  //     newValue: newModel.description,
+  //     oldValue: oldModel.description,
+  //     status: ChangeStatus.Modified,
+  //   };
+  // }
 
-  if (oldModel.fields.length !== newModel.fields.length) {
-    changeset[ModelProperty.Fields] = {
-      newValue: newModel.fields,
-      oldValue: oldModel.fields,
-      // status: ChangeStatus.Modified,
-    };
-  }
+  // if (oldModel.fields.length !== newModel.fields.length) {
+  //   changeset[ModelProperty.Fields] = {
+  //     newValue: newModel.fields,
+  //     oldValue: oldModel.fields,
+  //     // status: ChangeStatus.Modified,
+  //   };
+  // }
 
-  if (oldModel.name !== newModel.name) {
-    changeset[ModelProperty.Name] = {
-      newValue: newModel.name,
-      oldValue: oldModel.name,
-      status: ChangeStatus.Modified,
-    };
-  }
+  // if (oldModel.name !== newModel.name) {
+  //   changeset[ModelProperty.Name] = {
+  //     newValue: newModel.name,
+  //     oldValue: oldModel.name,
+  //     status: ChangeStatus.Modified,
+  //   };
+  // }
 
   // if (oldModel.relationships.length !== newModel.relationships.length) {
   //   changeset[ModelProperty.Relationships] = {
@@ -207,4 +200,7 @@ export function getModelDiff(oldModel: Model, newModel: Model) {
   // return changeset;
 }
 
-export function getDatabaseDiff(oldModels: Model[], newModels: Model[]) {}
+export function getDatabaseDiff(
+  oldModels: readonly Model[],
+  newModels: readonly Model[],
+) {}

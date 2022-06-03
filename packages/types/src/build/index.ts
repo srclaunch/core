@@ -45,6 +45,7 @@ export type BuildOptions = {
     readonly public?: boolean;
   };
   readonly bundle?: boolean | BundleOptions;
+  readonly clean?: boolean;
   readonly configPath?: string;
   readonly format?: BuildFormat;
   readonly formats?: readonly BuildFormat[];
@@ -61,7 +62,6 @@ export type BuildOptions = {
   readonly manifest?: boolean;
   readonly minify?: boolean;
   readonly output?: {
-    readonly clean?: boolean;
     readonly directory: string;
     readonly file?: string;
   };
@@ -95,7 +95,7 @@ export interface ViteBuildOptions
     | BuildFormat.IIFE
     | BuildFormat.UMD;
   readonly optimize?: {
-    readonly exclude?: string[];
-    readonly include?: string[];
+    readonly exclude?: readonly string[];
+    readonly include?: readonly string[];
   };
 }

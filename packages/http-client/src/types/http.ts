@@ -1,9 +1,9 @@
 import { HttpResponseCode } from '@srclaunch/types';
 
 export type HttpResponseCodeDetailsType = {
-  [key in HttpResponseCode]: {
-    failure: boolean;
-    retryable: boolean;
+  readonly [key in HttpResponseCode]: {
+    readonly failure: boolean;
+    readonly retryable: boolean;
   };
 };
 /**

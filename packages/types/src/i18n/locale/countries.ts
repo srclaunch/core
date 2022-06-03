@@ -3,8 +3,7 @@ import { LocaleCode } from '../locale/index';
 import { TimezoneRegions } from '../time/region';
 import { TimezoneOffset } from '../time/timezone';
 import { Timezones } from '../time/timezones';
-import { CountryCode } from './country';
-import { Country } from './country';
+import { Country, CountryCode } from './country';
 import { Region, SubRegion } from './region';
 
 export const Countries: Record<Country['name']['short'], Country> = {
@@ -120,7 +119,6 @@ export const Countries: Record<Country['name']['short'], Country> = {
         [LocaleCode.Portuguese]: 'Afghanistan',
         [LocaleCode.Punjabi]: 'Afghanistan',
         [LocaleCode.Romanian]: 'Afghanistan',
-        [LocaleCode.Polish]: 'Afganistan',
         [LocaleCode.Russian]: 'Афганистан',
         [LocaleCode.Samoan]: 'Afghanistan',
         [LocaleCode.Sanskrit]: 'अफगानिस्तान',
@@ -168,11 +166,11 @@ export const Countries: Record<Country['name']['short'], Country> = {
         },
         population: {
           largest_city: 'Kabul',
-          total: 34100000,
+          total: 34_100_000,
         },
       },
       geography: {
-        area: 652230,
+        area: 652_230,
         region: Region.Asia,
         sub_region: SubRegion.SouthernAsia,
       },
@@ -336,11 +334,11 @@ export const Countries: Record<Country['name']['short'], Country> = {
         },
         population: {
           largest_city: 'Tirana',
-          total: 2853000,
+          total: 2_853_000,
         },
       },
       geography: {
-        area: 28748,
+        area: 28_748,
         region: Region.Europe,
         sub_region: SubRegion.SouthernEurope,
       },
@@ -510,11 +508,11 @@ export const Countries: Record<Country['name']['short'], Country> = {
         },
         population: {
           largest_city: 'Oran',
-          total: 37100000,
+          total: 37_100_000,
         },
       },
       geography: {
-        area: 2381740,
+        area: 2_381_740,
         region: Region.Africa,
         sub_region: SubRegion.NorthernAfrica,
       },
@@ -679,7 +677,7 @@ export const Countries: Record<Country['name']['short'], Country> = {
         },
         population: {
           largest_city: 'Pago Pago',
-          total: 558000,
+          total: 558_000,
         },
       },
       geography: {
@@ -843,7 +841,7 @@ export const Countries: Record<Country['name']['short'], Country> = {
         },
         population: {
           largest_city: 'Andorra la Vella',
-          total: 78000,
+          total: 78_000,
         },
       },
       geography: {

@@ -1,7 +1,7 @@
-import { memo, useEffect, useRef, useState } from 'react';
 import { BasicIcons } from '@srclaunch/icons';
+import { validate, ValidationProblem } from '@srclaunch/validation';
+import { memo, useEffect, useRef, useState } from 'react';
 
-import { Container } from '../../../layout/Container';
 import {
   AlignHorizontal,
   AlignVertical,
@@ -11,9 +11,8 @@ import {
   Orientation,
   Sizes,
 } from '../../../../types';
+import { Container } from '../../../layout/Container';
 import { Icon } from '../../../media/Icon';
-import { validate } from '@srclaunch/validation';
-import { ValidationProblem } from '@srclaunch/types';
 import { InputContainer, InputContainerProps } from '../shared/InputContainer';
 
 type CheckboxProps = InputContainerProps<boolean>;
@@ -34,18 +33,19 @@ export const Checkbox = memo(
 
     useEffect(() => {
       if (validation?.conditions) {
-        const probs = validate(
-          value,
-          validation.conditions,
-        ) as ValidationProblem[];
+        // const probs = validate(
+        //   value,
+        //   validation.conditions,
+        // ) as ValidationProblem[];
 
+        const probs: ValidationProblem[] = [];
         setProblems(probs);
 
         if (events.input?.onValueChange)
           events.input?.onValueChange({
             validation: {
               problems: probs,
-              validated: !probs.length,
+              validated: probs.length === 0,
             },
             value,
           });
@@ -55,8 +55,8 @@ export const Checkbox = memo(
     return (
       <InputContainer
         alignment={{
-          orientation: Orientation.Horizontal,
           horizontal: AlignHorizontal.Center,
+          orientation: Orientation.Horizontal,
           vertical: AlignVertical.Center,
         }}
         as="button"

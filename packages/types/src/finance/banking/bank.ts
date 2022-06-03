@@ -1,4 +1,4 @@
-import { BankIDCode } from '../../srclaunch/data/primitive';
+import { BankIDCode } from '../../data/primitive';
 
 export type Bank = {
   readonly id: BankIDCode;

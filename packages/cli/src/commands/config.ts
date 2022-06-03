@@ -1,15 +1,13 @@
 import pc from 'picocolors';
 
-import { Command } from '../lib/command.js';
+import { Command } from '../lib/command';
 
 export default new Command({
-  name: 'config',
-  description: `Shows help for ${pc.bold('config')} commands`,
   commands: [
     new Command({
-      name: 'check',
       description:
         'Checks if a SrcLaunch configuration file exists and is valid',
+      name: 'check',
       run: async () => {
         // const config = await getSrcLaunchConfig();
         // if (!config) {
@@ -28,9 +26,9 @@ export default new Command({
       },
     }),
     new Command({
-      name: 'create',
       description:
         'Creates a SrcLaunch configuration file in the current directory.',
+      name: 'create',
       run: async () => {
         // const config = await getSrcLaunchConfig();
         // if (config) {
@@ -39,4 +37,6 @@ export default new Command({
       },
     }),
   ],
+  description: `Shows help for ${pc.bold('config')} commands`,
+  name: 'config',
 });

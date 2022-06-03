@@ -1,11 +1,12 @@
 import { BasicIcons } from '@srclaunch/icons';
-import { Condition, ISO8601String, ValidationProblem } from '@srclaunch/types';
-import { validate } from '@srclaunch/validation';
+import { Condition, ISO8601String } from '@srclaunch/types';
+import { validate, ValidationProblem } from '@srclaunch/validation';
 import { memo, ReactElement, useEffect, useState } from 'react';
 // import DatePickerC from 'react-date-picker';
 // import css from 'react-date-picker/dist/DatePicker.css';
 import styled from 'styled-components';
 
+import { ShadowStyles } from '../../../../styles/container/shadow';
 import {
   AlignHorizontal,
   AlignVertical,
@@ -26,7 +27,6 @@ import { Container } from '../../../layout/Container';
 import { Icon } from '../../../media/Icon';
 import { InputLabel } from '../../labels/InputLabel';
 import { InputContainer, InputContainerProps } from '../shared/InputContainer';
-import { ShadowStyles } from '../../../../styles/container/shadow';
 
 export type DateInputProps = InputContainerProps<ISO8601String>;
 
@@ -236,11 +236,11 @@ export const DateInput = memo(
     useEffect(() => {
       if (valueChanged) {
         if (validation?.conditions) {
-          const probs = validate(
-            value,
-            validation.conditions,
-          ) as ValidationProblem[];
-
+          // const probs = validate(
+          //   value,
+          //   validation.conditions,
+          // ) as ValidationProblem[];
+          const probs: ValidationProblem[] = [];
           setProblems(probs);
 
           if (events.input?.onValueChange)

@@ -1,23 +1,27 @@
-import { build as buildCommand } from 'vite';
-import react from '@vitejs/plugin-react';
-import { build as buildTypes } from './types';
-import path from 'node:path';
-import pc from 'picocolors';
 import {
   BuildFormat,
   BuildPlatform,
   BuildTarget,
   ViteBuildOptions,
 } from '@srclaunch/types';
-import { getViteFormatFileExtension } from './formats';
+import react from '@vitejs/plugin-react';
+import path from 'node:path';
+import pc from 'picocolors';
+import { build as buildCommand, LibraryFormats, LibraryOptions } from 'vite';
+
+import { ASSETS_DIR } from '../../constants/assets';
 import { BUILD_DIR } from '../../constants/build';
-import { SOURCE_MAIN_FILE, SOURCE_DIR } from '../../constants/dev';
+import { SOURCE_DIR, SOURCE_MAIN_FILE } from '../../constants/dev';
+import { getViteFormatFileExtension } from './formats';
+
+export type ViteBuildFormats = LibraryFormats;
 
 export async function build({
   assets,
   bundle,
+  clean = true,
   format = BuildFormat.ESM,
-  formats = [BuildFormat.ESM, BuildFormat.UMD],
+  formats,
   input,
   library = false,
   optimize,
@@ -25,10 +29,9 @@ export async function build({
   minify = true,
   output,
   platform = BuildPlatform.Browser,
-  rootDir = path.resolve(),
+  rootDir = path.join(path.resolve(), SOURCE_DIR),
   sourcemap = true,
   target = BuildTarget.ESNext,
-  types = true,
   webApp,
 }: ViteBuildOptions) {
   try {
@@ -36,47 +39,44 @@ export async function build({
       formats && formats.length > 0
         ? formats?.map(f => (f === BuildFormat.ESM ? 'es' : f))
         : [format === BuildFormat.ESM ? 'es' : format]
-    ) as ('cjs' | 'es' | 'iife' | 'umd')[];
+    ) as ViteBuildFormats[];
 
-    await buildCommand({
-      define: typeof bundle === 'object' ? bundle?.define : undefined,
+    const config = {
       build: {
         assetsDir: assets?.directory
           ? path.join(path.resolve(), assets?.directory)
-          : undefined,
-        emptyOutDir: output?.clean ?? true,
-        outDir: output?.directory ?? BUILD_DIR,
-        lib: Boolean(library)
-          ? {
+          : ASSETS_DIR,
+        emptyOutDir: clean,
+        lib: library
+          ? <LibraryOptions>{
               entry: path.join(
                 path.resolve(),
                 input?.directory ?? SOURCE_DIR,
                 input?.file ?? SOURCE_MAIN_FILE,
               ),
+              fileName: fmt =>
+                `${output?.file ?? 'index'}${getViteFormatFileExtension(fmt)}`,
               formats: viteFormats,
               name:
                 library && typeof library === 'object'
                   ? library?.name
                   : undefined,
-              fileName: format =>
-                `${output?.file ?? 'index'}${getViteFormatFileExtension(
-                  format,
-                )}`,
             }
-          : false,
+          : undefined,
         manifest,
         minify,
+        outDir: path.join(path.resolve(), output?.directory ?? BUILD_DIR),
         rollupOptions: {
           external: (typeof bundle === 'object'
             ? bundle.exclude ?? []
             : []) as string[],
           output: {
+            // entryFileNames:
+            //   typeof bundle === 'object' && bundle.preserveModules
+            //     ? '[name].mjs'
+            //     : undefined,
             globals:
               typeof bundle === 'object' ? bundle.globals ?? {} : undefined,
-            entryFileNames:
-              typeof bundle === 'object' && bundle.preserveModules
-                ? '[name].mjs'
-                : undefined,
             preserveModules:
               typeof bundle === 'object' && bundle.preserveModules
                 ? true
@@ -87,7 +87,7 @@ export async function build({
         ssrManifest: manifest && webApp?.ssr,
         target,
       },
-      configFile: false,
+      define: typeof bundle === 'object' ? bundle?.define : undefined,
       envPrefix: 'SRCLAUNCH_',
       optimizeDeps: {
         exclude: (optimize?.exclude ?? []) as string[],
@@ -95,7 +95,11 @@ export async function build({
       },
       plugins: webApp?.react ? [react()] : [],
       root: rootDir,
-    });
+    };
+
+    console.log(config);
+
+    await buildCommand(config);
 
     // console.log('result', result);
 
@@ -128,11 +132,6 @@ export async function build({
     //   }
     // }
 
-    if (types) {
-      await buildTypes({ input, types, output });
-      console.info(`${pc.green('✔')} compiled types`);
-    }
-
     // if (result.errors) {
     //   result.errors.forEach(error => {
     //     console.error(error.text);
@@ -146,7 +145,7 @@ export async function build({
           : `${pc.bold(format.toLocaleUpperCase())} format`
       }`,
     );
-  } catch (err: any) {
-    console.error(`Error occurred while building: ${err.name}`, err);
+  } catch (error: any) {
+    console.error(`Error occurred while building: ${error.name}`, error);
   }
 }

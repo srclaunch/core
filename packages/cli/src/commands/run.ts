@@ -1,28 +1,25 @@
-import { Environments, Project, RunnerOptions, Runner } from '@srclaunch/types';
+import { Environments, Project, Runner, RunOptions } from '@srclaunch/types';
 import { TypedFlags } from 'meow';
 import pc from 'picocolors';
+
 import { Command, CommandType } from '../lib/command';
 import { run as runVite } from '../lib/run/vite';
 
 type RunFlags = TypedFlags<{
-  ssr: {
-    default: false;
-    description: 'Serve web application using server-side rendering';
-    type: 'boolean';
+  readonly ssr: {
+    readonly default: false;
+    readonly description: 'Serve web application using server-side rendering';
+    readonly type: 'boolean';
   };
 }>;
 
 export default new Command<Project, RunFlags>({
-  name: 'run',
-  description: 'Commands for running an application or service',
-  run: async ({ config, flags }) => {},
-  type: CommandType.Project,
   commands: [
     new Command<Project, RunFlags>({
-      name: 'dev',
       description: 'Start project in development mode',
+      name: 'dev',
       run: async ({ config, flags }) => {
-        const options = config.environments?.development?.run as RunnerOptions;
+        const options = config.environments?.development?.run as RunOptions;
 
         if (!options) {
           throw new Error('Missing development configuration');
@@ -32,9 +29,8 @@ export default new Command<Project, RunFlags>({
           case Runner.Vite:
             await runVite({
               environment: Environments.Development,
-              // options,
+              options,
               project: config,
-              // ssr: options.ssr ?? flags.ssr,
             });
             break;
           default:
@@ -49,26 +45,26 @@ export default new Command<Project, RunFlags>({
       type: CommandType.Project,
     }),
     new Command<Project, RunFlags>({
-      name: 'preview',
       description: 'Start project in preview mode',
+      name: 'preview',
       run: async ({ config, flags }) => {},
       type: CommandType.Project,
     }),
     new Command<Project, RunFlags>({
-      name: 'qa',
       description: 'Start project in qa mode',
+      name: 'qa',
       run: async ({ config, flags }) => {},
       type: CommandType.Project,
     }),
     new Command<Project, RunFlags>({
-      name: 'production',
       description: 'Start project in production mode',
+      name: 'production',
       run: async ({ config, flags }) => {},
       type: CommandType.Project,
     }),
     new Command<Project, RunFlags>({
-      name: 'help',
       description: 'Shows help for run commands',
+      name: 'help',
       run: async () => {
         console.info(
           'Available serve commands are: dev, preview, production, and help',
@@ -77,4 +73,8 @@ export default new Command<Project, RunFlags>({
       type: CommandType.Project,
     }),
   ],
+  description: 'Commands for running an application or service',
+  name: 'run',
+  run: async ({ config, flags }) => {},
+  type: CommandType.Project,
 });
