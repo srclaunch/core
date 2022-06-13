@@ -9,7 +9,7 @@
   },
   "type": "module",
   "scripts": {
-    "build": "pnpm exec srclaunch build --clean --types",
+    "build": "srclaunch build --clean --types",
     "dev": "srclaunch run dev",
     "generate-lockfile": "generate-lockfile --lockfile ../../yarn.lock --package package.json --write yarn.lock --force",
     "lint:eslint": "yarn eslint ./src --ext js,ts,tsx --max-warnings 0",

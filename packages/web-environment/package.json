@@ -27,7 +27,7 @@
   },
   "scripts": {
     "qr": "srclaunch changesets add --files \".\" --message \"Quick release\" --type \"chore\" && srclaunch release --push",
-    "build": "pnpm exec srclaunch build --clean --types",
+    "build": "srclaunch build --clean --types",
     "test": "srclaunch test",
     "test:watch": "srclaunch test --watch",
     "test:coverage": "srclaunch test --coverage",
