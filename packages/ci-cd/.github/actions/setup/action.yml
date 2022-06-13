@@ -3,6 +3,9 @@ description: Setup workflow environment
 author: '@srclaunch'
 
 runs:
+  defaults:
+    run:
+      shell: bash
   using: composite
   outputs:
     branch: ${{ steps.get-branch.outputs.name }}
