@@ -50,7 +50,6 @@
     "@types/update-notifier": "^5.1.0"
   },
   "dependencies": {
-    "@srclaunch/codegen": "workspace:*",
     "@types/async": "^3.2.13",
     "@vitejs/plugin-react": "^1.3.2",
     "@yarnpkg/core": "^3.2.1",

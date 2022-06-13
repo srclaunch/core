@@ -37,6 +37,7 @@
     "i18n-iso-countries": "^7.4.0"
   },
   "devDependencies": {
+    "@srclaunch/cli": "workspace:*",
     "@srclaunch/dx": "workspace:*",
     "@srclaunch/types": "workspace:*"
   }
