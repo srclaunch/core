@@ -33,7 +33,3 @@ runs:
 
     - name: Setup PNPM
       uses: 'srclaunch/core/packages/ci-cd/.github/actions/setup-pnpm@main'
-
-    - name: Install dependencies
-      run: pnpm install
-      shell: bash
