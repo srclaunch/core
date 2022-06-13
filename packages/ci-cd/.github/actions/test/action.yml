@@ -20,7 +20,7 @@ runs:
   using: composite
   steps:
     - name: Run tests and collect testing coverage
-      run: pnpm test:coverage
+      run: pnpm test
       shell: bash
 
     - name: Archive code coverage results
