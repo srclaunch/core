@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/srclaunch/core-api-server#readme",
   "scripts": {
-    "build": "srclaunch build --clean --types",
+    "build": "pnpm exec srclaunch build --clean --types",
     "clean": "rm -fr ./dist",
     "git:push": "git push --follow-tags origin main",
     "qr": "pnpm build && git add . && git commit -m \"Quick release - patch\" && yarn release",
