@@ -1,0 +1,383 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Create S3 buckets and other infrastructure for static sites
+
+Parameters:
+  EnvironmentName:
+    AllowedValues:
+      - "dev"
+      - "test"
+      - "preview"
+      - "production"
+    ConstraintDescription: "Value must be one of ['production', 'preview', qa', 'test']"
+    Description: "The environment to deploy the site to."
+    Type: "String"
+  ProjectName:
+    Type: "String"
+    Description: "The name of the project."
+  Region:
+    Default: us-east-1
+    Description: The region to deploy the service
+    Type: String
+  StaticSiteName:
+    Type: String
+    Default: unnamed-static-site
+    Description: The name of the static site
+
+
+Mappings:
+  S3RegionMap:
+    us-east-1: 
+      HostedZoneId: Z3AQBSTGFYJSTF
+    us-east-2:
+      HostedZoneId: Z2O1EMRO9K5GLX
+    us-west-1:
+      HostedZoneId: Z2F56UZL2M1ACD
+    us-east-1:
+      HostedZoneId: Z3BJ6K6RIION7M
+    af-south-1:
+      HostedZoneId: Z83WF9RJE8B12
+    ap-east-1:
+      HostedZoneId: ZNB98KWMFR0R6
+    ap-south-1:
+      HostedZoneId: Z11RGJOFQNVJUP
+    ap-northeast-3:
+      HostedZoneId: Z2YQB5RD63NC85
+    ap-northeast-2:
+      HostedZoneId: Z3W03O7B5YMIYP
+    ap-southeast-1:
+      HostedZoneId: Z3O0J2DXBE1FTB
+    ap-southeast-2:
+      HostedZoneId: Z1WCIGYICN2BYD
+    ap-northeast-1:
+      HostedZoneId: Z2M4EHUR26P7ZW
+    ca-central-1:
+      HostedZoneId: Z1QDHH18159H29
+    cn-northwest-1:
+      HostedZoneId: Z282HJ1KT0DH03
+    eu-central-1:
+      HostedZoneId: Z21DNDUVLTQW6Q
+    eu-west-1:
+      HostedZoneId: Z1BKCTXD74EZPE
+    eu-west-2:
+      HostedZoneId: Z3GKZC51ZF0DB4
+    eu-south-1:
+      HostedZoneId: Z30OZKI7KPW7MI
+    eu-west-3:
+      HostedZoneId: Z3R1K369G5AVDG
+    eu-north-1:
+      HostedZoneId: Z3BAZG2TWCNX0D
+    ap-southeast-3:
+      HostedZoneId: Z01613992JD795ZI93075
+    me-south-1:
+      HostedZoneId: Z1MPMWCPA7YB62
+    sa-east-1:
+      HostedZoneId: Z7KQH4QJS55SO
+    us-gov-east-1:
+      HostedZoneId: Z2NIFVYYW2VKV1
+    us-gov-west-1:
+      HostedZoneId: Z31GFT0UA1I2HV
+
+Conditions:
+  ProductionEnv: !Equals ["production", !Ref EnvironmentName]
+
+Resources:
+  # CacheInvalidationLambdaIamRole:
+  #   Type: AWS::IAM::Role
+  #   Properties:
+  #     AssumeRolePolicyDocument:
+  #       Version: 2012-10-17
+  #       Statement:
+  #         - Action:
+  #             - sts:AssumeRole
+  #           Effect: Allow
+  #           Principal:
+  #             Service:
+  #               - lambda.amazonaws.com
+  #     Policies:
+  #       - PolicyName: CloudFrontCacheInvalidationPolicy
+  #         PolicyDocument:
+  #           Version: 2012-10-17
+  #           Statement:
+  #             - Action:
+  #                 - cloudfront:ListDistributions
+  #               Effect: Allow
+  #               Resource: "*"
+  #             - Action:
+  #                 - cloudfront:CreateInvalidation
+  #               Effect: Allow
+  #               Resource: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/*"
+  #       - PolicyName: CloudWatchPolicy
+  #         PolicyDocument:
+  #           Version: 2012-10-17
+  #           Statement: 
+  #             # Optional
+  #             - Action:
+  #                 - "logs:CreateLogGroup"
+  #               Effect: Allow
+  #               Resource: !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:*"
+  #             # Mandatory
+  #             - Action:
+  #                 - "logs:CreateLogStream"
+  #                 - "logs:PutLogEvents"
+  #               Effect: Allow
+  #               Resource: !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${StaticSiteName}-${EnvironmentName}-cache-invalidation/*"
+  #     RoleName: !Sub "${StaticSiteName}-${EnvironmentName}-cache-invalidation-role"
+
+  # CacheInvalidationLambda:
+  #   Type: AWS::Lambda::Function
+  #   Properties:
+  #     Code:
+  #       ZipFile: |
+  #         import * as aws from 'aws-sdk'
+
+  #         export const main = async event => {
+  #           try {
+  #             const VERSION_FILE = 'package.json';
+
+  #             // only invalidate cache if VERSION_FILE is updated
+  #             // a change to VERSION_FILE will trigger the SNS topic that triggers this lambda to invalidate the cache
+  #             const invalidatedItems = [`/${VERSION_FILE}`];
+  #             const params = {
+  #               DistributionId: process.env.DISTRIBUTION_ID || '',
+  #               InvalidationBatch: {
+  #                 CallerReference: `web-app-${new Date().getTime()}`,
+  #                 Paths: {
+  #                   Quantity: 1,
+  #                   Items: invalidatedItems,
+  #                 },
+  #               },
+  #             };
+  #             const cloudfront = new aws.CloudFront();
+  #             const data = await cloudfront.createInvalidation(params);
+  #             console.log('success create invalidation', JSON.stringify(params));
+  #             return data.promise();
+  #           } catch (err) {
+  #             if (err) console.error('error invalidating cache', err, err.stack);
+  #             return new Error(err);
+  #           }
+  #         };
+  #     FunctionName: !Sub "${StaticSiteName}-${EnvironmentName}-cache-invalidation"
+  #     Handler: index.main
+  #     Role: !GetAtt CacheInvalidationLambdaIamRole.Arn
+  #     Runtime: nodejs12.x
+
+  # CacheInvalidationLambdaLogGroup:
+  #   Type: AWS::Logs::LogGroup
+  #   Properties:
+  #     LogGroupName: !Sub "/aws/lambda/${StaticSiteName}-${EnvironmentName}-cache-invalidation"
+  #     RetentionInDays: 30
+
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:
+        Fn::If:
+          [
+            ProductionEnv,
+            !Sub "app.{{resolve:ssm:/${ProjectName}/domain-name}}",
+            !Sub "app.${EnvironmentName}.{{resolve:ssm:/${ProjectName}/domain-name}}",
+          ]
+      WebsiteConfiguration:
+        IndexDocument: index.html
+
+  S3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        Id: !Sub '${StaticSiteName}-${EnvironmentName}-${Region}-bucket-policy'
+        Version: 2012-10-17
+        Statement:
+          - Sid: PublicReadForGetBucketObjects
+            Action: "s3:GetObject"
+            Effect: Allow
+            Principal:
+              AWS: !Sub "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CDNOriginIdentity}"
+            Resource: !Sub "arn:aws:s3:::${S3Bucket}/*"
+
+  Certificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName:
+        Fn::If:
+          [
+            ProductionEnv,
+            !Sub "app.{{resolve:ssm:/${ProjectName}/domain-name}}",
+            !Sub "app.${EnvironmentName}.{{resolve:ssm:/${ProjectName}/domain-name}}",
+          ]
+      # For non-Route 53 options, drop the DomainValidationOptions
+      DomainValidationOptions:
+        - DomainName:
+            Fn::If:
+              [
+                ProductionEnv,
+                !Sub "app.{{resolve:ssm:/${ProjectName}/domain-name}}",
+                !Sub "app.${EnvironmentName}.{{resolve:ssm:/${ProjectName}/domain-name}}",
+              ]
+          HostedZoneId: !Sub "{{resolve:ssm:/${ProjectName}/domain-name/hosted-zone-id}}"
+      ValidationMethod: DNS
+
+
+  # CDNCachePolicy:
+  #   Type: AWS::CloudFront::CachePolicy
+  #   Properties: 
+  #     CachePolicyConfig:
+  #       DefaultTTL: 86400
+  #       MaxTTL: 31536000
+  #       MinTTL: 0
+  #       Name: !Sub '${StaticSiteName}-${EnvironmentName}-cache-policy'
+  #       ParametersInCacheKeyAndForwardedToOrigin:
+  #         CookiesConfig: 
+  #           CookieBehavior: all
+  #         EnableAcceptEncodingGzip: true
+  #         HeadersConfig:
+  #           HeaderBehavior: none
+  #         QueryStringsConfig:
+  #           QueryStringBehavior: all
+      
+
+  # CDNOriginRequestPolicy:
+  #   Type: AWS::CloudFront::OriginRequestPolicy
+  #   Properties: 
+  #     OriginRequestPolicyConfig:
+  #       Name: !Sub "${StaticSiteName}-${EnvironmentName}-request-policy"
+  #       CookiesConfig: 
+  #         CookieBehavior: all
+  #       HeadersConfig:
+  #         HeaderBehavior: allViewerAndWhitelistCloudFront
+  #       QueryStringsConfig:
+  #         QueryStringBehavior: all
+            
+  CDNOriginIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: !Sub "Cloudfront Origin identity for {{resolve:ssm:/${ProjectName}/domain-name}}"
+
+  CDN:
+    Type: "AWS::CloudFront::Distribution"
+    Properties:
+      # CacheBehavior:
+      #   Compress: true
+      #   OriginRequestPolicyId: !Ref CDNOriginRequestPolicy
+      DistributionConfig:
+        Aliases:
+          - Fn::If:
+              [
+                ProductionEnv,
+                !Sub "app.{{resolve:ssm:/${ProjectName}/domain-name}}",
+                !Sub "app.${EnvironmentName}.{{resolve:ssm:/${ProjectName}/domain-name}}",
+              ]
+        CustomErrorResponses:
+          - ErrorCode: 403
+            ErrorCachingMinTTL: 0
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+          - ErrorCode: 404
+            ErrorCachingMinTTL: 0
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+        DefaultCacheBehavior:
+          Compress: true
+          ForwardedValues:
+            QueryString: true
+          # ... some configs are omitted for brievity
+          TargetOriginId: !Sub "S3-origin-${S3Bucket}"
+          ViewerProtocolPolicy: redirect-to-https
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          # CachePolicyId: !Ref CDNCachePolicy        
+        DefaultRootObject: index.html
+        Enabled: True
+        Origins:
+          - DomainName: !GetAtt S3Bucket.RegionalDomainName
+            Id: !Sub "S3-origin-${S3Bucket}"
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CDNOriginIdentity}"
+        PriceClass: PriceClass_100
+        ViewerCertificate:
+          AcmCertificateArn: !Ref Certificate
+          MinimumProtocolVersion: TLSv1.2_2018
+          SslSupportMethod: sni-only
+
+
+  DNSEntries:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: !Sub '{{resolve:ssm:/${ProjectName}/domain-name}}.'
+      RecordSets:
+        - AliasTarget:
+            HostedZoneId: Z2FDTNDATAQYW2
+              # !FindInMap [
+              #   S3RegionMap,
+              #   !Ref Region,
+              #   HostedZoneId,
+              # ]
+            # DNSName: !Sub 's3-website-${Region}.amazonaws.com'
+            DNSName: !GetAtt CDN.DomainName
+          Name: 
+            Fn::If:
+              [
+                ProductionEnv,
+                !Sub "app.{{resolve:ssm:/${ProjectName}/domain-name}}",
+                !Sub "app.${EnvironmentName}.{{resolve:ssm:/${ProjectName}/domain-name}}",
+              ]
+          Type: A
+
+  # The task definition. This is a simple metadata description of what
+  # container to run, and what resource requirements it has.
+
+  # TaskDefinition:
+  #   Type: AWS::ECS::TaskDefinition
+  #   Properties:
+  #     Family: !Sub '${ServiceName}-${EnvironmentName}'
+  #     Cpu: !FindInMap [EnvironmentMap, !Ref EnvironmentName, ContainerCpu]
+  #     Memory: !FindInMap [EnvironmentMap, !Ref EnvironmentName, ContainerMemory]
+  #     NetworkMode: awsvpc
+  #     RequiresCompatibilities:
+  #       - FARGATE
+  #     ExecutionRoleArn: !Sub 'arn:aws:iam::${AWS::AccountId}:role/${ServiceName}-ecs-task-execution-role'
+  #     TaskRoleArn:
+  #       Fn::If:
+  #         - 'HasCustomRole'
+  #         - !Ref 'Role'
+  #         - !Ref 'AWS::NoValue'
+  #     ContainerDefinitions:
+  #       - Name: !Sub '${ServiceName}-${EnvironmentName}'
+  #         Cpu: !FindInMap [EnvironmentMap, !Ref EnvironmentName, ContainerCpu]
+  #         Memory: !FindInMap [EnvironmentMap, !Ref EnvironmentName, ContainerMemory]
+  #         Image: !Sub '${DockerImageUrl}'
+  #         PortMappings:
+  #           - ContainerPort: 8080
+  #         LogConfiguration:
+  #           LogDriver: 'awslogs'
+  #           Options:
+  #             awslogs-group: !Sub '${ServiceName}-${EnvironmentName}'
+  #             awslogs-region: !Sub '${Region}'
+  #             awslogs-stream-prefix: !Sub '${ServiceName}'
+
+  # The service. The service is a resource which allows you to run multiple
+  # copies of a type of task, and gather up their logs and metrics, as well
+  # as monitor the number of running tasks and replace any that have crashed
+  # Service:
+  #   Type: AWS::ECS::Service
+  #   Properties:
+  #     ServiceName: !Sub '${ServiceName}-${EnvironmentName}'
+  #     Cluster: !Sub '{{resolve:ssm:/${ServiceName}/${EnvironmentName}/ecs/cluster}}'
+  #     LaunchType: FARGATE
+  #     DeploymentConfiguration:
+  #       MaximumPercent: 200
+  #       MinimumHealthyPercent: 75
+  #     DesiredCount: !FindInMap [EnvironmentMap, !Ref EnvironmentName, DesiredCount]
+  #     NetworkConfiguration:
+  #       AwsvpcConfiguration:
+  #         AssignPublicIp: ENABLED
+  #         SecurityGroups:
+  #           - !Sub '{{resolve:ssm:/${ServiceName}/${EnvironmentName}/ecs/container-security-group}}'
+  #         Subnets:
+  #           - !Sub '{{resolve:ssm:/${ServiceName}/network/public-subnet-a}}'
+  #           - !Sub '{{resolve:ssm:/${ServiceName}/network/public-subnet-b}}'
+  #     TaskDefinition: !Ref TaskDefinition
+  #     LoadBalancers:
+  #       - ContainerName: !Sub '${ServiceName}-${EnvironmentName}'
+  #         ContainerPort: 8080
+  #         TargetGroupArn: !Sub '{{resolve:ssm:/${ServiceName}-${EnvironmentName}/elb/target-group}}'
