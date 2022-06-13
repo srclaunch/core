@@ -12,4 +12,4 @@ runs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.version }}
-        cache: 'npm'
+        cache: pnpm
