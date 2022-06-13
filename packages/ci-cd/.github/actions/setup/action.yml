@@ -13,12 +13,6 @@ outputs:
 runs:
   using: composite
   steps:
-    - name: Setup Node.js
-      uses: 'srclaunch/core/packages/ci-cd/.github/actions/setup-node@main'
-
-    - name: Setup PNPM
-      uses: 'srclaunch/core/packages/ci-cd/.github/actions/setup-pnpm@main'
-
     - name: Get branch name
       id: get-branch
       run: echo "::set-output name=name::${GITHUB_REF#refs/heads/}"
@@ -27,4 +21,14 @@ runs:
     - name: Get package.json version
       id: get-version
       run: echo "::set-output name=tag::$(jq -r .version package.json)"
+      shell: bash
+
+    - name: Setup Node.js
+      uses: 'srclaunch/core/packages/ci-cd/.github/actions/setup-node@main'
+
+    - name: Setup PNPM
+      uses: 'srclaunch/core/packages/ci-cd/.github/actions/setup-pnpm@main'
+
+    - name: Install dependencies
+      run: pnpm install
       shell: bash
