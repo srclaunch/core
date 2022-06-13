@@ -7,12 +7,6 @@
       "outputs": ["dist/**", "dist/index.d.ts"]
     },
     "test": {
-      "dependsOn": ["build"],
-      "outputs": [],
-      "inputs": ["src/**/*.test.tsx", "src/**/*.test.ts"]
-    },
-    "test:coverage": {
-      "dependsOn": ["build"],
       "outputs": [],
       "inputs": ["src/**/*.test.tsx", "src/**/*.test.ts"]
     }
