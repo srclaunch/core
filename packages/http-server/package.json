@@ -26,7 +26,7 @@
     }
   },
   "scripts": {
-    "build": "srclaunch build --clean --types",
+    "build": "pnpm srclaunch build --clean --types",
     "git:push": "git push --follow-tags origin main",
     "qr": "pnpm build && git add . && git commit -m \"Quick release - patch\" && yarn release",
     "release": "yarn test:coverage && yarn version:patch && yarn git:push",
