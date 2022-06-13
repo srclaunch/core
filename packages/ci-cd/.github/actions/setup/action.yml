@@ -2,14 +2,16 @@ name: Setup Workflow
 description: Setup workflow environment
 author: '@srclaunch'
 
+defaults:
+  run:
+    shell: bash
+
+outputs:
+  branch: ${{ steps.get-branch.outputs.name }}
+  version: ${{ steps.get-version.outputs.tag }}
+
 runs:
-  defaults:
-    run:
-      shell: bash
   using: composite
-  outputs:
-    branch: ${{ steps.get-branch.outputs.name }}
-    version: ${{ steps.get-version.outputs.tag }}
   steps:
     - name: Setup Node.js
       uses: 'srclaunch/core/packages/ci-cd/.github/actions/setup-node@main'
