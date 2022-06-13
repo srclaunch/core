@@ -14,16 +14,16 @@ jobs:
       - name: Setup job
         uses: 'srclaunch/core/packages/ci-cd/.github/actions/setup@main'
 
-      # - name: Build project
-      #   uses: 'srclaunch/core/packages/ci-cd/.github/actions/build@main'
+      - name: Build project
+        uses: 'srclaunch/core/packages/ci-cd/.github/actions/build@main'
 
-      # - name: Run tests and collect coverage
-      #   uses: 'srclaunch/core/packages/ci-cd/.github/actions/test@main'
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     repository_owner: ${{ github.event.repository.owner.login }}
-      #     repository_name: ${{ github.event.repository.name }}
-      #     branch: ${{ needs.setup.outputs.branch }}
+      - name: Run tests and collect coverage
+        uses: 'srclaunch/core/packages/ci-cd/.github/actions/test@main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repository_owner: ${{ github.event.repository.owner.login }}
+          repository_name: ${{ github.event.repository.name }}
+          branch: ${{ needs.setup.outputs.branch }}
 
       # - name: Publish to NPM
       #   uses: 'srclaunch/core/packages/ci-cd/.github/actions/publish@main'
