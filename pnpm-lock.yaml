@@ -177,14 +177,17 @@ importers:
 
   packages/a11y:
     specifiers:
+      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
     devDependencies:
+      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
 
   packages/actions:
     specifiers:
+      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
       '@types/fs-extra': ^9.0.13
@@ -194,6 +197,7 @@ importers:
       fs-extra: 10.1.0
       js-file-download: 0.4.12
     devDependencies:
+      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@types/fs-extra': 9.0.13
@@ -612,6 +616,7 @@ importers:
 
   packages/themes:
     specifiers:
+      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
       '@testing-library/dom': ^8.13.0
@@ -631,6 +636,7 @@ importers:
       react-is: 18.1.0
       styled-components: 5.3.5_4klixn56hmiqf6hh5nx3jyckvq
     devDependencies:
+      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@testing-library/dom': 8.13.0
@@ -767,6 +773,7 @@ importers:
 
   packages/validation:
     specifiers:
+      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
       '@types/node': ^17.0.35
@@ -776,6 +783,7 @@ importers:
       email-validator: 2.0.4
       password-validator: 5.3.0
     devDependencies:
+      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@types/node': 17.0.40
