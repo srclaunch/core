@@ -3,8 +3,12 @@ description: Setup workflow environment
 author: '@srclaunch'
 
 outputs:
-  branch: ${{ steps.get-branch.outputs.name }}
-  version: ${{ steps.get-version.outputs.tag }}
+  branch:
+    description: Branch name
+    value: ${{ steps.get-branch.outputs.name }}
+  version:
+    description: Version
+    value: ${{ steps.get-version.outputs.tag }}
 
 runs:
   using: composite
