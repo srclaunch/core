@@ -37,7 +37,6 @@
     "yui": "yarn upgrade-interactive"
   },
   "devDependencies": {
-    "@srclaunch/cli": "workspace:*",
     "@srclaunch/dx": "workspace:*",
     "@srclaunch/http-client": "workspace:*",
     "@srclaunch/types": "workspace:*",

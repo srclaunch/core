@@ -177,17 +177,14 @@ importers:
 
   packages/a11y:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
 
   packages/actions:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
       '@types/fs-extra': ^9.0.13
@@ -197,28 +194,23 @@ importers:
       fs-extra: 10.1.0
       js-file-download: 0.4.12
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@types/fs-extra': 9.0.13
 
   packages/analyze:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
 
   packages/ci-cd:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
 
@@ -331,7 +323,6 @@ importers:
 
   packages/codegen:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/transform': workspace:*
       '@srclaunch/types': workspace:*
@@ -341,24 +332,20 @@ importers:
       '@srclaunch/transform': link:../transform
       fs-extra: 10.1.0
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@types/fs-extra': 9.0.13
 
   packages/conditions:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
 
   packages/core-api-server:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/data-client': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/exceptions': workspace:*
@@ -405,7 +392,6 @@ importers:
       stripe: 8.222.0
       uuid: 8.3.2
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@types/express': 4.17.13
@@ -421,7 +407,6 @@ importers:
 
   packages/data-client:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/exceptions': workspace:*
       '@srclaunch/logger': workspace:*
@@ -448,7 +433,6 @@ importers:
       sequelize: 6.19.0_pg-hstore@2.3.4+pg@8.7.3
       tunnel-ssh: 4.1.6
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@types/node': 17.0.40
@@ -458,11 +442,9 @@ importers:
 
   packages/data-miner:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
 
@@ -471,7 +453,6 @@ importers:
 
   packages/exceptions:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
       '@types/express': ^4.17.13
@@ -483,14 +464,12 @@ importers:
       nanoid: 3.3.4
       serialize-error: 10.0.0
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@types/express': 4.17.13
 
   packages/http-client:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/exceptions': workspace:*
       '@srclaunch/logger': workspace:*
@@ -505,13 +484,11 @@ importers:
       axios-retry: 3.2.5
       nanoid: 3.3.4
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
 
   packages/http-server:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/exceptions': workspace:*
       '@srclaunch/http-client': workspace:*
@@ -542,7 +519,6 @@ importers:
       express: 4.18.1
       multer: 1.4.4
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/http-client': link:../http-client
       '@srclaunch/types': link:../types
@@ -558,20 +534,17 @@ importers:
 
   packages/i18n:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
       i18n-iso-countries: ^7.4.0
     dependencies:
       i18n-iso-countries: 7.4.0
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
 
   packages/icons:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
       '@types/react': ^18.0.9
@@ -582,7 +555,6 @@ importers:
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@types/react': 18.0.12
@@ -590,7 +562,6 @@ importers:
 
   packages/logger:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
       '@types/express': ^4.17.13
@@ -604,7 +575,6 @@ importers:
       nanoid: 3.3.4
       picocolors: 1.0.0
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@types/express': 4.17.13
@@ -613,19 +583,16 @@ importers:
 
   packages/node-environment:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
       '@types/node': ^17.0.35
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@types/node': 17.0.40
 
   packages/secrets:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/exceptions': workspace:*
       '@srclaunch/logger': workspace:*
@@ -637,14 +604,12 @@ importers:
       '@srclaunch/logger': link:../logger
       aws-sdk: 2.1148.0
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@types/node': 17.0.40
 
   packages/themes:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
       '@testing-library/dom': ^8.13.0
@@ -664,7 +629,6 @@ importers:
       react-is: 18.1.0
       styled-components: 5.3.5_4klixn56hmiqf6hh5nx3jyckvq
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@testing-library/dom': 8.13.0
@@ -677,7 +641,6 @@ importers:
 
   packages/transform:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
       '@types/js-yaml': ^4.0.5
@@ -685,7 +648,6 @@ importers:
     dependencies:
       js-yaml: 4.1.0
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@types/js-yaml': 4.0.5
@@ -701,7 +663,6 @@ importers:
   packages/ui:
     specifiers:
       '@reduxjs/toolkit': ^1.8.2
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/exceptions': workspace:*
       '@srclaunch/http-client': workspace:*
@@ -787,7 +748,6 @@ importers:
       rgb-hex: 4.0.0
       styled-components: 5.3.5_4klixn56hmiqf6hh5nx3jyckvq
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@testing-library/dom': 8.13.0
@@ -805,7 +765,6 @@ importers:
 
   packages/validation:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
       '@types/node': ^17.0.35
@@ -815,7 +774,6 @@ importers:
       email-validator: 2.0.4
       password-validator: 5.3.0
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@types/node': 17.0.40
@@ -823,7 +781,6 @@ importers:
   packages/web-application-state:
     specifiers:
       '@reduxjs/toolkit': ^1.8.2
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/exceptions': workspace:*
       '@srclaunch/http-client': workspace:*
@@ -880,7 +837,6 @@ importers:
       redux-logger: 3.0.6
       styled-components: 5.3.5_4klixn56hmiqf6hh5nx3jyckvq
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
       '@testing-library/dom': 8.13.0
@@ -906,13 +862,11 @@ importers:
   packages/workflows:
     specifiers:
       '@srclaunch/actions': workspace:*
-      '@srclaunch/cli': workspace:*
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
     dependencies:
       '@srclaunch/actions': link:../actions
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
 

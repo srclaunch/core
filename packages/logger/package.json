@@ -39,7 +39,6 @@
     "picocolors": "1.0.0"
   },
   "devDependencies": {
-    "@srclaunch/cli": "workspace:*",
     "@srclaunch/dx": "workspace:*",
     "@srclaunch/types": "workspace:*",
     "@types/express": "^4.17.13",
