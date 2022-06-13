@@ -10,6 +10,11 @@
       "dependsOn": ["build"],
       "outputs": [],
       "inputs": ["src/**/*.test.tsx", "src/**/*.test.ts"]
+    },
+    "test:coverage": {
+      "dependsOn": ["build"],
+      "outputs": [],
+      "inputs": ["src/**/*.test.tsx", "src/**/*.test.ts"]
     }
   }
 }
