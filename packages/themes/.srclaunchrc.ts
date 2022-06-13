@@ -4,48 +4,52 @@ import {
   BuildPlatform,
   BuildTarget,
   BuildTool,
-  CodeFormatterTool,
-  CodeLinterTool,
+  CodeFormatter,
+  CodeLinter,
   License,
-  Project,
   ProjectType,
   PublishAccess,
-  StaticTypingTool,
+  StaticTyping,
   TestReporter,
   TestTool,
+  ThemeLibraryConfig,
 } from '@srclaunch/types';
 
-export default <Project>{
+export default <ThemeLibraryConfig>{
   name: '@srclaunch/themes',
   description:
     'CSS variables and styled-component based themes used by SrcLaunch applications',
-  type: ProjectType.Library,
+  type: ProjectType.ThemeLibrary,
   build: {
     bundle: {
-      exclude: ['react', 'styled-components'],
+      exclude: ['react', 'react-dom/client', 'styled-components'],
       globals: {
         react: 'React',
+        'react-dom/client': 'ReactDOMClient',
         'styled-components': 'styled',
       },
     },
     formats: [BuildFormat.ESM, BuildFormat.UMD],
     platform: BuildPlatform.Browser,
-    target: BuildTarget.ESNext,
+    react: true,
+    target: BuildTarget.Modules,
     tool: BuildTool.Vite,
+  },
+  react: true,
+  docs: {
+    assetsDir: 'assets',
+    entryFile: 'docs/index.html',
+    react: true,
+    rootDir: 'docs',
   },
   environments: {
     development: {
-      formatters: [CodeFormatterTool.Prettier],
-      linters: [CodeLinterTool.ESLint, CodeLinterTool.Stylelint],
-      staticTyping: [StaticTypingTool.TypeScript],
+      formatters: [CodeFormatter.Prettier],
+      linters: [CodeLinter.ESLint, CodeLinter.Stylelint],
+      staticTyping: [StaticTyping.TypeScript],
     },
   },
-  test: {
-    coverage: {
-      reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
-    },
-    tool: TestTool.Jest,
-  },
+
   release: {
     publish: {
       access: PublishAccess.Public,
@@ -62,5 +66,11 @@ export default <Project>{
       cli: true,
       types: true,
     },
+  },
+  test: {
+    coverage: {
+      reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
+    },
+    tool: TestTool.Jest,
   },
 };

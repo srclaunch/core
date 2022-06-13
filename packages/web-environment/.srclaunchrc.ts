@@ -3,10 +3,10 @@ import {
   BuildPlatform,
   BuildTarget,
   BuildTool,
-  CodeFormatterTool,
-  CodeLinterTool,
-  StaticTypingTool,
-  Project,
+  CodeFormatter,
+  CodeLinter,
+  StaticTyping,
+  LibraryConfig,
   ProjectType,
   PublishAccess,
   TestReporter,
@@ -14,14 +14,14 @@ import {
   TestTool,
 } from '@srclaunch/types';
 
-export default <Project>{
+export default <LibraryConfig>{
   name: '@srclaunch/web-environment',
   description: 'Web environment specific utilities for SrcLaunch applications',
   type: ProjectType.Library,
   build: {
     formats: [BuildFormat.ESM, BuildFormat.UMD],
     platform: BuildPlatform.Browser,
-    target: BuildTarget.ESNext,
+    target: BuildTarget.Modules,
     tool: BuildTool.Vite,
   },
   test: {
@@ -32,9 +32,9 @@ export default <Project>{
   },
   environments: {
     development: {
-      formatters: [CodeFormatterTool.Prettier],
-      linters: [CodeLinterTool.ESLint],
-      staticTyping: [StaticTypingTool.TypeScript],
+      formatters: [CodeFormatter.Prettier],
+      linters: [CodeLinter.ESLint],
+      staticTyping: [StaticTyping.TypeScript],
     },
   },
   release: {

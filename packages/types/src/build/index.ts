@@ -26,6 +26,7 @@ export enum BuildTarget {
   ES2022 = 'es2022',
   ESNext = 'esnext',
   Latest = 'latest',
+  Modules = 'modules',
 }
 
 export enum BuildTool {
@@ -33,17 +34,7 @@ export enum BuildTool {
   Vite = 'vite',
 }
 
-export enum BuildPlatform {
-  Browser = 'browser',
-  Node = 'node',
-  Universal = 'universal',
-}
-
 export type BuildOptions = {
-  readonly assets?: {
-    readonly directory?: string;
-    readonly public?: boolean;
-  };
   readonly bundle?: boolean | BundleOptions;
   readonly clean?: boolean;
   readonly configPath?: string;
@@ -54,21 +45,16 @@ export type BuildOptions = {
     readonly file?: string;
     readonly files?: readonly string[];
   };
-  readonly library?:
-    | boolean
-    | {
-        readonly name: string;
-      };
   readonly manifest?: boolean;
   readonly minify?: boolean;
   readonly output?: {
     readonly directory: string;
     readonly file?: string;
   };
-  readonly platform?: BuildPlatform;
-  readonly rootDir?: string;
+  readonly react?: boolean;
   readonly sourcemap?: boolean;
   readonly splitting?: boolean;
+  readonly ssr?: boolean;
   readonly target?: BuildTarget;
   readonly tool: BuildTool;
   readonly treeShaking?: boolean;
@@ -77,25 +63,4 @@ export type BuildOptions = {
     | {
         readonly configPath?: string;
       };
-  readonly webApp?: {
-    readonly react?: boolean;
-    readonly ssr?: boolean;
-  };
 };
-
-export interface ESBuildOptions extends Omit<BuildOptions, 'formats' | 'tool'> {
-  readonly format?: BuildFormat.CJS | BuildFormat.ESM | BuildFormat.IIFE;
-}
-
-export interface ViteBuildOptions
-  extends Omit<BuildOptions, 'format' | 'splitting' | 'tool' | 'treeShaking'> {
-  readonly format?:
-    | BuildFormat.CJS
-    | BuildFormat.ESM
-    | BuildFormat.IIFE
-    | BuildFormat.UMD;
-  readonly optimize?: {
-    readonly exclude?: readonly string[];
-    readonly include?: readonly string[];
-  };
-}

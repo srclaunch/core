@@ -1,11 +1,6 @@
 import { Deployment } from '../deployment';
 import { DNSConfig } from '../deployment/infrastructure';
-import {
-  CodeFormatterTool,
-  CodeLinterTool,
-  StaticTypingTool,
-} from '../development';
-import { RunOptions } from './run';
+import { CodeFormatter, CodeLinter, StaticTyping } from '../development';
 
 export enum Environments {
   Development = 'development',
@@ -25,7 +20,6 @@ export type Environment = DNSConfig & {
   readonly type?: EnvironmentType;
   readonly name?: string;
   readonly description?: string;
-  readonly run?: RunOptions;
 };
 
 export type RemoteEnvironment = Environment & {
@@ -33,9 +27,9 @@ export type RemoteEnvironment = Environment & {
 };
 
 export type DevelopmentEnvironment = Environment & {
-  readonly formatters?: readonly CodeFormatterTool[];
-  readonly linters?: readonly CodeLinterTool[];
-  readonly staticTyping?: readonly StaticTypingTool[];
+  readonly formatters?: readonly CodeFormatter[];
+  readonly linters?: readonly CodeLinter[];
+  readonly staticTyping?: readonly StaticTyping[];
 };
 
 export type PreviewEnvironment = RemoteEnvironment & {

@@ -1,5 +1,3 @@
-import { ChangesetWorkflow } from '../workflow/changeset';
-
 export enum ChangeType {
   /**
    * A change created from an automated source.
@@ -55,29 +53,28 @@ export type ChangesetOptions = {
   readonly logs: {
     readonly path: string;
   };
-  readonly types: Array<{
-    [key: string]: {
-      type: string;
-      section?: string | undefined;
-      hidden?: boolean | undefined;
+  readonly types: ReadonlyArray<{
+    readonly [key: string]: {
+      readonly type: string;
+      readonly section?: string | undefined;
+      readonly hidden?: boolean | undefined;
     };
   }>;
-  readonly workflows?: ChangesetWorkflow[];
 };
 
 export type Change = {
   readonly id: string;
   readonly diff: {
-    readonly added: string[];
-    readonly removed: string[];
-    readonly modified: string[];
+    readonly added: readonly string[];
+    readonly removed: readonly string[];
+    readonly modified: readonly string[];
   };
 };
 
 export type Changeset = {
   readonly id?: string;
-  readonly changes?: Change[];
-  readonly files?: string | string[];
+  readonly changes?: readonly Change[];
+  readonly files?: string | readonly string[];
   readonly message: string;
   readonly remote?: {
     readonly synced?: boolean;

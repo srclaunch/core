@@ -1,11 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Route as RouteType } from '@srclaunch/types';
 
-type AppState = {
+const initialState: {
+  // eslint-disable-next-line functional/prefer-readonly-type
   list?: Omit<RouteType, 'component'>[];
-};
-
-const initialState: AppState = {
+} = {
   list: [],
 };
 
@@ -15,6 +14,7 @@ const slice = createSlice({
   reducers: {
     setRoutes: (
       state,
+      // eslint-disable-next-line functional/prefer-readonly-type
       action: PayloadAction<Omit<RouteType, 'component'>[]>,
     ) => {
       state.list = action.payload;

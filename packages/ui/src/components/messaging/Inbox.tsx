@@ -1,4 +1,5 @@
 import { ChatMessage } from '@srclaunch/types';
+import { RouterView } from '@srclaunch/web-application-state';
 import { memo, ReactElement } from 'react';
 
 import { Container, ContainerProps } from '../../components/layout/Container';
@@ -9,7 +10,6 @@ import {
   Fill,
   Orientation,
 } from '../../types';
-import { RouterView } from '../navigation/RouterView';
 import { ConversationList } from './ConversationList';
 import { ConversationNavigation } from './ConversationNavigation';
 import { MessageComposer } from './MessageComposer';

@@ -3,32 +3,32 @@ import {
   BuildPlatform,
   BuildTarget,
   BuildTool,
-  CodeFormatterTool,
-  CodeLinterTool,
+  CodeFormatter,
+  CodeLinter,
   License,
-  Project,
+  LibraryConfig,
   ProjectType,
   PublishAccess,
-  StaticTypingTool,
+  StaticTyping,
   TestReporter,
   TestTool,
-} from "@srclaunch/types";
+} from '@srclaunch/types';
 
-export default <Project>{
-  name: "@srclaunch/i18n",
-  description: "Internationalization utilities",
+export default <LibraryConfig>{
+  name: '@srclaunch/i18n',
+  description: 'Internationalization utilities',
   type: ProjectType.Library,
   environments: {
     development: {
-      formatters: [CodeFormatterTool.Prettier],
-      linters: [CodeLinterTool.ESLint],
-      staticTyping: [StaticTypingTool.TypeScript],
+      formatters: [CodeFormatter.Prettier],
+      linters: [CodeLinter.ESLint],
+      staticTyping: [StaticTyping.TypeScript],
     },
   },
   build: {
     formats: [BuildFormat.ESM, BuildFormat.UMD],
     platform: BuildPlatform.Node,
-    target: BuildTarget.ESNext,
+    target: BuildTarget.Modules,
     tool: BuildTool.Vite,
   },
   test: {
@@ -41,12 +41,12 @@ export default <Project>{
     publish: {
       access: PublishAccess.Public,
       license: License.MIT,
-      registry: "https://registry.npmjs.org/",
+      registry: 'https://registry.npmjs.org/',
     },
   },
   requirements: {
-    node: ">=16",
-    yarn: ">=3.2.0",
+    node: '>=16',
+    yarn: '>=3.2.0',
     packages: [],
     srclaunch: {
       dx: true,

@@ -12,7 +12,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "type": "module",
-  "main": "./dist/index.esm.js",
+  "main": "./dist/index.umd.js",
   "types": "./dist/index.d.ts",
   "files": [
     "package.json",
@@ -37,7 +37,6 @@
     "i18n-iso-countries": "^7.4.0"
   },
   "devDependencies": {
-    "@srclaunch/cli": "workspace:*",
     "@srclaunch/dx": "workspace:*",
     "@srclaunch/types": "workspace:*"
   }

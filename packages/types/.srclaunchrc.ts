@@ -1,6 +1,15 @@
-import { Project } from './src';
+import {
+  LibraryConfig,
+  ProjectType,
+  BuildFormat,
+  BuildTool,
+  CodeFormatter,
+  CodeLinter,
+  StaticTyping,
+  BuildTarget,
+} from './src';
 
-export default <Project>{
+export default <LibraryConfig>{
   name: '@srclaunch/types',
   description:
     'TypeScript definitions used by SrcLaunch projects and workspaces.',
@@ -9,14 +18,15 @@ export default <Project>{
     library: {
       name: '@srclaunch/types',
     },
-    format: 'esm',
-    tool: 'esbuild',
+    formats: [BuildFormat.ESM, BuildFormat.IIFE],
+    target: BuildTarget.ESNext,
+    tool: BuildTool.ESBuild,
   },
   environment: {
     development: {
-      formatters: ['prettier'],
-      linters: ['eslint'],
-      staticTypes: ['typescript'],
+      formatters: [CodeFormatter.Prettier],
+      linters: [CodeLinter.ESLint],
+      staticTyping: [StaticTyping.TypeScript],
     },
   },
   package: {

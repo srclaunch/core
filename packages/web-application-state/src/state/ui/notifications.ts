@@ -1,7 +1,8 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { Notification } from '@srclaunch/types';
 import { nanoid } from 'nanoid';
-import { Notification } from '../../types/notification';
-import { AppThunk } from '../../index';
+
+import { AppThunk } from '../../types';
 
 const notificationAdapter = createEntityAdapter<Notification>({
   selectId: notification => notification.id.toString(),
@@ -32,11 +33,11 @@ export function addToastNotification({
   timed,
   seconds,
 }: {
-  color: string;
-  icon: string;
-  message: string;
-  timed: boolean;
-  seconds: number;
+  readonly color: string;
+  readonly icon: string;
+  readonly message: string;
+  readonly timed: boolean;
+  readonly seconds: number;
 }): AppThunk {
   return async (dispatch, getState) => {
     const id = nanoid(6);

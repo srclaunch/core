@@ -1,17 +1,31 @@
 import {
-  Project,
-  ProjectType,
-  TestTool,
-  CodeFormatterTool,
-  CodeLinterTool,
-  StaticTypingTool,
-  ChangeType,
-  Workspace,
   BuildOptions,
-} from "@srclaunch/types";
-import { TypedFlags } from "meow";
-import { diffJson } from "diff";
-import pc from "picocolors";
+  ChangeType,
+  CodeFormatter,
+  CodeLinter,
+  ProjectConfig,
+  ProjectType,
+  StaticTyping,
+  TestTool,
+  WorkspaceConfig,
+} from '@srclaunch/types';
+import { diffJson } from 'diff';
+import { writeFile } from 'fs-extra';
+import { TypedFlags } from 'meow';
+import path from 'node:path';
+import pc from 'picocolors';
+
+import { BUILD_DIR, BUILD_FILE_NAME } from '../constants/build';
+import {
+  PROJECT_PACKAGE_JSON_FILES,
+  PROJECT_PACKAGE_JSON_LICENSE,
+  PROJECT_PACKAGE_JSON_MAIN,
+  PROJECT_PACKAGE_JSON_MODULE,
+  PROJECT_PACKAGE_JSON_TYPE,
+  PROJECT_PACKAGE_JSON_TYPES,
+} from '../constants/project';
+import { createChangeset } from '../lib/changesets';
+import { shellExec } from '../lib/cli';
 // import { ensureDirectoryExists, readFile } from '../lib/file-system';
 // import ora from 'ora';
 // import {
@@ -23,100 +37,88 @@ import pc from "picocolors";
 //   writeFile,
 //   YarnNodeLinker,
 // } from "@srclaunch/logic";
-import { Command, CommandType } from "../lib/command";
-
-import { push } from "../lib/git";
-import { shellExec } from "../lib/cli";
-import { getPublishYml } from "../lib/project/publish";
-import { getPackageScripts } from "../lib/project/package";
-import {
-  getDependencies,
-  getDevDependencies,
-} from "../lib/project/dependencies";
-import {
-  PROJECT_PACKAGE_JSON_FILES,
-  PROJECT_PACKAGE_JSON_LICENSE,
-  PROJECT_PACKAGE_JSON_MAIN,
-  PROJECT_PACKAGE_JSON_MODULE,
-  PROJECT_PACKAGE_JSON_TYPE,
-  PROJECT_PACKAGE_JSON_TYPES,
-} from "../constants/project";
-import { writeToolingConfiguration } from "../lib/project/tooling";
-import { createRelease } from "../lib/release";
-import { createChangeset } from "../lib/changesets";
+import { Command, CommandType } from '../lib/command';
+import { push } from '../lib/git';
 import {
   cleanBuild,
   cleanDependencies,
   cleanTestCoverage,
-} from "../lib/project/clean";
-import { BUILD_DIR, BUILD_FILE_NAME } from "../constants/build";
+} from '../lib/project/clean';
+import {
+  getDependencies,
+  getDevDependencies,
+} from '../lib/project/dependencies';
+import { getPackageScripts } from '../lib/project/package';
+import { getPublishYml } from '../lib/project/publish';
+import { writeToolingConfiguration } from '../lib/project/tooling';
+import { createRelease } from '../lib/release';
 
 type ProjectSetupFlags = TypedFlags<{
-  build: {
-    default: false;
-    description: "The library will only be built, and not tested.";
-    type: "boolean";
+  readonly build: {
+    readonly alias: 'b';
+    readonly default: false;
+    readonly description: 'The library will only be built, and not tested.';
+    readonly type: 'boolean';
   };
-  push: {
-    alias: "p";
-    default: false;
-    description: "Pushes changes to remote repository";
-    isRequired: false;
-    type: "boolean";
+  readonly push: {
+    readonly alias: 'p';
+    readonly default: false;
+    readonly description: 'Pushes changes to remote repository';
+    readonly isRequired: false;
+    readonly type: 'boolean';
   };
-  react: {
-    default: false;
-    description: "The library includes React components.";
-    type: "boolean";
+  readonly react: {
+    readonly default: false;
+    readonly description: 'The library includes React components.';
+    readonly type: 'boolean';
   };
-  reactRouter: {
-    default: false;
-    description: "The library uses React Router.";
-    type: "boolean";
+  readonly reactRouter: {
+    readonly default: false;
+    readonly description: 'The library uses React Router.';
+    readonly type: 'boolean';
   };
-  release: {
-    default: false;
-    description: "Add scripts and dependencies for creating project releases.";
-    type: "boolean";
+  readonly release: {
+    readonly default: false;
+    readonly description: 'Add scripts and dependencies for creating project releases.';
+    readonly type: 'boolean';
   };
-  styledComponents: {
-    default: false;
-    description: "The library includes Styled Components.";
-    type: "boolean";
+  readonly styledComponents: {
+    readonly default: false;
+    readonly description: 'The library includes Styled Components.';
+    readonly type: 'boolean';
   };
-  test: {
-    default: false;
-    description: "The library includes build and test scripts.";
-    type: "boolean";
+  readonly test: {
+    readonly default: false;
+    readonly description: 'The library includes build and test scripts.';
+    readonly type: 'boolean';
   };
 }>;
 
-export default new Command<Workspace & Project>({
-  name: "project",
-  description: "Manage project",
+export default new Command<WorkspaceConfig & ProjectConfig>({
   commands: [
-    new Command<Workspace>({
-      name: "create",
-      description: "Create a new SrcLaunch project",
+    new Command<WorkspaceConfig>({
+      description: 'Create a new SrcLaunch project',
+      name: 'create',
       run: async ({ config, flags }) => {},
       type: CommandType.Workspace,
     }),
-    new Command<Project>({
-      name: "sync",
-      description: "Sync SrcLaunch configuration with project",
+    new Command<ProjectConfig>({
+      description: 'Sync SrcLaunch configuration with project',
+      name: 'sync',
       run: async ({ config, flags }) => {},
       type: CommandType.Workspace,
     }),
-    new Command<Project, ProjectSetupFlags>({
-      name: "setup",
-      description: "Setup a project for use with SrcLaunch",
+
+    new Command<ProjectConfig, ProjectSetupFlags>({
+      description: 'Setup a project for use with SrcLaunch',
+      name: 'setup',
       run: async ({ config, flags }) => {
         if (!config) {
-          console.log(pc.red("No project configuration found"));
+          console.log(pc.red('No project configuration found'));
         }
 
-        const build = Boolean(config.build) ?? Boolean(flags["build"]);
-        const test = Boolean(config.test) ?? Boolean(flags["test"]);
+        const build = Boolean(config.build) ?? Boolean(flags['build']);
+        const test = Boolean(config.test) ?? Boolean(flags['test']);
         // const spinner = ora({
         //   discardStdin: true,
         //   spinner: 'dots',
@@ -135,7 +137,7 @@ export default new Command<Workspace & Project>({
           const coreDevDependencies = await getDevDependencies({
             ava: config.test?.tool === TestTool.Ava,
             eslint: config.environments?.development?.linters?.includes(
-              CodeLinterTool.ESLint
+              CodeLinter.ESLint,
             ),
             github: config.type === ProjectType.GitHubAction,
             jest: config.test?.tool === TestTool.Jest,
@@ -143,24 +145,28 @@ export default new Command<Workspace & Project>({
               config.test?.tool === TestTool.Jest ||
               (flags.react && test) ||
               (config.type === ProjectType.WebApplication && test) ||
-              (config.type === ProjectType.ComponentLibrary && test),
+              (config.type === ProjectType.ComponentLibrary && test) ||
+              (config.type === ProjectType.IconLibrary && test) ||
+              (config.type === ProjectType.ThemeLibrary && test),
             prettier: config.environments?.development?.formatters?.includes(
-              CodeFormatterTool.Prettier
+              CodeFormatter.Prettier,
             ),
             react:
               config?.type === ProjectType.WebApplication ||
               config?.type === ProjectType.ComponentLibrary ||
+              config.type === ProjectType.IconLibrary ||
+              config.type === ProjectType.ThemeLibrary ||
               flags.react,
             reactRouter: flags.reactRouter,
             srclaunch: config?.requirements?.srclaunch,
             styledComponents: flags.styledComponents,
             stylelint: config.environments?.development?.linters?.includes(
-              CodeLinterTool.Stylelint
+              CodeLinter.Stylelint,
             ),
             testCoverage: Boolean(config.test?.coverage),
             typescript:
               config?.environments?.development?.staticTyping?.includes(
-                StaticTypingTool.TypeScript
+                StaticTyping.TypeScript,
               ),
           });
           const devDependencies = await getDependencies({
@@ -262,8 +268,8 @@ export default new Command<Workspace & Project>({
           await cleanBuild();
           await cleanTestCoverage();
           await createChangeset({
-            files: ".",
-            message: "Clean installation cache",
+            files: '.',
+            message: 'Clean installation cache',
             type: ChangeType.Chore,
           });
 
@@ -279,8 +285,8 @@ export default new Command<Workspace & Project>({
 
           // await writeFile(".gitignore", generateGitIgnoreConfig());
           await createChangeset({
-            files: ["./.gitignore"],
-            message: "Update .gitignore",
+            files: ['./.gitignore'],
+            message: 'Update .gitignore',
             type: ChangeType.Chore,
           });
           // spinner.succeed('Project cache cleaned');
@@ -292,21 +298,21 @@ export default new Command<Workspace & Project>({
           //     nodeLinker: YarnNodeLinker.NodeModules,
           //   })
           // );
-          await shellExec("corepack enable yarn");
-          await shellExec("yarn set version stable");
-          await shellExec("yarn plugin import interactive-tools");
+          await shellExec('corepack enable yarn');
+          await shellExec('yarn set version stable');
+          await shellExec('yarn plugin import interactive-tools');
 
           if (
             config.environments?.development?.staticTyping?.includes(
-              StaticTypingTool.TypeScript
+              StaticTyping.TypeScript,
             )
           ) {
-            await shellExec("yarn plugin import typescript");
+            await shellExec('yarn plugin import typescript');
           }
           // spinner.succeed('Initialized Yarn');
 
           // spinner.start('Installing dependencies...');
-          await shellExec("yarn install");
+          await shellExec('yarn install');
           // spinner.succeed('Installed project dependencies');
 
           // const updatedPackageManifest = await JSON.parse(
@@ -358,20 +364,20 @@ export default new Command<Workspace & Project>({
 
           if (build) {
             // spinner.start('Building project bundle...');
-            await shellExec("yarn build");
+            await shellExec('yarn build');
             // spinner.succeed('Project compiled and bundled');
           }
 
           if (test) {
             // spinner.start('Running test suite...');
-            await shellExec("yarn test");
+            await shellExec('yarn test');
             // spinner.succeed('Test run complete');
           }
 
           // spinner.start('Creating release...');
           await createChangeset({
-            files: ".",
-            message: "Project setup",
+            files: '.',
+            message: 'Project setup',
             type: ChangeType.Chore,
           });
 
@@ -389,21 +395,23 @@ export default new Command<Workspace & Project>({
             //   )} on branch ${pc.bold(result.branch)}`,
             // );
           }
-        } catch (err: any) {
-          console.error(err);
+        } catch (error: any) {
+          console.error(error);
           // spinner.fail(pc.red(err));
           process.exit(1);
         }
       },
       type: CommandType.Project,
     }),
-    new Command<Workspace>({
-      name: "help",
-      description: "Shows help for projects commands",
+    new Command<WorkspaceConfig>({
+      description: 'Shows help for projects commands',
+      name: 'help',
       run: async () => {
-        console.info("Available projects commands are: create, help");
+        console.info('Available projects commands are: create, help');
       },
       type: CommandType.Workspace,
     }),
   ],
+  description: 'Manage project',
+  name: 'project',
 });

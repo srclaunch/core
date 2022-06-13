@@ -1,0 +1,15 @@
+import { Action } from '@srclaunch/types';
+
+export class AppendToFile extends Action<{
+  readonly path: string;
+  readonly content: string;
+}> {
+  public override readonly name = 'Write to file';
+  public override readonly description = 'Write to file';
+  public override readonly run = async () => {
+    const { path, content } = this.input;
+    const { appendFile } = await import('fs-extra');
+
+    return await appendFile(path, content);
+  };
+}

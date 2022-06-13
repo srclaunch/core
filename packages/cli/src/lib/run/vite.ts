@@ -1,58 +1,49 @@
-import {
-  BuildOptions,
-  Environments,
-  Project,
-  RunOptions,
-} from '@srclaunch/types';
-import react from '@vitejs/plugin-react';
+import { Environments, ProjectConfig, WebAppOptions } from '@srclaunch/types';
 import path from 'node:path';
 import pc from 'picocolors';
-import {
-  BuildOptions as ViteBuildOptions,
-  createServer,
-  ViteDevServer,
-} from 'vite';
+import { createServer, InlineConfig, PluginOption, ViteDevServer } from 'vite';
 
 import { SOURCE_DIR } from '../../constants/dev';
-
-export function getViteRootDirectory(build: Project['build']) {
-  if (build && !Array.isArray(build)) {
-    return path.resolve((build as BuildOptions).input?.directory ?? SOURCE_DIR);
-  } else if (Array.isArray(build) && build) {
-    return path.resolve(build[0].input?.directory ?? SOURCE_DIR);
-  }
-}
+import { getVitePlugins } from '../vite';
 
 export async function run({
-  options,
+  assetsDir,
   environment,
-}: {
-  readonly options?: RunOptions;
+  optimize,
+  pwa,
+  styledComponents,
+  react,
+  rootDir = path.join(path.resolve(), SOURCE_DIR),
+}: WebAppOptions & {
   readonly environment: Environments;
+  readonly project: ProjectConfig;
 }) {
   try {
     switch (environment) {
       case Environments.Development:
         {
-          const config = {
+          const config: InlineConfig = {
             envPrefix: 'SRCLAUNCH_',
             optimizeDeps: {
-              exclude: (options?.bundle?.optimize?.exclude ?? []) as string[],
-              include: (options?.bundle?.optimize?.include ?? []) as string[],
+              exclude: (optimize?.exclude ?? []) as string[],
+              include: (optimize?.include ?? []) as string[],
             },
-            plugins: [react()],
-            root: getViteRootDirectory(project.build),
+            plugins: getVitePlugins({
+              pwa,
+              react,
+              styledComponents,
+            }) as PluginOption[],
+            publicDir: assetsDir,
+            root: rootDir,
           };
 
           const server: ViteDevServer = await createServer(config);
 
-          await server.listen();
+          const devServer = await server.listen();
 
-          server.printUrls();
+          devServer.printUrls();
 
-          `${pc.green('✔')} started ${pc.bold(project.name)} in the ${pc.bold(
-            environment,
-          )} environment.`;
+          `${pc.green('✔')} ${pc.bold(environment)} environment started`;
         }
 
         break;

@@ -1,15 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
-import { DateTime } from 'luxon';
 import { Exception } from '@srclaunch/exceptions';
 import { ISO8601String } from '@srclaunch/types';
-import { AppThunk } from '../../../../../index';
+import { CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
+import { DateTime } from 'luxon';
+
+import { AppThunk } from '../../../../../types';
 
 type VerificationCodeVerifyState = {
-  error?: Exception | Error;
-  lastUpdated?: ISO8601String;
-  inProgress: boolean;
-  success?: boolean;
+  readonly error?: Exception | Error;
+  readonly lastUpdated?: ISO8601String;
+  readonly inProgress: boolean;
+  readonly success?: boolean;
 };
 
 const initialState: VerificationCodeVerifyState = {
@@ -50,7 +51,13 @@ const {
 } = slice.actions;
 
 export const verifyCode =
-  ({ code, userId }: { code: string; userId: string }): AppThunk =>
+  ({
+    code,
+    userId,
+  }: {
+    readonly code: string;
+    readonly userId: string;
+  }): AppThunk =>
   async (dispatch, getState) => {
     dispatch(setVerificationCodeVerifyInProgress(true));
 

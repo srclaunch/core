@@ -1,0 +1,29 @@
+import { BuildFormat, BuildOptions, BuildTool } from '.';
+
+export type ViteBuildFormat =
+  | BuildFormat.CJS
+  | BuildFormat.ESM
+  | BuildFormat.IIFE
+  | BuildFormat.UMD;
+
+export type ViteBuildOptions = BuildOptions & {
+  readonly assetsDir?: string;
+  readonly format?: ViteBuildFormat;
+  readonly formats?: readonly ViteBuildFormat[];
+  readonly library?:
+    | boolean
+    | {
+        readonly name: string;
+      };
+  readonly manifest?: boolean;
+  readonly optimize?: {
+    readonly exclude?: readonly string[];
+    readonly include?: readonly string[];
+  };
+  readonly pwa?: boolean;
+  readonly react?: boolean;
+  readonly ssr?: boolean;
+  readonly styledComponents?: boolean;
+  readonly tool: BuildTool.Vite;
+  readonly rootDir?: string;
+};

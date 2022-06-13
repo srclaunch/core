@@ -1,8 +1,11 @@
-import { Project } from '@srclaunch/types';
+import { ProjectConfig, WorkspaceConfig } from '@srclaunch/types';
+import { writeFile } from 'fs-extra';
 import { TypedFlags } from 'meow';
+import path from 'node:path';
 
 // import { transformObjectToYAML } from '@srclaunch/logic';
 import { Command } from '../lib/command';
+import { generateSDKs } from '../lib/generate';
 import { createNewProjectInteractive } from '../lib/project/create';
 
 export type GenerateSrcLaunchProjectFlags = TypedFlags<{
@@ -20,50 +23,97 @@ export type GenerateSrcLaunchProjectFlags = TypedFlags<{
   };
 }>;
 
-export default new Command({
+export default new Command<ProjectConfig & WorkspaceConfig>({
   commands: [
-    new Command<Project>({
+    new Command<ProjectConfig>({
       description:
         'Generate GitHub Actions workflows from the SrcLaunch config file.',
       name: 'github-actions',
-      async run({ config, flags }): Promise<void> {
+      async run({ config }): Promise<void> {
         const repositoryWorkflows = config?.repository?.workflows;
-
         if (repositoryWorkflows) {
-          // for (const workflow of repositoryWorkflows) {
-          //   const workflowPath = path.join(
-          //     process.cwd(),
-          //     'github-actions',
-          //     `${workflow.name}.yml`,
-          //   );
-          //   await writeFile(workflowPath, transformObjectToYAML(workflow));
-          // }
-          // const yaml = transformObjectToYAML(repositoryWorkflows);
-          // console.log('yaml', yaml);
+          for (const _workflow of Object.entries(repositoryWorkflows)) {
+            const [name, workflow] = _workflow;
+
+            // const workflowPath = path.join(
+            //   process.cwd(),
+            //   'github-actions',
+            //   `${name}.yml`,
+            // );
+
+            if (workflow.tasks) {
+              for (const _task of Object.entries(workflow.tasks)) {
+                const [taskName, task] = _task;
+                // const taskPath = path.join(
+                //   process.cwd(),
+                //   'github-actions',
+                //   `${name}.yml`,
+                // );
+                console.log(taskName);
+
+                if (task.steps) {
+                  let stepOutput = {};
+
+                  for (const _step of Object.entries(task.steps)) {
+                    const [stepName, step] = _step;
+
+                    if (step.run) {
+                      const output = await step.run();
+
+                      console.log('output', output);
+                      if (output) {
+                        stepOutput = {
+                          ...stepOutput,
+                          [stepName]: output,
+                        };
+                      }
+                    }
+
+                    if (step.shell) {
+                      for (const output of Object.entries(step.shell)) {
+                        const [key, shell] = output;
+
+                        console.log('o', key);
+                      }
+
+                      console.log('shell', step.shell);
+                      stepOutput = {
+                        ...stepOutput,
+                        [stepName]: step.shell,
+                      };
+                    }
+
+                    console.log(' -- ' + stepName);
+                    console.log(' ---- ' + JSON.stringify(stepOutput, null, 2));
+                  }
+                }
+              }
+            }
+          }
         }
       },
     }),
-    new Command<Project, GenerateSrcLaunchProjectFlags>({
+    new Command<WorkspaceConfig, GenerateSrcLaunchProjectFlags>({
       description:
         "Generates a SrcLaunch project config file if one doesn't exist already.",
       name: 'srclaunch-project-config',
-      async run({ config, flags }): Promise<void> {
-        const result = await createNewProjectInteractive({
+      async run({ flags }): Promise<void> {
+        await createNewProjectInteractive({
           description: flags.description,
           name: flags.name,
           type: flags.type,
         });
-
-        console.info('resulttt', result);
       },
     }),
-    new Command<Project>({
+    new Command<WorkspaceConfig>({
       description:
         'Generates a package.yml file that can be used as a replacement for packageon',
       name: 'package-yml',
-      async run({ config, flags }): Promise<void> {
+      async run(): Promise<void> {
         // await shellExec(
-        //   'yarn plugin import https://raw.githubusercontent.com/lyleunderwood/yarn-plugin-yaml-manifest/master/bundles/%40yarnpkg/plugin-yaml-manifest',
+        //   'yarn plugin import https://raw.githubusercontent.com/
+        // lyleunderwood/yarn-plugin-yaml-manifest/master/bundles/
+        // %40yarnpkg/plugin-yaml-manifest',
         // );
         // const yml = Yaml.dump({
         //   ...updatedPackageJsonContents,
@@ -91,6 +141,13 @@ export default new Command({
         //   type: ChangeType.Release,
         //   message: `Release ${updatedPackageJsonContents.version}`,
         // });
+      },
+    }),
+    new Command<WorkspaceConfig>({
+      description: 'Generate SDKs from SrcLaunch models',
+      name: 'sdks',
+      async run(): Promise<void> {
+        await generateSDKs();
       },
     }),
   ],

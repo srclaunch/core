@@ -1,90 +1,113 @@
-import {
-  BuildFormat,
-  BuildPlatform,
-  BuildTarget,
-  ViteBuildOptions,
-} from '@srclaunch/types';
-import react from '@vitejs/plugin-react';
+import { BuildFormat, BuildTarget, ViteBuildOptions } from '@srclaunch/types';
 import path from 'node:path';
 import pc from 'picocolors';
-import { build as buildCommand, LibraryFormats, LibraryOptions } from 'vite';
+import {
+  build as buildCommand,
+  BuildOptions,
+  LibraryFormats,
+  LibraryOptions,
+  PluginOption,
+} from 'vite';
 
 import { ASSETS_DIR } from '../../constants/assets';
 import { BUILD_DIR } from '../../constants/build';
 import { SOURCE_DIR, SOURCE_MAIN_FILE } from '../../constants/dev';
+import { getVitePlugins } from '../vite';
 import { getViteFormatFileExtension } from './formats';
 
-export type ViteBuildFormats = LibraryFormats;
-
 export async function build({
-  assets,
-  bundle,
+  assetsDir,
+  bundle = true,
   clean = true,
   format = BuildFormat.ESM,
   formats,
   input,
   library = false,
-  optimize,
   manifest = true,
   minify = true,
+  optimize,
   output,
-  platform = BuildPlatform.Browser,
+  pwa,
+  react,
   rootDir = path.join(path.resolve(), SOURCE_DIR),
   sourcemap = true,
+  ssr,
+  styledComponents,
   target = BuildTarget.ESNext,
-  webApp,
 }: ViteBuildOptions) {
   try {
     const viteFormats = (
       formats && formats.length > 0
         ? formats?.map(f => (f === BuildFormat.ESM ? 'es' : f))
         : [format === BuildFormat.ESM ? 'es' : format]
-    ) as ViteBuildFormats[];
+    ) as LibraryFormats[];
 
-    const config = {
+    const getLibraryOptions = (): LibraryOptions => {
+      return {
+        entry: path.join(
+          path.resolve(),
+          input?.directory ?? SOURCE_DIR,
+          input?.file ?? SOURCE_MAIN_FILE,
+        ),
+        fileName: fmt =>
+          `${output?.file ?? 'index'}${getViteFormatFileExtension(fmt)}`,
+        formats: viteFormats,
+        name:
+          library && typeof library === 'object' ? library?.name : undefined,
+      };
+    };
+
+    const getRollupOptions = (): BuildOptions['rollupOptions'] => {
+      let options: BuildOptions['rollupOptions'] = {};
+
+      if (
+        typeof bundle === 'object' &&
+        bundle.exclude &&
+        bundle.exclude.length > 0
+      ) {
+        options = {
+          ...options,
+          external: (bundle.exclude ?? []) as string[],
+        };
+      }
+
+      if (typeof bundle === 'object' && bundle.preserveModules) {
+        options = {
+          ...options,
+          output: {
+            entryFileNames: '[name].js',
+          },
+        };
+      }
+
+      if (typeof bundle === 'object' && bundle.globals) {
+        options = {
+          ...options,
+          output: {
+            ...options.output,
+            globals: bundle.globals,
+          },
+        };
+      }
+
+      return Object.entries(options).length > 0
+        ? options
+        : {
+            output: undefined,
+          };
+    };
+
+    await buildCommand({
       build: {
-        assetsDir: assets?.directory
-          ? path.join(path.resolve(), assets?.directory)
-          : ASSETS_DIR,
+        // assetsDir,
         emptyOutDir: clean,
-        lib: library
-          ? <LibraryOptions>{
-              entry: path.join(
-                path.resolve(),
-                input?.directory ?? SOURCE_DIR,
-                input?.file ?? SOURCE_MAIN_FILE,
-              ),
-              fileName: fmt =>
-                `${output?.file ?? 'index'}${getViteFormatFileExtension(fmt)}`,
-              formats: viteFormats,
-              name:
-                library && typeof library === 'object'
-                  ? library?.name
-                  : undefined,
-            }
-          : undefined,
+        lib: library ? getLibraryOptions() : undefined,
         manifest,
         minify,
         outDir: path.join(path.resolve(), output?.directory ?? BUILD_DIR),
-        rollupOptions: {
-          external: (typeof bundle === 'object'
-            ? bundle.exclude ?? []
-            : []) as string[],
-          output: {
-            // entryFileNames:
-            //   typeof bundle === 'object' && bundle.preserveModules
-            //     ? '[name].mjs'
-            //     : undefined,
-            globals:
-              typeof bundle === 'object' ? bundle.globals ?? {} : undefined,
-            preserveModules:
-              typeof bundle === 'object' && bundle.preserveModules
-                ? true
-                : false,
-          },
-        },
+        rollupOptions: getRollupOptions(),
         sourcemap,
-        ssrManifest: manifest && webApp?.ssr,
+        ssrManifest: manifest && ssr,
         target,
       },
       define: typeof bundle === 'object' ? bundle?.define : undefined,
@@ -93,13 +116,22 @@ export async function build({
         exclude: (optimize?.exclude ?? []) as string[],
         include: (optimize?.include ?? []) as string[],
       },
-      plugins: webApp?.react ? [react()] : [],
+      plugins: getVitePlugins({
+        pwa,
+        react,
+        styledComponents,
+      }) as PluginOption[],
+      publicDir: assetsDir,
       root: rootDir,
-    };
+    });
 
-    console.log(config);
-
-    await buildCommand(config);
+    // if (Array.isArray(buildOutput)) {
+    //   for (const result of buildOutput) {
+    //     for (const o of result.output) {
+    //       console.log(o);
+    //     }
+    //   }
+    // }
 
     // console.log('result', result);
 

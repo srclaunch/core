@@ -21,7 +21,7 @@ import {
 import { DateTime } from 'luxon';
 
 // import { Navigate } from 'react-router-dom';
-import { AppThunk } from '../../../index';
+import { AppThunk } from '../../../types';
 
 type SignupState = {
   readonly error?: Exception | Error;

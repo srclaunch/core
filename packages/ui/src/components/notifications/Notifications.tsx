@@ -1,8 +1,5 @@
-import {
-  RootState,
-  useSelector,
-  Notification,
-} from '@srclaunch/web-application-state';
+import { Notification } from '@srclaunch/types';
+import { RootState, useSelector } from '@srclaunch/web-application-state';
 import { memo, ReactElement } from 'react';
 import styled from 'styled-components';
 

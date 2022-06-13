@@ -7,7 +7,7 @@ import { ISO8601String } from '@srclaunch/types';
 // import { AuthenticationService } from '@srclaunch/http-services';
 import { DateTime } from 'luxon';
 
-import { AppThunk } from '../../../index';
+import { AppThunk } from '../../../types';
 
 type UsernameAvailabilityState = {
   readonly available?: boolean;

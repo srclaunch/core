@@ -2,7 +2,7 @@ import { UncaughtException } from '@srclaunch/exceptions';
 import { Logger } from '@srclaunch/logger';
 import { Middleware } from 'redux';
 
-import { RootState } from '../index';
+import { RootState } from '../types';
 
 const logger = new Logger();
 
@@ -12,8 +12,8 @@ const exceptionLogger: Middleware<
 > = store => next => action => {
   try {
     return next(action);
-  } catch (err: any) {
-    const exception = new UncaughtException(err.name, { cause: err });
+  } catch (error: any) {
+    const exception = new UncaughtException(error.name, { cause: error });
 
     logger.exception(exception.toJSON());
 
@@ -23,7 +23,7 @@ const exceptionLogger: Middleware<
     //     state: store.getState()
     //   }
     // });
-    throw err;
+    throw error;
   }
 };
 

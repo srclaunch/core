@@ -1,5 +1,5 @@
-import { Link as RouterLink } from '@srclaunch/web-application-state';
 import { memo, MouseEvent, ReactElement, useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { Amount, TextColors, TextSize, TextWeight } from '../../types';
 import {

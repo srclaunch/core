@@ -15,7 +15,7 @@ import {
   getUserGroupModel,
   getUserModel,
   getUserRoleModel,
-} from './models.js';
+} from './models';
 
 export async function copyStubModels() {
   try {

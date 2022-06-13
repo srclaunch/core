@@ -1,5 +1,5 @@
-import { useNavigate } from '@srclaunch/web-application-state';
 import { memo, ReactElement } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Container, ContainerProps } from '../../components/layout/Container';
 import { UserMenu } from '../../components/user/UserMenu';

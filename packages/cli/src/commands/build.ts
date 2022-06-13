@@ -1,9 +1,8 @@
 import {
-  BuildFormat,
   BuildOptions,
   BuildTool,
   ESBuildOptions,
-  Project,
+  ProjectConfig,
   ProjectType,
   ViteBuildOptions,
 } from '@srclaunch/types';
@@ -30,16 +29,16 @@ type BuildFlags = TypedFlags<{
   };
 }>;
 
-export default new Command<Project, BuildFlags>({
+export default new Command<ProjectConfig, BuildFlags>({
   commands: [
-    new Command<Project, BuildFlags>({
+    new Command<ProjectConfig, BuildFlags>({
       description: 'Compiles and optionally bundles a package using esbuild',
       name: 'esbuild',
       run: async ({
         config,
         flags,
       }: {
-        readonly config: Project;
+        readonly config: ProjectConfig;
         readonly flags: BuildFlags;
       }) => {
         const options = config.build as BuildOptions | BuildOptions[];
@@ -49,35 +48,17 @@ export default new Command<Project, BuildFlags>({
         }
 
         if (typeof options === 'object' && !Array.isArray(options)) {
-          if (options.formats && options.formats?.length > 0) {
-            for (const format of options.formats) {
-              await esbuild({
-                ...options,
-                format,
-              } as ESBuildOptions);
-            }
-          } else {
-            await esbuild(options as ESBuildOptions);
-          }
+          await esbuild(options as ESBuildOptions);
         } else if (Array.isArray(options) && options) {
           for (const build of options) {
-            if (build.formats && build.formats?.length > 0) {
-              for (const format of build.formats) {
-                await esbuild({
-                  ...build,
-                  format,
-                } as ESBuildOptions);
-              }
-            } else {
-              await esbuild({
-                ...build,
-              } as ESBuildOptions);
-            }
+            await esbuild({
+              ...build,
+            } as ESBuildOptions);
           }
         }
       },
     }),
-    new Command<Project, BuildFlags>({
+    new Command<ProjectConfig, BuildFlags>({
       description: 'Compiles and bundles a package using Vite',
       name: 'vite',
       run: async ({ config }) => {
@@ -92,7 +73,9 @@ export default new Command<Project, BuildFlags>({
             ...options,
             library:
               config.type === ProjectType.Library ||
-              config.type === ProjectType.ComponentLibrary
+              config.type === ProjectType.ComponentLibrary ||
+              config.type === ProjectType.IconLibrary ||
+              config.type === ProjectType.ThemeLibrary
                 ? {
                     name: config.name,
                   }
@@ -104,7 +87,9 @@ export default new Command<Project, BuildFlags>({
               ...build,
               library:
                 config.type === ProjectType.Library ||
-                config.type === ProjectType.ComponentLibrary
+                config.type === ProjectType.ComponentLibrary ||
+                config.type === ProjectType.IconLibrary ||
+                config.type === ProjectType.ThemeLibrary
                   ? {
                       name: config.name,
                     }
@@ -160,7 +145,7 @@ export default new Command<Project, BuildFlags>({
     config,
     flags,
   }: {
-    readonly config: Project;
+    readonly config: ProjectConfig;
     readonly flags: BuildFlags;
   }) => {
     const options = config.build as BuildOptions | BuildOptions[];
@@ -177,7 +162,9 @@ export default new Command<Project, BuildFlags>({
             clean: options.clean ?? flags.clean,
             library:
               config.type === ProjectType.Library ||
-              config.type === ProjectType.ComponentLibrary
+              config.type === ProjectType.ComponentLibrary ||
+              config.type === ProjectType.IconLibrary ||
+              config.type === ProjectType.ThemeLibrary
                 ? {
                     name: config.name,
                   }
@@ -185,20 +172,10 @@ export default new Command<Project, BuildFlags>({
           } as ViteBuildOptions);
           break;
         default: {
-          if (options.formats && options.formats?.length > 0) {
-            for (const format of options.formats) {
-              await esbuild({
-                ...options,
-                clean: options.clean ?? flags.clean,
-                format,
-              } as ESBuildOptions);
-            }
-          } else {
-            await esbuild({
-              ...options,
-              clean: options.clean ?? flags.clean,
-            } as ESBuildOptions);
-          }
+          await esbuild({
+            ...options,
+            clean: options.clean ?? flags.clean,
+          } as ESBuildOptions);
         }
       }
 
@@ -215,7 +192,9 @@ export default new Command<Project, BuildFlags>({
               ...build,
               library:
                 config.type === ProjectType.Library ||
-                config.type === ProjectType.ComponentLibrary
+                config.type === ProjectType.ComponentLibrary ||
+                config.type === ProjectType.IconLibrary ||
+                config.type === ProjectType.ThemeLibrary
                   ? {
                       name: config.name,
                     }
@@ -223,16 +202,7 @@ export default new Command<Project, BuildFlags>({
             } as ViteBuildOptions);
             break;
           default:
-            if (build.formats && build.formats?.length > 0) {
-              for (const format of build.formats) {
-                await esbuild({
-                  ...build,
-                  format,
-                } as ESBuildOptions);
-              }
-            } else {
-              await esbuild(build as ESBuildOptions);
-            }
+            await esbuild(build as ESBuildOptions);
         }
 
         if (build.types) {

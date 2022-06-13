@@ -5,12 +5,12 @@ import { Model } from '@srclaunch/types';
 import {
   RootState,
   useDispatch,
-  useSearchParams,
   useSelector,
 } from '@srclaunch/web-application-state';
 import { camelCase, capitalCase } from 'change-case';
 import pluralize from 'pluralize';
 import { memo, ReactElement, useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { useEntityEditor } from '../../../hooks/use-entity-editor';
 import { Amount, Colors, TextColors } from '../../../types';

@@ -3,7 +3,6 @@ import {
   Dependencies,
   NodePackage,
   Package,
-  Platform,
   ProjectType,
   UniversalPackage,
 } from '@srclaunch/types';
@@ -106,62 +105,63 @@ const emoji = {
   warning: '\uD83D\uDFE1',
 };
 
-export function getPlatformDependencies(platform?: Platform) {
-  switch (platform) {
-    case Platform.Desktop:
-      return {};
-    case Platform.Mobile:
-      return {};
-    case Platform.NodeJS:
-      return {};
-    case Platform.TV:
-      return {};
-    case Platform.Universal:
-      return {};
-    case Platform.Watch:
-      return {};
-    case Platform.Web:
-      return {};
-  }
-}
-
-export function getPlatformDevDependencies(platform?: Platform) {
-  switch (platform) {
-    case Platform.Desktop:
-      return {};
-    case Platform.Mobile:
-      return {};
-    case Platform.NodeJS:
-      return { ...COMMON_NODE_PLATFORM_DEV_DEPENDENCIES };
-    case Platform.TV:
-      return {};
-    case Platform.Universal:
-      return {};
-    case Platform.Watch:
-      return {};
-    case Platform.Web:
-      return {};
-  }
-}
+// export function getPlatformDependencies(platform?: Platform) {
+//   switch (platform) {
+//     case Platform.Desktop:
+//       return {};
+//     case Platform.Mobile:
+//       return {};
+//     case Platform.NodeJS:
+//       return {};
+//     case Platform.TV:
+//       return {};
+//     case Platform.Universal:
+//       return {};
+//     case Platform.Watch:
+//       return {};
+//     case Platform.Web:
+//       return {};
+//   }
+// }
 
 export function getProjectTypeDependencies(type: ProjectType) {
   switch (type) {
     case ProjectType.APIService:
+      return {};
     case ProjectType.CLIApplication:
+      return {};
     case ProjectType.ComponentLibrary:
+      return {};
     case ProjectType.CoreAPI:
+      return {};
     case ProjectType.DesktopApplication:
-    case ProjectType.GitHubApp:
-    case ProjectType.GitHubAction:
+      return {};
     case ProjectType.FiniteStateMachine:
+      return {};
     case ProjectType.Function:
+      return {};
+    case ProjectType.GitHubApp:
+      return {};
+    case ProjectType.GitHubAction:
+      return {};
+    case ProjectType.IconLibrary:
+      return {};
     case ProjectType.NodeApplication:
+      return {};
     case ProjectType.TaskQueue:
+      return {};
+    case ProjectType.ThemeLibrary:
+      return {};
     case ProjectType.UniversalApplication:
+      return {};
     case ProjectType.WebApplication:
+      return {};
     case ProjectType.WebHook:
+      return {};
     case ProjectType.WebService:
+      return {};
     case ProjectType.WebSocketService:
+      return {};
     default:
       return {};
   }
@@ -170,39 +170,43 @@ export function getProjectTypeDependencies(type: ProjectType) {
 export function getProjectTypeDevDependencies(type?: ProjectType) {
   switch (type) {
     case ProjectType.APIService:
-      return getPlatformDevDependencies(Platform.NodeJS);
+      return { ...COMMON_NODE_PLATFORM_DEV_DEPENDENCIES };
     case ProjectType.CLIApplication:
-      return getPlatformDevDependencies(Platform.NodeJS);
+      return { ...COMMON_NODE_PLATFORM_DEV_DEPENDENCIES };
     case ProjectType.ComponentLibrary:
-      return getPlatformDevDependencies(Platform.Web);
+      return {};
     case ProjectType.CoreAPI:
-      return getPlatformDevDependencies(Platform.NodeJS);
+      return { ...COMMON_NODE_PLATFORM_DEV_DEPENDENCIES };
     case ProjectType.DesktopApplication:
-      return getPlatformDevDependencies(Platform.Desktop);
-    case ProjectType.GitHubApp:
-      return getPlatformDevDependencies(Platform.NodeJS);
-    case ProjectType.GitHubAction:
-      return getPlatformDevDependencies(Platform.NodeJS);
+      return {};
     case ProjectType.FiniteStateMachine:
-      return getPlatformDevDependencies(Platform.NodeJS);
+      return { ...COMMON_NODE_PLATFORM_DEV_DEPENDENCIES };
     case ProjectType.Function:
-      return getPlatformDevDependencies(Platform.NodeJS);
+      return { ...COMMON_NODE_PLATFORM_DEV_DEPENDENCIES };
+    case ProjectType.GitHubApp:
+      return { ...COMMON_NODE_PLATFORM_DEV_DEPENDENCIES };
+    case ProjectType.GitHubAction:
+      return { ...COMMON_NODE_PLATFORM_DEV_DEPENDENCIES };
+    case ProjectType.IconLibrary:
+      return {};
     case ProjectType.Library:
       return {};
     case ProjectType.NodeApplication:
-      return getPlatformDevDependencies(Platform.NodeJS);
+      return { ...COMMON_NODE_PLATFORM_DEV_DEPENDENCIES };
     case ProjectType.TaskQueue:
-      return getPlatformDevDependencies(Platform.NodeJS);
+      return { ...COMMON_NODE_PLATFORM_DEV_DEPENDENCIES };
+    case ProjectType.ThemeLibrary:
+      return {};
     case ProjectType.UniversalApplication:
-      return getPlatformDevDependencies(Platform.NodeJS);
+      return { ...COMMON_NODE_PLATFORM_DEV_DEPENDENCIES };
     case ProjectType.WebApplication:
-      return getPlatformDevDependencies(Platform.Web);
+      return {};
     case ProjectType.WebHook:
-      return getPlatformDevDependencies(Platform.NodeJS);
+      return { ...COMMON_NODE_PLATFORM_DEV_DEPENDENCIES };
     case ProjectType.WebService:
-      return getPlatformDevDependencies(Platform.NodeJS);
+      return { ...COMMON_NODE_PLATFORM_DEV_DEPENDENCIES };
     case ProjectType.WebSocketService:
-      return getPlatformDevDependencies(Platform.NodeJS);
+      return { ...COMMON_NODE_PLATFORM_DEV_DEPENDENCIES };
   }
 
   return {};

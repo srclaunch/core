@@ -12,11 +12,19 @@
     "registry": "https://registry.npmjs.org/"
   },
   "type": "module",
-  "module": "./dist/index.js",
+  "main": "./dist/index.cjs.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "package.json"
+    "package.json",
+    "dist"
   ],
+  "module": "./dist/index.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js"
+    }
+  },
   "scripts": {
     "qr": "srclaunch changesets add --files \".\" --message \"Quick release\" --type \"chore\" && srclaunch release --push",
     "build": "srclaunch build --clean --types",
@@ -26,7 +34,6 @@
     "release": "srclaunch release"
   },
   "devDependencies": {
-    "@srclaunch/cli": "workspace:*",
     "@srclaunch/dx": "workspace:*",
     "@srclaunch/types": "workspace:*",
     "@types/node": "^17.0.35"

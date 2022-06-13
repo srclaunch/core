@@ -1,12 +1,8 @@
 import { Model, ModelField } from '@srclaunch/types';
-import {
-  RootState,
-  useLocation,
-  useSearchParams,
-  useSelector,
-} from '@srclaunch/web-application-state';
+import { RootState, useSelector } from '@srclaunch/web-application-state';
 import queryString from 'query-string';
 import { useEffect, useState } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 export function useEntityEditor() {
   const location = useLocation();

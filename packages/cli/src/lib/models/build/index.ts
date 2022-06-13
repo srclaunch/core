@@ -1,7 +1,8 @@
 // import fs from 'fs-extra';
 // import path from 'node:path';
 // import { Exception } from '@srclaunch/exceptions';
-import { BuildFormat, Workspace } from '@srclaunch/types';
+import { BuildFormat, WorkspaceConfig } from '@srclaunch/types';
+
 import { build as esbuild } from '../../build/esbuild';
 // import { build as vite, ViteBuildOptions } from '../../build/vite';
 // import { build as buildTypes, TypesBuildOptions } from '../../build/types';
@@ -15,26 +16,26 @@ import { buildSrcLaunchModels } from './outputs/srclaunch';
 import { copyStubModels } from './stubs/index';
 
 export type ModelsBuildOptions = {
-  paths: {
-    dependencies: Workspace['dependencies'];
+  readonly paths: {
+    readonly dependencies: WorkspaceConfig['dependencies'];
   };
 };
 
 export async function buildModels(
   path: string,
-  { dependencies }: { dependencies: Workspace['dependencies'] },
+  { dependencies }: { readonly dependencies: WorkspaceConfig['dependencies'] },
 ) {
   console.info('Building Core Object dependencies...');
 
   console.info('Adding out of box Core Objects...');
-  await copyStubModels();
+  // await copyStubModels();
 
-  console.info('Building SrcLaunch models...');
-  await buildSrcLaunchModels(path, dependencies.models.path);
-  await esbuild({
-    format: BuildFormat.ESM,
-    rootDir: dependencies.models.path,
-  });
+  // console.info('Building SrcLaunch models...');
+  // await buildSrcLaunchModels(path, dependencies.models.path);
+  // await esbuild({
+  //   format: BuildFormat.ESM,
+  //   rootDir: dependencies.models.path,
+  // });
 
   // console.info('Creating model type definitions...');
   // await buildModelTypes(projectConfig.dependencies.types.path);

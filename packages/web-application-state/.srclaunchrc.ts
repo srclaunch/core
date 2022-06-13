@@ -4,45 +4,56 @@ import {
   BuildPlatform,
   BuildTarget,
   BuildTool,
-  CodeFormatterTool,
-  CodeLinterTool,
+  CodeFormatter,
+  CodeLinter,
   License,
-  Project,
+  LibraryConfig,
   ProjectType,
   PublishAccess,
-  StaticTypingTool,
+  StaticTyping,
   TestReporter,
   TestTool,
   UniversalPackage,
 } from '@srclaunch/types';
 
-export default <Project>{
+export default <LibraryConfig>{
   name: '@srclaunch/web-application-state',
   description: 'Redux state and utilities used by AppLab web applications',
   type: ProjectType.Library,
+  react: true,
   build: {
     bundle: {
-      exclude: ['react', 'react-dom/client', 'styled-components'],
+      exclude: [
+        'react',
+        'redux',
+        'react-redux',
+        'react-router',
+        'react-router-dom',
+        'react-dom/client',
+        'styled-components',
+      ],
       globals: {
         react: 'React',
         'react-dom/client': 'ReactDOMClient',
         'styled-components': 'styled',
       },
     },
+    react: true,
+
     input: {
       directory: 'src',
       file: 'index.tsx',
     },
     formats: [BuildFormat.ESM, BuildFormat.UMD],
     platform: BuildPlatform.Browser,
-    target: BuildTarget.ESNext,
+    target: BuildTarget.Modules,
     tool: BuildTool.Vite,
   },
   environments: {
     development: {
-      formatters: [CodeFormatterTool.Prettier],
-      linters: [CodeLinterTool.ESLint],
-      staticTyping: [StaticTypingTool.TypeScript],
+      formatters: [CodeFormatter.Prettier],
+      linters: [CodeLinter.ESLint],
+      staticTyping: [StaticTyping.TypeScript],
     },
   },
   test: {

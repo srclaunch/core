@@ -4,7 +4,7 @@ import { User, UserPreferences } from '@srclaunch/types';
 import { DateTime } from 'luxon';
 
 // import { UserService } from '@srclaunch/http-services';
-import { AppThunk } from '../../index';
+import { AppThunk } from '../../types';
 
 type UserDetailsState = Partial<User> & {
   readonly attributes?: Record<string, string>;

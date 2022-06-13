@@ -1,4 +1,4 @@
-import { Project, TestTool } from '@srclaunch/types';
+import { ProjectConfig, TestTool } from '@srclaunch/types';
 import { TypedFlags } from 'meow';
 
 import { Command, CommandType } from '../lib/command';
@@ -25,16 +25,16 @@ type TestFlags = TypedFlags<{
   };
 }>;
 
-export default new Command<Project, TestFlags>({
+export default new Command<ProjectConfig, TestFlags>({
   commands: [
-    new Command<Project, TestFlags>({
+    new Command<ProjectConfig, TestFlags>({
       description: 'Run tests using Ava',
       name: 'ava',
       run: async ({
         config,
         flags,
       }: {
-        readonly config: Project;
+        readonly config: ProjectConfig;
         readonly flags: TestFlags;
       }) => {
         if (typeof config.test === 'object' && !Array.isArray(config.test)) {
@@ -54,7 +54,7 @@ export default new Command<Project, TestFlags>({
         }
       },
     }),
-    new Command<Project, TestFlags>({
+    new Command<ProjectConfig, TestFlags>({
       description: 'Runs tests using Jest',
       name: 'jest',
       run: async ({ config, flags }) => {
@@ -76,7 +76,7 @@ export default new Command<Project, TestFlags>({
       },
       type: CommandType.Project,
     }),
-    new Command<Project, TestFlags>({
+    new Command<ProjectConfig, TestFlags>({
       description: 'Generates coverage reports',
       name: 'coverage',
       run: async ({ config, flags }) => {
@@ -90,7 +90,7 @@ export default new Command<Project, TestFlags>({
       },
       type: CommandType.Project,
     }),
-    new Command<Project, TestFlags>({
+    new Command<ProjectConfig, TestFlags>({
       description: 'Shows help for test commands',
       name: 'help',
       run: async () => {
@@ -105,7 +105,7 @@ export default new Command<Project, TestFlags>({
     config,
     flags,
   }: {
-    readonly config: Project;
+    readonly config: ProjectConfig;
     readonly flags: TestFlags;
   }) => {
     if (typeof config.test === 'object' && !Array.isArray(config.test)) {

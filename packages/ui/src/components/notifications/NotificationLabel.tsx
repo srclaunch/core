@@ -1,5 +1,6 @@
+import { NotificationType } from '@srclaunch/types';
 import { memo, ReactElement } from 'react';
-import { NotificationType } from '@srclaunch/web-application-state';
+
 import {
   AlignHorizontal,
   AlignVertical,
@@ -12,8 +13,8 @@ import {
 } from '../../types';
 import { Container, ContainerProps } from '../layout/Container';
 import { Label } from '../typography/Label';
-import { Orb } from './Orb';
 import { TextProps } from '../typography/Text';
+import { Orb } from './Orb';
 
 export type NotificationLabelProps = ContainerProps &
   TextProps & {

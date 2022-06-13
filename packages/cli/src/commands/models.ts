@@ -1,35 +1,33 @@
-import { Command, CommandType } from '../lib/command.js';
+import { WorkspaceConfig } from '@srclaunch/types';
+import path from 'node:path';
 
+import { Command, CommandType } from '../lib/command.js';
+import { cleanModels } from '../lib/models/build/clean.js';
 import { buildModels } from '../lib/models/build/index.js';
 import { listModels } from '../lib/models/list.js';
-import { cleanModels } from '../lib/models/build/clean.js';
-import { Project, Workspace } from '@srclaunch/types';
-import path from 'path';
 
 export default new Command({
-  name: '',
-  description: '',
   commands: [
-    new Command<Workspace>({
-      name: 'clean',
+    new Command<WorkspaceConfig>({
       description: '',
+      name: 'clean',
       run: async ({ config, flags }) => {
         await cleanModels();
       },
       type: CommandType.Workspace,
     }),
-    new Command<Workspace>({
-      name: 'create',
+    new Command<WorkspaceConfig>({
       description: '',
+      name: 'create',
       run: async ({ config, flags }) => {},
       type: CommandType.Workspace,
     }),
-    new Command<Workspace>({
-      name: 'build',
+    new Command<WorkspaceConfig>({
       description: '',
+      name: 'build',
       run: async ({ config, flags }) => {
         await buildModels(
-          path.join(path.resolve(), config.models?.path ?? 'models'),
+          path.join(path.resolve(), config.modelsDir ?? 'models'),
           {
             dependencies: config.dependencies,
           },
@@ -37,17 +35,17 @@ export default new Command({
       },
       type: CommandType.Workspace,
     }),
-    new Command<Workspace>({
-      name: 'list',
+    new Command<WorkspaceConfig>({
       description: '',
+      name: 'list',
       run: async ({ config, flags }) => {
         await listModels();
       },
       type: CommandType.Workspace,
     }),
-    new Command<Workspace>({
-      name: 'help',
+    new Command<WorkspaceConfig>({
       description: 'Shows help for model commands',
+      name: 'help',
       run: async () => {
         console.info(
           'Available model commands are: clean, build, list, and help.',
@@ -56,4 +54,6 @@ export default new Command({
       type: CommandType.Workspace,
     }),
   ],
+  description: '',
+  name: '',
 });

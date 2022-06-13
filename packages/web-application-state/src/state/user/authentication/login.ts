@@ -13,7 +13,7 @@ import {
 // import * as AWS from 'aws-sdk/global';
 import { DateTime } from 'luxon';
 
-import { AppThunk } from '../../../index';
+import { AppThunk } from '../../../types';
 import { setUserAttributes } from '../details';
 import { setLoggedIn, setLoggedOut } from './index';
 

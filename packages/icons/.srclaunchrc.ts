@@ -4,43 +4,40 @@ import {
   BuildPlatform,
   BuildTarget,
   BuildTool,
-  CodeFormatterTool,
-  CodeLinterTool,
+  CodeFormatter,
+  CodeLinter,
   License,
-  Project,
+  IconLibraryConfig,
   ProjectType,
   PublishAccess,
-  StaticTypingTool,
+  StaticTyping,
   TestReporter,
   TestTool,
 } from '@srclaunch/types';
 
-export default <Project>{
+export default <IconLibraryConfig>{
   name: '@srclaunch/icons',
   description: 'React icon components',
-  type: ProjectType.ComponentLibrary,
+  type: ProjectType.IconLibrary,
+  react: true,
   build: {
-    bundle: {
-      exclude: ['react'],
-      globals: {
-        react: 'React',
-      },
-    },
     formats: [BuildFormat.ESM, BuildFormat.UMD],
-    input: {
-      directory: 'src',
-      file: 'index.tsx',
-    },
     platform: BuildPlatform.Browser,
-    target: BuildTarget.ESNext,
+    react: true,
+    target: BuildTarget.Modules,
     tool: BuildTool.Vite,
   },
-
+  docs: {
+    assetsDir: 'assets',
+    entryFile: 'docs/index.html',
+    react: true,
+    rootDir: 'docs',
+  },
   environments: {
     development: {
-      formatters: [CodeFormatterTool.Prettier],
-      linters: [CodeLinterTool.ESLint],
-      staticTyping: [StaticTypingTool.TypeScript],
+      formatters: [CodeFormatter.Prettier],
+      linters: [CodeLinter.ESLint],
+      staticTyping: [StaticTyping.TypeScript],
     },
   },
   test: {

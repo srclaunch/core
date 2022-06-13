@@ -1,17 +1,18 @@
 import { combineReducers, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ISO8601String } from '@srclaunch/types';
 import { DateTime } from 'luxon';
+
 import login from './login';
 import signup from './signup';
 import usernameAvailability from './username-availability';
 import verification from './verification';
 
 type AuthenticationState = {
-  initialized: boolean;
-  lastUpdated?: ISO8601String;
-  loggedIn: boolean;
-  tokens?: {
-    accessToken: string;
+  readonly initialized: boolean;
+  readonly lastUpdated?: ISO8601String;
+  readonly loggedIn: boolean;
+  readonly tokens?: {
+    readonly accessToken: string;
   };
 };
 
@@ -28,7 +29,7 @@ const slice = createSlice({
     setLoggedIn: (
       state,
       action: PayloadAction<{
-        accessToken: string;
+        readonly accessToken: string;
       }>,
     ) => {
       state.lastUpdated = DateTime.now().toISO();
@@ -46,9 +47,9 @@ const slice = createSlice({
 export const { setLoggedIn, setLoggedOut } = slice.actions;
 
 export default combineReducers({
-  state: slice.reducer,
   login,
   signup,
+  state: slice.reducer,
   usernameAvailability,
   verification,
 });

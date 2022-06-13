@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: {
-  detail: string;
-  history: {
-    page: string;
-    detail: string;
+  readonly detail: string;
+  readonly history: readonly {
+    readonly page: string;
+    readonly detail: string;
   }[];
-  page: string;
+  readonly page: string;
 } = {
   detail: '',
   history: [],

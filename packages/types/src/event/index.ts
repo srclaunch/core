@@ -1,5 +1,6 @@
 export interface Event {
-  id?: string;
-  name?: string;
-  description?: string;
+  readonly context?: Record<string, unknown>;
+  readonly id?: string;
+  readonly name?: string;
+  readonly description?: string;
 }

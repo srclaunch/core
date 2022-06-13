@@ -1,5 +1,6 @@
-export { GitHubAction, GitHubRunnerOS } from './action/github';
-export type { Action } from './action/index';
+export type { ActionOptions } from './action';
+export { Action, ActionStatus, ActionType } from './action';
+export { GitHubAction, GitHubActions, GitHubRunnerOS } from './action/github';
 export type { Activity } from './activity/index';
 export { Activities } from './activity/index';
 export type { BusinessEvent } from './analytics/business/index';
@@ -24,23 +25,11 @@ export type {
   WebsiteVisitEvent,
 } from './analytics/web/index';
 export { PageLeaveMethod } from './analytics/web/index';
-export type {
-  Application,
-  DesktopApplication,
-  MobileApplication,
-  WebApplication,
-} from './application/index';
-export type {
-  WebApplicationConfiguration,
-  WebApplicationRunOptions,
-} from './application/web';
-export type {
-  BuildOptions,
-  BundleOptions,
-  ESBuildOptions,
-  ViteBuildOptions,
-} from './build';
-export { BuildFormat, BuildPlatform, BuildTarget, BuildTool } from './build';
+export type { BuildOptions, BundleOptions } from './build';
+export { BuildFormat, BuildTarget, BuildTool } from './build';
+export type { ESBuildFormat, ESBuildOptions } from './build/esbuild';
+export { BuildPlatform } from './build/esbuild';
+export type { ViteBuildFormat, ViteBuildOptions } from './build/vite';
 export type { PaymentMethod } from './business/commerce/payment-method/index';
 export { PaymentIntentStatus } from './business/commerce/payment-method/index';
 export type { Product } from './business/commerce/product/index';
@@ -62,7 +51,20 @@ export {
 } from './communications/chat';
 export { CommunicationMedium } from './communications/medium';
 export * from './condition';
-export type { SrcLaunchConfig, SrcLaunchConfigFile } from './configuration';
+export type {
+  ProjectConfig,
+  SrcLaunchConfig,
+  SrcLaunchConfigFile,
+} from './config';
+export type { ComponentLibraryConfig } from './config/component-library';
+export type { DesktopAppConfig } from './config/desktop-application';
+export type { IconLibraryConfig } from './config/icon-library';
+export type { LibraryConfig } from './config/library';
+export type { MobileAppConfig } from './config/mobile-application';
+export type { ThemeLibraryConfig } from './config/theme-library';
+export type { WebAppConfig, WebAppOptions } from './config/web-application';
+export type { WorkflowConfig } from './config/workflow';
+export type { WorkspaceConfig, WorkspacePackage } from './config/workspace';
 export type { DataPoint } from './data/data-point/index';
 export { DataPointMetric } from './data/data-point/index';
 export type { Entity } from './data/entity/index';
@@ -170,15 +172,9 @@ export {
   CloudProviders,
   InfrastuctureClass,
 } from './deployment/infrastructure';
-export {
-  CodeFormatterTool,
-  CodeLinterTool,
-  StaticTypingTool,
-} from './development';
+export { CodeFormatter, CodeLinter, StaticTyping } from './development';
 export type { Environment } from './environment';
 export { Environments, EnvironmentType } from './environment';
-export type { RunOptions } from './environment/run';
-export { Runner } from './environment/run';
 export type {
   ExceptionConstructorArgs,
   ExceptionObject,
@@ -187,6 +183,7 @@ export type { ExceptionRemediation } from './error/exception/remediation';
 export { RetryStrategy } from './error/exception/remediation';
 export { ChangesetEvent } from './event/changeset';
 export type { Event } from './event/index';
+export { ProjectEvent } from './event/project';
 export { RepositoryEvent } from './event/repository';
 export type { Currency } from './i18n/currency';
 export {
@@ -258,12 +255,10 @@ export type {
 } from './people/person';
 export type { Pipeline } from './pipeline';
 export type { Airport } from './places/transportation/airport';
-export { Platform } from './platform';
 export type { Problem } from './problem';
 export { ProblemSeverity, ProblemType } from './problem';
-export type { Project } from './project';
 export { ProjectType } from './project';
-export type { Queue, QueueInitializationResult, Task } from './queue';
+export type { Queue, QueueInitializationResult } from './queue';
 export { Status } from './queue';
 export type { PublishOptions, ReleaseOptions } from './release';
 export { PublishAccess } from './release';
@@ -275,6 +270,10 @@ export type { Service } from './service';
 export type { File } from './storage/file-system';
 export type { TestOptions } from './test';
 export { TestReporter, TestTool } from './test';
+export type { Modal } from './ui/modal';
+export { ModalType } from './ui/modal';
+export type { Notification } from './ui/notification';
+export { NotificationType } from './ui/notification';
 export type { CSSModule, Theme } from './ui/theme';
 export type { UserAccessDetails, UserAccessDevice } from './user/access';
 export type {
@@ -300,15 +299,12 @@ export type {
   UserPreferences,
 } from './user/preferences';
 export { UserRole } from './user/role';
-export type { Workflow, WorkflowStep } from './workflow';
-export type { ChangesetWorkflow } from './workflow/changeset';
-export type {
-  GitHubActionsWorkflow,
-  GitHubActionsWorkflowJob,
-  GitHubActionsWorkflowStep,
-} from './workflow/github-action';
-export type { Workspace, WorkspacePackage } from './workspace';
-
+export type { GitHubWorkflowOptions } from './workflow/github';
+export { GitHubWorkflow } from './workflow/github';
+export type { WorkflowOptions } from './workflow/index';
+export { Workflow } from './workflow/index';
+export type { TaskOptions } from './workflow/task';
+export { Task } from './workflow/task';
 // export function getTypeFromPrimitive(primitive: Primitive) {
 //   switch (primitive) {
 //     case Primitive.Boolean:

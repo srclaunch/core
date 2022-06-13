@@ -1,32 +1,40 @@
-import { ChangeType, Project } from '@srclaunch/types';
-// import { readFile, writeFile } from '@srclaunch/logic';
-import path from 'path';
-import pc from 'picocolors';
+import { ChangeType, ProjectConfig } from '@srclaunch/types';
 import { TypedFlags } from 'meow';
-import { Command, CommandType } from '../lib/command';
-import { createRelease } from '../lib/release';
-import { getBranchName, push } from '../lib/git';
-
-import { InteractiveModeFlag } from '../lib/flags';
-
+// import { readFile, writeFile } from '@srclaunch/logic';
+import path from 'node:path';
+import pc from 'picocolors';
 
 import { createChangeset } from '../lib/changesets';
+import { Command, CommandType } from '../lib/command';
+import { InteractiveModeFlag } from '../lib/flags';
+import { getBranchName, push } from '../lib/git';
+import { createRelease } from '../lib/release';
 
 type ReleaseFlags = TypedFlags<
   InteractiveModeFlag & {
-    push: {
-      alias: 'p';
-      default: false;
-      description: 'Pushes changes to remote repository';
-      isRequired: false;
-      type: 'boolean';
+    readonly push: {
+      readonly alias: 'p';
+      readonly default: false;
+      readonly description: 'Pushes changes to remote repository';
+      readonly isRequired: false;
+      readonly type: 'boolean';
     };
   }
 >;
 
-export default new Command<Project, ReleaseFlags>({
-  name: 'release',
+export default new Command<ProjectConfig, ReleaseFlags>({
+  commands: [
+    new Command<ProjectConfig, ReleaseFlags>({
+      description: 'Shows help for release commands',
+      name: 'help',
+      run: async () => {
+        console.info('Available release commands are: create, help');
+      },
+      type: CommandType.Project,
+    }),
+  ],
   description: 'Create a release',
+  name: 'release',
   run: async ({ config, flags }) => {
     try {
       const result = await createRelease({
@@ -39,19 +47,9 @@ export default new Command<Project, ReleaseFlags>({
       //     flags.push ? `and pushed to ${pc.bold(result.repo)}` : ``
       //   } on branch ${pc.bold(result.branch)}`,
       // );
-    } catch (err) {
-      console.error('err', err);
+    } catch (error) {
+      console.error('err', error);
     }
   },
   type: CommandType.Project,
-  commands: [
-    new Command<Project, ReleaseFlags>({
-      name: 'help',
-      description: 'Shows help for release commands',
-      run: async () => {
-        console.info('Available release commands are: create, help');
-      },
-      type: CommandType.Project,
-    }),
-  ],
 });

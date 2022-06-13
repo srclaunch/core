@@ -2,12 +2,10 @@ import {
   Children,
   cloneElement,
   memo,
-  Fragment,
   ReactElement,
   ReactNode,
   useState,
 } from 'react';
-import styled, { css } from 'styled-components';
 import { isFragment } from 'react-is';
 
 import {
@@ -77,8 +75,8 @@ export const Tabs = memo(
       >
         <Container
           alignment={{
-            orientation: Orientation.Horizontal,
             horizontal: AlignHorizontal.Center,
+            orientation: Orientation.Horizontal,
           }}
           margin={{
             bottom: Amount.Default,

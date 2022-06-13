@@ -1,17 +1,17 @@
 import { BuildFormat } from '@srclaunch/types';
 
-export function getFormatFileExtension(format: BuildFormat) {
+export function getFormatFileSubExtension(format: BuildFormat) {
   switch (format) {
     case BuildFormat.CJS:
-      return '.cjs.js';
+      return 'cjs';
     case BuildFormat.ESM:
-      return '.esm.js';
+      return 'esm';
     case BuildFormat.IIFE:
-      return '.iife.js';
+      return 'iife';
     case BuildFormat.UMD:
-      return '.umd.js';
+      return 'umd';
     default:
-      return `${format}.js`;
+      return `${format}`;
   }
 }
 

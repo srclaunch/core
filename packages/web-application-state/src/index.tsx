@@ -1,10 +1,7 @@
 import {
-  AnyAction,
   configureStore,
-  EnhancedStore,
   Middleware,
   ReducersMapObject,
-  ThunkAction,
 } from '@reduxjs/toolkit';
 import { HttpClient } from '@srclaunch/http-client';
 import {
@@ -13,7 +10,8 @@ import {
   ModelProps,
   Route as RouteType,
   RouteRole,
-  WebApplicationConfiguration,
+  WebAppConfig,
+  WebAppOptions,
 } from '@srclaunch/types';
 import { getEnvironment } from '@srclaunch/web-environment';
 import { createBrowserHistory } from 'history';
@@ -28,6 +26,7 @@ import { setConfig } from './state/app/config';
 import { setRoutes } from './state/app/routes';
 import { addThemes, setTheme } from './state/ui/themes';
 import { refreshSession } from './state/user/authentication/login';
+import { RootState } from './types';
 
 const environment = getEnvironment();
 
@@ -41,7 +40,7 @@ export const createStore = ({
   readonly models?: Record<string, ModelProps<Model>>;
   readonly reducers?: ReducersMapObject;
   readonly middleware?: readonly Middleware[];
-}): EnhancedStore =>
+}) =>
   configureStore({
     devTools:
       environment.type === EnvironmentType.Development ||
@@ -57,7 +56,7 @@ export const renderReduxWebApp = async ({
   actions,
   authentication = false,
   container,
-  config,
+  options,
   httpClient,
   routes,
   store,
@@ -65,19 +64,19 @@ export const renderReduxWebApp = async ({
   readonly actions?: Record<string, (...args: readonly any[]) => any>;
   readonly authentication?: boolean;
   readonly container?: ReactElement;
-  readonly config?: WebApplicationConfiguration;
+  readonly options?: WebAppOptions;
   readonly httpClient?: typeof HttpClient;
   readonly routes: readonly RouteType[];
   readonly store: RootState;
 }): Promise<void> => {
-  await store.dispatch(setConfig(config));
+  await store.dispatch(setConfig(options));
 
-  if (config?.ui?.themes?.custom) {
-    await store.dispatch(addThemes(config.ui.themes.custom));
+  if (options?.ui?.themes?.custom) {
+    await store.dispatch(addThemes(options.ui.themes.custom));
   }
 
-  if (config?.ui?.themes?.default) {
-    await store.dispatch(setTheme(config.ui.themes.default));
+  if (options?.ui?.themes?.default) {
+    await store.dispatch(setTheme(options.ui.themes.default));
   }
 
   await store.dispatch(
@@ -101,7 +100,6 @@ export const renderReduxWebApp = async ({
                     <Route
                       index
                       element={
-                        // @ts-ignore
                         <Component actions={actions} httpClient={httpClient} />
                       }
                       key={k}
@@ -113,7 +111,6 @@ export const renderReduxWebApp = async ({
                   return (
                     <Route
                       element={
-                        // @ts-ignore
                         <Component actions={actions} httpClient={httpClient} />
                       }
                       key={k}
@@ -125,7 +122,6 @@ export const renderReduxWebApp = async ({
                 return (
                   <Route
                     element={
-                      // @ts-ignore
                       <route.component
                         actions={actions}
                         httpClient={httpClient}
@@ -143,19 +139,7 @@ export const renderReduxWebApp = async ({
   );
 };
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-// @ts-ignore
-export type RootState = ReturnType<typeof createStore.getState>;
-
-export type AppDispatch = RootState['dispatch'];
-
-export type AppThunk<ReturnType = unknown> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  AnyAction
->;
-
+export { RouterView } from './components/RouterView';
 export { useAppDispatch as useDispatch } from './hooks/use-dispatch';
 export { useAppSelector as useSelector } from './hooks/use-selector';
 export { hideModelPanel, showModelPanel } from './state/models/index';
@@ -177,24 +161,21 @@ export {
   getPaymentMethods,
 } from './state/user/payment-methods';
 export { getSubscriptions } from './state/user/subscriptions';
-export type { Modal } from './types/modal';
-export type { Notification } from './types/notification';
-export { NotificationType } from './types/notification';
-export { matchPath, matchRoutes } from 'react-router';
-export {
-  Link,
-  Navigate,
-  NavLink,
-  Outlet,
-  Route,
-  Router,
-  Routes,
-  useLocation,
-  useMatch,
-  useNavigate,
-  useParams,
-  useResolvedPath,
-  useSearchParams,
-} from 'react-router-dom';
-
 export { createStore as store };
+export * from './types';
+// export { matchPath, matchRoutes } from 'react-router';
+// export {
+//   Link,
+//   Navigate,
+//   NavLink,
+//   Outlet,
+//   Route,
+//   Router,
+//   Routes,
+//   useLocation,
+//   useMatch,
+//   useNavigate,
+//   useParams,
+//   useResolvedPath,
+//   useSearchParams,
+// } from 'react-router-dom';

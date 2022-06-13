@@ -12,18 +12,25 @@
     "registry": "https://registry.npmjs.org/"
   },
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "dist/index.iife.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
     "package.json"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.iife.js"
+    }
+  },
   "scripts": {
-    "build:esbuild": "esbuild --bundle --minify --outfile=dist/index.js --format=esm --target=esnext --platform=neutral src/index.ts",
+    "build:esbuild:esm": "esbuild --bundle --minify --outfile=dist/index.esm.js --format=esm --target=esnext --platform=neutral --sourcemap src/index.ts",
+    "build:esbuild:iife": "esbuild --bundle --minify --outfile=dist/index.iife.js --format=iife --target=esnext --platform=neutral --sourcemap src/index.ts",
     "build:spack": "spack --config \"$PWD/spack.config.cjs\"",
     "build:types": "tsc ",
-    "build": "rm -fr ./dist && pnpm build:esbuild && pnpm build:types"
+    "build": "rm -fr ./dist && pnpm build:esbuild:esm && pnpm build:esbuild:iife && pnpm build:types"
   },
   "devDependencies": {
     "@srclaunch/dx": "workspace:*",

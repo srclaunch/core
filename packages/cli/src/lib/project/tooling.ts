@@ -1,13 +1,12 @@
 import {
-  CodeFormatterTool,
-  CodeLinterTool,
-  Project,
+  CodeFormatter,
+  CodeLinter,
+  ProjectConfig,
   ProjectType,
-  StaticTypingTool,
+  StaticTyping,
 } from '@srclaunch/types';
 import fs from 'fs-extra';
 import path from 'node:path';
-import pc from 'picocolors';
 
 import { PRETTIER_CONFIG_CONTENT } from '../../constants/formatters';
 import {
@@ -28,18 +27,20 @@ export async function writeToolingConfiguration({
   project,
   staticTyping = [],
 }: {
-  readonly formatters?: readonly CodeFormatterTool[];
-  readonly linters?: readonly CodeLinterTool[];
-  readonly project: Project;
-  readonly staticTyping?: readonly StaticTypingTool[];
+  readonly formatters?: readonly CodeFormatter[];
+  readonly linters?: readonly CodeLinter[];
+  readonly project: ProjectConfig;
+  readonly staticTyping?: readonly StaticTyping[];
 }) {
   if (staticTyping) {
     for (const tool of staticTyping) {
       switch (tool) {
-        case StaticTypingTool.TypeScript:
+        case StaticTyping.TypeScript:
           const uiConfig =
             project.type === ProjectType.WebApplication ||
-            project.type === ProjectType.ComponentLibrary;
+            project.type === ProjectType.ComponentLibrary ||
+            ProjectType.IconLibrary ||
+            ProjectType.ThemeLibrary;
 
           await fs.writeFile(
             path.resolve('./tsconfig.json'),
@@ -54,7 +55,7 @@ export async function writeToolingConfiguration({
     if (formatters) {
       for (const formatter of formatters) {
         switch (formatter) {
-          case CodeFormatterTool.Prettier:
+          case CodeFormatter.Prettier:
             await fs.writeFile(
               path.resolve('./.prettierrc.cjs'),
               PRETTIER_CONFIG_CONTENT,
@@ -70,18 +71,20 @@ export async function writeToolingConfiguration({
     if (linters) {
       const ui =
         project.type === ProjectType.WebApplication ||
-        project.type === ProjectType.ComponentLibrary;
+        project.type === ProjectType.ComponentLibrary ||
+        ProjectType.IconLibrary ||
+        ProjectType.ThemeLibrary;
 
       for (const linter of linters) {
         switch (linter) {
-          case CodeLinterTool.ESLint:
+          case CodeLinter.ESLint:
             await fs.writeFile(
               path.resolve('./.eslintrc.cjs'),
               ui ? ESLINT_UI_CONFIG_CONTENT : ESLINT_CONFIG_CONTENT,
             );
             // console.info(`${chalk.green('✔')} added ESLint config`);
             break;
-          case CodeLinterTool.Stylelint:
+          case CodeLinter.Stylelint:
             await fs.writeFile(
               path.resolve('./.stylelintrc.js'),
               ui ? STYLELINT_UI_CONFIG_CONTENT : STYLELINT_CONFIG_CONTENT,

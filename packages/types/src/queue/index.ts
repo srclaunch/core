@@ -1,4 +1,5 @@
 import { ISO8601 } from '../data/primitive';
+import { Task } from '../workflow/task';
 
 export enum Status {
   Canceled = 'canceled',
@@ -8,18 +9,6 @@ export enum Status {
   Running = 'running',
   Started = 'started',
 }
-
-export type Task = {
-  readonly description?: string;
-  readonly ended?: ISO8601;
-  readonly input?: Record<string, string | number | boolean>;
-  readonly output?: Record<string, string | number | boolean>;
-  readonly name: string;
-  readonly id?: string;
-  readonly run: (input: Task['input']) => Promise<void>;
-  readonly started?: ISO8601;
-  readonly status?: Status;
-};
 
 export type QueueLog = {
   readonly id?: string;
@@ -36,7 +25,7 @@ export type Queue = {
   readonly finished: readonly Task['id'][];
   readonly id: string;
   readonly input?: Record<string, string | number | boolean>;
-  readonly logs?: QueueLog[];
+  readonly logs?: readonly QueueLog[];
   readonly name: string;
   readonly output?: Record<string, string | number | boolean>;
   readonly queued: readonly Task['id'][];

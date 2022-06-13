@@ -1,23 +1,24 @@
-import { Workspace } from '@srclaunch/types';
+import { WorkspaceConfig } from '@srclaunch/types';
+
 import { Command, CommandType } from '../lib/command.js';
 
 export default new Command({
-  name: 'infrastructure',
-  description: 'Manage infrastructure',
   commands: [
-    new Command<Workspace>({
-      name: 'deploy',
+    new Command<WorkspaceConfig>({
       description: 'Deploy infrastructure',
+      name: 'deploy',
       run: async ({ config, flags }) => {},
       type: CommandType.Workspace,
     }),
-    new Command<Workspace>({
-      name: 'help',
+    new Command<WorkspaceConfig>({
       description: 'Shows help for infrastructure commands',
+      name: 'help',
       run: async () => {
         console.info('Available infrastructure commands are: deploy, help');
       },
       type: CommandType.Workspace,
     }),
   ],
+  description: 'Manage infrastructure',
+  name: 'infrastructure',
 });

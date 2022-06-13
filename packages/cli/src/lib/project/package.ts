@@ -1,4 +1,4 @@
-import { Project } from '@srclaunch/types';
+import { ProjectConfig } from '@srclaunch/types';
 
 import {
   PROJECT_PACKAGE_JSON_BUILD_SCRIPTS,
@@ -19,7 +19,7 @@ export function getPackageScripts({
 }: {
   readonly build?: boolean;
   readonly release?: boolean;
-  readonly run?: Project['environments'];
+  readonly run?: ProjectConfig['environments'];
   readonly test?: boolean;
 }): Record<string, string> {
   let scripts = {

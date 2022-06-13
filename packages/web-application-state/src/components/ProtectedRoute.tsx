@@ -1,7 +1,8 @@
-import React, { PropsWithChildren, ReactElement } from 'react';
+import { PropsWithChildren, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { RootState } from '../index';
+
+import { RootState } from '../types';
 
 type ProtectedRouteProps = PropsWithChildren<{}>;
 

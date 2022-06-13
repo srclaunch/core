@@ -1,6 +1,7 @@
-import { memo, ReactElement } from 'react';
 import { DualLightIcons } from '@srclaunch/icons';
-import { useNavigate } from '@srclaunch/web-application-state';
+import { memo, ReactElement } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import {
   Alignment,
   AlignVertical,

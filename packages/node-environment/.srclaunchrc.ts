@@ -3,23 +3,23 @@ import {
   BuildPlatform,
   BuildTarget,
   BuildTool,
-  CodeFormatterTool,
-  CodeLinterTool,
-  StaticTypingTool,
+  CodeFormatter,
+  CodeLinter,
+  StaticTyping,
   License,
-  Project,
+  LibraryConfig,
   ProjectType,
   PublishAccess,
   TestReporter,
   TestTool,
 } from '@srclaunch/types';
 
-export default <Project>{
+export default <LibraryConfig>{
   name: '@srclaunch/node-environment',
   description: 'Node.js environment specific utilities for SrcLaunch services',
   type: ProjectType.Library,
   build: {
-    formats: [BuildFormat.ESM, BuildFormat.IIFE],
+    formats: [BuildFormat.ESM, BuildFormat.CJS],
     platform: BuildPlatform.Node,
     target: BuildTarget.ESNext,
     tool: BuildTool.ESBuild,
@@ -32,9 +32,9 @@ export default <Project>{
   },
   environments: {
     development: {
-      formatters: [CodeFormatterTool.Prettier],
-      linters: [CodeLinterTool.ESLint],
-      staticTyping: [StaticTypingTool.TypeScript],
+      formatters: [CodeFormatter.Prettier],
+      linters: [CodeLinter.ESLint],
+      staticTyping: [StaticTyping.TypeScript],
     },
   },
   release: {

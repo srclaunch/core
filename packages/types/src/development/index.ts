@@ -1,12 +1,12 @@
-export enum CodeFormatterTool {
+export enum CodeFormatter {
   Prettier = 'prettier',
 }
 
-export enum CodeLinterTool {
+export enum CodeLinter {
   ESLint = 'eslint',
   Stylelint = 'stylelint',
 }
 
-export enum StaticTypingTool {
+export enum StaticTyping {
   TypeScript = 'typescript',
 }

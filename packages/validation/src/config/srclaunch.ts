@@ -1,9 +1,9 @@
-import { Condition, Project } from '@srclaunch/types';
+import { Condition, ProjectConfig } from '@srclaunch/types';
 
 import { getValidationProblemLabel } from '../problem';
 import { ValidationProblem } from '../types/problem';
 
-export const validateSrcLaunchConfig = (config: Project) => {
+export const validateSrcLaunchConfig = (config: ProjectConfig) => {
   let problems: ValidationProblem[] = [];
   if (!config) {
     problems = [

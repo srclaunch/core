@@ -1,8 +1,9 @@
+import { nanoid } from 'nanoid';
 import { css, SimpleInterpolation } from 'styled-components';
-import { getContainerStyles } from '.';
+
 import { ContainerProps } from '../../components/layout/Container';
 import { Animation } from '../../types/index';
-import { nanoid } from 'nanoid';
+import { getContainerStyles } from '.';
 
 export function getAnimationKeyframes(
   animation: Animation,
@@ -24,7 +25,7 @@ export function getAnimationKeyframes(
 }
 
 export function getAnimationStyles(
-  animations?: Animation[],
+  animations?: readonly Animation[],
 ): SimpleInterpolation {
   if (!animations || !animations?.length) return null;
 
@@ -83,6 +84,8 @@ export function getAnimationStyles(
   `;
 }
 
-export const AnimationStyles = css<{ readonly animation?: Animation[] }>`
+export const AnimationStyles = css<{
+  readonly animation?: readonly Animation[];
+}>`
   ${props => getAnimationStyles(props.animation)}
 `;

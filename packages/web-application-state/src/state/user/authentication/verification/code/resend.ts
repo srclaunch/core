@@ -1,15 +1,16 @@
+import { createSlice } from '@reduxjs/toolkit';
 import { Exception } from '@srclaunch/exceptions';
 import { ISO8601String } from '@srclaunch/types';
-import { createSlice } from '@reduxjs/toolkit';
-import { AppThunk } from '../../../../../index';
 import { CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
 import { DateTime } from 'luxon';
 
+import { AppThunk } from '../../../../../types';
+
 type VerificationCodeResendState = {
-  error?: Exception | Error;
-  lastUpdated?: ISO8601String;
-  inProgress: boolean;
-  success?: boolean;
+  readonly error?: Exception | Error;
+  readonly lastUpdated?: ISO8601String;
+  readonly inProgress: boolean;
+  readonly success?: boolean;
 };
 
 const initialState: VerificationCodeResendState = {
@@ -53,7 +54,7 @@ const {
 } = slice.actions;
 
 export const resendVerificationCode =
-  ({ userId }: { userId: string }): AppThunk =>
+  ({ userId }: { readonly userId: string }): AppThunk =>
   async (dispatch, getState) => {
     try {
       dispatch(setVerificationCodeResendInProgress(true));
@@ -88,9 +89,9 @@ export const resendVerificationCode =
 
         dispatch(setVerificationCodeResendSuccess());
       });
-    } catch (err: any) {
+    } catch (error: any) {
       const exception = new Exception('Failure resending verification code', {
-        cause: err,
+        cause: error,
       });
 
       dispatch(setVerificationCodeResendFailure(exception.toJSON()));

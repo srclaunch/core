@@ -1,0 +1,40 @@
+{
+  "name": "@srclaunch/conditions",
+  "description": "Evaluate conditions and control flow",
+  "author": "Steven Bennett <steven@srclaunch.com>",
+  "license": "MIT",
+  "version": "0.2.0",
+  "engines": {
+    "node": ">=16"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "type": "module",
+  "main": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "package.json",
+    "dist"
+  ],
+  "module": "./dist/index.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
+  "scripts": {
+    "qr": "srclaunch changesets add --files \".\" --message \"Quick release\" --type \"chore\" && srclaunch release --push",
+    "build": "srclaunch build --clean --types",
+    "test": "srclaunch test",
+    "test:watch": "srclaunch test --watch",
+    "test:coverage": "srclaunch test --coverage",
+    "release": "srclaunch release"
+  },
+  "devDependencies": {
+    "@srclaunch/dx": "workspace:*",
+    "@srclaunch/types": "workspace:*"
+  }
+}

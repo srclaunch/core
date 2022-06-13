@@ -1,21 +1,20 @@
+import { Route, RouteRole } from '@srclaunch/types';
+import { RootState, useSelector } from '@srclaunch/web-application-state';
 import { useEffect, useState } from 'react';
 import {
   matchPath,
   useLocation,
-  useSelector,
-  RootState,
-  useNavigate,
   useMatch,
+  useNavigate,
   useResolvedPath,
-} from '@srclaunch/web-application-state';
-import { RouteRole, Route } from '@srclaunch/types';
+} from 'react-router-dom';
 
 export function useAuthentication({
   enabled = true,
   redirect = true,
 }: {
-  enabled?: boolean;
-  redirect?: boolean;
+  readonly enabled?: boolean;
+  readonly redirect?: boolean;
 }) {
   const [loginRequired, setLoginRequired] = useState(true);
 
@@ -38,7 +37,7 @@ export function useAuthentication({
     routes.find(r => r.role === RouteRole.Login)?.path ?? 'login';
 
   const checkAuth = () => {
-    routes.forEach(route => {
+    for (const route of routes) {
       const routePath = route?.path ?? '';
       const match = matchPath(route?.path ?? '', location.pathname);
 
@@ -66,7 +65,7 @@ export function useAuthentication({
       ) {
         navigate(loginPagePath);
       }
-    });
+    }
   };
 
   useEffect(() => {

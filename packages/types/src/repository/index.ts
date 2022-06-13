@@ -1,7 +1,7 @@
-import { GitHubActionsWorkflow } from '../workflow/github-action';
+import { GitHubWorkflow } from '../workflow/github';
 
 export type RepositoryOptions = {
   readonly name?: string;
   readonly url?: string;
-  readonly workflows?: GitHubActionsWorkflow[];
+  readonly workflows?: { readonly [id: string]: GitHubWorkflow };
 };

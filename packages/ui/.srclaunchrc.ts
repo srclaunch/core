@@ -3,30 +3,38 @@ import {
   BuildPlatform,
   BuildTarget,
   BuildTool,
-  CodeFormatterTool,
-  CodeLinterTool,
-  StaticTypingTool,
+  CodeFormatter,
+  CodeLinter,
+  StaticTyping,
   License,
-  Project,
+  ComponentLibraryConfig,
   ProjectType,
   PublishAccess,
   TestReporter,
   TestTool,
-  Runner,
   UniversalPackage,
   BrowserPackage,
 } from '@srclaunch/types';
 
-export default <Project>{
+export default <ComponentLibraryConfig>{
   name: '@srclaunch/ui',
   description: 'SrcLaunch UI React component library',
   type: ProjectType.ComponentLibrary,
+  react: true,
   build: {
     bundle: {
-      exclude: ['react', 'react-dom', 'styled-components'],
+      exclude: [
+        'react',
+        'react-dom',
+        'react-dom/client',
+        'redux',
+        'react-redux',
+        'react-router',
+        'react-router-dom',
+        'styled-components',
+      ],
       globals: {
         react: 'React',
-        'react-dom': 'ReactDOM',
         'styled-components': 'styled',
       },
     },
@@ -36,13 +44,15 @@ export default <Project>{
       file: 'index.tsx',
     },
     platform: BuildPlatform.Browser,
-    target: BuildTarget.ESNext,
+    react: true,
+    target: BuildTarget.Modules,
     tool: BuildTool.Vite,
   },
-  run: {
-    development: {
-      tool: Runner.Vite,
-    },
+  docs: {
+    assetsDir: 'assets',
+    entryFile: 'docs/index.html',
+    react: true,
+    rootDir: 'docs',
   },
   test: {
     coverage: {
@@ -52,17 +62,9 @@ export default <Project>{
   },
   environments: {
     development: {
-      formatters: [CodeFormatterTool.Prettier],
-      linters: [CodeLinterTool.ESLint, CodeLinterTool.Stylelint],
-      run: {
-        bundle: {
-          optimize: {
-            exclude: ['@srclaunch/exceptions'],
-          },
-        },
-        runner: Runner.Vite,
-      },
-      staticTyping: [StaticTypingTool.TypeScript],
+      formatters: [CodeFormatter.Prettier],
+      linters: [CodeLinter.ESLint, CodeLinter.Stylelint],
+      staticTyping: [StaticTyping.TypeScript],
     },
   },
   release: {

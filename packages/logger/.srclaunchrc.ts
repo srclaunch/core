@@ -3,27 +3,27 @@ import {
   BuildPlatform,
   BuildTarget,
   BuildTool,
-  CodeFormatterTool,
-  CodeLinterTool,
+  CodeFormatter,
+  CodeLinter,
   License,
-  Project,
+  LibraryConfig,
   ProjectType,
   PublishAccess,
-  StaticTypingTool,
+  StaticTyping,
   TestReporter,
   TestTool,
   UniversalPackage,
 } from '@srclaunch/types';
 
-export default <Project>{
+export default <LibraryConfig>{
   name: '@srclaunch/logger',
   description: 'Logging utilties',
   type: ProjectType.Library,
   environments: {
     development: {
-      formatters: [CodeFormatterTool.Prettier],
-      linters: [CodeLinterTool.ESLint],
-      staticTyping: [StaticTypingTool.TypeScript],
+      formatters: [CodeFormatter.Prettier],
+      linters: [CodeLinter.ESLint],
+      staticTyping: [StaticTyping.TypeScript],
     },
   },
   test: {
@@ -35,7 +35,7 @@ export default <Project>{
   build: {
     formats: [BuildFormat.ESM, BuildFormat.UMD],
     platform: BuildPlatform.Browser,
-    target: BuildTarget.ESNext,
+    target: BuildTarget.Modules,
     tool: BuildTool.Vite,
   },
   release: {

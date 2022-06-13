@@ -1,6 +1,6 @@
 import { BasicIcons } from '@srclaunch/icons';
-import { Link } from '@srclaunch/web-application-state';
 import { memo, ReactElement } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { LinkProps, Size, TextColors } from '../../types';

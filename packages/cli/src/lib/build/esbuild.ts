@@ -4,18 +4,19 @@ import {
   BuildTarget,
   ESBuildOptions,
 } from '@srclaunch/types';
-import { build as buildCommand, Format } from 'esbuild';
+import { build as buildCommand, Format, Platform } from 'esbuild';
 import * as fs from 'fs-extra';
 import path from 'node:path';
 import pc from 'picocolors';
 
 import { BUILD_DIR } from '../../constants/build';
-import { getFormatFileExtension } from './formats';
+import { getFormatFileSubExtension } from './formats';
 
 export async function build({
   bundle = true,
   clean = true,
-  format = BuildFormat.ESM,
+  format,
+  formats = [BuildFormat.ESM, BuildFormat.IIFE],
   input,
   minify = true,
   output,
@@ -26,66 +27,88 @@ export async function build({
   treeShaking = true,
 }: ESBuildOptions) {
   try {
-    const entryPoints = [
-      path.join(
-        path.resolve(),
-        input?.directory ?? 'src',
-        input?.file ?? 'index.ts',
-      ),
-      ...(input?.files
-        ? input.files.map(f =>
-            path.join(path.resolve(), input?.directory ?? 'src', f),
-          )
-        : []),
-    ];
+    const getEntryPoints = () => {
+      return [
+        path.join(
+          path.resolve(),
+          input?.directory ?? 'src',
+          input?.file ?? 'index.ts',
+        ),
+        ...(input?.files
+          ? input.files.map(f =>
+              path.join(path.resolve(), input?.directory ?? 'src', f),
+            )
+          : []),
+      ];
+    };
+
+    const getPlatform = (): Platform => {
+      switch (platform) {
+        case BuildPlatform.Browser:
+          return 'browser';
+        case BuildPlatform.Node:
+          return 'node';
+        case BuildPlatform.Universal:
+          return 'neutral';
+        default:
+          return 'neutral';
+      }
+    };
+
+    const buildFormat = async (formatType: BuildFormat) => {
+      const buildOptions = {
+        bundle: Boolean(bundle),
+        entryNames: `[dir]/[name].${getFormatFileSubExtension(formatType)}`,
+        entryPoints: getEntryPoints(),
+        external:
+          typeof bundle === 'object' ? (bundle.exclude as string[]) : [],
+        format: formatType as Format,
+        minify,
+        outdir: splitting ? output?.directory ?? BUILD_DIR : undefined,
+        outfile: splitting
+          ? undefined
+          : `${output?.directory ?? BUILD_DIR}/${
+              output?.file ?? 'index'
+            }.${getFormatFileSubExtension(formatType)}`,
+        platform: getPlatform(),
+        sourcemap,
+        splitting: format === BuildFormat.ESM && splitting,
+        target,
+        treeShaking,
+      };
+
+      const result = await buildCommand(buildOptions);
+
+      if (result.warnings) {
+        for (const warning of result.warnings) {
+          console.warn(warning.text);
+        }
+      }
+
+      if (result.errors) {
+        for (const error of result.errors) {
+          console.error(error.text);
+        }
+      }
+
+      console.info(
+        `${pc.green('✔')} bundled to ${pc.bold(
+          formatType.toLocaleUpperCase(),
+        )} format`,
+      );
+    };
 
     if (clean) {
       await fs.emptyDir(BUILD_DIR);
     }
 
-    const result = await buildCommand({
-      bundle: Boolean(bundle),
-      entryPoints,
-      external: typeof bundle === 'object' ? (bundle.exclude as string[]) : [],
-      format: format as Format,
-      minify,
-      outdir: splitting ? output?.directory ?? BUILD_DIR : undefined,
-      outfile: splitting
-        ? undefined
-        : `${output?.directory ?? BUILD_DIR}/${
-            output?.file ?? 'index'
-          }${getFormatFileExtension(format)}`,
-      platform:
-        platform === BuildPlatform.Universal
-          ? 'neutral'
-          : platform === BuildPlatform.Browser
-          ? 'browser'
-          : platform === BuildPlatform.Node
-          ? 'node'
-          : undefined,
-      sourcemap,
-      splitting: format === BuildFormat.ESM && splitting,
-      target,
-      treeShaking,
-    });
-
-    if (result.warnings) {
-      for (const warning of result.warnings) {
-        console.warn(warning.text);
+    if (format) {
+      await buildFormat(format);
+    } else if (formats.length > 0) {
+      for (const f of formats) {
+        await buildFormat(f);
       }
     }
-
-    if (result.errors) {
-      for (const error of result.errors) {
-        console.error(error.text);
-      }
-    }
-
-    console.info(
-      `${pc.green('✔')} bundled to ${pc.bold(
-        format.toLocaleUpperCase(),
-      )} format`,
-    );
   } catch (error: any) {
     console.error(error);
   }

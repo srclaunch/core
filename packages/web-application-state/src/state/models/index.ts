@@ -1,12 +1,12 @@
 import { AnyAction, createSlice, Reducer } from '@reduxjs/toolkit';
 import { Model } from '@srclaunch/types';
 
-import { AppThunk } from '../../index';
+import { AppThunk } from '../../types';
 // import { useRouteMatch } from 'react-router-dom';
 
 type ModelState = {
-  models?: {
-    [name: string]: Model;
+  readonly models?: {
+    readonly [name: string]: Model;
   };
 };
 
@@ -32,9 +32,9 @@ export const showModelPanel =
     model,
     id,
   }: {
-    edit?: boolean;
-    model: Model['name'];
-    id?: Model['id'];
+    readonly edit?: boolean;
+    readonly model: Model['name'];
+    readonly id?: Model['id'];
   }): AppThunk =>
   async (dispatch, getState) => {
     // const { pathname } = getState().router.location;

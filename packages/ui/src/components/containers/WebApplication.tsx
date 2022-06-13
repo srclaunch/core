@@ -1,15 +1,9 @@
 import { HttpClient } from '@srclaunch/http-client';
 import { ThemeProvider } from '@srclaunch/themes';
 import { Route, RouteRole } from '@srclaunch/types';
-import {
-  matchPath,
-  Outlet,
-  RootState,
-  useLocation,
-  useNavigate,
-  useSelector,
-} from '@srclaunch/web-application-state';
+import { RootState, useSelector } from '@srclaunch/web-application-state';
 import { ReactElement, useEffect, useState } from 'react';
+import { matchPath, Outlet, useNavigate } from 'react-router-dom';
 
 import { BackgroundColors, Fill, PositionBehavior } from '../../types';
 import { EntityPanel } from '../data/entities/EntityPanel';
@@ -35,7 +29,7 @@ export const WebApplication = ({
 }: WebApplicationProps): ReactElement => {
   const [loginRequired, setLoginRequired] = useState(true);
 
-  const location = useLocation();
+  // const location = useLocation();
   const navigate = useNavigate();
 
   const inProgress = useSelector(

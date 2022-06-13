@@ -1,0 +1,16 @@
+import { Action } from '@srclaunch/types';
+
+export class CreateFile extends Action<{
+  readonly path: string;
+  readonly content: string;
+}> {
+  public override readonly name = 'Create file';
+  public override readonly description = 'Create file';
+
+  public override readonly run = async () => {
+    const { path, content } = this.input;
+    const { writeFile } = await import('fs-extra');
+
+    return await writeFile(path, content);
+  };
+}

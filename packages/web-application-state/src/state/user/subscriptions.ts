@@ -3,7 +3,7 @@ import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { Subscription } from '@srclaunch/types';
 import { DateTime } from 'luxon';
 
-import { AppDispatch, AppThunk, RootState } from '../../index';
+import { AppDispatch, AppThunk, RootState } from '../../types';
 
 const subscriptionsAdapter = createEntityAdapter<Subscription>({
   selectId: subscription => subscription.id,

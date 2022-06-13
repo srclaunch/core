@@ -1,7 +1,7 @@
-import { Project, ProjectType } from '@srclaunch/types';
+import { ProjectConfig, ProjectType } from '@srclaunch/types';
 import prompts from 'prompts';
 
-export async function promptForProjectOptions(): Promise<Project> {
+export async function promptForProjectOptions(): Promise<ProjectConfig> {
   const [name, description, type] = await Promise.all([
     promptForProjectName(),
     promptForProjectDescription(),

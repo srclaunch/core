@@ -1,46 +1,47 @@
 import {
-  memo,
-  useState,
   forwardRef,
+  memo,
   PropsWithChildren,
   ReactElement,
+  ReactEventHandler,
   RefCallback,
+  useEffect,
+  useState,
 } from 'react';
 import styled from 'styled-components';
+
+import { getEventHandlers } from '../../lib/events';
 import { getContainerStyles } from '../../styles/container';
 import { getContainerStatesStyles } from '../../styles/container/states';
 import {
-  Alignment,
   AlignHorizontal,
+  Alignment,
   AlignVertical,
+  Animation,
   Background,
   Border,
   BorderRadius,
   CommonComponentProps,
-  DepthShadow,
-  Animation,
   Cursor,
   Depth,
+  DepthShadow,
   Events,
-  States,
+  Fill,
   Margin,
   Orientation,
   Padding,
-  Size,
-  Shadow,
   Position,
+  Shadow,
+  Size,
+  States,
   Visibility,
-  Fill,
 } from '../../types';
-import { getEventHandlers } from '../../lib/events';
-import { ReactEventHandler } from 'react';
-import { useEffect } from 'react';
 import { Transform } from '../../types/appearance/transform';
 
 export type ContainerProps = PropsWithChildren<
   CommonComponentProps & {
     readonly alignment?: Alignment;
-    readonly animations?: Animation[];
+    readonly animations?: readonly Animation[];
     readonly background?: Background;
     readonly border?: Border;
     readonly borderRadius?: BorderRadius;

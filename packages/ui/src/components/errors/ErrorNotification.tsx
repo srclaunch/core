@@ -1,4 +1,4 @@
-import { NotificationType } from '@srclaunch/web-application-state';
+import { NotificationType } from '@srclaunch/types';
 import { memo, ReactElement } from 'react';
 
 import { AlignHorizontal, Alignment } from '../../types';

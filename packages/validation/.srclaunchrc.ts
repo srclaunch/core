@@ -3,34 +3,34 @@ import {
   BuildPlatform,
   BuildTarget,
   BuildTool,
-  CodeFormatterTool,
-  CodeLinterTool,
+  CodeFormatter,
+  CodeLinter,
   RepositoryEvent,
   License,
-  Project,
+  LibraryConfig,
   ProjectType,
   PublishAccess,
-  StaticTypingTool,
+  StaticTyping,
   TestReporter,
   TestTool,
   UniversalPackage,
 } from '@srclaunch/types';
 
-export default <Project>{
+export default <LibraryConfig>{
   name: '@srclaunch/validation',
   description: 'Validation utilities',
   type: ProjectType.Library,
   build: {
     formats: [BuildFormat.ESM, BuildFormat.UMD],
     platform: BuildPlatform.Browser,
-    target: BuildTarget.ESNext,
+    target: BuildTarget.Modules,
     tool: BuildTool.Vite,
   },
   environments: {
     development: {
-      formatters: [CodeFormatterTool.Prettier],
-      linters: [CodeLinterTool.ESLint],
-      staticTyping: [StaticTypingTool.TypeScript],
+      formatters: [CodeFormatter.Prettier],
+      linters: [CodeLinter.ESLint],
+      staticTyping: [StaticTyping.TypeScript],
     },
   },
   release: {

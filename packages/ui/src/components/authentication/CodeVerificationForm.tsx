@@ -7,11 +7,11 @@ import {
   // getVerificationDetails
   RootState,
   useDispatch,
-  useNavigate,
   useSelector,
   verifyCode,
 } from '@srclaunch/web-application-state';
 import { memo, ReactElement, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
   AlignHorizontal,

@@ -2,7 +2,7 @@ import { Model } from '../../data/model';
 import { ModelField } from '../../data/model/field';
 import { LogLevel } from '../../logging/level';
 import { HttpRequest } from '../../networking/http';
-import { Task } from '../../queue';
+import { Task } from '../../workflow/task';
 import { ExceptionRemediation } from './remediation';
 
 /**
