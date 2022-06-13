@@ -34,7 +34,6 @@
     "release": "srclaunch release"
   },
   "devDependencies": {
-    "@srclaunch/cli": "workspace:^0.2.0",
     "@srclaunch/dx": "workspace:*",
     "@srclaunch/types": "workspace:*"
   }

@@ -851,11 +851,9 @@ importers:
 
   packages/web-environment:
     specifiers:
-      '@srclaunch/cli': workspace:^0.2.0
       '@srclaunch/dx': workspace:*
       '@srclaunch/types': workspace:*
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@srclaunch/dx': link:../dx
       '@srclaunch/types': link:../types
 
