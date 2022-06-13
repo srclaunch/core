@@ -27,7 +27,7 @@ jobs:
           repository_name: ${{ github.event.repository.name }}
           branch: ${{ needs.setup.outputs.branch }}
 
-      - name: Publish to NPM
-        uses: 'srclaunch/core/packages/ci-cd/.github/actions/publish@main'
-        with:
-          npm_token: ${{ secrets.NPM_TOKEN }}
+      # - name: Publish to NPM
+      #   uses: 'srclaunch/core/packages/ci-cd/.github/actions/publish@main'
+      #   with:
+      #     npm_token: ${{ secrets.NPM_TOKEN }}

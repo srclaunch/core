@@ -18,6 +18,7 @@ runs:
   steps:
     - name: Run tests and collect testing coverage
       run: pnpm test:coverage
+      shell: bash
 
     - name: Archive code coverage results
       uses: actions/upload-artifact@v3

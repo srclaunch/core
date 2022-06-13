@@ -16,3 +16,4 @@ runs:
         TURBO_TEAM: ${{ inputs.turbo_team }}
         TURBO_TOKEN: ${{ inputs.turbo_token }}
       run: pnpm build
+      shell: bash
