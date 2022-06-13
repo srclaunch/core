@@ -16,6 +16,9 @@ jobs:
 
       - name: Build project
         uses: 'srclaunch/core/packages/ci-cd/.github/actions/build@main'
+        with:
+          turbo_team: ${{ secrets.TURBO_TEAM }}
+          turbo_token: ${{ secrets.TURBO_TOKEN }}
 
       - name: Run tests and collect coverage
         uses: 'srclaunch/core/packages/ci-cd/.github/actions/test@main'
