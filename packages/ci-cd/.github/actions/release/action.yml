@@ -1,0 +1,7 @@
+name: 'Build project'
+description: 'Build a project using SrcLaunch CLI'
+author: '@srclaunch'
+
+runs:
+  using: 'composite'
+  steps:

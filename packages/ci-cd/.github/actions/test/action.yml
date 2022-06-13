@@ -1,0 +1,31 @@
+name: Run tests
+description: Runs tests and uploads coverage results to Coveralls
+author: '@srclaunch'
+
+inputs:
+  repository_owner:
+    description: The owner of the repository
+    required: true
+  repository_name:
+    description: The name of the repository
+    required: true
+  branch:
+    description: The name of the current branch
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Run tests and collect testing coverage
+      run: pnpm test:coverage
+
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ input.repository_owner }}-${{ input.repository_name }}-${{ input.branch }}-code-coverage.json
+        path: coverage/coverage-summary.json
+
+    - name: Upload test coverage to Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
