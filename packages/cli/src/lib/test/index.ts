@@ -1,7 +1,7 @@
 import { TestOptions, TestReporter, TestTool } from '@srclaunch/types';
 
-export const DEFAULT_TEST_OPTIONS = {
-  concurrency: undefined,
+export const DEFAULT_TEST_OPTIONS: TestOptions = {
+  concurrency: 1,
   coverage: {
     directory: 'coverage',
     reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
@@ -19,6 +19,5 @@ export const DEFAULT_TEST_OPTIONS = {
     noTests: false,
   },
   tool: TestTool.Ava,
-  concurrency: 1,
   verbose: true,
 };

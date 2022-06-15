@@ -3,6 +3,7 @@
   "baseBranch": "origin/main",
   "pipeline": {
     "build:cli": {
+      "dependsOn": ["@srclaunch/types#build"],
       "inputs": ["src/**/*.tsx", "src/**/*.ts"],
       "outputs": ["dist/**", "docs/**"]
     },
@@ -13,7 +14,12 @@
     },
     "test": {
       "dependsOn": ["build"],
-      "outputs": ["coverage"],
+      "outputs": [],
+      "inputs": ["src/**/*.tsx", "src/**/*.ts"]
+    },
+    "test:coverage": {
+      "dependsOn": ["build"],
+      "outputs": ["coverage/**"],
       "inputs": ["src/**/*.tsx", "src/**/*.ts"]
     },
     "release": {

@@ -1,6 +1,6 @@
 import { TestReporter, TestTool } from '@srclaunch/types';
 export declare const DEFAULT_TEST_OPTIONS: {
-    concurrency: undefined;
+    concurrency: number;
     coverage: {
         directory: string;
         reporters: TestReporter[];
