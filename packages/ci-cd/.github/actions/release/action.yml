@@ -1,7 +1,20 @@
-name: 'Build project'
-description: 'Build a project using SrcLaunch CLI'
+name: 'Release project'
+description: 'Buns release workflow'
 author: '@srclaunch'
+
+inputs:
+  github_token:
+    description: GitHub token for creating release
+    required: true
+  npm_token:
+    description: NPM token for publishing package
+    required: true
 
 runs:
   using: 'composite'
   steps:
+    - name: Release
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        NPM_TOKEN: ${{ inputs.npm_token }}
+      run: pnpm release

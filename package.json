@@ -74,6 +74,7 @@
     "build": "turbo run build",
     "build:graph": "turbo run build --graph=media/images/dependencies-graph.svg",
     "build:watch": "turbo run build --watch",
+    "release": "turbo run release",
     "test": "turbo run test --concurrency=1"
   }
 }

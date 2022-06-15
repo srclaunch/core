@@ -51,7 +51,7 @@ import {
 import { getPackageScripts } from '../lib/project/package';
 import { getPublishYml } from '../lib/project/publish';
 import { writeToolingConfiguration } from '../lib/project/tooling';
-import { createRelease } from '../lib/release';
+import { createRelease } from '../lib/release/standard-version';
 
 type ProjectSetupFlags = TypedFlags<{
   readonly build: {

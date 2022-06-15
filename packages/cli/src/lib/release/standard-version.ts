@@ -4,9 +4,9 @@ import { ChangesetOptions, ChangeType, ReleaseOptions } from '@srclaunch/types';
 import path from 'node:path';
 import standardVersion, { Options } from 'standard-version';
 
-import { DEFAULT_COMMIT_TYPES } from '../constants/releases';
-import { createChangeset } from './changesets';
-import { getBranchName, push } from './git';
+import { DEFAULT_COMMIT_TYPES } from '../../constants/releases';
+import { createChangeset } from '../changesets';
+import { getBranchName, push } from '../git';
 
 export async function createRelease({
   changesets,
@@ -22,7 +22,7 @@ export async function createRelease({
   // }>
   // https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/master/versions/2.1.0/README.md
   await standardVersion({
-    infile: 'CHANGELOG.md',
+    infile: path.join(path.resolve(), 'CHANGELOG.md'),
     noVerify: true,
     silent: true,
     types: (changesets?.types ?? DEFAULT_COMMIT_TYPES) as Options['types'],

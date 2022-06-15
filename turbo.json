@@ -5,11 +5,16 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", "dist/index.d.ts"]
+      "outputs": ["dist/**"]
     },
     "test": {
       "outputs": [],
       "inputs": ["src/**/*.test.tsx", "src/**/*.test.ts"]
+    },
+    "release": {
+      "dependsOn": ["^release"],
+      "outputs": ["CHANGELOG.md", "package.json"],
+      "inputs": ["dist/**"]
     }
   }
 }

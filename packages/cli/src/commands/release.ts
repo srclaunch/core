@@ -8,7 +8,8 @@ import { createChangeset } from '../lib/changesets';
 import { Command, CommandType } from '../lib/command';
 import { InteractiveModeFlag } from '../lib/flags';
 import { getBranchName, push } from '../lib/git';
-import { createRelease } from '../lib/release';
+import { createSemanticRelease } from '../lib/release';
+import { createRelease } from '../lib/release/standard-version';
 
 type ReleaseFlags = TypedFlags<
   InteractiveModeFlag & {
@@ -37,11 +38,14 @@ export default new Command<ProjectConfig, ReleaseFlags>({
   name: 'release',
   run: async ({ config, flags }) => {
     try {
-      const result = await createRelease({
-        changesets: config.changesets,
-        push: flags.push,
-      });
+      // const result = await createRelease({
+      //   changesets: config.changesets,
+      //   push: flags.push,
+      // });
 
+      console.log('creating release');
+      const result = await createSemanticRelease();
+      console.log('result', result);
       // console.log(
       //   `${pc.green('✔')} created release ${pc.bold(result.version)} ${
       //     flags.push ? `and pushed to ${pc.bold(result.repo)}` : ``
