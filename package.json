@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "turbo run build:cli --color && turbo run build --color",
+    "build:cli": "turbo run build:cli --color",
     "build:graph": "turbo run build --color --graph=media/images/dependencies-graph.svg",
     "build:watch": "turbo run build --watch --color",
     "release": "turbo run release --color",
