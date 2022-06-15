@@ -28,9 +28,9 @@
   "scripts": {
     "qr": "srclaunch changesets add --files \".\" --message \"Quick release\" --type \"chore\" && srclaunch release --push",
     "build": "srclaunch build --clean --types",
+    "release": "srclaunch release",
     "test": "srclaunch test --coverage",
     "test:watch": "srclaunch test --watch",
-    "release": "srclaunch release",
     "dev": "srclaunch run dev"
   },
   "dependencies": {
