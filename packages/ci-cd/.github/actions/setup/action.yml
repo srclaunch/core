@@ -51,7 +51,7 @@ runs:
         TURBO_TEAM: ${{ inputs.turbo_team }}
         TURBO_TOKEN: ${{ inputs.turbo_team }}
       with:
-        path: .cache-turbo
+        path: node_modules/.cache/turbo
         key: turbo-${{ github.job }}-${{ github.ref_name }}-${{ github.sha }}
         # order of preference => turbo will re-check
         restore-keys: |
