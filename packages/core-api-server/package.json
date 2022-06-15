@@ -25,10 +25,6 @@
       "require": "./dist/index.cjs.js"
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/srclaunch/core-api-server.git"
-  },
   "keywords": [],
   "bugs": {
     "url": "https://github.com/srclaunch/core-api-server/issues"
