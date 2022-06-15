@@ -7,6 +7,8 @@ importers:
   .:
     specifiers:
       '@srclaunch/cli': workspace:*
+      '@srclaunch/dx': workspace:*
+      '@srclaunch/types': workspace:*
       '@swc-node/jest': ^1.5.2
       '@swc/cli': ^0.1.57
       '@swc/core': ^1.2.203
@@ -55,6 +57,8 @@ importers:
       vitest: ^0.14.2
     devDependencies:
       '@srclaunch/cli': link:packages/cli
+      '@srclaunch/dx': link:packages/dx
+      '@srclaunch/types': link:packages/types
       '@swc-node/jest': 1.5.2_typescript@4.7.3
       '@swc/cli': 0.1.57_@swc+core@1.2.203
       '@swc/core': 1.2.203
@@ -227,8 +231,6 @@ importers:
   packages/cli:
     specifiers:
       '@rauschma/stringio': ^1.4.0
-      '@srclaunch/dx': workspace:*
-      '@srclaunch/types': workspace:*
       '@types/async': ^3.2.13
       '@types/diff': ^5.0.2
       '@types/fs-extra': ^9.0.13
@@ -333,8 +335,6 @@ importers:
       vite-plugin-pwa: 0.12.0_vite@2.9.12
       vitest: 0.14.2_c8@7.11.3
     devDependencies:
-      '@srclaunch/dx': link:../dx
-      '@srclaunch/types': link:../types
       '@types/diff': 5.0.2
       '@types/fs-extra': 9.0.13
       '@types/luxon': 2.3.2

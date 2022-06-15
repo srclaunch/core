@@ -23,7 +23,7 @@
   "scripts": {
     "build:es": "esbuild --external:'@rauschma/stringio' --external:'@yarnpkg/core' --external:mocha --external:'vite-plugin-pwa' --external:c8 --external:diff --external:'fs-extra' --external:globby --external:'unconfig' --external:'@srclaunch/logic' --external:semver --external:esbuild --external:jest --external:'latest-version' --external:meow --external:picocolors --external:prompts --external:react --external:'semantic-release' --external:'semantic-release-monorepo' --external:'simple-git' --external:'standard-version' --external:tape --external:typescript --external:vite --external:'@vitejs/plugin-react' --external:'update-notifier' --external:vitest --bundle --minify --outfile=dist/index.js --format=esm --target=esnext --define:'navigator={}' --platform=node src/index.ts",
     "build:self": "node ./dist/index.js build",
-    "build:internal": "rm -fr ./dist && pnpm build:es && tsc --build",
+    "build:cli": "rm -fr ./dist && pnpm build:es && tsc --build",
     "dev": "NODE_ENV=dev && node --loader ts-node/esm --experimental-specifier-resolution=node ./src/index.ts",
     "git:push": "git push --follow-tags origin main",
     "qr": "pnpm build && git add . && git commit -m \"Quick release\" && pnpm release",
@@ -34,8 +34,6 @@
     "test:watch": "ava --watch"
   },
   "devDependencies": {
-    "@srclaunch/dx": "workspace:*",
-    "@srclaunch/types": "workspace:*",
     "@types/diff": "^5.0.2",
     "@types/fs-extra": "^9.0.13",
     "@types/luxon": "^2.3.2",

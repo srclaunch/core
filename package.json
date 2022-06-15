@@ -23,6 +23,8 @@
   },
   "devDependencies": {
     "@srclaunch/cli": "workspace:*",
+    "@srclaunch/types": "workspace:*",
+    "@srclaunch/dx": "workspace:*",
     "@swc-node/jest": "^1.5.2",
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.2.203",
@@ -71,7 +73,7 @@
     "vitest": "^0.14.2"
   },
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run build:cli && turbo run build",
     "build:graph": "turbo run build --graph=media/images/dependencies-graph.svg",
     "build:watch": "turbo run build --watch",
     "release": "turbo run release",

@@ -1,3 +1,4 @@
+import { DeploymentOptions } from '../deployment';
 import { License } from '../legal/license';
 
 export enum PublishAccess {
@@ -12,5 +13,6 @@ export type PublishOptions = {
 };
 
 export type ReleaseOptions = {
+  readonly deployment?: DeploymentOptions;
   readonly publish?: PublishOptions;
 };

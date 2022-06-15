@@ -6,7 +6,13 @@ export enum DeploymentStrategy {
   Rolling = 'rolling',
 }
 
-export type Deployment = {
+export type DeploymentOptions = {
+  readonly githubPages?:
+    | false
+    | {
+        readonly branch?: string;
+        readonly directory?: string;
+      };
   readonly infrastructure?: InfrastructureOptions;
   readonly strategy?: DeploymentStrategy;
 };

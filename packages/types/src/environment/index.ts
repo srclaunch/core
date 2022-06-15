@@ -1,4 +1,4 @@
-import { Deployment } from '../deployment';
+import { DeploymentOptions } from '../deployment';
 import { DNSConfig } from '../deployment/infrastructure';
 import { CodeFormatter, CodeLinter, StaticTyping } from '../development';
 
@@ -23,7 +23,7 @@ export type Environment = DNSConfig & {
 };
 
 export type RemoteEnvironment = Environment & {
-  readonly deployment?: Deployment;
+  readonly deployment?: DeploymentOptions;
 };
 
 export type DevelopmentEnvironment = Environment & {

@@ -98,6 +98,9 @@ export default <ComponentLibraryConfig>{
     },
   },
   release: {
+    deploy: {
+      github_pages: true,
+    },
     publish: {
       access: PublishAccess.Public,
       license: License.MIT,

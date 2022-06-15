@@ -161,7 +161,7 @@ export type {
   RdsDatabase,
   RedisStore,
 } from './data/storage/index';
-export type { Deployment } from './deployment';
+export type { DeploymentOptions } from './deployment';
 export { DeploymentStrategy } from './deployment';
 export type {
   DNSConfig,
