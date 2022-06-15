@@ -12,9 +12,10 @@ inputs:
   repository_name:
     description: The name of the repository
     required: true
-  branch:
-    description: The name of the current branch
-    required: true
+  turbo_team:
+    description: Turbo Team name
+  turbo_token:
+    description: Turbo Team token
 
 runs:
   using: composite
@@ -22,7 +23,9 @@ runs:
     - name: Run tests and collect testing coverage
       run: pnpm test
       shell: bash
-
+      env:
+        TURBO_TEAM: ${{ inputs.turbo_team }}
+        TURBO_TOKEN: ${{ inputs.turbo_token }}
     # - name: Archive code coverage results
     #   uses: actions/upload-artifact@v3
     #   with:
