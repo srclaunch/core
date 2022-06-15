@@ -80,8 +80,5 @@
       "import": "./tsconfig.ui.json",
       "require": "./tsconfig.ui.json"
     }
-  },
-  "devDependencies": {
-    "@srclaunch/cli": "workspace:*"
   }
 }

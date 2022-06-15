@@ -501,10 +501,7 @@ importers:
       '@srclaunch/types': link:../types
 
   packages/dx:
-    specifiers:
-      '@srclaunch/cli': workspace:*
-    devDependencies:
-      '@srclaunch/cli': link:../cli
+    specifiers: {}
 
   packages/exceptions:
     specifiers:
