@@ -13,7 +13,7 @@
     "release": {
       "dependsOn": ["^release"],
       "outputs": ["CHANGELOG.md", "package.json"],
-      "inputs": ["dist/**"]
+      "inputs": []
     }
   }
 }
