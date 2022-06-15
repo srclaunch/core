@@ -81,7 +81,13 @@ export async function run({
       ...watchFlag,
     ];
 
-    const childProcess = await spawn('ava', args);
+    const shellCommand = `ava ${args.join(' ')}`;
+
+    const childProcess = spawn(shellCommand, {
+      env: process.env,
+      shell: true,
+      stdio: 'inherit',
+    });
     // console.log(childProcess);
     //  args, {
     // stdio: [process.stdin, process.stdout, process.stderr],
@@ -90,26 +96,26 @@ export async function run({
 
     // if (childProcess) {
 
-    childProcess.stdout.on('data', data => {
-      logOutput(data.toString());
-    });
+    // childProcess.stdout.on('data', data => {
+    //   logOutput(data.toString());
+    // });
 
-    // // if (childProcess.stderr) {
-    childProcess.stderr.on('data', data => {
-      logError(data.toString());
-    });
-    // // }
+    // // // if (childProcess.stderr) {
+    // childProcess.stderr.on('data', data => {
+    //   logError(data.toString());
+    // });
+    // // // }
 
-    childProcess.on('exit', code => {
-      if (code && code > 0) {
-        process.exit(code);
-      }
-    });
+    // childProcess.on('exit', code => {
+    //   if (code && code > 0) {
+    //     process.exit(code);
+    //   }
+    // });
 
-    childProcess.on('error', err => {
-      console.log('child process error:');
-      console.error(err);
-    });
+    // childProcess.on('error', err => {
+    //   console.log('child process error:');
+    //   console.error(err);
+    // });
 
     // childProcess.on('close', code => {
     //   console.log('child process closed');

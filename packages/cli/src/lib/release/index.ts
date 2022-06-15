@@ -1,5 +1,6 @@
-import pc from 'picocolors';
 import semanticRelease from 'semantic-release';
+// const isCI = require('is-ci');
+// # !isCI && require('dotenv').config({ path: '../../.env' });
 
 export async function createSemanticRelease({
   name,
@@ -20,11 +21,7 @@ export async function createSemanticRelease({
       // ci: false,
 
       // dryRun: true,
-      extends: [
-        'semantic-release-monorepo',
-        'semantic-version-commit-filter',
-        'semantic-release-commit-filter',
-      ],
+      extends: ['semantic-release-monorepo'],
 
       plugins: [
         '@semantic-release/commit-analyzer',

@@ -273,7 +273,6 @@ importers:
       react-dom: ^18.2.0
       react-is: ^18.2.0
       semantic-release: ^19.0.3
-      semantic-release-commit-filter: ^1.0.2
       semantic-release-monorepo: ^7.0.5
       semver: ^7.3.7
       shelljs: ^0.8.5
@@ -319,7 +318,6 @@ importers:
       react-dom: 18.2.0_react@18.2.0
       react-is: 18.2.0
       semantic-release: 19.0.3
-      semantic-release-commit-filter: 1.0.2
       semantic-release-monorepo: 7.0.5_semantic-release@19.0.3
       semver: 7.3.7
       shelljs: 0.8.5
@@ -4082,13 +4080,6 @@ packages:
       pretty-format: 27.5.1
     dev: true
 
-  /@types/jest/28.1.1:
-    resolution: {integrity: sha512-C2p7yqleUKtCkVjlOur9BWVA4HgUQmEj/HWCt5WzZ5mLXrWnyIfl0wGuArc+kBXsy0ZZfLp+7dywB4HtSVYGVA==}
-    dependencies:
-      jest-matcher-utils: 27.5.1
-      pretty-format: 27.5.1
-    dev: true
-
   /@types/js-yaml/4.0.5:
     resolution: {integrity: sha512-FhpRzf927MNQdRZP0J5DLIdTXhjLYzeUTmLAu69mnVksLH9CJY3IuSeEgbKUki7GQZm0WqDkGzyxju2EZGD2wA==}
     dev: true
@@ -4340,7 +4331,7 @@ packages:
   /@types/testing-library__jest-dom/5.14.3:
     resolution: {integrity: sha512-oKZe+Mf4ioWlMuzVBaXQ9WDnEm1+umLx0InILg+yvZVBBDmzV5KfZyLrCvadtWcx8+916jLmHafcmqqffl+iIw==}
     dependencies:
-      '@types/jest': 28.1.1
+      '@types/jest': 27.5.0
     dev: true
 
   /@types/treeify/1.0.0:
@@ -14984,10 +14975,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       node-forge: 1.3.1
-    dev: false
-
-  /semantic-release-commit-filter/1.0.2:
-    resolution: {integrity: sha512-LpIB1UN78oRmJnqgPdvA/qRgVitih5V1Ybyszv8GcOBAJWJBHGWI1PmSrOfdEmbf1ZvGkdK/NNDdBHbuSQqSyQ==}
     dev: false
 
   /semantic-release-monorepo/7.0.5_semantic-release@19.0.3:
