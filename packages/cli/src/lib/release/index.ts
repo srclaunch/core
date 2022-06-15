@@ -21,13 +21,20 @@ export async function createSemanticRelease({
       // ci: false,
 
       // dryRun: true,
-      extends: ['semantic-release-monorepo'],
+      extends: ['semantic-release-commit-filter'],
 
       plugins: [
         '@semantic-release/commit-analyzer',
-        '@semantic-release/release-notes-generator',
-        '@semantic-release/npm',
-        '@semantic-release/github',
+        // '@semantic-release/release-notes-generator',
+        // [
+        //   '@semantic-release/npm',
+        //   {
+        //     npmPublish: false,
+        //     pkgRoot: 'dist',
+        //     tarballDir: '.',
+        //   },
+        // ],
+        // '@semantic-release/github',
       ],
       // githubApiPathPrefix: '/api-prefix',
       // // Plugin options

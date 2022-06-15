@@ -3,15 +3,15 @@
   "baseBranch": "origin/main",
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["src/**/*.tsx", "src/**/*.ts"]
+      "dependsOn": ["^build"]
     },
     "test": {
-      "dependsOn": ["build", "^test"],
+      "dependsOn": ["build"],
+      "outputs": [],
       "inputs": ["src/**/*.tsx", "src/**/*.ts"]
     },
     "release": {
-      "dependsOn": ["test"],
+      "dependsOn": ["build", "test"],
       "outputs": []
     }
   }

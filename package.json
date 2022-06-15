@@ -29,6 +29,9 @@
     }
   },
   "devDependencies": {
+    "@srclaunch/cli": "workspace:*",
+    "@srclaunch/dx": "workspace:*",
+    "@srclaunch/types": "workspace:*",
     "@swc-node/jest": "^1.5.2",
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.2.203",
