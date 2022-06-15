@@ -74,8 +74,8 @@
     "build": "turbo run build:cli && turbo run build",
     "build:graph": "turbo run build --graph=media/images/dependencies-graph.svg",
     "build:watch": "turbo run build --watch",
-    "release": "turbo run release --no-cache --parallel --continue",
-    "test": "turbo run test",
+    "release": "turbo run release",
+    "test": "turbo run test --concurrency=1",
     "test:coverage": "turbo run test:coverage"
   }
 }

@@ -171,7 +171,7 @@ export async function build({
     //   });
     // }
 
-    console.info(
+    console.log(
       `${pc.green('✔')} bundled to ${
         formats && formats.length > 0
           ? `${pc.bold(formats.join(', ').toLocaleUpperCase())} formats`

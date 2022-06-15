@@ -40,25 +40,26 @@ export async function build({ input, types, output }: TypesBuildOptions) {
       .getPreEmitDiagnostics(program)
       .concat(emitResult.diagnostics);
 
-    for (const diagnostic of allDiagnostics) {
-      if (diagnostic.file) {
-        const { line, character } =
-          diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start!);
-        const message = ts.flattenDiagnosticMessageText(
-          diagnostic.messageText,
-          '\n',
-        );
-        console.log(
-          `${diagnostic.file.fileName} (${line + 1},${
-            character + 1
-          }): ${message}`,
-        );
-      } else {
-        console.log(
-          `${ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n')}`,
-        );
-      }
-    }
-    console.info(`${pc.green('✔')} compiled types`);
+    // for (const diagnostic of allDiagnostics) {
+    //   if (diagnostic.file) {
+    //     const { line, character } =
+    //       diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start!);
+    //     const message = ts.flattenDiagnosticMessageText(
+    //       diagnostic.messageText,
+    //       '\n',
+    //     );
+    //     // console.log(
+    //     //   `${diagnostic.file.fileName} (${line + 1},${
+    //     //     character + 1
+    //     //   }): ${message}`,
+    //     // );
+    //   } else {
+    //     // console.log(
+    //     //   `${ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n')}`,
+    //     // );
+    //   }
+    // }
+
+    console.log(`${pc.green('✔')} compiled types`);
   }
 }

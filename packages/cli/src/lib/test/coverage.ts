@@ -27,7 +27,7 @@ export async function run(config: TestOptions): Promise<Report> {
 
     await report.run();
 
-    console.info(
+    console.log(
       `${pc.green('✔')} generated coverage report in ${pc.bold(coverageDir)}`,
     );
 

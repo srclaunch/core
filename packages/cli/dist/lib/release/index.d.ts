@@ -1,3 +1,8 @@
-import semanticRelease from 'semantic-release';
-export declare function createSemanticRelease(): Promise<semanticRelease.Result>;
+export declare function createSemanticRelease({ name, }: {
+    readonly name: string;
+}): Promise<{
+    readonly commits?: number;
+    readonly type?: string;
+    readonly version: string;
+} | false>;
 //# sourceMappingURL=index.d.ts.map

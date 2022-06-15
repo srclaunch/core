@@ -271,6 +271,7 @@ importers:
       react-dom: ^18.2.0
       react-is: ^18.2.0
       semantic-release: ^19.0.3
+      semantic-release-commit-filter: ^1.0.2
       semantic-release-monorepo: ^7.0.5
       semver: ^7.3.7
       shelljs: ^0.8.5
@@ -316,6 +317,7 @@ importers:
       react-dom: 18.2.0_react@18.2.0
       react-is: 18.2.0
       semantic-release: 19.0.3
+      semantic-release-commit-filter: 1.0.2
       semantic-release-monorepo: 7.0.5_semantic-release@19.0.3
       semver: 7.3.7
       shelljs: 0.8.5
@@ -14980,6 +14982,10 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       node-forge: 1.3.1
+    dev: false
+
+  /semantic-release-commit-filter/1.0.2:
+    resolution: {integrity: sha512-LpIB1UN78oRmJnqgPdvA/qRgVitih5V1Ybyszv8GcOBAJWJBHGWI1PmSrOfdEmbf1ZvGkdK/NNDdBHbuSQqSyQ==}
     dev: false
 
   /semantic-release-monorepo/7.0.5_semantic-release@19.0.3:

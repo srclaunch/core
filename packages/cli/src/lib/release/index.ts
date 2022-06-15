@@ -1,7 +1,18 @@
 import pc from 'picocolors';
 import semanticRelease from 'semantic-release';
 
-export async function createSemanticRelease() {
+export async function createSemanticRelease({
+  name,
+}: {
+  readonly name: string;
+}): Promise<
+  | {
+      readonly commits?: number;
+      readonly type?: string;
+      readonly version: string;
+    }
+  | false
+> {
   const result = await semanticRelease(
     {
       // branch: 'main',
@@ -9,12 +20,7 @@ export async function createSemanticRelease() {
       // ci: false,
 
       // dryRun: true,
-      extends: 'semantic-release-monorepo',
-
-      // githubApiPathPrefix: '/api-prefix',
-
-      // // Plugin options
-      // githubUrl: 'https://my-ghe.com',
+      extends: ['semantic-release-monorepo', 'semantic-version-commit-filter'],
 
       plugins: [
         '@semantic-release/commit-analyzer',
@@ -22,6 +28,10 @@ export async function createSemanticRelease() {
         '@semantic-release/npm',
         '@semantic-release/github',
       ],
+      // githubApiPathPrefix: '/api-prefix',
+      // // Plugin options
+      // githubUrl: 'https://my-ghe.com',
+      tagFormat: `${name}@\${version}`,
 
       // repositoryUrl: 'https://github.com/me/my-package.git',
     },
@@ -40,28 +50,21 @@ export async function createSemanticRelease() {
   if (result) {
     const { lastRelease, commits, nextRelease, releases } = result;
 
-    if (lastRelease.version) {
-      console.log(`The last release was "${lastRelease.version}".`);
-    }
-
-    console.log(
-      `${pc.green('✔')} published ${nextRelease.type} release version ${
-        nextRelease.version
-      } containing ${commits.length} commits.`,
-    );
-
+    return {
+      commits: commits.length,
+      type: nextRelease.type,
+      version: nextRelease.version,
+    };
     // for (const release of releases) {
     //   console.log(
     //     `The release was published with plugin "${release.pluginName}".`,
     //   );
     // }
   } else {
-    console.log('no release published.');
+    console.info('no release published.');
+    return false;
   }
-
-  // // Get stdout and stderr content
-  // const logs = stdoutBuffer.getContentsAsString('utf8');
-  // const errors = stderrBuffer.getContentsAsString('utf8');
-
-  return result;
 }
+// // Get stdout and stderr content
+// const logs = stdoutBuffer.getContentsAsString('utf8');
+// const errors = stderrBuffer.getContentsAsString('utf8');

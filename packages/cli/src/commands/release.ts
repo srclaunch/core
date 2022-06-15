@@ -43,9 +43,16 @@ export default new Command<ProjectConfig, ReleaseFlags>({
       //   push: flags.push,
       // });
 
-      console.log('creating release');
-      const result = await createSemanticRelease();
-      console.log('result', result);
+      const result = await createSemanticRelease({ name: config.name });
+
+      if (result) {
+        console.log(
+          `${pc.green('✔')} published ${result.type} release version ${
+            result.version
+          } containing ${result.commits} commits.`,
+        );
+      }
+
       // console.log(
       //   `${pc.green('✔')} created release ${pc.bold(result.version)} ${
       //     flags.push ? `and pushed to ${pc.bold(result.repo)}` : ``

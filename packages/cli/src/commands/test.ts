@@ -194,7 +194,6 @@ export default new Command<ProjectConfig, TestFlags>({
             watch: flags.watch,
           });
           break;
-
         default:
           await runAvaTests({
             config: config.test,

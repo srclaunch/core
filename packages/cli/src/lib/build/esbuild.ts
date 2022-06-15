@@ -91,7 +91,7 @@ export async function build({
         }
       }
 
-      console.info(
+      console.log(
         `${pc.green('✔')} bundled to ${pc.bold(
           formatType.toLocaleUpperCase(),
         )} format`,
