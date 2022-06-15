@@ -26,11 +26,11 @@ export default <LibraryConfig>{
     },
   },
   test: {
+    concurrency: 1,
     coverage: {
       reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
     },
     tool: TestTool.Ava,
-    concurrency: 1,
   },
   build: {
     formats: [BuildFormat.ESM, BuildFormat.UMD],

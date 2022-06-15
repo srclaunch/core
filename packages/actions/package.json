@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@srclaunch/dx": "workspace:*",
+    "@srclaunch/cli": "workspace:*",
     "@srclaunch/types": "workspace:*",
     "@types/fs-extra": "^9.0.13"
   },

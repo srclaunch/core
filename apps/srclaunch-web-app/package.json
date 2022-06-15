@@ -58,6 +58,7 @@
   },
   "devDependencies": {
     "@srclaunch/dx": "workspace:*",
+    "@srclaunch/cli": "workspace:*",
     "@srclaunch/types": "workspace:*",
     "@types/compression": "^1.7.2",
     "@types/express": "^4.17.13",

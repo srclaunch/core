@@ -59,6 +59,7 @@
   },
   "devDependencies": {
     "@srclaunch/dx": "workspace:*",
+    "@srclaunch/cli": "workspace:*",
     "@srclaunch/types": "workspace:*",
     "@testing-library/dom": "^8.13.0",
     "@testing-library/jest-dom": "^5.16.4",

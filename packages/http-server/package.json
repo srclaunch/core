@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@srclaunch/dx": "workspace:*",
+    "@srclaunch/cli": "workspace:*",
     "@srclaunch/http-client": "workspace:*",
     "@srclaunch/types": "workspace:*",
     "@types/async-exit-hook": "^2.0.0",

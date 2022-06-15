@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@srclaunch/dx": "workspace:*",
+    "@srclaunch/cli": "workspace:*",
     "@srclaunch/types": "workspace:*",
     "@types/node": "^17.0.42",
     "@types/pg": "^8.6.5",

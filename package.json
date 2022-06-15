@@ -7,13 +7,11 @@
     "pnpm": ">=7.1.5"
   },
   "scripts": {
-    "build": "pnpm build:cli && turbo run build --color",
-    "build:cli:types": "turbo run build:cli:types --color",
-    "build:cli": "turbo run build:cli:types --color && turbo run build:cli --color",
+    "build": "turbo run build --color",
     "build:graph": "turbo run build --color --graph=media/images/dependencies-graph.svg",
     "build:watch": "turbo run build --watch --color",
-    "release": "pnpm build:cli && turbo run release --color",
-    "test": "pnpm build:cli && turbo run test --color --concurrency=1"
+    "release": "turbo run release --color",
+    "test": "turbo run test --color --concurrency=1"
   },
   "packageManager": "pnpm@7.1.5",
   "pnpm": {
@@ -31,8 +29,6 @@
     }
   },
   "devDependencies": {
-    "@srclaunch/dx": "workspace:*",
-    "@srclaunch/cli": "workspace:*",
     "@swc-node/jest": "^1.5.2",
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.2.203",
