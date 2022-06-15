@@ -6,6 +6,7 @@
     "node": ">=16",
     "pnpm": ">=7.1.5"
   },
+  "type": "module",
   "scripts": {
     "build": "turbo run build --color",
     "build:graph": "turbo run build --color --graph=media/images/dependencies-graph.svg",
@@ -33,6 +34,8 @@
     }
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
     "@srclaunch/cli": "workspace:*",
     "@srclaunch/dx": "workspace:*",
     "@srclaunch/types": "workspace:*",
@@ -69,6 +72,7 @@
     "eslint-plugin-sort-requires": "^2.1.0",
     "eslint-plugin-testing-library": "^5.5.1",
     "eslint-plugin-unicorn": "^42.0.0",
+    "husky": "^8.0.1",
     "madge": "^5.0.1",
     "prettier": "^2.7.0",
     "stylelint": "^14.9.1",

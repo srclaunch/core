@@ -31,7 +31,7 @@ export async function createSemanticRelease({
           '@semantic-release/npm',
           {
             npmPublish: true,
-            pkgRoot: './',
+            pkgRoot: process.cwd(),
             // tarballDir: 'dist',
           },
         ],
