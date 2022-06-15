@@ -71,7 +71,7 @@
     "vitest": "^0.14.2"
   },
   "scripts": {
-    "build": "turbo run build:cli && turbo run build --filter=!@srclaunch/cli",
+    "build": "turbo run build:cli && turbo run build",
     "build:graph": "turbo run build --graph=media/images/dependencies-graph.svg",
     "build:watch": "turbo run build --watch",
     "release": "turbo run release",

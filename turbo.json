@@ -7,7 +7,7 @@
       "outputs": ["dist/**", "docs/**"]
     },
     "build": {
-      "dependsOn": ["build:cli", "^build"],
+      "dependsOn": ["^build"],
       "inputs": ["src/**/*.tsx", "src/**/*.ts"],
       "outputs": ["dist/**", "docs/**"]
     },
