@@ -3,7 +3,7 @@
 coverage/
 dist/
 docs/
-# !packages/cli/dist/
+!packages/cli/dist/
 node_modules/
 .pnpm-debug.log
 .turbo
