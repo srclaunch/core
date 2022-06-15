@@ -27,7 +27,8 @@
     }
   },
   "scripts": {
-    "qr": "srclaunch changesets add --files \".\" --message \"Quick release\" --type \"chore\" && srclaunch release --push"
+    "qr": "srclaunch changesets add --files \".\" --message \"Quick release\" --type \"chore\" && srclaunch release --push",
+    "release": "srclaunch release"
   },
   "devDependencies": {
     "@srclaunch/dx": "workspace:*",

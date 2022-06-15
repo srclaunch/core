@@ -98,8 +98,8 @@ export default <ComponentLibraryConfig>{
     },
   },
   release: {
-    deploy: {
-      github_pages: true,
+    deployment: {
+      githubPages: true,
     },
     publish: {
       access: PublishAccess.Public,

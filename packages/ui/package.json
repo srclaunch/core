@@ -29,7 +29,8 @@
     "qr": "srclaunch changesets add --files \".\" --message \"Quick release\" --type \"chore\" && srclaunch release --push",
     "build": "srclaunch build --clean --types",
     "release": "srclaunch release",
-    "test": "srclaunch test --coverage",
+    "test": "srclaunch test",
+    "test:coverage": "srclaunch test --coverage",
     "test:watch": "srclaunch test --watch",
     "dev": "srclaunch run dev"
   },

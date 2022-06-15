@@ -30,7 +30,8 @@
     "build:esbuild:iife": "esbuild --bundle --minify --outfile=dist/index.iife.js --format=iife --target=esnext --platform=neutral --sourcemap src/index.ts",
     "build:spack": "spack --config \"$PWD/spack.config.cjs\"",
     "build:types": "tsc",
-    "build": "rm -fr ./dist && pnpm build:esbuild:esm && pnpm build:esbuild:iife && pnpm build:types"
+    "build": "rm -fr ./dist && pnpm build:esbuild:esm && pnpm build:esbuild:iife && pnpm build:types",
+    "release": "srclaunch release"
   },
   "devDependencies": {
     "@srclaunch/dx": "workspace:*",

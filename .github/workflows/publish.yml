@@ -29,7 +29,7 @@ jobs:
       #     turbo_team: ${{ secrets.TURBO_TEAM }}
       #     turbo_token: ${{ secrets.TURBO_TOKEN }}
 
-      - name: Bump versions, generate changelog and create releases
+      - name: Build, test and release updated packages
         uses: 'srclaunch/core/packages/ci-cd/.github/actions/release@main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
