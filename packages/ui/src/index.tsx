@@ -140,4 +140,4 @@ export {
 } from './lib/proportions/conversions';
 export { getLargerSize, getSmallerSize } from './lib/proportions/size';
 export * from './types/index';
-// Updating comment to test release
+// Update comment to test release
