@@ -1,14 +1,11 @@
 {
   /* Convention Commits */
   "conventionalCommits.scopes": [
-    "dev-env",
-    "ci-cd",
+    "dx",
+    "ci",
+    "performance",
     "formatting",
-    "ui",
-    "look-and-feel",
-    "auth",
-    "credit-cards",
-    "critical",
+    "security",
     "stability"
   ],
   /* Colorize plugin */
