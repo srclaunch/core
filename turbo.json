@@ -13,6 +13,10 @@
     "release": {
       "dependsOn": ["build", "test"],
       "outputs": []
+    },
+    "@srclaunch/cli#build": {
+      "dependsOn": ["@srclaunch/types#build"],
+      "outputs": ["dist/**"]
     }
   }
 }
