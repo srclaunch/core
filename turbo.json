@@ -13,17 +13,17 @@
       "outputs": ["dist/**", "docs/**"]
     },
     "test": {
-      "dependsOn": ["build"],
+      "dependsOn": ["^build"],
       "outputs": [],
       "inputs": ["src/**/*.tsx", "src/**/*.ts"]
     },
     "test:coverage": {
-      "dependsOn": ["build"],
+      "dependsOn": ["^build"],
       "outputs": ["coverage/**"],
       "inputs": ["src/**/*.tsx", "src/**/*.ts"]
     },
     "release": {
-      "dependsOn": ["build", "test"],
+      "dependsOn": ["^test", "^build"],
       "outputs": []
     }
   }
