@@ -23,5 +23,5 @@ runs:
         NPM_TOKEN: ${{ inputs.npm_token }}
         TURBO_TEAM: ${{ inputs.turbo_team }}
         TURBO_TOKEN: ${{ inputs.turbo_token }}
-      run: pnpm release
+      run: pnpm build:cli && pnpm release
       shell: bash

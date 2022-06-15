@@ -21,7 +21,7 @@ runs:
   using: composite
   steps:
     - name: Run tests and collect testing coverage
-      run: pnpm test:coverage
+      run: pnpm build:cli && pnpm test
       shell: bash
       env:
         TURBO_TEAM: ${{ inputs.turbo_team }}

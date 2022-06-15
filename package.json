@@ -6,6 +6,14 @@
     "node": ">=16",
     "pnpm": ">=7.1.5"
   },
+  "scripts": {
+    "build": "turbo run build:cli --color && turbo run build --color",
+    "build:graph": "turbo run build --color --graph=media/images/dependencies-graph.svg",
+    "build:watch": "turbo run build --watch --color",
+    "release": "turbo run release --color",
+    "test": "turbo run test --color --concurrency=1",
+    "test:coverage": "turbo run test:coverage --color"
+  },
   "packageManager": "pnpm@7.1.5",
   "pnpm": {
     "packageExtensions": {
@@ -70,13 +78,5 @@
     "turbo": "^1.2.16",
     "typescript": "^4.7.3",
     "vitest": "^0.14.2"
-  },
-  "scripts": {
-    "build": "turbo run build:cli && turbo run build",
-    "build:graph": "turbo run build --graph=media/images/dependencies-graph.svg",
-    "build:watch": "turbo run build --watch",
-    "release": "turbo run release",
-    "test": "turbo run test --concurrency=1",
-    "test:coverage": "turbo run test:coverage"
   }
 }
