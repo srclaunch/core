@@ -727,10 +727,8 @@ importers:
 
   packages/types:
     specifiers:
-      '@srclaunch/cli': workspace:*
       '@types/react': ^18.0.9
     devDependencies:
-      '@srclaunch/cli': link:../cli
       '@types/react': 18.0.12
 
   packages/ui:
