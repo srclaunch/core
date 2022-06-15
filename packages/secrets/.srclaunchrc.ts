@@ -33,7 +33,8 @@ export default <LibraryConfig>{
     tool: TestTool.Ava,
   },
   build: {
-    formats: [BuildFormat.ESM, BuildFormat.CJS],
+    formats: [BuildFormat.ESM, BuildFormat.IIFE],
+    library: true,
     platform: BuildPlatform.Node,
     target: BuildTarget.ESNext,
     tool: BuildTool.ESBuild,

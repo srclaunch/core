@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import { Color, Sizes } from '../../types';
 
 type RadialGaugeProps = {
-  color: Color;
-  size: number;
-  value: number;
+  readonly color: Color;
+  readonly size: number;
+  readonly value: number;
 };
 
 export const RadialGauge = memo(
@@ -39,7 +39,7 @@ export const RadialGauge = memo(
   },
 );
 
-const Container = styled.div<{ size: number; value: number }>`
+const Container = styled.div<{ readonly size: number; readonly value: number }>`
   margin: 0 auto;
   position: relative;
   width: ${props => props.size + 9}px;

@@ -39,12 +39,12 @@ export default <LibraryConfig>{
       },
     },
     react: true,
-
     input: {
       directory: 'src',
       file: 'index.tsx',
     },
     formats: [BuildFormat.ESM, BuildFormat.UMD],
+    library: true,
     platform: BuildPlatform.Browser,
     target: BuildTarget.Modules,
     tool: BuildTool.Vite,

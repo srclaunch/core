@@ -19,7 +19,8 @@ export default <LibraryConfig>{
   description: 'Node.js environment specific utilities for SrcLaunch services',
   type: ProjectType.Library,
   build: {
-    formats: [BuildFormat.ESM, BuildFormat.CJS],
+    formats: [BuildFormat.ESM, BuildFormat.IIFE],
+    library: true,
     platform: BuildPlatform.Node,
     target: BuildTarget.ESNext,
     tool: BuildTool.ESBuild,

@@ -27,6 +27,7 @@ export default <LibraryConfig>{
   },
   build: {
     formats: [BuildFormat.ESM, BuildFormat.UMD],
+    library: true,
     platform: BuildPlatform.Node,
     target: BuildTarget.Modules,
     tool: BuildTool.Vite,

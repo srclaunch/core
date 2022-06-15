@@ -37,6 +37,7 @@ export default <LibraryConfig>{
       exclude: ['nanoid'],
     },
     formats: [BuildFormat.ESM, BuildFormat.UMD],
+    library: true,
     platform: BuildPlatform.Browser,
     target: BuildTarget.Modules,
     tool: BuildTool.Vite,

@@ -23,9 +23,7 @@ export default <LibraryConfig>{
   type: ProjectType.Library,
   build: {
     formats: [BuildFormat.UMD, BuildFormat.ESM],
-    library: {
-      name: '@srclaunch/codgen',
-    },
+    library: true,
     platform: BuildPlatform.Browser,
     target: BuildTarget.Modules,
     tool: BuildTool.Vite,

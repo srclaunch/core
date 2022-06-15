@@ -36,7 +36,7 @@ export default <ComponentLibraryConfig>{
           'styled-components',
         ],
         globals: {
-          react: 'React',
+          // react: 'React',
           'styled-components': 'styled',
         },
       },
@@ -50,6 +50,7 @@ export default <ComponentLibraryConfig>{
       react: true,
       target: BuildTarget.Modules,
       tool: BuildTool.Vite,
+      types: true,
     },
     {
       bundle: {
@@ -64,7 +65,7 @@ export default <ComponentLibraryConfig>{
           'styled-components',
         ],
         globals: {
-          react: 'React',
+          // react: 'React',
           'styled-components': 'styled',
         },
       },
@@ -80,6 +81,7 @@ export default <ComponentLibraryConfig>{
       react: true,
       target: BuildTarget.Modules,
       tool: BuildTool.Vite,
+      types: false,
     },
   ],
   test: {

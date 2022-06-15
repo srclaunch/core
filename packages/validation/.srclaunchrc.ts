@@ -22,6 +22,7 @@ export default <LibraryConfig>{
   type: ProjectType.Library,
   build: {
     formats: [BuildFormat.ESM, BuildFormat.UMD],
+    library: true,
     platform: BuildPlatform.Browser,
     target: BuildTarget.Modules,
     tool: BuildTool.Vite,

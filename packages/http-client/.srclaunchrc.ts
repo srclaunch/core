@@ -24,6 +24,7 @@ export default <LibraryConfig>{
       exclude: ['axios', 'nanoid'],
     },
     formats: [BuildFormat.ESM, BuildFormat.UMD],
+    library: true,
     platform: BuildPlatform.Browser,
     target: BuildTarget.Modules,
     tool: BuildTool.Vite,

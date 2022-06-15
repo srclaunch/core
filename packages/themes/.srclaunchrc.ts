@@ -30,6 +30,7 @@ export default <ThemeLibraryConfig>{
       },
     },
     formats: [BuildFormat.ESM, BuildFormat.UMD],
+    library: true,
     platform: BuildPlatform.Browser,
     react: true,
     target: BuildTarget.Modules,

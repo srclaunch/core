@@ -33,6 +33,7 @@ export default <LibraryConfig>{
   },
   build: {
     formats: [BuildFormat.ESM, BuildFormat.CJS],
+    library: true,
     platform: BuildPlatform.Node,
     target: BuildTarget.ESNext,
     tool: BuildTool.ESBuild,

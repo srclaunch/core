@@ -36,6 +36,7 @@ export default <LibraryConfig>{
       exclude: ['fs-extra', 'js-file-download'],
     },
     formats: [BuildFormat.ESM, BuildFormat.IIFE],
+    library: true,
     platform: BuildPlatform.Universal,
     target: BuildTarget.ESNext,
     tool: BuildTool.ESBuild,
