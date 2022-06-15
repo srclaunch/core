@@ -30,9 +30,9 @@ export async function createSemanticRelease({
         [
           '@semantic-release/npm',
           {
-            npmPublish: false,
-            pkgRoot: 'dist',
-            tarballDir: '.',
+            npmPublish: true,
+            pkgRoot: './',
+            // tarballDir: 'dist',
           },
         ],
         '@semantic-release/github',
@@ -46,7 +46,7 @@ export async function createSemanticRelease({
     },
     {
       // Run semantic-release from `/path/to/git/repo/root` without having to change local process `cwd` with `process.chdir()`
-      // cwd: '/path/to/git/repo/root',
+      cwd: process.cwd(),
       // Pass the variable `MY_ENV_VAR` to semantic-release without having to modify the local `process.env`
       env: (process.env as { [name: string]: string }) ?? {},
 
