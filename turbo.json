@@ -2,8 +2,12 @@
   "$schema": "https://turborepo.org/schema.json",
   "baseBranch": "origin/main",
   "pipeline": {
+    "build:cli": {
+      "inputs": ["src/**/*.tsx", "src/**/*.ts"],
+      "outputs": ["dist/**", "docs/**"]
+    },
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["build:cli", "^build"],
       "inputs": ["src/**/*.tsx", "src/**/*.ts"],
       "outputs": ["dist/**", "docs/**"]
     },
