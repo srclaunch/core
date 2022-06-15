@@ -26,7 +26,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           repository_owner: ${{ github.event.repository.owner.login }}
           repository_name: ${{ github.event.repository.name }}
-          branch: ${{ needs.setup.outputs.branch }}
           turbo_team: ${{ secrets.TURBO_TEAM }}
           turbo_token: ${{ secrets.TURBO_TOKEN }}
 

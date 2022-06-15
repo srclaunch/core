@@ -27,6 +27,7 @@
     "dev": "NODE_ENV=dev && node --loader ts-node/esm --experimental-specifier-resolution=node ./src/index.ts",
     "git:push": "git push --follow-tags origin main",
     "qr": "pnpm build && git add . && git commit -m \"Quick release\" && pnpm release",
+    "release": "srclaunch release",
     "start": "node --experimental-modules --experimental-specifier-resolution=node dist/index.js",
     "test": "ava ./src/__tests__/**",
     "test:coverage": "c8 --all --clean --include src --exclude 'src/__tests__/**' ava ./src/__tests__/** && c8 report --all --reporter json-summary --reporter lcov --include src --exclude 'src/__tests__/**'",

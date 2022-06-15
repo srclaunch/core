@@ -7,6 +7,7 @@ export async function createSemanticRelease() {
       // branch: 'main',
       branches: [{ name: 'main' }],
       // ci: false,
+
       // dryRun: true,
       extends: 'semantic-release-monorepo',
 
@@ -26,7 +27,7 @@ export async function createSemanticRelease() {
     },
     {
       // Run semantic-release from `/path/to/git/repo/root` without having to change local process `cwd` with `process.chdir()`
-      cwd: '/path/to/git/repo/root',
+      // cwd: '/path/to/git/repo/root',
       // Pass the variable `MY_ENV_VAR` to semantic-release without having to modify the local `process.env`
       env: (process.env as { [name: string]: string }) ?? {},
 
