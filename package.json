@@ -1,7 +1,7 @@
 {
   "name": "@srclaunch/core",
   "description": "Monorepository containing core libraries that comprise the SrcLaunch platform",
-  "version": "0.2.0",
+  "version": "0.3.10",
   "engines": {
     "node": ">=16",
     "pnpm": ">=7.1.5"

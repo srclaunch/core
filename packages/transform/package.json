@@ -3,7 +3,7 @@
   "description": "Transform values into other types",
   "author": "Steven Bennett <steven@srclaunch.com>",
   "license": "MIT",
-  "version": "0.2.0",
+  "version": "0.3.10",
   "engines": {
     "node": ">=16"
   },
