@@ -23,11 +23,11 @@ runs:
       run: pnpm test
       shell: bash
 
-    - name: Archive code coverage results
-      uses: actions/upload-artifact@v3
-      with:
-        name: ${{ inputs.repository_owner }}-${{ inputs.repository_name }}-${{ inputs.branch }}-code-coverage.json
-        path: coverage/coverage-summary.json
+    # - name: Archive code coverage results
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: ${{ inputs.repository_owner }}-${{ inputs.repository_name }}-${{ inputs.branch }}-code-coverage.json
+    #     path: coverage/coverage-summary.json
 
     # Send to SrcLaunch!!
 
