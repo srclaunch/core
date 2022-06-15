@@ -30,8 +30,7 @@
     "start": "node --experimental-modules --experimental-specifier-resolution=node dist/index.js",
     "test": "ava ./src/__tests__/**",
     "test:coverage": "c8 --all --clean --include src --exclude 'src/__tests__/**' ava ./src/__tests__/** && c8 report --all --reporter json-summary --reporter lcov --include src --exclude 'src/__tests__/**'",
-    "test:watch": "ava --watch",
-    "release": "standard-version"
+    "test:watch": "ava --watch"
   },
   "devDependencies": {
     "@srclaunch/dx": "workspace:*",
