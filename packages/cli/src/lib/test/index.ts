@@ -1,6 +1,6 @@
-import { TestOptions, TestReporter, TestTool } from '@srclaunch/types';
+import { TestReporter, TestTool } from '@srclaunch/types';
 
-export const DEFAULT_TEST_OPTIONS: TestOptions = {
+export const DEFAULT_TEST_OPTIONS = {
   concurrency: 1,
   coverage: {
     directory: 'coverage',

@@ -39,4 +39,4 @@ Commands
 
 To view information for a specific command add "help" after the command name, for example:
   $ srclaunch build help
-`,ta=Rt(wt,{importMeta:import.meta});async function Ot(){try{let a=ta.input,e=ta.flags,i=await qi();zt({pkg:ta.pkg}).notify(),await ma({cli:ta,command:a,commands:[Da,Pa,ka,Oa,qa,Ga,xa,Ya,Pi,Fi,Mi,Oi],config:i,flags:e})}catch(a){console.error(a)}}var H0=Ot();export{b as CommandType,ta as cli,H0 as default,wt as helpMessage,Ot as main};
+`,ta=Rt(wt,{importMeta:import.meta});async function Ot(){try{let a=ta.input,e=ta.flags,i=await qi();zt({pkg:ta.pkg}).notify(),await ma({cli:ta,command:a,commands:[Da,Pa,ka,Oa,qa,Ga,xa,Ya,Pi,Fi,Mi,Oi],config:i,flags:e})}catch(a){console.error(a)}}var K0=Ot();export{b as CommandType,ta as cli,K0 as default,wt as helpMessage,Ot as main};
