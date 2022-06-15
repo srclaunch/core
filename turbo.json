@@ -7,13 +7,17 @@
       "outputs": ["dist/**"]
     },
     "test": {
+      "dependsOn": ["^build", "^test"],
       "outputs": [],
-      "inputs": ["src/**/*.test.tsx", "src/**/*.test.ts"]
+      "inputs": [
+        "src/**/*.tsx",
+        "src/**/*.ts",
+        "src/**/*.test.tsx",
+        "src/**/*.test.ts"
+      ]
     },
     "release": {
-      "dependsOn": ["^release"],
-      "outputs": ["CHANGELOG.md", "package.json"],
-      "inputs": []
+      "dependsOn": ["build", "test"]
     }
   }
 }

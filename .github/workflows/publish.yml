@@ -14,26 +14,26 @@ jobs:
       - name: Setup job
         uses: 'srclaunch/core/packages/ci-cd/.github/actions/setup@main'
 
-      - name: Build project
-        uses: 'srclaunch/core/packages/ci-cd/.github/actions/build@main'
-        with:
-          turbo_team: ${{ secrets.TURBO_TEAM }}
-          turbo_token: ${{ secrets.TURBO_TOKEN }}
+      # - name: Build project
+      #   uses: 'srclaunch/core/packages/ci-cd/.github/actions/build@main'
+      #   with:
+      #     turbo_team: ${{ secrets.TURBO_TEAM }}
+      #     turbo_token: ${{ secrets.TURBO_TOKEN }}
 
-      - name: Run tests and collect coverage
-        uses: 'srclaunch/core/packages/ci-cd/.github/actions/test@main'
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          repository_owner: ${{ github.event.repository.owner.login }}
-          repository_name: ${{ github.event.repository.name }}
-          turbo_team: ${{ secrets.TURBO_TEAM }}
-          turbo_token: ${{ secrets.TURBO_TOKEN }}
+      # - name: Run tests and collect coverage
+      #   uses: 'srclaunch/core/packages/ci-cd/.github/actions/test@main'
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     repository_owner: ${{ github.event.repository.owner.login }}
+      #     repository_name: ${{ github.event.repository.name }}
+      #     turbo_team: ${{ secrets.TURBO_TEAM }}
+      #     turbo_token: ${{ secrets.TURBO_TOKEN }}
 
       - name: Bump versions, generate changelog and create releases
         uses: 'srclaunch/core/packages/ci-cd/.github/actions/release@main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          npm_token: ${{ secrets.NPM_TOKEN }}
+          npm_token: ${{ secrets.NPM_ACCESS_TOKEN }}
           turbo_team: ${{ secrets.TURBO_TEAM }}
           turbo_token: ${{ secrets.TURBO_TOKEN }}
 
