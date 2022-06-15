@@ -28,8 +28,8 @@ jobs:
           repository_name: ${{ github.event.repository.name }}
           branch: ${{ needs.setup.outputs.branch }}
 
-      - name: Run tests and collect coverage
-        uses: 'srclaunch/core/packages/ci-cd/.github/actions/test@main'
+      - name: Bump versions, generate changelog and create releases
+        uses: 'srclaunch/core/packages/ci-cd/.github/actions/release@main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           npm_token: ${{ secrets.NPM_TOKEN }}
