@@ -33,7 +33,6 @@
     "release": "srclaunch release"
   },
   "devDependencies": {
-    "@srclaunch/cli": "workspace:*",
     "@types/react": "^18.0.9"
   }
 }
