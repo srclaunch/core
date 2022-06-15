@@ -1,0 +1,9 @@
+**/.cache/**
+**/.husky/**
+**/.next/**
+**/.turbo/**
+**/coverage/**
+**/dist/**
+**/docs/**
+**/node_modules/**
+yarn.lock

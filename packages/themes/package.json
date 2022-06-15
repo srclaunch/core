@@ -3,7 +3,7 @@
   "description": "CSS variables and styled-component based themes used by SrcLaunch applications",
   "author": "Steven Bennett <steven@srclaunch.com>",
   "license": "MIT",
-  "version": "0.3.10",
+  "version": "1.3.0",
   "engines": {
     "node": ">=16"
   },

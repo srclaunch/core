@@ -1,0 +1,10 @@
+node_modules
+coverage
+dist
+docs
+release
+*.hbs
+# oh my goodness wwhat is happening
+.next
+.turbo
+.tsbuildinfo
