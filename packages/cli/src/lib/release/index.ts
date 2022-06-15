@@ -1,4 +1,7 @@
+import { randomInt } from 'node:crypto';
+import { WriteStream } from 'node:tty';
 import semanticRelease from 'semantic-release';
+
 // const isCI = require('is-ci');
 // # !isCI && require('dotenv').config({ path: '../../.env' });
 
@@ -14,13 +17,16 @@ export async function createSemanticRelease({
     }
   | false
 > {
+  const stderrStream = new WriteStream(randomInt(10));
+  const stdoutStream = new WriteStream(randomInt(10));
+
   const result = await semanticRelease(
     {
       // branch: 'main',
       branches: [{ name: 'main' }],
       // ci: false,
 
-      // dryRun: true,
+      dryRun: true,
       extends: ['semantic-release-commit-filter'],
 
       pkgRoot: 'dist',
@@ -50,11 +56,19 @@ export async function createSemanticRelease({
       // Pass the variable `MY_ENV_VAR` to semantic-release without having to modify the local `process.env`
       env: (process.env as { [name: string]: string }) ?? {},
 
-      // stderr: stderrBuffer,
+      stderr: stderrStream,
       // // Store stdout and stderr to use later instead of writing to `process.stdout` and `process.stderr`
-      // stdout: stdoutBuffer,
+      stdout: stdoutStream,
     },
   );
+
+  stderrStream.on('data', (data: Buffer) => {
+    console.log('stderr', data.toString());
+  });
+
+  stdoutStream.on('data', (data: Buffer) => {
+    console.log('stdout', data.toString());
+  });
 
   if (result) {
     const { lastRelease, commits, nextRelease, releases } = result;
@@ -75,5 +89,4 @@ export async function createSemanticRelease({
   }
 }
 // // Get stdout and stderr content
-// const logs = stdoutBuffer.getContentsAsString('utf8');
 // const errors = stderrBuffer.getContentsAsString('utf8');

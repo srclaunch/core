@@ -8,6 +8,7 @@
     "security",
     "stability"
   ],
+
   /* Colorize plugin */
   "colorize.languages": ["js", "tsx"],
   "colorize.include": ["colors.css", "themes.css"],
