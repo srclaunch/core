@@ -18,3 +18,4 @@ runs:
         GITHUB_TOKEN: ${{ inputs.github_token }}
         NPM_TOKEN: ${{ inputs.npm_token }}
       run: pnpm release
+      shell: bash
