@@ -34,13 +34,13 @@ export class HttpServer {
   // eslint-disable-next-line functional/prefer-readonly-type
   private listener?: http.Server;
   // eslint-disable-next-line functional/prefer-readonly-type
-  private logger: Logger;
-  readonly name: string;
+  public logger: Logger;
+  public readonly name: string;
   private readonly express: Express;
   // eslint-disable-next-line functional/prefer-readonly-type
   private server?: Express;
   // eslint-disable-next-line functional/prefer-readonly-type
-  private options: ServerOptions = {
+  public options: ServerOptions = {
     port: 8080,
   };
 

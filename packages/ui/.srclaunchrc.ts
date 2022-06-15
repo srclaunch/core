@@ -14,46 +14,74 @@ import {
   TestTool,
   UniversalPackage,
   BrowserPackage,
+  Environments,
+  Runner,
 } from '@srclaunch/types';
 
 export default <ComponentLibraryConfig>{
   name: '@srclaunch/ui',
   description: 'SrcLaunch UI React component library',
   type: ProjectType.ComponentLibrary,
-  react: true,
-  build: {
-    bundle: {
-      exclude: [
-        'react',
-        'react-dom',
-        'react-dom/client',
-        'redux',
-        'react-redux',
-        'react-router',
-        'react-router-dom',
-        'styled-components',
-      ],
-      globals: {
-        react: 'React',
-        'styled-components': 'styled',
+  build: [
+    {
+      bundle: {
+        exclude: [
+          'react',
+          'react-dom',
+          'react-dom/client',
+          'redux',
+          'react-redux',
+          'react-router',
+          'react-router-dom',
+          'styled-components',
+        ],
+        globals: {
+          react: 'React',
+          'styled-components': 'styled',
+        },
       },
+      formats: [BuildFormat.ESM, BuildFormat.UMD],
+      input: {
+        directory: 'src',
+        file: 'index.tsx',
+      },
+      library: true,
+      platform: BuildPlatform.Browser,
+      react: true,
+      target: BuildTarget.Modules,
+      tool: BuildTool.Vite,
     },
-    formats: [BuildFormat.ESM, BuildFormat.UMD],
-    input: {
-      directory: 'src',
-      file: 'index.tsx',
+    {
+      bundle: {
+        exclude: [
+          'react',
+          'react-dom',
+          'react-dom/client',
+          'redux',
+          'react-redux',
+          'react-router',
+          'react-router-dom',
+          'styled-components',
+        ],
+        globals: {
+          react: 'React',
+          'styled-components': 'styled',
+        },
+      },
+      formats: [BuildFormat.ESM, BuildFormat.UMD],
+      input: {
+        directory: 'src/__docs__',
+        file: 'index.html',
+      },
+      output: {
+        directory: 'docs',
+      },
+      platform: BuildPlatform.Browser,
+      react: true,
+      target: BuildTarget.Modules,
+      tool: BuildTool.Vite,
     },
-    platform: BuildPlatform.Browser,
-    react: true,
-    target: BuildTarget.Modules,
-    tool: BuildTool.Vite,
-  },
-  docs: {
-    assetsDir: 'assets',
-    entryFile: 'docs/index.html',
-    react: true,
-    rootDir: 'docs',
-  },
+  ],
   test: {
     coverage: {
       reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
@@ -115,6 +143,16 @@ export default <ComponentLibraryConfig>{
       dx: true,
       cli: true,
       types: true,
+    },
+  },
+  run: {
+    [Environments.Development]: {
+      react: true,
+      input: {
+        directory: 'src/__docs__',
+      },
+      runner: Runner.Vite,
+      styledComponents: true,
     },
   },
 };

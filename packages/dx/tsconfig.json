@@ -20,6 +20,7 @@
   "exclude": [
     "node_modules",
     "dist",
+    "__docs__",
     "__tests__",
     "src/**/*.test.ts",
     "src/**/*.spec.ts"

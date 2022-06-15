@@ -27,14 +27,15 @@ export interface TaskOptions<I = TaskInput, O = TaskOutput> {
 export class Task<I = TaskInput, O = TaskOutput> implements TaskOptions<I, O> {
   public readonly description?: string = '';
   public readonly environment?: Record<string, unknown> = {};
-  public readonly id: string = '';
-  public readonly if: ReadonlyArray<Record<string, string | number | boolean>> =
-    [];
+  public readonly id?: string = '';
+  public readonly if?: ReadonlyArray<
+    Record<string, string | number | boolean>
+  > = [];
   public readonly input?: I;
   public readonly name?: string;
   public readonly needs?: readonly string[] = [];
-  public readonly output: O;
-  public readonly status = TaskStatus.NotStarted;
+  public readonly output?: O;
+  public readonly status?: TaskStatus = TaskStatus.NotStarted;
   public readonly steps: {
     readonly [name: string]: Action;
   };

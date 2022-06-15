@@ -40,7 +40,9 @@
     "git:push": "git push --follow-tags origin main",
     "qr": "pnpm build && git add . && git commit -m \"Quick release - patch\" && yarn release",
     "release": "yarn version:patch && yarn git:push",
-    "test": "ava",
+    "test": "srclaunch test",
+    "test:coverage": "srclaunch test --coverage",
+    "test:watch": "srclaunch test --watch",
     "version:patch": "standard-version",
     "yui": "yarn upgrade-interactive"
   },

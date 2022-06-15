@@ -20,6 +20,9 @@ export default <LibraryConfig>{
   description: 'Wrapper around Axios HTTP client',
   type: ProjectType.Library,
   build: {
+    bundle: {
+      exclude: ['axios', 'nanoid'],
+    },
     formats: [BuildFormat.ESM, BuildFormat.UMD],
     platform: BuildPlatform.Browser,
     target: BuildTarget.Modules,

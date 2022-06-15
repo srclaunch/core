@@ -33,6 +33,9 @@ export default <LibraryConfig>{
     tool: TestTool.Ava,
   },
   build: {
+    bundle: {
+      exclude: ['nanoid'],
+    },
     formats: [BuildFormat.ESM, BuildFormat.UMD],
     platform: BuildPlatform.Browser,
     target: BuildTarget.Modules,

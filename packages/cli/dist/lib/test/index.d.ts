@@ -3,6 +3,7 @@ export declare const DEFAULT_TEST_OPTIONS: {
     concurrency: undefined;
     coverage: {
         directory: string;
+        reporters: TestReporter[];
         thresholds: {
             global: {
                 branches: number;
@@ -11,7 +12,6 @@ export declare const DEFAULT_TEST_OPTIONS: {
                 statements: number;
             };
         };
-        reporters: TestReporter[];
     };
     fail: {
         fast: boolean;

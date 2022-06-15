@@ -1,10 +1,10 @@
-import assert from 'assert';
 import Keygrip from 'keygrip';
+import assert from 'node:assert';
 
 export function getSigningKeys({
   hashString,
 }: {
-  hashString: string;
+  readonly hashString: string;
 }): Keygrip {
   // but we're going to use our list.
   // (note that the 'new' operator is optional)
@@ -14,7 +14,7 @@ export function getSigningKeys({
   // all hashes are SHA1 HMACs in url-safe base64
   let hash = keys.sign(hashString);
 
-  assert.ok(/^[\w]{27}$/.test(hash));
+  assert.ok(/^\w{27}$/.test(hash));
 
   // .index returns the index of the first matching key
   let index = keys.index(hashString, hash);

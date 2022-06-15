@@ -1,6 +1,8 @@
 export enum TestTool {
   Ava = 'ava',
   Jest = 'jest',
+  Tape = 'tape',
+  Vitest = 'vitest',
 }
 
 export enum TestReporter {
@@ -19,33 +21,33 @@ export enum TestReporter {
 }
 
 export interface TestOptions {
-  concurrency?: number;
-  coverage?: {
-    directory?: string;
-    files?: {
-      exclude?: string[];
-      include?: string[];
+  readonly concurrency?: number;
+  readonly coverage?: {
+    readonly directory?: string;
+    readonly files?: {
+      readonly exclude?: readonly string[];
+      readonly include?: readonly string[];
     };
-    reporters?: TestReporter[];
-    thresholds?: {
-      [arg: string | 'global']: {
-        branches?: number;
-        functions?: number;
-        lines?: number;
-        statements?: number;
+    readonly reporters?: readonly TestReporter[];
+    readonly thresholds?: {
+      readonly [arg: string | 'global']: {
+        readonly branches?: number;
+        readonly functions?: number;
+        readonly lines?: number;
+        readonly statements?: number;
       };
     };
   };
-  fail?: {
-    fast?: boolean;
-    noTests?: boolean;
+  readonly fail?: {
+    readonly fast?: boolean;
+    readonly noTests?: boolean;
   };
-  files?: {
-    exclude?: string[];
-    include?: string[];
+  readonly files?: {
+    readonly exclude?: readonly string[];
+    readonly include?: readonly string[];
   };
-  match?: string[];
-  tool?: TestTool;
-  watch?: boolean;
-  verbose?: boolean;
+  readonly match?: readonly string[];
+  readonly tool?: TestTool;
+  readonly watch?: boolean;
+  readonly verbose?: boolean;
 }

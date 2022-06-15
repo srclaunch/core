@@ -3,6 +3,7 @@ import {
   Environments,
   ProjectConfig,
   ProjectType,
+  Runner,
   WebAppConfig,
 } from '@srclaunch/types';
 import { TypedFlags } from 'meow';
@@ -25,32 +26,17 @@ export default new Command<ProjectConfig, RunFlags>({
     new Command<ProjectConfig, RunFlags>({
       description: 'Start project in development mode',
       name: 'dev',
-      run: async ({ config, flags }) => {
+      run: async ({ config }) => {
         try {
-          switch (config.type) {
-            case ProjectType.ComponentLibrary:
-            case ProjectType.IconLibrary:
-            case ProjectType.ThemeLibrary:
-              {
-                const docConfig = config as ComponentLibraryConfig;
-                await runVite({
-                  environment: Environments.Development,
-                  project: config,
-                  ...docConfig.docs,
-                });
-              }
+          const options = config.run?.development;
 
-              break;
-            case ProjectType.WebApplication:
-              {
-                await runVite({
-                  environment: Environments.Development,
-                  project: config,
-                  ...config,
-                });
-              }
-
-              break;
+          switch (options?.runner) {
+            case Runner.Vite:
+              await runVite({
+                environment: Environments.Development,
+                project: config,
+                ...options,
+              });
           }
         } catch (error: unknown) {
           console.error(error);

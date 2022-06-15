@@ -1,39 +1,40 @@
-import { TestOptions } from "@srclaunch/types";
-import { Report } from "c8";
-import pc from "picocolors";
-// import { emptyDirectory, ensureDirectoryExists } from "@srclaunch/logic";
-import path from "path";
-import { DEFAULT_TEST_OPTIONS } from "./index";
+import { TestOptions } from '@srclaunch/types';
+import { Report } from 'c8';
+import { emptyDir, ensureDir } from 'fs-extra';
+import path from 'node:path';
+import pc from 'picocolors';
+
+import { DEFAULT_TEST_OPTIONS } from './index';
 
 export async function run(config: TestOptions): Promise<Report> {
   try {
     const coverageDir = path.join(
       process.cwd(),
-      config.coverage?.directory ?? DEFAULT_TEST_OPTIONS.coverage.directory
+      config.coverage?.directory ?? DEFAULT_TEST_OPTIONS.coverage.directory,
     );
 
-    // await ensureDirectoryExists(coverageDir);
-    // await emptyDirectory(coverageDir);
+    await ensureDir(coverageDir);
+    await emptyDir(coverageDir);
 
     const report = new Report({
       all: true,
+      reporter: (config.coverage?.reporters ??
+        DEFAULT_TEST_OPTIONS.coverage.reporters) as string[],
       reportsDirectory: coverageDir,
-      src: [path.join(process.cwd(), "src")],
+      src: [path.join(process.cwd(), 'src')],
       tempDirectory: coverageDir,
-      reporter:
-        config.coverage?.reporters ?? DEFAULT_TEST_OPTIONS.coverage.reporters,
     });
 
     await report.run();
 
     console.info(
-      `${pc.green("✔")} generated coverage report in ${pc.bold(coverageDir)}`
+      `${pc.green('✔')} generated coverage report in ${pc.bold(coverageDir)}`,
     );
 
     return report;
-  } catch (err) {
-    console.warn("Error encountered while generating coverage reports");
-    console.error(err);
-    throw err;
+  } catch (error) {
+    console.warn('Error encountered while generating coverage reports');
+    console.error(error);
+    throw error;
   }
 }

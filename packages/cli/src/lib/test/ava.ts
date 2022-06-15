@@ -1,38 +1,73 @@
-import { spawn } from "child_process";
-import { TestOptions } from "@srclaunch/types";
-import { DEFAULT_TEST_OPTIONS } from "./index";
-// import {
-//   chunksToLinesAsync,
-//   streamWrite,
-//   streamEnd,
-//   onExit,
-// } from '@rauschma/stringio';
+import {
+  chunksToLinesAsync,
+  onExit,
+  streamEnd,
+  streamWrite,
+} from '@rauschma/stringio';
+import { TestOptions } from '@srclaunch/types';
+import { exec, execSync, spawn } from 'node:child_process';
+
+import { DEFAULT_TEST_OPTIONS } from './index';
+
+function logOutput(output?: Buffer) {
+  if (!output) {
+    return;
+  }
+
+  if (output.length <= 1) {
+    return;
+  }
+
+  console.log(output.toString());
+}
+
+function logError(output?: Buffer) {
+  const outputStr = output?.toString();
+
+  if (!output || !outputStr) {
+    return;
+  }
+
+  if (outputStr.length <= 1) {
+    return;
+  }
+
+  if (outputStr.includes('ExperimentalWarning')) {
+    return;
+  }
+
+  if (outputStr.includes('node --trace-warnings')) {
+    return;
+  }
+
+  console.error(outputStr);
+}
 
 export async function run({
   config,
   match,
   watch,
 }: {
-  config: TestOptions;
-  match?: string;
-  watch?: boolean;
+  readonly config: TestOptions;
+  readonly match?: string;
+  readonly watch?: boolean;
 }): Promise<void> {
   try {
-    const all = ["--all"];
-    const color = ["--color"];
+    const all = ['--all'];
+    const color = ['--color'];
     const concurrencyArg = config?.concurrency
-      ? ["--concurrency", config.concurrency.toString()]
+      ? ['--concurrency', config.concurrency.toString()]
       : [];
-    const configArg = ["--config", "node_modules/@srclaunch/dx/ava.config.mjs"];
-    const failFast = config?.fail?.fast ? ["--fail-fast"] : [];
+    const configArg = ['--config', 'node_modules/@srclaunch/dx/ava.config.mjs'];
+    const failFast = config?.fail?.fast ? ['--fail-fast'] : [];
     const failWithNoTests =
       config?.fail?.noTests ?? DEFAULT_TEST_OPTIONS.fail.noTests
         ? []
-        : ["--failWithoutAssertions"];
+        : ['--failWithoutAssertions'];
     const matchFlag = match ? [`--match='${match.toString()}'`] : [];
     // const tapReporter = ['--tap'];
-    const verbose = config?.verbose ? ["--verbose"] : [];
-    const watchFlag = watch ? ["--watch"] : [];
+    const verbose = config?.verbose ? ['--verbose'] : [];
+    const watchFlag = watch ? ['--watch'] : [];
 
     const args = [
       ...all,
@@ -46,42 +81,48 @@ export async function run({
       ...watchFlag,
     ];
 
-    const childProcess = await spawn("ava", args, {
-      stdio: [process.stdin, process.stdout, process.stderr],
+    const childProcess = await spawn('ava', args);
+    // console.log(childProcess);
+    //  args, {
+    // stdio: [process.stdin, process.stdout, process.stderr],
+    // }
+    // );
+
+    // if (childProcess) {
+
+    childProcess.stdout.on('data', data => {
+      logOutput(data.toString());
     });
 
-    // await onExit(childProcess);
+    // // if (childProcess.stderr) {
+    childProcess.stderr.on('data', data => {
+      logError(data.toString());
+    });
+    // // }
 
-    // if (process) {
-    //   process.stdout?.on('data', data => {
-    //     console.log(data.toString());
-    //   });
+    childProcess.on('exit', code => {
+      if (code && code > 0) {
+        process.exit(code);
+      }
+    });
 
-    //   process.stderr?.on('data', data => {
-    //     console.log(data.toString());
-    //   });
+    childProcess.on('error', err => {
+      console.log('child process error:');
+      console.error(err);
+    });
 
-    //   process.on('exit', code => {
-    //     console.log(`child process exited with code ${code}`);
-    //   });
+    // childProcess.on('close', code => {
+    //   console.log('child process closed');
+    // });
 
-    //   process.on('error', err => {
-    //     console.log(`child process error: ${err}`);
-    //   });
+    await onExit(childProcess);
 
-    //   process.on('close', () => {
-    //     console.log('child process closed');
-    //   });
-
-    //   process.on('disconnect', () => {
-    //     console.log('child process disconnected');
-    //   });
-
-    //   process.on('message', message => {
-    //     console.log(`child process message: ${message}`);
-    //   });
     // }
-  } catch (err) {
-    // console.error('ERR; ', err);
+  } catch (error) {
+    // logError(error);
+    // console.log('Error caught while spawning ava process:');
+    console.log('error:');
+    console.error(error);
+    throw error;
   }
 }

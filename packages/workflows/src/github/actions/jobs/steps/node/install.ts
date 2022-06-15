@@ -1,8 +1,10 @@
 import {
-  GitHubActionsWorkflowStep,
-  PackageManager,
+  Action,
   EnvironmentType,
+  PackageManager,
+  Task,
 } from '@srclaunch/types';
+
 import { PackageManagers } from '../../../packageManagers';
 
 export function getNodeEnvEnvironmentVariable(
@@ -29,12 +31,16 @@ export const installDependencies = ({
   environmentType = EnvironmentType.CI,
   packageManager = PackageManager.Yarn,
 }: {
-  environmentType?: EnvironmentType;
-  packageManager?: PackageManager;
-}): GitHubActionsWorkflowStep => ({
-  name: 'Install dependencies',
-  run: getPackageManagerInstallCommand(environmentType, packageManager),
-  env: {
+  readonly environmentType?: EnvironmentType;
+  readonly packageManager?: PackageManager;
+}): Task => ({
+  environment: {
     NODE_ENV: getNodeEnvEnvironmentVariable(environmentType),
+  },
+  name: 'Install dependencies',
+  steps: {
+    install: new Action({
+      shell: getPackageManagerInstallCommand(environmentType, packageManager),
+    }),
   },
 });

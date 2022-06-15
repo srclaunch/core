@@ -6,6 +6,7 @@ import { ProjectType } from '../project';
 import { RequirementOptions } from '../project/requirements';
 import { ReleaseOptions } from '../release';
 import { RepositoryOptions } from '../repository';
+import { RunOptions } from '../run';
 import { TestOptions } from '../test';
 import { WorkflowConfig } from './workflow';
 import { WorkspaceConfig } from './workspace';
@@ -20,6 +21,7 @@ export type ProjectConfig = {
   readonly release?: ReleaseOptions;
   readonly repository?: RepositoryOptions;
   readonly requirements?: RequirementOptions;
+  readonly run?: RunOptions;
   readonly test?: TestOptions;
   readonly type: ProjectType;
   readonly workflows?: WorkflowConfig;

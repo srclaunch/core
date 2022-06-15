@@ -4,6 +4,7 @@ export const DEFAULT_TEST_OPTIONS = {
   concurrency: undefined,
   coverage: {
     directory: 'coverage',
+    reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
     thresholds: {
       global: {
         branches: 0,
@@ -12,7 +13,6 @@ export const DEFAULT_TEST_OPTIONS = {
         statements: 0,
       },
     },
-    reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
   },
   fail: {
     fast: true,

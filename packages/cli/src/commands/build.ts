@@ -62,38 +62,33 @@ export default new Command<ProjectConfig, BuildFlags>({
       description: 'Compiles and bundles a package using Vite',
       name: 'vite',
       run: async ({ config }) => {
-        const options = config.build;
+        const buildConfig = config.build;
 
-        if (!options) {
+        if (!buildConfig) {
           throw new Error('Missing build configuration');
         }
 
-        if (typeof options === 'object' && !Array.isArray(options)) {
+        if (typeof buildConfig === 'object' && !Array.isArray(buildConfig)) {
+          const options = buildConfig as ViteBuildOptions;
           await vite({
             ...options,
-            library:
-              config.type === ProjectType.Library ||
-              config.type === ProjectType.ComponentLibrary ||
-              config.type === ProjectType.IconLibrary ||
-              config.type === ProjectType.ThemeLibrary
-                ? {
-                    name: config.name,
-                  }
-                : false,
+            library: options.library
+              ? typeof options.library === 'boolean'
+                ? { name: config.name }
+                : { name: config.name, ...options.library }
+              : false,
           } as ViteBuildOptions);
-        } else if (Array.isArray(options) && options) {
+        } else if (Array.isArray(buildConfig)) {
+          const options = buildConfig as ViteBuildOptions[];
+
           for (const build of options) {
             await vite({
               ...build,
-              library:
-                config.type === ProjectType.Library ||
-                config.type === ProjectType.ComponentLibrary ||
-                config.type === ProjectType.IconLibrary ||
-                config.type === ProjectType.ThemeLibrary
-                  ? {
-                      name: config.name,
-                    }
-                  : false,
+              library: build.library
+                ? typeof build.library === 'boolean'
+                  ? { name: config.name }
+                  : { name: config.name, ...build.library }
+                : false,
             } as ViteBuildOptions);
           }
         }
@@ -104,16 +99,18 @@ export default new Command<ProjectConfig, BuildFlags>({
       description: 'Builds Typescript definitions',
       name: 'types',
       run: async ({ config, flags }) => {
-        const options = config.build as BuildOptions | BuildOptions[];
+        const buildConfig = config.build as BuildOptions | BuildOptions[];
 
-        if (typeof options === 'object' && !Array.isArray(options)) {
+        if (typeof buildConfig === 'object' && !Array.isArray(buildConfig)) {
+          const options = buildConfig as BuildOptions;
           if (options.clean) {
             await fs.emptyDir(options.output?.directory ?? 'dist');
           }
           await buildTypes({
             ...options,
           });
-        } else if (Array.isArray(options)) {
+        } else if (Array.isArray(buildConfig)) {
+          const options = buildConfig as BuildOptions[];
           for (const build of options) {
             if (build.clean) {
               await fs.emptyDir(build.output?.directory ?? 'dist');
@@ -148,27 +145,24 @@ export default new Command<ProjectConfig, BuildFlags>({
     readonly config: ProjectConfig;
     readonly flags: BuildFlags;
   }) => {
-    const options = config.build as BuildOptions | BuildOptions[];
+    const buildConfig = config.build as BuildOptions | BuildOptions[];
 
-    if (!options) {
+    if (!buildConfig) {
       throw new Error('Missing build configuration');
     }
 
-    if (typeof options === 'object' && !Array.isArray(options)) {
+    if (typeof buildConfig === 'object' && !Array.isArray(buildConfig)) {
+      const options = buildConfig as BuildOptions;
       switch (options.tool) {
         case BuildTool.Vite:
           await vite({
             ...options,
             clean: options.clean ?? flags.clean,
-            library:
-              config.type === ProjectType.Library ||
-              config.type === ProjectType.ComponentLibrary ||
-              config.type === ProjectType.IconLibrary ||
-              config.type === ProjectType.ThemeLibrary
-                ? {
-                    name: config.name,
-                  }
-                : false,
+            library: options.library
+              ? typeof options.library === 'boolean'
+                ? { name: config.name }
+                : { name: config.name, ...options.library }
+              : false,
           } as ViteBuildOptions);
           break;
         default: {
@@ -184,21 +178,18 @@ export default new Command<ProjectConfig, BuildFlags>({
           ...options,
         });
       }
-    } else if (Array.isArray(options)) {
+    } else if (Array.isArray(buildConfig)) {
+      const options = buildConfig as BuildOptions[];
       for (const build of options) {
         switch (build.tool) {
           case BuildTool.Vite:
             await vite({
               ...build,
-              library:
-                config.type === ProjectType.Library ||
-                config.type === ProjectType.ComponentLibrary ||
-                config.type === ProjectType.IconLibrary ||
-                config.type === ProjectType.ThemeLibrary
-                  ? {
-                      name: config.name,
-                    }
-                  : false,
+              library: build.library
+                ? typeof build.library === 'boolean'
+                  ? { name: config.name }
+                  : { name: config.name, ...build.library }
+                : false,
             } as ViteBuildOptions);
             break;
           default:

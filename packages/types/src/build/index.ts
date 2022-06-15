@@ -13,6 +13,12 @@ export interface BundleOptions {
   readonly preserveModules?: boolean;
 }
 
+export enum BuildPlatform {
+  Browser = 'browser',
+  Node = 'node',
+  Universal = 'universal',
+}
+
 export enum BuildTarget {
   ES5 = 'es5',
   ES6 = 'es6',
@@ -45,12 +51,18 @@ export type BuildOptions = {
     readonly file?: string;
     readonly files?: readonly string[];
   };
+  readonly library?:
+    | boolean
+    | {
+        readonly name?: string;
+      };
   readonly manifest?: boolean;
   readonly minify?: boolean;
   readonly output?: {
     readonly directory: string;
     readonly file?: string;
   };
+  readonly platform?: BuildPlatform;
   readonly react?: boolean;
   readonly sourcemap?: boolean;
   readonly splitting?: boolean;

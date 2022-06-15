@@ -29,7 +29,7 @@ export async function build({
   output,
   pwa,
   react,
-  rootDir = path.join(path.resolve(), SOURCE_DIR),
+  rootDir,
   sourcemap = true,
   ssr,
   styledComponents,
@@ -122,7 +122,8 @@ export async function build({
         styledComponents,
       }) as PluginOption[],
       publicDir: assetsDir,
-      root: rootDir,
+      root:
+        rootDir ?? path.join(path.resolve(), input?.directory ?? SOURCE_DIR),
     });
 
     // if (Array.isArray(buildOutput)) {

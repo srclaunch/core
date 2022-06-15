@@ -1,6 +1,7 @@
 import { Environments } from '@srclaunch/types';
 import test from 'ava';
-import { getEnvironment } from '../index.js';
+
+import { getEnvironment } from '../index';
 
 test('returns development environment', t => {
   global.window = {

@@ -9,11 +9,11 @@ import { getVitePlugins } from '../vite';
 export async function run({
   assetsDir,
   environment,
+  input,
   optimize,
   pwa,
   styledComponents,
   react,
-  rootDir = path.join(path.resolve(), SOURCE_DIR),
 }: WebAppOptions & {
   readonly environment: Environments;
   readonly project: ProjectConfig;
@@ -34,7 +34,7 @@ export async function run({
               styledComponents,
             }) as PluginOption[],
             publicDir: assetsDir,
-            root: rootDir,
+            root: path.join(path.resolve(), input?.directory ?? SOURCE_DIR),
           };
 
           const server: ViteDevServer = await createServer(config);

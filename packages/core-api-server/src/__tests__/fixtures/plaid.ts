@@ -17,8 +17,7 @@ export const plaidItemErrorWebhookBody = {
   error: {
     display_message: null,
     error_code: 'ITEM_LOGIN_REQUIRED',
-    error_message:
-      `the login details of this item have changed \
+    error_message: `the login details of this item have changed \
        (credentials, MFA, or required user action) \
        and a user login is required to update this \
        information. use Link's update mode to restore \
@@ -41,7 +40,8 @@ export const plaidItemPendingExpirationBody = {
 export const plaidItemUserPermissionRevokedBody = {
   error: {
     error_code: 'USER_PERMISSION_REVOKED',
-    error_message: 'the holder of this account has revoked their permission for your application to access it',
+    error_message:
+      'the holder of this account has revoked their permission for your application to access it',
     error_type: 'ITEM_ERROR',
     status: 400,
   },
@@ -85,7 +85,10 @@ export const plaidTransactionsDefaultUpdateBody = {
 export const plaidTransactionsTransactionsRemovedBody = {
   error: null,
   item_id: 'wz666MBjYWTp2PDzzggYhM6oWWmBb',
-  removed_transactions: ['yBVBEwrPyJs8GvR77N7QTxnGg6wG74H7dEDN6', 'kgygNvAVPzSX9KkddNdWHaVGRVex1MHm3k9no'],
+  removed_transactions: [
+    'yBVBEwrPyJs8GvR77N7QTxnGg6wG74H7dEDN6',
+    'kgygNvAVPzSX9KkddNdWHaVGRVex1MHm3k9no',
+  ],
   webhook_code: 'TRANSACTIONS_REMOVED',
   webhook_type: 'TRANSACTIONS',
 };
@@ -136,8 +139,8 @@ export const plaidTransactionsBody = {
         address: '300 Post St',
         city: 'San Francisco',
         country: 'US',
-        lat: 40.740352,
-        lon: -74.001761,
+        lat: 40.740_352,
+        lon: -74.001_761,
         postal_code: '94108',
         region: 'CA',
         store_number: '1235',

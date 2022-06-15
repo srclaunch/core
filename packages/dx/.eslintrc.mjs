@@ -38,14 +38,6 @@ export default {
         selector: 'default',
       },
       {
-        format: ['strictCamelCase'],
-        selector: 'property',
-      },
-      {
-        format: ['strictCamelCase'],
-        selector: 'objectLiteralProperty',
-      },
-      {
         format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
         leadingUnderscore: 'allow',
         selector: 'variable',

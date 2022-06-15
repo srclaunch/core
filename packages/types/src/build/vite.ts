@@ -10,11 +10,6 @@ export type ViteBuildOptions = BuildOptions & {
   readonly assetsDir?: string;
   readonly format?: ViteBuildFormat;
   readonly formats?: readonly ViteBuildFormat[];
-  readonly library?:
-    | boolean
-    | {
-        readonly name: string;
-      };
   readonly manifest?: boolean;
   readonly optimize?: {
     readonly exclude?: readonly string[];
