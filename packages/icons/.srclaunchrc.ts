@@ -46,6 +46,7 @@ export default <IconLibraryConfig>{
       reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
     },
     tool: TestTool.Jest,
+    concurrency: 1,
   },
   release: {
     publish: {

@@ -89,6 +89,7 @@ export default <ComponentLibraryConfig>{
       reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
     },
     tool: TestTool.Jest,
+    concurrency: 1,
   },
   environments: {
     development: {

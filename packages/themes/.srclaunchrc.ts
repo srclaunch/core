@@ -73,5 +73,6 @@ export default <ThemeLibraryConfig>{
       reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
     },
     tool: TestTool.Jest,
+    concurrency: 1,
   },
 };

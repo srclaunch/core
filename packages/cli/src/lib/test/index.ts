@@ -19,5 +19,6 @@ export const DEFAULT_TEST_OPTIONS = {
     noTests: false,
   },
   tool: TestTool.Ava,
+  concurrency: 1,
   verbose: true,
 };

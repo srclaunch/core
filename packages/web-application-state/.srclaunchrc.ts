@@ -61,6 +61,7 @@ export default <LibraryConfig>{
       reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
     },
     tool: TestTool.Jest,
+    concurrency: 1,
   },
   release: {
     publish: {

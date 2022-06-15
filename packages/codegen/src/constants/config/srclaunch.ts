@@ -47,6 +47,7 @@ export const DEFAULT_SRCLAUNCH_CONFIG: Omit<
       reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
     },
     tool: TestTool.Ava,
+    concurrency: 1,
   },
   type: ProjectType.Library,
 };

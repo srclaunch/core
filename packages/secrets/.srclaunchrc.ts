@@ -31,6 +31,7 @@ export default <LibraryConfig>{
       reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
     },
     tool: TestTool.Ava,
+    concurrency: 1,
   },
   build: {
     formats: [BuildFormat.ESM, BuildFormat.IIFE],

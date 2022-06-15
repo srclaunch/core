@@ -59,5 +59,6 @@ export default <LibraryConfig>{
       reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
     },
     tool: TestTool.Ava,
+    concurrency: 1,
   },
 };
