@@ -20,7 +20,11 @@ export async function createSemanticRelease({
       // ci: false,
 
       // dryRun: true,
-      extends: ['semantic-release-monorepo', 'semantic-release-commit-filter'],
+      extends: [
+        'semantic-release-monorepo',
+        'semantic-version-commit-filter',
+        'semantic-release-commit-filter',
+      ],
 
       plugins: [
         '@semantic-release/commit-analyzer',

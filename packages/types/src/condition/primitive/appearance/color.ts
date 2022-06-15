@@ -1,4 +1,4 @@
-import { Condition } from "../../index";
+import { Condition } from '../../index';
 
 export enum ColorCondition {
   IsHSLColor = Condition.IsHSLColor,
