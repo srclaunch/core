@@ -30,9 +30,7 @@ export async function createSemanticRelease({
 
   const result = await SemanticRelease(
     {
-      // branch: 'main',
       branches: [{ name: 'main' }],
-      // ci: false,
       extends: ['semantic-release-commit-filter'],
       pkgRoot: 'dist',
       plugins: [
@@ -43,17 +41,11 @@ export async function createSemanticRelease({
           {
             npmPublish: true,
             pkgRoot: process.cwd(),
-            // tarballDir: 'dist',
           },
         ],
         '@semantic-release/github',
       ],
-      // githubApiPathPrefix: '/api-prefix',
-      // // Plugin options
-      // githubUrl: 'https://my-ghe.com',
       tagFormat: `${name}@\${version}`,
-
-      // repositoryUrl: 'https://github.com/me/my-package.git',
     },
     {
       cwd: process.cwd(),
@@ -64,22 +56,15 @@ export async function createSemanticRelease({
   );
 
   if (result) {
-    const { lastRelease, commits, nextRelease, releases } = result;
+    const { commits, nextRelease } = result;
 
     return {
       commits: commits.length,
       type: nextRelease.type,
       version: nextRelease.version,
     };
-    // for (const release of releases) {
-    //   console.log(
-    //     `The release was published with plugin "${release.pluginName}".`,
-    //   );
-    // }
   } else {
     console.info('no release published.');
     return false;
   }
 }
-// // Get stdout and stderr content
-// const errors = stderrBuffer.getContentsAsString('utf8');
