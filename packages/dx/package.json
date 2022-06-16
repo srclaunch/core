@@ -52,6 +52,10 @@
       "import": "./.prettierrc.mjs",
       "require": "./.prettierrc.cjs"
     },
+    "./.releaserc": {
+      "import": "./.releaserc.mjs",
+      "require": "./.releaserc.cjs"
+    },
     "./.stylelintrc": {
       "import": "./.stylelintrc.mjs",
       "require": "./.stylelintrc.cjs"

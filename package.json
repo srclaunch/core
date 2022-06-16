@@ -75,6 +75,7 @@
     "husky": "^8.0.1",
     "madge": "^5.0.1",
     "prettier": "^2.7.0",
+    "semantic-release": "^19.0.3",
     "stylelint": "^14.9.1",
     "stylelint-config-idiomatic-order": "^8.1.0",
     "stylelint-config-prettier": "^9.0.3",

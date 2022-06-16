@@ -1,4 +1,5 @@
 export default {
+  branches: [{ name: 'main' }],
   types: [
     { type: 'feat', section: 'Features' },
     { type: 'fix', section: 'Bug Fixes' },
