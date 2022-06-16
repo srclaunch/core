@@ -1,4 +1,4 @@
-import { randomInt } from 'node:crypto';
+import { Writable } from 'node:stream';
 import { WriteStream } from 'node:tty';
 import semanticRelease from 'semantic-release';
 
@@ -17,8 +17,17 @@ export async function createSemanticRelease({
     }
   | false
 > {
-  const stderrStream = new WriteStream(randomInt(10));
-  const stdoutStream = new WriteStream(randomInt(10));
+  class EchoStream extends Writable {
+    public override _write(chunk: Buffer, enc: string, next: () => void) {
+      if (chunk.includes('err ')) {
+        console.error(chunk.toString());
+      }
+      next();
+    }
+  }
+
+  const errStream = new EchoStream();
+  const outStream = new EchoStream();
 
   const result = await semanticRelease(
     {
@@ -56,19 +65,15 @@ export async function createSemanticRelease({
       // Pass the variable `MY_ENV_VAR` to semantic-release without having to modify the local `process.env`
       env: (process.env as { [name: string]: string }) ?? {},
 
-      stderr: stderrStream,
+      stderr: errStream as WriteStream,
       // // Store stdout and stderr to use later instead of writing to `process.stdout` and `process.stderr`
-      stdout: stdoutStream,
+      stdout: outStream as WriteStream,
     },
   );
 
-  stderrStream.on('data', (data: Buffer) => {
-    console.log('stderr', data.toString());
-  });
-
-  stdoutStream.on('data', (data: Buffer) => {
-    console.log('stdout', data.toString());
-  });
+  // echoStream.on('data', (data: Buffer) => {
+  //   console.log('stdout', data.toString());
+  // });
 
   if (result) {
     const { lastRelease, commits, nextRelease, releases } = result;
