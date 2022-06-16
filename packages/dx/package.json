@@ -8,7 +8,7 @@
     "node": ">=16"
   },
   "scripts": {
-    "release": "git add . && git commit -m \"chore(update): release update\" && git push"
+    "release": "semantic-release"
   },
   "publishConfig": {
     "access": "public",
