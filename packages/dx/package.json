@@ -8,7 +8,7 @@
     "node": ">=16"
   },
   "scripts": {
-    "release": "srclaunch release"
+    "release": "git add . && git commit -m \"chore(update): release update\" && git push"
   },
   "publishConfig": {
     "access": "public",
