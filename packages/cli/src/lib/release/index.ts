@@ -33,10 +33,7 @@ export async function createSemanticRelease({
       // branch: 'main',
       branches: [{ name: 'main' }],
       // ci: false,
-
-      dryRun: true,
       extends: ['semantic-release-commit-filter'],
-
       pkgRoot: 'dist',
       plugins: [
         '@semantic-release/commit-analyzer',
