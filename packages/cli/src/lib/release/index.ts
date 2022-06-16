@@ -1,6 +1,5 @@
 import { Writable } from 'node:stream';
-import { WriteStream } from 'node:tty';
-import semanticRelease from 'semantic-release';
+import SemanticRelease from 'semantic-release';
 
 // const isCI = require('is-ci');
 // # !isCI && require('dotenv').config({ path: '../../.env' });
@@ -29,7 +28,7 @@ export async function createSemanticRelease({
   const errStream = new EchoStream();
   const outStream = new EchoStream();
 
-  const result = await semanticRelease(
+  const result = await SemanticRelease(
     {
       // branch: 'main',
       branches: [{ name: 'main' }],
@@ -60,20 +59,12 @@ export async function createSemanticRelease({
       // repositoryUrl: 'https://github.com/me/my-package.git',
     },
     {
-      // Run semantic-release from `/path/to/git/repo/root` without having to change local process `cwd` with `process.chdir()`
       cwd: process.cwd(),
-      // Pass the variable `MY_ENV_VAR` to semantic-release without having to modify the local `process.env`
       env: (process.env as { [name: string]: string }) ?? {},
-
-      stderr: errStream as WriteStream,
-      // // Store stdout and stderr to use later instead of writing to `process.stdout` and `process.stderr`
-      stdout: outStream as WriteStream,
+      stderr: errStream as SemanticRelease.Config['stderr'],
+      stdout: outStream as SemanticRelease.Config['stdout'],
     },
   );
-
-  // echoStream.on('data', (data: Buffer) => {
-  //   console.log('stdout', data.toString());
-  // });
 
   if (result) {
     const { lastRelease, commits, nextRelease, releases } = result;
