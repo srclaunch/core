@@ -10,7 +10,7 @@
   "scripts": {
     "build": "turbo run build --color",
     "build:graph": "turbo run build --color --graph=media/images/dependencies-graph.svg",
-    "deploy": "turbo run deploy --color",
+    "deploy": "turbo run deploy --color --concurrency=2",
     "release": "turbo run release --color --concurrency=2",
     "test": "turbo run test --color --concurrency=2"
   },
