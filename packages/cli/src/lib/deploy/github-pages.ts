@@ -13,7 +13,7 @@ export async function deployToGitHubPages({
       dest: output?.path ?? '.',
       message:
         output?.commitMessage ?? 'chore(docs): deploying to github pages',
-      repo: 'srclaunch.github.io',
+      repo: output?.repo,
     });
 
     console.log(`${pc.green('✔ deployed to GitHub Pages')} `);
