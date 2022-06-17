@@ -1,3 +1,4 @@
+import { ReleaseOptions } from '@srclaunch/types';
 import { Writable } from 'node:stream';
 import SemanticRelease from 'semantic-release';
 
@@ -5,10 +6,10 @@ import SemanticRelease from 'semantic-release';
 // # !isCI && require('dotenv').config({ path: '../../.env' });
 
 export async function createSemanticRelease({
+  dryRun,
+  local,
   name,
-}: {
-  readonly name: string;
-}): Promise<
+}: ReleaseOptions): Promise<
   | {
       readonly commits?: number;
       readonly type?: string;
@@ -31,6 +32,8 @@ export async function createSemanticRelease({
   const result = await SemanticRelease(
     {
       branches: [{ name: 'main' }],
+      ci: !local,
+      dryRun,
       extends: ['semantic-release-commit-filter'],
       pkgRoot: 'dist',
       plugins: [

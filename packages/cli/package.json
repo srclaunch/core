@@ -27,6 +27,7 @@
     "git:push": "git push --follow-tags origin main",
     "qr": "pnpm build && git add . && git commit -m \"Quick release\" && pnpm release",
     "release": "srclaunch release",
+    "release:local": "srclaunch release --local",
     "start": "node --experimental-modules --experimental-specifier-resolution=node dist/index.js",
     "test": "ava ./src/__tests__/**",
     "test:cov": "c8 --all --clean --include src --exclude 'src/__tests__/**' ava ./src/__tests__/** && c8 report --all --reporter json-summary --reporter lcov --include src --exclude 'src/__tests__/**'",

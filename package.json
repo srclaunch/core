@@ -10,7 +10,8 @@
   "scripts": {
     "build": "turbo run build --color",
     "build:graph": "turbo run build --color --graph=media/images/dependencies-graph.svg",
-    "deploy": "turbo run deploy --color --concurrency=2",
+    "deploy": "turbo run deploy --color --concurrency=1",
+    "deploy:local": "dotenv -e .env turbo run 'deploy:local' --color --concurrency=1",
     "release": "turbo run release --color --concurrency=2",
     "test": "turbo run test --color --concurrency=2"
   },
@@ -48,6 +49,7 @@
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
     "ava": "^4.3.0",
+    "dotenv-cli": "^5.1.0",
     "esbuild": "^0.14.43",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",

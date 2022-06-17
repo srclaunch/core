@@ -1,25 +1,46 @@
 import {
-  BuildOptions,
-  BuildTool,
   DeploymentOptions,
   DeploymentPlatform,
-  ESBuildOptions,
   ProjectConfig,
-  ProjectType,
-  ReleaseOptions,
-  ViteBuildOptions,
 } from '@srclaunch/types';
-import * as fs from 'fs-extra';
-import { AnyFlag, AnyFlags, TypedFlags } from 'meow';
+import { TypedFlags } from 'meow';
 
-import { build as esbuild } from '../lib/build/esbuild';
-import { build as buildTypes } from '../lib/build/types';
-import { build as vite } from '../lib/build/vite';
-import { Command, CommandType } from '../lib/command';
+import { Command } from '../lib/command';
 import { deployToGitHubPages } from '../lib/deploy/github-pages';
+import { InteractiveModeFlag } from '../lib/flags';
 
-type DeployFlags = TypedFlags<AnyFlags>;
-
+type DeployFlags = TypedFlags<
+  InteractiveModeFlag & {
+    readonly debug: {
+      readonly alias: 'd';
+      readonly default: false;
+      readonly description: 'Runs a dry run of the release process';
+      readonly isRequired: false;
+      readonly type: 'boolean';
+    };
+    readonly ci: {
+      readonly alias: 'c';
+      readonly default: true;
+      readonly description: 'Bypasses the CI checks';
+      readonly isRequired: false;
+      readonly type: 'boolean';
+    };
+    readonly dryRun: {
+      readonly alias: 'dry-run';
+      readonly default: false;
+      readonly description: 'Runs a dry run of the release process';
+      readonly isRequired: false;
+      readonly type: 'boolean';
+    };
+    readonly push: {
+      readonly alias: 'p';
+      readonly default: false;
+      readonly description: 'Pushes changes to remote repository';
+      readonly isRequired: false;
+      readonly type: 'boolean';
+    };
+  }
+>;
 export default new Command<ProjectConfig, DeployFlags>({
   description: 'Commands for deploying applications and services',
   name: 'deploy',

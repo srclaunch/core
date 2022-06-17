@@ -14,5 +14,9 @@ export type PublishOptions = {
 
 export type ReleaseOptions = {
   readonly deployment?: DeploymentOptions | readonly DeploymentOptions[];
+  readonly dryRun?: boolean;
+  readonly local?: boolean;
+  readonly name?: string;
   readonly publish?: PublishOptions;
+  readonly version?: string;
 };

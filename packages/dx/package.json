@@ -8,7 +8,7 @@
     "node": ">=16"
   },
   "scripts": {
-    "release": "semantic-release"
+    "release": "semantic-release --local"
   },
   "publishConfig": {
     "access": "public",

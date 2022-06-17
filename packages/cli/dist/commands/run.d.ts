@@ -1,10 +1,10 @@
 import { ProjectConfig } from '@srclaunch/types';
 import { TypedFlags } from 'meow';
-import { Command } from '../lib/command';
+import { Command } from '../lib/command.js';
 declare const _default: Command<ProjectConfig, TypedFlags<{
-    readonly ssr: {
+    readonly workspace: {
         readonly default: false;
-        readonly description: "Serve web application using server-side rendering";
+        readonly description: "Run the script in all projects in the workspace";
         readonly type: "boolean";
     };
 }>>;

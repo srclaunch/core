@@ -13,6 +13,26 @@ import { createRelease } from '../lib/release/standard-version';
 
 type ReleaseFlags = TypedFlags<
   InteractiveModeFlag & {
+    readonly local: {
+      readonly alias: 'l';
+      readonly default: true;
+      readonly description: 'Bypasses the CI checks';
+      readonly isRequired: false;
+      readonly type: 'boolean';
+    };
+    readonly debug: {
+      readonly default: false;
+      readonly description: 'Runs a dry run of the release process';
+      readonly isRequired: false;
+      readonly type: 'boolean';
+    };
+    readonly dryRun: {
+      readonly alias: 'dry-run';
+      readonly default: false;
+      readonly description: 'Runs a dry run of the release process';
+      readonly isRequired: false;
+      readonly type: 'boolean';
+    };
     readonly push: {
       readonly alias: 'p';
       readonly default: false;
@@ -43,7 +63,10 @@ export default new Command<ProjectConfig, ReleaseFlags>({
       //   push: flags.push,
       // });
 
-      const result = await createSemanticRelease({ name: config.name });
+      const result = await createSemanticRelease({
+        ...config.release,
+        ...flags,
+      });
 
       if (result) {
         console.log(
