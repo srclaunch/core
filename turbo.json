@@ -14,7 +14,7 @@
       "dependsOn": ["build", "test"],
       "outputs": []
     },
-    "release:local": {
+    "local-release": {
       "cache": false,
       "dependsOn": ["build", "test"],
       "outputs": []
@@ -23,9 +23,9 @@
       "dependsOn": ["release"],
       "outputs": []
     },
-    "deploy:local": {
+    "local-deploy": {
       "cache": false,
-      "dependsOn": ["release:local"],
+      "dependsOn": ["local-release"],
       "outputs": []
     },
     "@srclaunch/cli#build": {
@@ -36,7 +36,7 @@
       "dependsOn": ["@srclaunch/cli#build"],
       "outputs": []
     },
-    "@srclaunch/types#release:local": {
+    "@srclaunch/types#local-release": {
       "dependsOn": ["@srclaunch/cli#build"],
       "outputs": []
     }
