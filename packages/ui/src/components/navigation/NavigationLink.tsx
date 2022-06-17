@@ -6,6 +6,7 @@ import {
   useResolvedPath,
 } from 'react-router-dom';
 
+import { useConfig } from '../../hooks/use-config';
 import {
   AlignHorizontal,
   AlignVertical,
@@ -60,10 +61,12 @@ export const NavigationLink = memo(
     to,
     ...props
   }: NavigationLinkProps): ReactElement => {
+    const config = useConfig();
     const resolved = useResolvedPath(to);
     const match = useMatch({ end: matchExactPath, path: resolved.pathname });
     const location = useLocation();
 
+    console.log('config,', config);
     return (
       <NavLink
         className={`${className} navigation-link`}

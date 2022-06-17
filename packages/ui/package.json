@@ -36,7 +36,7 @@
     "test": "srclaunch test",
     "test:coverage": "srclaunch test --coverage",
     "test:watch": "srclaunch test --watch",
-    "dev": "srclaunch run dev"
+    "dev": "srclaunch dev"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",

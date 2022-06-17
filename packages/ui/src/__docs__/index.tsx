@@ -10,6 +10,7 @@ import routes from './routes';
 import reducers from './state/index';
 
 const options: WebAppOptions = {
+  basePath: '/ui',
   ui: {
     themes: {
       default: AppLabLightTheme.id,

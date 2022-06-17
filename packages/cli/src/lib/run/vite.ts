@@ -7,6 +7,7 @@ import { SOURCE_DIR } from '../../constants/dev';
 import { getVitePlugins } from '../vite';
 
 export async function run({
+  basePath = '/',
   assetsDir,
   environment,
   input,
@@ -23,6 +24,7 @@ export async function run({
       case Environments.Development:
         {
           const config: InlineConfig = {
+            base: basePath,
             envPrefix: 'SRCLAUNCH_',
             optimizeDeps: {
               exclude: (optimize?.exclude ?? []) as string[],

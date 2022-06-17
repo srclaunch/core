@@ -1,6 +1,7 @@
 .env
 .DS_Store
 coverage/
+docs/
 dist/
 !packages/cli/dist/
 node_modules/

@@ -13,6 +13,7 @@ export type WebAppOptions = {
     };
     readonly region?: string;
   };
+  readonly basePath?: string;
   readonly input?: {
     readonly directory?: string;
     readonly file?: string;
@@ -25,7 +26,6 @@ export type WebAppOptions = {
   readonly publicDir?: string;
   readonly ssr?: boolean;
   readonly react?: boolean;
-
   readonly styledComponents?: boolean;
   readonly ui?: {
     readonly themes?: {

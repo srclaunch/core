@@ -37,7 +37,6 @@ export default <ComponentLibraryConfig>{
           'styled-components',
         ],
         globals: {
-          // react: 'React',
           'styled-components': 'styled',
         },
       },
@@ -54,22 +53,7 @@ export default <ComponentLibraryConfig>{
       types: true,
     },
     {
-      bundle: {
-        exclude: [
-          'react',
-          'react-dom',
-          'react-dom/client',
-          'redux',
-          'react-redux',
-          'react-router',
-          'react-router-dom',
-          'styled-components',
-        ],
-        globals: {
-          react: 'React',
-          'styled-components': 'styled',
-        },
-      },
+      basePath: '/ui',
       formats: [BuildFormat.ESM, BuildFormat.UMD],
       input: {
         directory: 'src/__docs__',
@@ -77,7 +61,6 @@ export default <ComponentLibraryConfig>{
       },
       output: {
         directory: 'docs',
-        path: '/ui',
       },
       platform: BuildPlatform.Browser,
       react: true,

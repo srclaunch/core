@@ -15,7 +15,6 @@
       "outputs": []
     },
     "release:local": {
-      "cache": false,
       "dependsOn": ["build", "test"],
       "outputs": []
     },

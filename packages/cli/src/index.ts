@@ -6,6 +6,7 @@ import buildCommands from './commands/build';
 import changesetCommands from './commands/changesets';
 import configCommands from './commands/config';
 import deployCommands from './commands/deploy';
+import devCommands from './commands/dev';
 import generateCommands from './commands/generate';
 import helpCommands from './commands/help';
 import infrastructureCommands from './commands/infrastructure';
@@ -53,6 +54,7 @@ export async function main() {
         changesetCommands,
         configCommands,
         deployCommands,
+        devCommands,
         generateCommands,
         helpCommands,
         infrastructureCommands,
