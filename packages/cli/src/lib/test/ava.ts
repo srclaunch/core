@@ -86,7 +86,6 @@ export async function run({
     const childProcess = spawn(shellCommand, {
       env: process.env,
       shell: true,
-      stdio: 'inherit',
     });
     // console.log(childProcess);
     //  args, {
@@ -96,14 +95,14 @@ export async function run({
 
     // if (childProcess) {
 
-    // childProcess.stdout.on('data', data => {
-    //   logOutput(data.toString());
-    // });
+    childProcess.stdout.on('data', data => {
+      logOutput(data.toString());
+    });
 
     // // // if (childProcess.stderr) {
-    // childProcess.stderr.on('data', data => {
-    //   logError(data.toString());
-    // });
+    childProcess.stderr.on('data', data => {
+      logError(data.toString());
+    });
     // // // }
 
     // childProcess.on('exit', code => {
