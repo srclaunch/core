@@ -3,7 +3,7 @@
   "description": "TypeScript definitions used by SrcLaunch projects and workspaces.",
   "author": "Steven Bennett <steven@srclaunch.com>",
   "license": "MIT",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "engines": {
     "node": ">=16"
   },
