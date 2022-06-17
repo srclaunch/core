@@ -2,7 +2,6 @@
 .DS_Store
 coverage/
 dist/
-docs/
 !packages/cli/dist/
 node_modules/
 .pnpm-debug.log
