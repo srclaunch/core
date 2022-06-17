@@ -17,6 +17,7 @@ import {
   Environments,
   Runner,
 } from '@srclaunch/types';
+import { DeploymentPlatform } from '@srclaunch/types';
 
 export default <ComponentLibraryConfig>{
   name: '@srclaunch/ui',
@@ -100,7 +101,14 @@ export default <ComponentLibraryConfig>{
   },
   release: {
     deployment: {
-      githubPages: true,
+      platform: DeploymentPlatform.GitHubPages,
+      input: {
+        directory: 'docs',
+      },
+      output: {
+        clean: false,
+        path: 'ui/docs',
+      },
     },
     publish: {
       access: PublishAccess.Public,

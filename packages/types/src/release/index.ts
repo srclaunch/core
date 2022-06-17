@@ -13,6 +13,6 @@ export type PublishOptions = {
 };
 
 export type ReleaseOptions = {
-  readonly deployment?: DeploymentOptions;
+  readonly deployment?: DeploymentOptions | readonly DeploymentOptions[];
   readonly publish?: PublishOptions;
 };

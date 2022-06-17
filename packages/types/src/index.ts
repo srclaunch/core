@@ -162,7 +162,7 @@ export type {
   RedisStore,
 } from './data/storage/index';
 export type { DeploymentOptions } from './deployment';
-export { DeploymentStrategy } from './deployment';
+export { DeploymentPlatform, DeploymentStrategy } from './deployment';
 export type {
   DNSConfig,
   InfrastructureOptions,

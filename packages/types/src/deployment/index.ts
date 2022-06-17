@@ -6,14 +6,27 @@ export enum DeploymentStrategy {
   Rolling = 'rolling',
 }
 
+export enum DeploymentPlatform {
+  AWSLambda = 'aws-lambda',
+  AWSECS = 'aws-ecs',
+  Netlify = 'netlify',
+  GitHubPages = 'github-pages',
+  Surge = 'surge',
+  Vercel = 'vercel',
+}
+
 export type DeploymentOptions = {
-  readonly githubPages?:
-    | false
-    | {
-        readonly branch?: string;
-        readonly directory?: string;
-      };
+  readonly input?: {
+    readonly directory?: string;
+  };
+  readonly output?: {
+    readonly clean?: boolean;
+    readonly branch?: string;
+    readonly commitMessage?: string;
+    readonly path?: string;
+  };
   readonly infrastructure?: InfrastructureOptions;
+  readonly platform?: DeploymentPlatform;
   readonly strategy?: DeploymentStrategy;
 };
 

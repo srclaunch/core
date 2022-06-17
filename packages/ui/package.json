@@ -28,6 +28,7 @@
   "scripts": {
     "qr": "srclaunch changesets add --files \".\" --message \"Quick release\" --type \"chore\" && srclaunch release --push",
     "build": "srclaunch build --clean --types",
+    "deploy": "srclaunch deploy",
     "release": "srclaunch release",
     "test": "srclaunch test",
     "test:coverage": "srclaunch test --coverage",

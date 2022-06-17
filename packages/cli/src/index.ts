@@ -5,6 +5,7 @@ import updateNotifier, { Package } from 'update-notifier';
 import buildCommands from './commands/build';
 import changesetCommands from './commands/changesets';
 import configCommands from './commands/config';
+import deployCommands from './commands/deploy';
 import generateCommands from './commands/generate';
 import helpCommands from './commands/help';
 import infrastructureCommands from './commands/infrastructure';
@@ -51,6 +52,7 @@ export async function main() {
         buildCommands,
         changesetCommands,
         configCommands,
+        deployCommands,
         generateCommands,
         helpCommands,
         infrastructureCommands,
