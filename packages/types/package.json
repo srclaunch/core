@@ -3,7 +3,7 @@
   "description": "TypeScript definitions used by SrcLaunch projects and workspaces.",
   "author": "Steven Bennett <steven@srclaunch.com>",
   "license": "MIT",
-  "version": "1.3.0",
+  "version": "1.0.1",
   "engines": {
     "node": ">=16"
   },
@@ -31,7 +31,7 @@
     "build:types": "tsc",
     "build": "rm -fr ./dist && pnpm build:esbuild:esm && pnpm build:esbuild:iife && pnpm build:types",
     "release": "srclaunch release",
-    "local-release": "srclaunch release --local"
+    "release:local": "srclaunch release --local"
   },
   "devDependencies": {
     "@types/react": "^18.0.9"

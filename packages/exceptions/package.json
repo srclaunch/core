@@ -29,7 +29,7 @@
     "qr": "srclaunch changesets add --files \".\" --message \"Quick release\" --type \"chore\" && srclaunch release --push",
     "build": "srclaunch build --clean --types",
     "release": "srclaunch release",
-    "local-release": "srclaunch release --local",
+    "release:local": "srclaunch release --local",
     "test": "srclaunch test",
     "test:coverage": "srclaunch test --coverage",
     "test:watch": "srclaunch test --watch"
