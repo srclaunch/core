@@ -107,7 +107,8 @@ export default <ComponentLibraryConfig>{
       },
       output: {
         clean: false,
-        path: 'ui/docs',
+        path: 'ui',
+        repo: 'https://github.com/srclaunch/srclaunch.github.io.git',
       },
     },
     publish: {
