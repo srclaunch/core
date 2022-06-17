@@ -66,7 +66,7 @@ export default <ComponentLibraryConfig>{
           'styled-components',
         ],
         globals: {
-          // react: 'React',
+          react: 'React',
           'styled-components': 'styled',
         },
       },
