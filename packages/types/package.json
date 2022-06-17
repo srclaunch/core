@@ -31,7 +31,7 @@
     "build:types": "tsc",
     "build": "rm -fr ./dist && pnpm build:esbuild:esm && pnpm build:esbuild:iife && pnpm build:types",
     "release": "srclaunch release",
-    "release:local": "srclaunch release --local"
+    "local-release": "srclaunch release --local"
   },
   "devDependencies": {
     "@types/react": "^18.0.9"
