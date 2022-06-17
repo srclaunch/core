@@ -1,0 +1,17 @@
+name: 'Deploy project'
+description: 'Deploys project to various platforms and services'
+author: '@srclaunch'
+
+inputs:
+  github_token:
+    description: GitHub token for deployment integration
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Deploy
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+      run: pnpm deploy
+      shell: bash

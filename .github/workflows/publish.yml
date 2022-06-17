@@ -36,7 +36,7 @@ jobs:
       #     turbo_team: ${{ secrets.TURBO_TEAM }}
       #     turbo_token: ${{ secrets.TURBO_TOKEN }}
 
-      - name: Build, test and release updated packages
+      - name: Building, testing and releasing
         uses: 'srclaunch/core/packages/ci-cd/.github/actions/release@main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -48,3 +48,8 @@ jobs:
       #   uses: 'srclaunch/core/packages/ci-cd/.github/actions/publish@main'
       #   with:
       #     npm_token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Deploy
+        uses: 'srclaunch/core/packages/ci-cd/.github/actions/deploy@main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
