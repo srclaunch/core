@@ -98,6 +98,7 @@ export async function build({
     };
 
     await buildCommand({
+      base: output?.path,
       build: {
         // assetsDir,
         emptyOutDir: clean,

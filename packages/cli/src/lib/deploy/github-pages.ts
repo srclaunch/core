@@ -7,7 +7,7 @@ export async function deployToGitHubPages({
   output,
 }: DeploymentOptions): Promise<void> {
   try {
-    const result = await publish(input?.directory ?? '.', {
+    await publish(input?.directory ?? '.', {
       add: !output?.clean ?? true,
       branch: output?.branch ?? 'gh-pages',
       dest: output?.path ?? '.',
@@ -15,9 +15,6 @@ export async function deployToGitHubPages({
         output?.commitMessage ?? 'chore(docs): deploying to github pages',
       repo: output?.repo,
     });
-
-    console.log('result');
-    console.log(result);
 
     console.log(`${pc.green('✔ deployed to GitHub Pages')} `);
   } catch {

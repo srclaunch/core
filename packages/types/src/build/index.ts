@@ -61,6 +61,7 @@ export type BuildOptions = {
   readonly output?: {
     readonly directory: string;
     readonly file?: string;
+    readonly path?: string;
   };
   readonly platform?: BuildPlatform;
   readonly react?: boolean;

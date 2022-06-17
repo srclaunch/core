@@ -77,6 +77,7 @@ export default <ComponentLibraryConfig>{
       },
       output: {
         directory: 'docs',
+        path: 'ui',
       },
       platform: BuildPlatform.Browser,
       react: true,
