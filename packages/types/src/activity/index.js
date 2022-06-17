@@ -1,0 +1,21 @@
+"use strict";
+exports.__esModule = true;
+exports.Activities = void 0;
+var Activities;
+(function (Activities) {
+    Activities["Comment"] = "comment";
+    Activities["Create"] = "create";
+    Activities["Delete"] = "delete";
+    Activities["Edit"] = "edit";
+    Activities["Invoice"] = "invoice";
+    Activities["Message"] = "message";
+    Activities["PageView"] = "pageView";
+    Activities["Paid"] = "paid";
+    Activities["Payment"] = "payment";
+    Activities["Purchase"] = "purchase";
+    Activities["Referral"] = "referral";
+    Activities["Renewal"] = "renewal";
+    Activities["Signup"] = "signup";
+    Activities["Subscription"] = "subscription";
+    Activities["Upgrade"] = "upgrade";
+})(Activities = exports.Activities || (exports.Activities = {}));

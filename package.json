@@ -1,0 +1,91 @@
+{
+  "name": "@srclaunch/core",
+  "description": "Monorepository containing core libraries that comprise the SrcLaunch platform",
+  "version": "1.3.0",
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=7.1.5"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "turbo run build --color",
+    "build:graph": "turbo run build --color --graph=media/images/dependencies-graph.svg",
+    "build:watch": "turbo run build --watch --color",
+    "release": "turbo run release --color --concurrency=2",
+    "test": "turbo run test --color --concurrency=2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srclaunch/core.git"
+  },
+  "packageManager": "pnpm@7.1.5",
+  "pnpm": {
+    "packageExtensions": {
+      "eslint-plugin-flowtype": {
+        "peerDependenciesMeta": {
+          "@babel/plugin-syntax-flow": {
+            "optional": true
+          },
+          "@babel/plugin-transform-react-jsx": {
+            "optional": true
+          }
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
+    "@srclaunch/cli": "workspace:*",
+    "@srclaunch/dx": "workspace:*",
+    "@srclaunch/types": "workspace:*",
+    "@swc-node/jest": "^1.5.2",
+    "@swc/cli": "^0.1.57",
+    "@swc/core": "^1.2.203",
+    "@types/jest": "27.5.0",
+    "@types/node": "^17.0.42",
+    "@types/tape": "^4.13.2",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "ava": "^4.3.0",
+    "esbuild": "^0.14.43",
+    "eslint": "^8.17.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-config-stylelint": "^15.1.0",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-better-styled-components": "^1.1.2",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-functional": "^4.2.1",
+    "eslint-plugin-github": "^4.3.6",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.5.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-only-warn": "^1.0.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-regexp": "^1.7.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "eslint-plugin-sort-requires": "^2.1.0",
+    "eslint-plugin-testing-library": "^5.5.1",
+    "eslint-plugin-unicorn": "^42.0.0",
+    "husky": "^8.0.1",
+    "madge": "^5.0.1",
+    "prettier": "^2.7.0",
+    "semantic-release": "^19.0.3",
+    "stylelint": "^14.9.1",
+    "stylelint-config-idiomatic-order": "^8.1.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recommended": "^7.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-order": "^5.0.0",
+    "tape": "^5.5.3",
+    "ts-node": "^10.8.1",
+    "turbo": "^1.2.16",
+    "typescript": "^4.7.3",
+    "vitest": "^0.14.2"
+  }
+}

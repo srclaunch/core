@@ -1,0 +1,27 @@
+"use strict";
+exports.__esModule = true;
+exports.ProjectType = void 0;
+var ProjectType;
+(function (ProjectType) {
+    ProjectType["APIService"] = "api-service";
+    ProjectType["CLIApplication"] = "cli-application";
+    ProjectType["ComponentLibrary"] = "component-library";
+    ProjectType["CoreAPI"] = "core-api";
+    ProjectType["DesktopApplication"] = "desktop-application";
+    ProjectType["GitHubApp"] = "github-app";
+    ProjectType["GitHubAction"] = "github-action";
+    ProjectType["FiniteStateMachine"] = "finite-state-machine";
+    ProjectType["Function"] = "function";
+    ProjectType["IconLibrary"] = "icon-library";
+    ProjectType["Library"] = "library";
+    ProjectType["MachineLearningClassifier"] = "machine-learning-classifier";
+    ProjectType["MobileApplication"] = "mobile-application";
+    ProjectType["NodeApplication"] = "node-application";
+    ProjectType["TaskQueue"] = "task-queue";
+    ProjectType["ThemeLibrary"] = "theme-library";
+    ProjectType["UniversalApplication"] = "universal-application";
+    ProjectType["WebApplication"] = "web-application";
+    ProjectType["WebHook"] = "web-hook";
+    ProjectType["WebService"] = "web-service";
+    ProjectType["WebSocketService"] = "web-socket-service";
+})(ProjectType = exports.ProjectType || (exports.ProjectType = {}));

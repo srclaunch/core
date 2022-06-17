@@ -1,0 +1,21 @@
+"use strict";
+exports.__esModule = true;
+exports.Analytics = void 0;
+var Analytics;
+(function (Analytics) {
+    Analytics["Business"] = "business";
+    Analytics["Engineering"] = "engineering";
+    Analytics["Exception"] = "exception";
+    Analytics["LogMessage"] = "log-message";
+    Analytics["Marketing"] = "marketing";
+    Analytics["PageLeave"] = "page-leave";
+    Analytics["PageView"] = "page-view";
+    Analytics["Product"] = "product";
+    Analytics["QualityManagement"] = "quality-management";
+    Analytics["UserAccess"] = "user-access";
+    Analytics["UserLogin"] = "user-login";
+    Analytics["UserLogout"] = "user-logout";
+    Analytics["UserSignup"] = "user-signup";
+    Analytics["UserPreferencesChanged"] = "user-preferences-changed";
+    Analytics["WebsiteVisit"] = "website-visit";
+})(Analytics = exports.Analytics || (exports.Analytics = {}));
