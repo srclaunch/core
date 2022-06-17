@@ -24,6 +24,7 @@ export type DeploymentOptions = {
     readonly branch?: string;
     readonly commitMessage?: string;
     readonly path?: string;
+    readonly repo?: string;
   };
   readonly infrastructure?: InfrastructureOptions;
   readonly platform?: DeploymentPlatform;
