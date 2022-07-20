@@ -18,9 +18,9 @@ import {
   Orientation,
   TextColors,
 } from '../../types';
-import { Button } from '../forms/buttons/Button';
-import { Container, ContainerProps } from '../layout/Container';
-import { Label } from '../typography/Label';
+import { Button } from '../forms/buttons/button';
+import { Container, ContainerProps } from '../layout/container';
+import { Label } from '../typography/label';
 
 type TabProps = ContainerProps & {
   readonly label: string;

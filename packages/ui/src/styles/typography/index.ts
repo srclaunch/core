@@ -1,10 +1,10 @@
 import { css, SimpleInterpolation } from 'styled-components';
-import { TextProps } from '../../components/typography/Text';
+
+import { TextProps as TextProperties } from '../../components/typography/text';
 import {
   getCSSColorValue,
   getCSSMeasurementValue,
 } from '../../lib/css/properties';
-
 import { Sizes, TextColors, TextOverflow, TextSize } from '../../types';
 
 /*
@@ -27,7 +27,9 @@ import { Sizes, TextColors, TextOverflow, TextSize } from '../../types';
     readonly textWeight?: TextWeight | string;
     */
 
-export const getTextStyles = (props: TextProps): SimpleInterpolation => {
+export const getTextStyles = (
+  properties: TextProperties,
+): SimpleInterpolation => {
   const {
     bold,
     cursor,
@@ -41,7 +43,7 @@ export const getTextStyles = (props: TextProps): SimpleInterpolation => {
     textDecoration,
     textSize,
     textWeight,
-  } = props;
+  } = properties;
 
   return css`
     color: ${getCSSColorValue(textColor ?? TextColors.Default)};
@@ -116,6 +118,8 @@ export const getTextStyles = (props: TextProps): SimpleInterpolation => {
   `;
 };
 
-export const TextStyles = css<TextProps>`
-  ${props => getTextStyles(props)};
+export const TextStyles = css<TextProperties>`
+  ${properties => getTextStyles(properties)};
 `;
+
+export * from './states';

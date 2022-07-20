@@ -11,10 +11,10 @@ import {
   Overflow,
   Sizes,
 } from '../../types';
-import { Container, ContainerProps } from '../layout/Container';
-import { LoadingOverlay } from '../progress/LoadingOverlay';
-import { SubTitle } from '../typography/SubTitle';
-import { Title } from '../typography/Title';
+import { Container, ContainerProps } from '../layout/container';
+import { LoadingOverlay } from '../progress/loading-overlay';
+import { SubTitle } from '../typography/sub-title';
+import { Title } from '../typography/title';
 
 type WorkspaceProps = ContainerProps & {
   readonly header?: {
@@ -34,17 +34,18 @@ export const Workspace = memo(
     className = '',
     children,
     header,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     layout: Layout,
-    loginRequired = false,
+    // loginRequired = false,
     padding = {},
     size = {},
     states = {},
-    title,
+    // title,
     ...props
   }: WorkspaceProps): ReactElement => {
     // useTitle(title ?? '');
 
-    const WorkspaceComp = (props2: any) => (
+    const WorkspaceComp = (componentProps: { [key: string]: unknown }) => (
       <Container
         alignment={{
           overflow: Overflow.ScrollVertical,
@@ -60,7 +61,7 @@ export const Workspace = memo(
         }}
         states={states}
         {...props}
-        {...props2}
+        {...componentProps}
       >
         <LoadingOverlay
           states={{ state: { visible: Boolean(states.state?.loading) } }}
@@ -119,16 +120,17 @@ export const Workspace = memo(
       </Container>
     );
 
-    const Child = () =>
-      Layout ? (
-        cloneElement(
+    const Child = (): ReactElement => {
+      if (Layout) {
+        return cloneElement(
           <Layout scrollable {...props} />,
           props,
           <WorkspaceComp {...props} />,
-        )
-      ) : (
-        <WorkspaceComp {...props} />
-      );
+        );
+      }
+
+      return <WorkspaceComp {...props} />;
+    };
 
     return <Child />;
   },

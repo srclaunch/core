@@ -1,6 +1,7 @@
 import { css, SimpleInterpolation } from 'styled-components';
+
+import { TextProps } from '../../components/typography/text';
 import { getTextStyles } from '../typography';
-import { TextProps } from '../../components/typography/Text';
 
 export function getDisabledStateStyles(): SimpleInterpolation {
   return css`

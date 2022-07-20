@@ -1,13 +1,10 @@
-import { BuildOptions } from '@srclaunch/types';
+import { BuildConfig } from '@srclaunch/types';
 import fs from 'fs-extra';
 import path from 'node:path';
 import pc from 'picocolors';
 import ts from 'typescript';
 
-export type TypesBuildOptions = Pick<
-  BuildOptions,
-  'input' | 'types' | 'output'
->;
+export type TypesBuildOptions = Pick<BuildConfig, 'input' | 'types' | 'output'>;
 
 export async function build({ input, types, output }: TypesBuildOptions) {
   const configPath =

@@ -1,22 +1,19 @@
 import { memo, MouseEvent, ReactElement, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
-import { Amount, TextColors, TextSize, TextWeight } from '../../types';
+import {
+  Amount,
+  LinkProps as LinkProperties,
+  TextColors,
+  TextSize,
+  TextWeight,
+} from '../../types';
 import {
   TextDecorationLine,
   TextDecorationStyle,
 } from '../../types/typography';
-import { Icon } from '../media/Icon';
-import { Text, TextProps } from './Text';
-
-export type LinkProps = TextProps & {
-  readonly icon?: typeof Icon;
-  readonly onClick?: (e: MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
-  readonly prefetch?: boolean;
-  readonly rel?: string;
-  readonly target?: '_blank';
-  readonly to: string;
-};
+import { Icon } from '../media/icon';
+import { Text, TextProps as TextProperties } from './text';
 
 export const Link = memo(
   ({
@@ -29,8 +26,8 @@ export const Link = memo(
     textSize = TextSize.Small,
     textWeight = TextWeight.Default,
     to,
-    ...props
-  }: LinkProps): ReactElement => {
+    ...properties
+  }: LinkProperties): ReactElement => {
     return (
       <RouterLink
         to={to}
@@ -42,7 +39,7 @@ export const Link = memo(
           textDecoration={textDecoration}
           textColor={textColor}
           textWeight={textWeight}
-          {...props}
+          {...properties}
         >
           {children}
         </Text>

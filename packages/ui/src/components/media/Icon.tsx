@@ -1,23 +1,24 @@
-import { getIcon, Icon as IconType } from '@srclaunch/icons';
-import { memo, ReactElement } from 'react';
+import { getIcon, Icons } from '@srclaunch/icons';
+import { memo, ReactElement, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
+
 import { getContainerStyles } from '../../styles/container';
 import {
   AlignHorizontal,
   AlignVertical,
   ForegroundColor,
-  States,
   Sizes,
+  States,
   TextColor,
   TextColors,
 } from '../../types';
-import { Container, ContainerProps } from '../layout/Container';
-import { Image } from './Image';
+import { ContainerProps } from '../layout/container';
+import { Image } from './image';
 
 export type IconProps = ContainerProps & {
   readonly color?: ForegroundColor | TextColor;
   readonly component?: ReactElement;
-  readonly name?: IconType;
+  readonly name?: Icons;
   readonly path?: string;
   readonly svg?: ReactElement;
   readonly url?: string;
@@ -25,7 +26,7 @@ export type IconProps = ContainerProps & {
   readonly states?: States<IconProps>;
 };
 
-const Wrapper = styled.span<IconProps>`
+const Wrapper = styled.i<IconProps>`
   ${props => getContainerStyles(props)};
 
   svg {
@@ -52,45 +53,56 @@ export const Icon = memo(
     name,
     path,
     size = {},
-    svg,
+    // svg,
     url,
     ...props
   }: IconProps): ReactElement => {
-    if (name) {
-      const IconComponent = getIcon(name);
+    const [IconComponent, setIconComponent] = useState<
+      ReactElement | undefined
+    >();
+    const getIconComponent = async () => {
+      if (component) {
+        setIconComponent(component);
+      }
 
-      if (IconComponent)
-        return (
-          <Wrapper
-            alignment={{
-              horizontal: AlignHorizontal.Center,
-              vertical: AlignVertical.Center,
-              ...alignment,
-            }}
-            as={as}
-            color={color}
-            className={`${className} icon`}
-            size={{ height: Sizes.Default, width: Sizes.Default, ...size }}
-            {...props}
-          >
-            {/* @ts-ignore */}
-            {IconComponent && <IconComponent />}
-          </Wrapper>
+      if (path) {
+        setIconComponent(
+          <Image alt="icon" className={`${className} icon`} path={path} />,
         );
-    }
+      }
 
-    if (component) {
-      return component;
-    }
+      if (url) {
+        setIconComponent(
+          <Image alt="icon" className={`${className} icon`} url={url} />,
+        );
+      }
 
-    if (path) {
-      return <Image alt="icon" className={`${className} icon`} path={path} />;
-    }
+      if (name) {
+        const Ico = await getIcon(name);
+        console.log('ico', Ico);
+        setIconComponent(<Ico />);
+      }
+    };
 
-    if (url) {
-      return <Image alt="icon" className={`${className} icon`} url={url} />;
-    }
+    useEffect(() => {
+      getIconComponent();
+    }, []);
 
-    return <></>;
+    return (
+      <Wrapper
+        alignment={{
+          horizontal: AlignHorizontal.Center,
+          vertical: AlignVertical.Center,
+          ...alignment,
+        }}
+        as={as}
+        color={color}
+        className={`${className} icon`}
+        size={{ height: Sizes.Default, width: Sizes.Default, ...size }}
+        {...props}
+      >
+        {IconComponent}
+      </Wrapper>
+    );
   },
 );

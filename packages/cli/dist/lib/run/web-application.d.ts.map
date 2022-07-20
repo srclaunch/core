@@ -1,0 +1,1 @@
+{"version":3,"file":"web-application.d.ts","sourceRoot":"","sources":["../../../src/lib/run/web-application.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,qBAAqB,EAAE,MAAM,kBAAkB,CAAC;AAQ1E,wBAAsB,iBAAiB,CAAC,EACtC,QAAc,EACd,SAAS,EACT,WAAW,EACX,KAAK,EACL,QAAQ,EACR,GAAG,EACH,gBAAgB,EAChB,KAAK,GACN,EAAE,qBAAqB,GAAG;IACzB,QAAQ,CAAC,WAAW,EAAE,eAAe,CAAC;CACvC,iBA+DA"}

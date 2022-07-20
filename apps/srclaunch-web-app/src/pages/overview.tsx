@@ -1,7 +1,7 @@
 // import CashFlowByDay from '../components/dashboard/CashFlowByDay';
 import { Amount, BackgroundColors, Depth, Workspace } from '@srclaunch/ui';
 // import { useTitle } from '@srclaunch/hooks';
-// import { useDispatch } from '@srclaunch/web-application-state';
+// import { useDispatch } from '@srclaunch/web-app';
 import { DateTime } from 'luxon';
 import { memo, ReactElement } from 'react';
 

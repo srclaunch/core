@@ -14,10 +14,15 @@ import {
   TestTool,
   UniversalPackage,
   BrowserPackage,
-  Environments,
+  EnvironmentType,
   Runner,
+  DocumentationType,
+  DocumentationConfig,
+  FileType,
+  ComponentLibraryDocumentationConfig,
 } from '@srclaunch/types';
 import { DeploymentPlatform } from '@srclaunch/types';
+import generatedDocs from './.srclaunch/docs/components.json';
 
 export default <ComponentLibraryConfig>{
   name: '@srclaunch/ui',
@@ -36,14 +41,11 @@ export default <ComponentLibraryConfig>{
           'react-router-dom',
           'styled-components',
         ],
-        globals: {
-          'styled-components': 'styled',
-        },
       },
       formats: [BuildFormat.ESM, BuildFormat.UMD],
       input: {
         directory: 'src',
-        file: 'index.tsx',
+        file: 'index.ts',
       },
       library: true,
       platform: BuildPlatform.Browser,
@@ -53,8 +55,13 @@ export default <ComponentLibraryConfig>{
       types: true,
     },
     {
-      basePath: '/ui',
-      formats: [BuildFormat.ESM, BuildFormat.UMD],
+      basePath: '/ui/',
+      bundle: {
+        exclude: ['@srclaunch/config', '@srclaunch/docs'],
+      },
+      clean: true,
+      components: (generatedDocs as ComponentLibraryDocumentationConfig)
+        .components,
       input: {
         directory: 'src/__docs__',
         file: 'index.html',
@@ -69,19 +76,46 @@ export default <ComponentLibraryConfig>{
       types: false,
     },
   ],
+  documentation: {
+    basePath: '/ui',
+    name: '@srclaunch/ui',
+    components: (generatedDocs as ComponentLibraryDocumentationConfig)
+      .components,
+    description: 'SrcLaunch UI React component library documentation',
+    generate: {
+      input: {
+        directory: 'src/components',
+      },
+      output: {
+        directory: 'docs/components',
+      },
+    },
+    react: true,
+    runner: Runner.Vite,
+    styledComponents: true,
+    type: DocumentationType.ComponentLibrary,
+  },
+  environments: {
+    development: {
+      formatters: [CodeFormatter.Prettier],
+      linters: [CodeLinter.ESLint, CodeLinter.Stylelint],
+      run: {
+        components: (generatedDocs as ComponentLibraryDocumentationConfig)
+          .components,
+        input: {
+          directory: 'src/__docs__',
+          file: 'index.tsx',
+        },
+      },
+      staticTyping: [StaticTyping.TypeScript],
+    },
+  },
   test: {
     coverage: {
       reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
     },
     tool: TestTool.Jest,
     concurrency: 1,
-  },
-  environments: {
-    development: {
-      formatters: [CodeFormatter.Prettier],
-      linters: [CodeLinter.ESLint, CodeLinter.Stylelint],
-      staticTyping: [StaticTyping.TypeScript],
-    },
   },
   release: {
     deployment: {
@@ -142,16 +176,6 @@ export default <ComponentLibraryConfig>{
       dx: true,
       cli: true,
       types: true,
-    },
-  },
-  run: {
-    [Environments.Development]: {
-      react: true,
-      input: {
-        directory: 'src/__docs__',
-      },
-      runner: Runner.Vite,
-      styledComponents: true,
     },
   },
 };

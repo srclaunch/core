@@ -31,12 +31,13 @@
     "build": "srclaunch build --clean --types",
     "deploy": "srclaunch deploy",
     "deploy:local": "srclaunch deploy --local",
+    "dev": "srclaunch dev",
+    "docs:generate": "srclaunch docs generate",
     "release": "srclaunch release",
     "release:local": "srclaunch release --local",
     "test": "srclaunch test",
     "test:coverage": "srclaunch test --coverage",
-    "test:watch": "srclaunch test --watch",
-    "dev": "srclaunch dev"
+    "test:watch": "srclaunch test --watch"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
@@ -47,7 +48,7 @@
     "@srclaunch/logger": "workspace:*",
     "@srclaunch/themes": "workspace:*",
     "@srclaunch/validation": "workspace:*",
-    "@srclaunch/web-application-state": "workspace:*",
+    "@srclaunch/web-app": "workspace:*",
     "@srclaunch/web-environment": "workspace:*",
     "@stripe/stripe-js": "^1.31.0",
     "amazon-cognito-identity-js": "^5.2.8",
@@ -67,6 +68,7 @@
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.1",
     "react-is": "^18.2.0",
+    "react-markdown": "^8.0.3",
     "react-redux": "^8.0.2",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
@@ -76,8 +78,10 @@
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
-    "@srclaunch/dx": "workspace:*",
     "@srclaunch/cli": "workspace:*",
+    "@srclaunch/component-library": "workspace:*",
+    "@srclaunch/docs": "workspace:*",
+    "@srclaunch/dx": "workspace:*",
     "@srclaunch/types": "workspace:*",
     "@testing-library/dom": "^8.13.0",
     "@testing-library/jest-dom": "^5.16.4",

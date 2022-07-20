@@ -1,7 +1,7 @@
 import { memo, ReactElement } from 'react';
 
 import { Amount, BackgroundColors, Color, Size, Sizes } from '../../types';
-import { Container, ContainerProps } from '../layout/Container';
+import { Container, ContainerProps } from '../layout/container';
 
 type OrbProps = {
   readonly color?: BackgroundColors;

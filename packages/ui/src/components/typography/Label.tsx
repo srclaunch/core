@@ -11,9 +11,9 @@ import {
   TextSize,
   TextWeight,
 } from '../../types';
-import { Container, ContainerProps } from '../layout/Container';
-import { Icon, IconProps } from '../media/Icon';
-import { Text, TextProps } from './Text';
+import { Container, ContainerProps } from '../layout/container';
+import { Icon, IconProps } from '../media/icon';
+import { Text, TextProps } from './text';
 
 export type LabelProps = ContainerProps &
   TextProps & {

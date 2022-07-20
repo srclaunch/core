@@ -1,9 +1,12 @@
 .env
 .DS_Store
-coverage/
-docs/
-dist/
-!packages/cli/dist/
+**/coverage/
+**/docs/
+!packages/docs
+**/dist/
+!packages/cli/dist
+!packages/cli/docs
 node_modules/
+**/node_modules/
 .pnpm-debug.log
 .turbo

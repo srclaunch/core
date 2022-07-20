@@ -19,9 +19,8 @@ import {
   VerificationCode,
 } from '@srclaunch/types';
 
-import { ImageInputProps } from '../../components/forms/inputs/media/ImageInput';
+import { ImageInputProps } from '../../components/forms/inputs/media/image-input';
 import { Events, InputValueChangeHandler } from '../events';
-
 import { Validation } from '../validation';
 import { AutoComplete } from './input';
 
@@ -78,7 +77,7 @@ export type FormField = CommonFormFieldProps &
       >
     | FormFieldValueProps<
         // @ts-ignore
-        (File | Image)[],
+        readonly (File | Image)[],
         {
           readonly properties: ImageInputProps;
           readonly type: Primitives.Image;

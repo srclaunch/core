@@ -42,11 +42,11 @@ export const DEFAULT_SRCLAUNCH_CONFIG: Omit<
     },
   },
   test: {
+    concurrency: 1,
     coverage: {
       reporters: [TestReporter.Lcov, TestReporter.JSONSummary],
     },
     tool: TestTool.Ava,
-    concurrency: 1,
   },
   type: ProjectType.Library,
 };

@@ -5,7 +5,7 @@ import {
   CodeVerificationForm,
   Page,
 } from '@srclaunch/ui';
-import { useDispatch } from '@srclaunch/web-application-state';
+import { useDispatch } from '@srclaunch/web-app';
 import { memo, ReactElement, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 

@@ -1,17 +1,17 @@
 import { css, SimpleInterpolation } from 'styled-components';
-import { InputProps } from '../../../components/forms/inputs/shared/Input';
 
+import { InputProps as InputProperties } from '../../../components/forms/inputs/shared/input';
 // import { TextProps } from '../../../components/typography/Text';
 import { Amount, Size, TextColors } from '../../../types';
 import { getSizeStyles } from '../../container/size';
-import { getTextStyles, TextStyles } from '../../typography';
+import { getTextStyles } from '../../typography';
 
 export function getInputStyles(
-  props: InputProps<string> & { inputSize?: Size },
+  properties: InputProperties<string> & { readonly inputSize?: Size },
 ): SimpleInterpolation {
   return css`
-    ${getSizeStyles(props.inputSize)}
-    ${getTextStyles(props)};
+    ${getSizeStyles(properties.inputSize)}
+    ${getTextStyles(properties)};
 
     background: transparent;
     border: none;
@@ -64,3 +64,5 @@ export function getInputStyles(
 }
 
 export const InputStyles = css``;
+
+export * from './container';

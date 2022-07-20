@@ -13,6 +13,8 @@ import {
   StaticTyping,
   TestReporter,
   TestTool,
+  DocumentationType,
+  FileType,
 } from '@srclaunch/types';
 
 export default <IconLibraryConfig>{
@@ -21,18 +23,38 @@ export default <IconLibraryConfig>{
   type: ProjectType.IconLibrary,
   react: true,
   build: {
+    bundle: {
+      preserveModules: true,
+    },
     formats: [BuildFormat.ESM, BuildFormat.UMD],
+    input: {
+      directory: 'src',
+      file: 'index.tsx',
+      // 'iconsets/basic/index.ts'
+      // 'iconsets/dual-light/index.ts'
+    },
     library: true,
     platform: BuildPlatform.Browser,
     react: true,
+    splitting: true,
     target: BuildTarget.Modules,
     tool: BuildTool.Vite,
   },
-  docs: {
-    assetsDir: 'assets',
-    entryFile: 'docs/index.html',
-    react: true,
-    rootDir: 'docs',
+  documentation: {
+    name: '@srclaunch/icons',
+    description: 'React icon components',
+    autoGenerate: true,
+    input: {
+      directory: 'src/components',
+    },
+    output: {
+      directory: 'src/__docs__',
+      file: {
+        name: 'icons',
+        type: FileType.YAML,
+      },
+    },
+    type: DocumentationType.IconLibrary,
   },
   environments: {
     development: {

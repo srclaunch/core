@@ -1,4 +1,5 @@
 import { memo, ReactElement } from 'react';
+
 import {
   Amount,
   BackgroundColors,
@@ -9,10 +10,10 @@ import {
   TextColors,
   TextSize,
 } from '../../types';
-import { Container, ContainerProps } from '../layout/Container';
-import { Scrollable } from '../layout/Scrollable';
-import { Label } from '../typography/Label';
-import { MenuItem, MenuItemProps } from './MenuItem';
+import { Container, ContainerProps } from '../layout/container';
+import { Scrollable } from '../layout/scrollable';
+import { Label } from '../typography/label';
+import { MenuItem, MenuItemProps } from './menu-item';
 
 export type MenuProps = ContainerProps & {
   readonly onItemClick?: (item: MenuItemProps) => void;

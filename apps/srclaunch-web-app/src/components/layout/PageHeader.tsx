@@ -5,7 +5,7 @@ import {
   RootState,
   // useDispatch,
   useSelector,
-} from '@srclaunch/web-application-state';
+} from '@srclaunch/web-app';
 
 export const PageHeader = (): ReactElement => {
   // const dispatch = useDispatch();
@@ -36,8 +36,8 @@ export const PageHeader = (): ReactElement => {
           mouse: {
             onClick: () => {
               // dispatch(push('/signup'));
-            }
-          }
+            },
+          },
         }}
         type={ButtonType.Primary}
       >
@@ -48,11 +48,11 @@ export const PageHeader = (): ReactElement => {
 
   return (
     <Container>
-        <LogoContainer>
-          <Image alt="Logo" url={'logo.png'} />
-        </LogoContainer>
+      <LogoContainer>
+        <Image alt="Logo" url={'logo.png'} />
+      </LogoContainer>
 
-        <Links>{getLoginOrSignupButton()}</Links>
+      <Links>{getLoginOrSignupButton()}</Links>
     </Container>
   );
 };

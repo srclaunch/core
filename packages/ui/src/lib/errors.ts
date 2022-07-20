@@ -4,11 +4,11 @@ import { ValidationProblem } from '@srclaunch/validation';
 export function getErrorMessage(
   error:
     | Exception
-    | readonly Exception[]
     | ValidationProblem
-    | readonly ValidationProblem[]
-    | string,
-): string | null {
+    | string
+    | readonly Exception[]
+    | readonly ValidationProblem[],
+): string | undefined {
   if (error instanceof Exception) {
     return error.message;
   }
@@ -25,5 +25,5 @@ export function getErrorMessage(
     return error;
   }
 
-  return null;
+  return;
 }

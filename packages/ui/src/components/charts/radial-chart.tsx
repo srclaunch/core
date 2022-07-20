@@ -1,7 +1,7 @@
 import { memo, ReactElement } from 'react';
 
 // import { PieChart } from 'react-minimal-pie-chart';
-import { Container, ContainerProps } from '../layout/Container';
+import { Container, ContainerProps } from '../layout/container';
 
 type RadialChartProps = ContainerProps & {
   readonly data: {
@@ -14,7 +14,10 @@ type RadialChartProps = ContainerProps & {
 };
 
 export const RadialChart = memo(
-  ({ data, ...props }: RadialChartProps): ReactElement => {
+  ({
+    // data,
+    ...props
+  }: RadialChartProps): ReactElement => {
     // const [localData, setLocalData] = useState(data);
 
     // useEffect(() => {

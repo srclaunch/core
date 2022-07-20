@@ -58,7 +58,9 @@ export async function build({
     };
 
     const getRollupOptions = (): BuildOptions['rollupOptions'] => {
-      let options: BuildOptions['rollupOptions'] = {};
+      let options: BuildOptions['rollupOptions'] = {
+        external: [],
+      };
 
       if (
         typeof bundle === 'object' &&
@@ -71,11 +73,18 @@ export async function build({
         };
       }
 
+      if (styledComponents) {
+        options = {
+          ...options,
+          external: [...(options.external as string[]), 'styled-components'],
+        };
+      }
+
       if (typeof bundle === 'object' && bundle.preserveModules) {
         options = {
           ...options,
           output: {
-            entryFileNames: '[name].js',
+            entryFileNames: '[name].[format].js',
           },
         };
       }

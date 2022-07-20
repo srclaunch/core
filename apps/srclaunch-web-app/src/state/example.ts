@@ -1,7 +1,7 @@
 import { Property } from '@azorakapp/azorak-applab-types';
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { Exception } from '@srclaunch/exceptions';
-import { RootState } from '@srclaunch/web-application-state';
+import { RootState } from '@srclaunch/web-app';
 import { DateTime } from 'luxon';
 
 const propertyAdapter = createEntityAdapter<Property>();

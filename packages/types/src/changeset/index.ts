@@ -49,7 +49,7 @@ export enum ChangeType {
   Test = 'test',
 }
 
-export type ChangesetOptions = {
+export type ChangesetConfig = {
   readonly logs: {
     readonly path: string;
   };

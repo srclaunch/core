@@ -1,5 +1,4 @@
 import {
-  BuildOptions,
   ChangeType,
   CodeFormatter,
   CodeLinter,
@@ -9,21 +8,9 @@ import {
   TestTool,
   WorkspaceConfig,
 } from '@srclaunch/types';
-import { diffJson } from 'diff';
-import { writeFile } from 'fs-extra';
 import { TypedFlags } from 'meow';
-import path from 'node:path';
 import pc from 'picocolors';
 
-import { BUILD_DIR, BUILD_FILE_NAME } from '../constants/build';
-import {
-  PROJECT_PACKAGE_JSON_FILES,
-  PROJECT_PACKAGE_JSON_LICENSE,
-  PROJECT_PACKAGE_JSON_MAIN,
-  PROJECT_PACKAGE_JSON_MODULE,
-  PROJECT_PACKAGE_JSON_TYPE,
-  PROJECT_PACKAGE_JSON_TYPES,
-} from '../constants/project';
 import { createChangeset } from '../lib/changesets';
 import { shellExec } from '../lib/cli';
 // import { ensureDirectoryExists, readFile } from '../lib/file-system';
@@ -48,10 +35,7 @@ import {
   getDependencies,
   getDevDependencies,
 } from '../lib/project/dependencies';
-import { getPackageScripts } from '../lib/project/package';
-import { getPublishYml } from '../lib/project/publish';
 import { writeToolingConfiguration } from '../lib/project/tooling';
-import { createRelease } from '../lib/release/standard-version';
 
 type ProjectSetupFlags = TypedFlags<{
   readonly build: {
@@ -99,13 +83,17 @@ export default new Command<WorkspaceConfig & ProjectConfig>({
     new Command<WorkspaceConfig>({
       description: 'Create a new SrcLaunch project',
       name: 'create',
-      run: async ({ config, flags }) => {},
+      run: async () => {
+        // const projectName = await prompt('Project name:');
+      },
       type: CommandType.Workspace,
     }),
     new Command<ProjectConfig>({
       description: 'Sync SrcLaunch configuration with project',
       name: 'sync',
-      run: async ({ config, flags }) => {},
+      run: async () => {
+        // const projectName = await prompt('Project name:');
+      },
       type: CommandType.Workspace,
     }),
 
@@ -136,7 +124,7 @@ export default new Command<WorkspaceConfig & ProjectConfig>({
           // );
           const coreDevDependencies = await getDevDependencies({
             ava: config.test?.tool === TestTool.Ava,
-            eslint: config.environments?.development?.linters?.includes(
+            eslint: config?.environments?.development?.linters?.includes(
               CodeLinter.ESLint,
             ),
             github: config.type === ProjectType.GitHubAction,
@@ -148,7 +136,7 @@ export default new Command<WorkspaceConfig & ProjectConfig>({
               (config.type === ProjectType.ComponentLibrary && test) ||
               (config.type === ProjectType.IconLibrary && test) ||
               (config.type === ProjectType.ThemeLibrary && test),
-            prettier: config.environments?.development?.formatters?.includes(
+            prettier: config?.environments?.development?.formatters?.includes(
               CodeFormatter.Prettier,
             ),
             react:
@@ -160,7 +148,7 @@ export default new Command<WorkspaceConfig & ProjectConfig>({
             reactRouter: flags.reactRouter,
             srclaunch: config?.requirements?.srclaunch,
             styledComponents: flags.styledComponents,
-            stylelint: config.environments?.development?.linters?.includes(
+            stylelint: config?.environments?.development?.linters?.includes(
               CodeLinter.Stylelint,
             ),
             testCoverage: Boolean(config.test?.coverage),
@@ -169,22 +157,22 @@ export default new Command<WorkspaceConfig & ProjectConfig>({
                 StaticTyping.TypeScript,
               ),
           });
-          const devDependencies = await getDependencies({
-            dev: true,
-            packages: [
-              ...(config.requirements?.devPackages ?? []),
-              ...(config.requirements?.packages ?? []),
-              ...(config.requirements?.peerPackages ?? []),
-            ],
-          });
+          // const devDependencies = await getDependencies({
+          //   dev: true,
+          //   packages: [
+          //     ...(config.requirements?.devPackages ?? []),
+          //     ...(config.requirements?.packages ?? []),
+          //     ...(config.requirements?.peerPackages ?? []),
+          //   ],
+          // });
 
-          const dependencies = await getDependencies({
-            packages: config.requirements?.packages ?? [],
-          });
+          // const dependencies = await getDependencies({
+          //   packages: config.requirements?.packages ?? [],
+          // });
 
-          const peerDependencies = await getDependencies({
-            packages: config.requirements?.peerPackages ?? [],
-          });
+          // const peerDependencies = await getDependencies({
+          //   packages: config.requirements?.peerPackages ?? [],
+          // });
 
           // const packageJSON = await generateNodePackageManifest({
           //   name: config.name,
@@ -275,7 +263,7 @@ export default new Command<WorkspaceConfig & ProjectConfig>({
 
           if (flags.push) {
             // spinner.start('Pushing changes to remote...');
-            const pushResult = await push({ followTags: false });
+            // const pushResult = await push({ followTags: false });
             // spinner.succeed(
             //   `Changes pushed to ${pc.bold(
             //     pushResult.repo,
@@ -388,7 +376,7 @@ export default new Command<WorkspaceConfig & ProjectConfig>({
 
           if (flags.push) {
             // spinner.start(`Pushing release to branch ${pc.bold(branch)}...`);
-            const result = await push({ followTags: true });
+            // const result = await push({ followTags: true });
             // spinner.succeed(
             //   `Pushed release ${pc.bold(version)} to ${pc.bold(
             //     result.repo,

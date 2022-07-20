@@ -4,33 +4,33 @@ export declare enum CommandType {
     Workspace = "workspace"
 }
 export declare type RunArguments<C, F> = {
-    cli: Result<AnyFlags>;
-    config: C;
-    flags: F;
+    readonly cli: Result<AnyFlags>;
+    readonly config: C;
+    readonly flags: F;
 };
 export declare type RunFunction<C, F = TypedFlags<AnyFlags> & Record<string, unknown>> = (args: RunArguments<C, F>) => Promise<void>;
 export declare type CommandConstructorArgs<C, F = TypedFlags<AnyFlags> & Record<string, unknown>> = {
-    description: string;
-    flags?: F;
-    name: string;
-    run?: RunFunction<C, F>;
-    commands?: Command<C, F>[];
-    type?: CommandType;
+    readonly description: string;
+    readonly flags?: F;
+    readonly name: string;
+    readonly run?: RunFunction<C, F>;
+    readonly commands?: readonly Command<C, F>[];
+    readonly type?: CommandType;
 };
 export declare class Command<C, F = TypedFlags<AnyFlags> & Record<string, unknown>> {
-    flags?: F;
-    name: string;
-    private runFunction?;
-    commands: CommandConstructorArgs<C, TypedFlags<AnyFlags> & Record<string, unknown>>['commands'];
-    type: CommandType;
+    readonly flags?: F;
+    readonly name: string;
+    private readonly runFunction?;
+    readonly commands: CommandConstructorArgs<C, TypedFlags<AnyFlags> & Record<string, unknown>>['commands'];
+    readonly type: CommandType;
     constructor(options: CommandConstructorArgs<C, F>);
     run({ cli, config, flags, }: RunArguments<C, TypedFlags<AnyFlags> & Record<string, unknown>>): Promise<void>;
 }
 export declare function handleCommand({ cli, config, command, commands, flags, }: {
-    cli: Result<AnyFlags>;
-    command: string[];
-    commands?: Command<any, TypedFlags<AnyFlags> & Record<string, unknown>>[];
-    config: Record<string, unknown>;
-    flags: TypedFlags<AnyFlags> & Record<string, unknown>;
+    readonly cli: Result<AnyFlags>;
+    readonly command: readonly string[];
+    readonly commands?: readonly Command<any, TypedFlags<AnyFlags> & Record<string, unknown>>[];
+    readonly config: Record<string, unknown>;
+    readonly flags: TypedFlags<AnyFlags> & Record<string, unknown>;
 }): Promise<void>;
 //# sourceMappingURL=command.d.ts.map

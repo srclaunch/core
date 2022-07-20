@@ -9,11 +9,10 @@ import {
   // useNavigate,
   useParams,
   useSearchParams,
-} from '@srclaunch/web-application-state';
+} from '@srclaunch/web-app';
 import { Activities } from '@srclaunch/types';
 import {
   ActivityFeed,
-
   AlignHorizontal,
   Amount,
   BackgroundColors,
@@ -35,7 +34,6 @@ import {
   TextWeight,
   Title,
   TitleCard,
-
   UserLabel,
   Workspace,
 } from '@srclaunch/ui';
@@ -80,7 +78,7 @@ export const UnitDetails = memo(
 
     return (
       <Workspace
-      background={{ color: BackgroundColors.Default }}
+        background={{ color: BackgroundColors.Default }}
         depth={Depth.Low}
         layout={WebApp}
         padding={{ all: Amount.Most }}
@@ -89,12 +87,11 @@ export const UnitDetails = memo(
         <Container
           alignment={{
             horizontal: AlignHorizontal.Center,
-            orientation: Orientation.Horizontal
+            orientation: Orientation.Horizontal,
           }}
           margin={{ bottom: Amount.Most }}
-          
         >
-          <Link to={'/properties'} >
+          <Link to={'/properties'}>
             <Title
               textColor={TextColors.Primary}
               textSize={TextSize.Larger}
@@ -109,11 +106,11 @@ export const UnitDetails = memo(
             margin={{ left: Amount.Less, right: Amount.Less }}
             size={{
               height: Sizes.Smaller,
-              width: Sizes.Smaller
+              width: Sizes.Smaller,
             }}
           />
 
-          <Link to={`/properties/${property.id}`} >
+          <Link to={`/properties/${property.id}`}>
             <Title
               textColor={TextColors.Primary}
               textSize={TextSize.Larger}
@@ -128,7 +125,7 @@ export const UnitDetails = memo(
             margin={{ left: Amount.Less, right: Amount.Less }}
             size={{
               height: Sizes.Smaller,
-              width: Sizes.Smaller
+              width: Sizes.Smaller,
             }}
           />
 
@@ -160,8 +157,7 @@ export const UnitDetails = memo(
 
         <Container
           alignment={{
-            
-            orientation: Orientation.Horizontal
+            orientation: Orientation.Horizontal,
           }}
           margin={{ bottom: Amount.Most }}
         >
@@ -179,7 +175,6 @@ export const UnitDetails = memo(
                 alignment={{
                   horizontal: AlignHorizontal.Center,
                 }}
-               
                 textColor={TextColors.Lightest}
               >
                 Progressive Pay
@@ -188,9 +183,7 @@ export const UnitDetails = memo(
               <ProgressivePaymentStatus amountPaid={1100} totalDue={1500} />
             </Container>
 
-            <Container
-              
-            >
+            <Container>
               <TitleCard
                 label="Open Service Requests"
                 value={1}
@@ -210,7 +203,6 @@ export const UnitDetails = memo(
               <TitleCard
                 label="Late Payments"
                 value={Math.floor(Math.random() * (15 - 0 + 1) + 0)}
-               
                 icon={{
                   name: DualLightIcons.Warning,
                 }}
@@ -221,13 +213,11 @@ export const UnitDetails = memo(
 
         <Container
           alignment={{
-
-            orientation: Orientation.Horizontal
+            orientation: Orientation.Horizontal,
           }}
 
           // alignContent={Align.Stretch}
           // alignItems={Align.Stretch}
-
         >
           <Container margin={{ right: Amount.Default }}>
             <Container
@@ -240,7 +230,6 @@ export const UnitDetails = memo(
                 alignment={{
                   horizontal: AlignHorizontal.Center,
                 }}
-                
                 textColor={TextColors.Lightest}
               >
                 Recent Activity
@@ -317,24 +306,24 @@ export const UnitDetails = memo(
               */}
             </Container>
 
-            <Container alignment={{
-              orientation: Orientation.Horizontal
-            }}>
+            <Container
+              alignment={{
+                orientation: Orientation.Horizontal,
+              }}
+            >
               <Container
                 background={{ color: BackgroundColors.Dark }}
                 borderRadius={{ all: Amount.Default }}
-           
                 margin={{ all: Amount.Default }}
                 padding={{ all: Amount.Default }}
                 size={{
-                  height: 200
+                  height: 200,
                 }}
               >
                 <Heading
                   alignment={{
                     horizontal: AlignHorizontal.Center,
                   }}
-                
                   textColor={TextColors.Lightest}
                 >
                   Documents
@@ -344,17 +333,15 @@ export const UnitDetails = memo(
               <Container
                 background={{ color: BackgroundColors.Dark }}
                 borderRadius={{ all: Amount.Default }}
-             
                 padding={{ all: Amount.Default }}
                 size={{
-                  height: 200
+                  height: 200,
                 }}
               >
                 <Heading
                   alignment={{
                     horizontal: AlignHorizontal.Center,
                   }}
-        
                   textColor={TextColors.Lightest}
                 >
                   Tenant Details
@@ -363,7 +350,7 @@ export const UnitDetails = memo(
             </Container>
           </Container>
 
-          <Container  size={{width: 300}}>
+          <Container size={{ width: 300 }}>
             <Container margin={{ bottom: Amount.Default }}>
               <ErrorNotification label={'Lease expires in 18 days'} />
             </Container>
@@ -371,16 +358,13 @@ export const UnitDetails = memo(
             <Container
               background={{ color: BackgroundColors.Dark }}
               borderRadius={{ all: Amount.Default }}
-          
               margin={{ bottom: Amount.Default }}
-              padding={{ all: Amount.Default }
-              }
+              padding={{ all: Amount.Default }}
             >
               <Heading
                 alignment={{
                   horizontal: AlignHorizontal.Center,
                 }}
-              
                 textColor={TextColors.Lightest}
               >
                 Household
@@ -420,17 +404,15 @@ export const UnitDetails = memo(
             <Container
               background={{ color: BackgroundColors.Dark }}
               borderRadius={{ all: Amount.Default }}
-        
               padding={{ all: Amount.Default }}
               size={{
-                height: 200
+                height: 200,
               }}
             >
               <Heading
                 alignment={{
                   horizontal: AlignHorizontal.Center,
                 }}
-           
                 textColor={TextColors.Lightest}
               >
                 Add-ons

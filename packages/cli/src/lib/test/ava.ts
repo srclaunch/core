@@ -4,7 +4,7 @@ import {
   streamEnd,
   streamWrite,
 } from '@rauschma/stringio';
-import { TestOptions } from '@srclaunch/types';
+import { TestConfig } from '@srclaunch/types';
 import { exec, execSync, spawn } from 'node:child_process';
 
 import { DEFAULT_TEST_OPTIONS } from './index';
@@ -48,7 +48,7 @@ export async function run({
   match,
   watch,
 }: {
-  readonly config: TestOptions;
+  readonly config: TestConfig;
   readonly match?: string;
   readonly watch?: boolean;
 }): Promise<void> {

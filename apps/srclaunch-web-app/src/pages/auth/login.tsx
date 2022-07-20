@@ -12,7 +12,7 @@ import {
   LoginForm,
   Page,
 } from '@srclaunch/ui';
-import { RootState, useSelector } from '@srclaunch/web-application-state';
+import { RootState, useSelector } from '@srclaunch/web-app';
 import { memo, ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom';
 

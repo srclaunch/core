@@ -1,7 +1,7 @@
 import { memo, ReactElement } from 'react';
 
 import { Sizes, TextColors, TextSize } from '../../types';
-import { Label, LabelProps } from './Label';
+import { Label, LabelProps } from './label';
 
 type SmallProps = LabelProps;
 

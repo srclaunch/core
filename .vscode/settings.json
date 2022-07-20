@@ -75,7 +75,7 @@
   /* Typescript */
   "typescript.suggest.paths": true,
   /* Workbench */
-  "workbench.colorTheme": "Bearded Theme Monokai Metallian",
+  "workbench.colorTheme": "Bearded Theme Black & Diamond",
   "workbench.editorAssociations": {
     "*.html": "default"
   },
@@ -128,8 +128,11 @@
   "[svg]": {
     "editor.defaultFormatter": "jock.svg"
   },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.formatOnSave": false,
   "editor.definitionLinkOpensInPeek": false,
   "prettier.configPath": ".prettierrc.cjs",
-  "monorepoTools.yarnInstallCommand": "yarn",
   "svg.preview.background": "black"
 }

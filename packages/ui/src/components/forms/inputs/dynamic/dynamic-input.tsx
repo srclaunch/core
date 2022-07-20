@@ -1,10 +1,10 @@
 import { NotificationType, Primitives } from '@srclaunch/types';
 import { memo, ReactElement } from 'react';
 
-import { NotificationLabel } from '../../../notifications/NotificationLabel';
-import { InputLabel } from '../../labels/InputLabel';
+import { NotificationLabel } from '../../../notifications/notification-label';
+import { InputLabel } from '../../../typography/labels/forms/input-label';
 // import Menu from '../ui/Menu';
-import { InputRow } from '../../layout/InputRow';
+import { InputRow } from '../../layout/input-row';
 // import TextInput from './TextInput';
 
 type DynamicInputProps = {

@@ -12,7 +12,7 @@ import {
   Tabs,
   Workspace,
 } from '@srclaunch/ui';
-import { useDispatch, useSelector } from '@srclaunch/web-application-state';
+import { useDispatch, useSelector } from '@srclaunch/web-app';
 import { memo, ReactElement, useEffect } from 'react';
 
 import { AccessibilityPreferences } from '../../components/settings/AccessibilityPreferences';

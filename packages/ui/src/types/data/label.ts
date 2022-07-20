@@ -1,6 +1,6 @@
 import { Model, ModelProps, Primitives } from '@srclaunch/types';
 
-import { LabelProps } from '../../components/typography/Label';
+import { LabelProps } from '../../components/typography/label';
 
 export type PrimitiveLabelProps = {
   readonly fieldName?: string;

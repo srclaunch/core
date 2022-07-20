@@ -21,19 +21,6 @@ export const loadSrcLaunchConfig = async (): Promise<SrcLaunchConfig> => {
           return cfg?.srclaunch;
         },
       },
-      {
-        files: 'vite.config',
-        async rewrite(
-          cfg:
-            | { srclaunch?: SrcLaunchConfig }
-            | (() => Promise<
-                Record<string, unknown> & { srclaunch?: SrcLaunchConfig }
-              >),
-        ) {
-          const viteConfig = await (typeof cfg === 'function' ? cfg() : cfg);
-          return viteConfig?.srclaunch;
-        },
-      },
     ],
   });
 

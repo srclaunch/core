@@ -1,11 +1,12 @@
 import { css, SimpleInterpolation } from 'styled-components';
+
 import {
-  Alignment,
   AlignHorizontal,
+  Alignment,
   AlignVertical,
+  Fill,
   Orientation,
   Overflow,
-  Fill,
 } from '../../types';
 
 export function getHorizontalAlignStyle(

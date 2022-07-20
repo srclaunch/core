@@ -1,6 +1,6 @@
 import { css, SimpleInterpolation } from 'styled-components';
 
-import { ContainerProps } from '../../components/layout/Container';
+import { ContainerProps as ContainerProperties } from '../../components/layout/container';
 import { Amount } from '../../types';
 import { getAlignmentStyles } from './alignment';
 import { getAnimationStyles } from './animation';
@@ -19,7 +19,7 @@ import { getTransformStyles } from './transform';
 import { getVisibilityStyles } from './visibility';
 
 export const getContainerStyles = (
-  props: ContainerProps,
+  properties: ContainerProperties,
 ): SimpleInterpolation => {
   const {
     alignment,
@@ -36,7 +36,7 @@ export const getContainerStyles = (
     size,
     transform,
     visibility,
-  } = props || {};
+  } = properties || {};
 
   return css`
     ${alignment && getAlignmentStyles(alignment)}
@@ -88,6 +88,22 @@ export const getContainerStyles = (
   `;
 };
 
-export const ContainerStyles = css<ContainerProps>`
-  ${props => getContainerStyles(props)}
+export const ContainerStyles = css<ContainerProperties>`
+  ${properties => getContainerStyles(properties)}
 `;
+
+export * from './alignment';
+export * from './animation';
+export * from './background';
+export * from './border';
+export * from './border-radius';
+export * from './cursor';
+export * from './depth';
+export * from './margin';
+export * from './padding';
+export * from './position';
+export * from './shadow';
+export * from './size';
+export * from './states';
+export * from './transform';
+export * from './visibility';

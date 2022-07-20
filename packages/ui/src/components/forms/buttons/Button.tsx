@@ -19,9 +19,9 @@ import {
   TextDecorationLine,
   TextSize,
 } from '../../../types/index';
-import { Container, ContainerProps } from '../../layout/Container';
-import { IconProps } from '../../media/Icon';
-import { Label, LabelProps } from '../../typography/Label';
+import { Container, ContainerProps } from '../../layout/container';
+import { IconProps } from '../../media/icon';
+import { Label, LabelProps } from '../../typography/label';
 
 export enum ButtonType {
   Default = 'black',
@@ -83,6 +83,21 @@ export type ButtonProps = ContainerProps &
 //     `};
 // `;
 
+/**
+ * General purpose button component.
+ *
+ * @example
+ * One
+ * ```
+ * {children}
+ * ```
+ * @example
+ * Two
+ * ```
+ * // Prints "0":
+ * console.log(add(1,-1));
+ * ```
+ */
 export const Button = memo(
   ({
     alignment = {},

@@ -1,12 +1,8 @@
 import { HttpRequestMethod } from '@srclaunch/types';
 import { Request, Response } from 'express';
 
-// interface EndpointHandlerCallbackParams {
-//   req: Request;
-//   res: Response;
-// }
 export type Endpoint = {
-  handler: (req: Request, res: Response) => any;
-  method: HttpRequestMethod;
-  route: string;
+  readonly handler: (req: Request, res: Response) => any;
+  readonly method: HttpRequestMethod;
+  readonly route: string;
 };

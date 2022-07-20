@@ -1,6 +1,6 @@
 ---
-"@srclaunch/ui": minor
-"@srclaunch/web-application-state": minor
+'@srclaunch/ui': minor
+'@srclaunch/web-app': minor
 ---
 
 Import enum differently

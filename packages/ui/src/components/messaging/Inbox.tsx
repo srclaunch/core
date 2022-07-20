@@ -1,8 +1,7 @@
 import { ChatMessage } from '@srclaunch/types';
-import { RouterView } from '@srclaunch/web-application-state';
+import { RouterView } from '@srclaunch/web-app';
 import { memo, ReactElement } from 'react';
 
-import { Container, ContainerProps } from '../../components/layout/Container';
 import {
   AlignHorizontal,
   AlignVertical,
@@ -10,9 +9,10 @@ import {
   Fill,
   Orientation,
 } from '../../types';
-import { ConversationList } from './ConversationList';
-import { ConversationNavigation } from './ConversationNavigation';
-import { MessageComposer } from './MessageComposer';
+import { Container, ContainerProps } from '../layout/container';
+import { ConversationList } from './conversation-list';
+import { ConversationNavigation } from './conversation-navigation';
+import { MessageComposer } from './message-composer';
 
 export type InboxProps = ContainerProps;
 

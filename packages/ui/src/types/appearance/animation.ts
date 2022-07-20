@@ -1,4 +1,4 @@
-import { ContainerProps } from '../../components/layout/Container';
+import { ContainerProps } from '../../components/layout/container';
 import { Transform } from './transform';
 
 export enum AnimationEasings {

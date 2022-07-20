@@ -2,7 +2,7 @@ import { memo, ReactElement } from 'react';
 import styled, { css } from 'styled-components';
 
 import { BackgroundColors, PositionBehavior } from '../../types';
-import { Container, ContainerProps } from '../layout/Container';
+import { Container, ContainerProps } from '../layout/container';
 
 type BackdropProps = ContainerProps;
 

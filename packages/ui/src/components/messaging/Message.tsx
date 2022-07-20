@@ -1,6 +1,7 @@
-import { ReactElement, memo } from 'react';
 import { ChatMessage } from '@srclaunch/types';
-import { Container } from '../../components/layout/Container';
+import { memo, ReactElement } from 'react';
+
+import { Container } from '../layout/container';
 
 export const Message = memo(
   ({ body, subject, sender }: ChatMessage): ReactElement => {

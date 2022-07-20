@@ -25,7 +25,7 @@ export type {
   WebsiteVisitEvent,
 } from './analytics/web/index';
 export { PageLeaveMethod } from './analytics/web/index';
-export type { BuildOptions, BundleOptions } from './build';
+export type { BuildConfig, BundleConfig } from './build';
 export { BuildFormat, BuildPlatform, BuildTarget, BuildTool } from './build';
 export type { ESBuildFormat, ESBuildOptions } from './build/esbuild';
 export type { ViteBuildFormat, ViteBuildOptions } from './build/vite';
@@ -39,7 +39,7 @@ export {
 } from './business/commerce/subscription/index';
 export type { Organization } from './business/organization/index';
 export type { Team } from './business/organization/team/index';
-export type { Change, Changeset, ChangesetOptions } from './changeset';
+export type { Change, Changeset, ChangesetConfig } from './changeset';
 export { ChangeType } from './changeset';
 export type { ChatMessage } from './communications/chat';
 export {
@@ -140,13 +140,38 @@ export type {
   SrcLaunchConfig,
   SrcLaunchConfigFile,
 } from './config';
-export type { ComponentLibraryConfig } from './config/component-library';
-export type { DesktopAppConfig } from './config/desktop-application';
-export type { IconLibraryConfig } from './config/icon-library';
-export type { LibraryConfig } from './config/library';
-export type { MobileAppConfig } from './config/mobile-application';
-export type { ThemeLibraryConfig } from './config/theme-library';
-export type { WebAppConfig, WebAppOptions } from './config/web-application';
+export type {
+  ComponentLibraryConfig,
+  ComponentLibraryDocumentationConfig,
+} from './config/component-library';
+export type {
+  DesktopApplicationConfig,
+  DesktopApplicationDocumentationConfig,
+  DesktopApplicationOptions,
+} from './config/desktop-application';
+export type { DocumentationConfig } from './config/documentation';
+export type {
+  IconLibraryConfig,
+  IconLibraryDocumentationConfig,
+} from './config/icon-library';
+export type {
+  LibraryConfig,
+  LibraryDocumentationConfig,
+} from './config/library';
+export type {
+  MobileApplicationConfig,
+  MobileApplicationDocumentationConfig,
+  MobileApplicationOptions,
+} from './config/mobile-application';
+export type {
+  ThemeLibraryConfig,
+  ThemeLibraryDocumentationConfig,
+} from './config/theme-library';
+export type {
+  WebApplicationConfig,
+  WebApplicationDocumentationConfig,
+  WebApplicationOptions,
+} from './config/web-application';
 export type { WorkflowConfig } from './config/workflow';
 export type { WorkspaceConfig, WorkspacePackage } from './config/workspace';
 export type { DataPoint } from './data/data-point/index';
@@ -257,8 +282,18 @@ export {
   InfrastuctureClass,
 } from './deployment/infrastructure';
 export { CodeFormatter, CodeLinter, StaticTyping } from './development';
-export type { Environment } from './environment';
-export { Environments, EnvironmentType } from './environment';
+export type { ComponentProps, ComponentSpec } from './documentation/component';
+export { DocumentationType } from './documentation/index';
+export type {
+  DevelopmentEnvironmentConfig,
+  Environment,
+  EnvironmentConfig,
+  PreviewEnvironmentConfig,
+  ProductionEnvironmentConfig,
+  QAEnvironmentConfig,
+  RemoteEnvironmentConfig,
+} from './environment';
+export { EnvironmentType } from './environment';
 export type {
   ExceptionConstructorArgs,
   ExceptionObject,
@@ -319,7 +354,7 @@ export type {
   Dependencies,
   Dependency,
   Package,
-  PackageOptions,
+  PackageConfig,
 } from './package';
 export {
   BrowserPackage,
@@ -339,22 +374,24 @@ export type {
 } from './people/person';
 export type { Pipeline } from './pipeline';
 export type { Airport } from './places/transportation/airport';
+export { DesktopPlatform, MobilePlatform } from './platform';
 export type { Problem } from './problem';
 export { ProblemSeverity, ProblemType } from './problem';
 export { ProjectType } from './project';
 export type { Queue, QueueInitializationResult } from './queue';
 export { Status } from './queue';
-export type { PublishOptions, ReleaseOptions } from './release';
+export type { PublishOptions, ReleaseConfig } from './release';
 export { PublishAccess } from './release';
-export type { RepositoryOptions } from './repository';
+export type { RepositoryConfig } from './repository';
 export type { Route } from './routing';
 export { RouteRole } from './routing';
-export type { RunOptions } from './run';
+export type { RunConfig } from './run';
 export { Runner } from './run';
 export type { ServiceOptions } from './service';
 export type { Service } from './service';
 export type { File } from './storage/file-system';
-export type { TestOptions } from './test';
+export { FileType } from './storage/file-system';
+export type { TestConfig } from './test';
 export { TestReporter, TestTool } from './test';
 export type { Modal } from './ui/modal';
 export { ModalType } from './ui/modal';

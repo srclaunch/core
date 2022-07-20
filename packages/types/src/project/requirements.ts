@@ -1,6 +1,6 @@
 import { Package } from '../package';
 
-export type RequirementOptions = {
+export type RequirementConfig = {
   readonly devPackages?: readonly Package[];
   readonly node?: string;
   readonly npm?: string;

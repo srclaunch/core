@@ -1,23 +1,27 @@
 import { memo, MouseEventHandler, ReactElement } from 'react';
 
-import {
-  Amount,
-  BackgroundColors,
-  DepthShadow,
-  Orientation,
-} from '../../types';
-import { ErrorBoundary } from '../errors/ErrorBoundary';
-import { Container, ContainerProps } from '../layout/Container';
-import { NavigationLink } from '../navigation/NavigationLink';
+import { Amount, BackgroundColors, DepthShadow } from '../../types';
+import { ErrorBoundary } from '../errors/error-boundary';
+import { Container, ContainerProps } from '../layout/container';
+import { NavigationLink } from '../navigation/navigation-link';
 
 type CardProps = ContainerProps & {
   readonly draggable?: boolean;
   readonly id?: string;
   readonly linkTo?: string;
-  readonly onClick?: MouseEventHandler<any>;
+  readonly onClick?: MouseEventHandler<unknown>;
   readonly title?: string;
 };
 
+/**
+ * A card is a container for content.
+ *
+ * @example
+ *  <Card>
+ *    <CardTitle>Card Title</CardTitle>
+ *    <CardContent>Card Content</CardContent>
+ *  </Card>
+ */
 export const Card = memo(
   ({
     background = {},

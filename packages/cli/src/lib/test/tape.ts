@@ -1,4 +1,4 @@
-import { TestOptions } from '@srclaunch/types';
+import { TestConfig } from '@srclaunch/types';
 import { globby } from 'globby';
 import path from 'node:path';
 import tape from 'tape';
@@ -10,7 +10,7 @@ export async function run({
   match,
   watch,
 }: {
-  readonly config: TestOptions;
+  readonly config: TestConfig;
   readonly match?: string;
   readonly watch?: boolean;
 }) {

@@ -64,7 +64,7 @@ function getModelSlice({
   
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Exception, ExceptionObject } from '@srclaunch/exceptions';
-import { AppDispatch, AppThunk, RootState } from '@srclaunch/web-application-state';
+import { AppDispatch, AppThunk, RootState } from '@srclaunch/web-app';
 import { Condition, ISO8601String } from '@srclaunch/types';
 
 const adapter = createEntityAdapter<${modelName}>();

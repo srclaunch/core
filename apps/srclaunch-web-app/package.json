@@ -38,7 +38,7 @@
     "@srclaunch/icons": "workspace:*",
     "@srclaunch/themes": "workspace:*",
     "@srclaunch/ui": "workspace:*",
-    "@srclaunch/web-application-state": "workspace:*",
+    "@srclaunch/web-app": "workspace:*",
     "@srclaunch/web-environment": "workspace:*",
     "@stripe/react-stripe-js": "^1.8.0-0",
     "@stripe/stripe-js": "^1.29.0",

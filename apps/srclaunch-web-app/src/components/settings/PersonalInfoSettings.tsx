@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { Primitives } from '@srclaunch/types';
 import { ButtonType, Form, Sizes } from '@srclaunch/ui';
-import { useSelector } from '@srclaunch/web-application-state';
+import { useSelector } from '@srclaunch/web-app';
 
 export const PersonalInformationSettings = (): ReactElement => {
   const user = useSelector(state => state.user.details.attributes);

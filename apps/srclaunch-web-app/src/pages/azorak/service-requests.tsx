@@ -20,11 +20,7 @@ import {
 //   getServiceRequests,
 //   ServiceRequestSelectors,
 // } from '@azorakapp/azorak-applab-redux-state';
-import {
-  RootState,
-  useDispatch,
-  useSelector,
-} from '@srclaunch/web-application-state';
+import { RootState, useDispatch, useSelector } from '@srclaunch/web-app';
 import { memo, ReactElement, useEffect } from 'react';
 
 import { store } from '../../index';

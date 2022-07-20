@@ -5,4 +5,8 @@ const base = require('./packages/dx/.eslintrc.cjs');
 // eslint-disable-next-line no-undef
 module.exports = {
   ...base,
+  parserOptions: {
+    ...base.parserOptions,
+    project: './tsconfig.json',
+  },
 };

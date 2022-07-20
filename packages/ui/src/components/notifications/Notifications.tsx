@@ -1,10 +1,10 @@
 import { Notification } from '@srclaunch/types';
-import { RootState, useSelector } from '@srclaunch/web-application-state';
+import { RootState, useSelector } from '@srclaunch/web-app';
 import { memo, ReactElement } from 'react';
 import styled from 'styled-components';
 
-import { Icon } from '../media/Icon';
-import { CloseButton } from '../modals/CloseButton';
+import { Icon } from '../media/icon';
+import { CloseButton } from '../modals/close-button';
 
 export const Notifications = memo((): ReactElement => {
   const notifications: Notification[] = useSelector(

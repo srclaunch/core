@@ -1,18 +1,18 @@
-import { ChangesetOptions, ChangeType, ReleaseOptions } from '@srclaunch/types';
+import { ChangesetConfig } from '@srclaunch/types';
 // import { readFile, writeFile } from '@srclaunch/logic';
 // import Yaml from 'js-yaml';
 import path from 'node:path';
 import standardVersion, { Options } from 'standard-version';
 
 import { DEFAULT_COMMIT_TYPES } from '../../constants/releases';
-import { createChangeset } from '../changesets';
-import { getBranchName, push } from '../git';
+// import { createChangeset } from '../changesets';
+import { push } from '../git';
 
 export async function createRelease({
   changesets,
   push: pushFlag = false,
 }: {
-  readonly changesets?: ChangesetOptions;
+  readonly changesets?: ChangesetConfig;
   readonly push?: boolean;
 }) {
   // : Promise<{
@@ -31,10 +31,10 @@ export async function createRelease({
   // const packageJson = await JSON.parse(
   //   (await readFile('./package.json')).toString(),
   // );
-  const branch = await getBranchName();
+  // const branch = await getBranchName();
 
   if (pushFlag) {
-    const result = await push({ followTags: true });
+    await push({ followTags: true });
 
     // return {
     //   repo: result.repo,

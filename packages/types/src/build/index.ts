@@ -5,7 +5,7 @@ export enum BuildFormat {
   UMD = 'umd',
 }
 
-export interface BundleOptions {
+export interface BundleConfig {
   readonly css?: boolean;
   readonly define?: Record<string, string>;
   readonly exclude?: readonly string[];
@@ -40,8 +40,8 @@ export enum BuildTool {
   Vite = 'vite',
 }
 
-export type BuildOptions = {
-  readonly bundle?: boolean | BundleOptions;
+export type BuildConfig = {
+  readonly bundle?: boolean | BundleConfig;
   readonly clean?: boolean;
   readonly configPath?: string;
   readonly format?: BuildFormat;

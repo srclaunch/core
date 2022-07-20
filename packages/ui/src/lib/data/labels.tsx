@@ -1,13 +1,14 @@
-import { ReactElement } from 'react';
 import { CurrencyCode, Primitives } from '@srclaunch/types';
-import { PrimitiveLabelProps } from '../../types';
-import { StringLabel } from '../../components/data/labels/text/StringLabel';
-import { NumberLabel } from '../../components/data/labels/numbers/NumberLabel';
-import { CurrencyAmountLabel } from '../../components/data/labels/finance/currency/CurrencyAmountLabel';
-import { PercentLabel } from '../../components/data/labels/numbers/PercentLabel';
-import { DateLabel } from '../../components/data/labels/dates/DateLabel';
-import { MenuItemLabel } from '../../components/data/labels/menu/MenuItemLabel';
+import { ReactElement } from 'react';
+
 import { BooleanLabel } from '../..';
+import { DateLabel } from '../../components/typography/labels/dates/date-label';
+import { CurrencyAmountLabel } from '../../components/typography/labels/finance/currency/currency-amount-label';
+import { MenuItemLabel } from '../../components/typography/labels/menu/menu-item-label';
+import { NumberLabel } from '../../components/typography/labels/numbers/number-label';
+import { PercentLabel } from '../../components/typography/labels/numbers/percent-label';
+import { StringLabel } from '../../components/typography/labels/text/string-label';
+import { PrimitiveLabelProps } from '../../types';
 
 export function getLabelByFieldType({
   fieldName,

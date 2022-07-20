@@ -2,7 +2,7 @@ import { memo, ReactElement } from 'react';
 import styled from 'styled-components';
 
 import { Color, Sizes } from '../../types';
-import { Container, ContainerProps } from '../layout/Container';
+import { Container, ContainerProps } from '../layout/container';
 
 export type SvgProps = ContainerProps & {
   readonly color?: Color;

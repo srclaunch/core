@@ -1,6 +1,6 @@
-import { TestOptions } from '@srclaunch/types';
+import { TestConfig } from '@srclaunch/types';
 export declare function run({ config, match, watch, }: {
-    readonly config: TestOptions;
+    readonly config: TestConfig;
     readonly match?: string;
     readonly watch?: boolean;
 }): Promise<void>;

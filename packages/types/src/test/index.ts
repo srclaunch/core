@@ -20,7 +20,7 @@ export enum TestReporter {
   Text = 'text',
 }
 
-export interface TestOptions {
+export interface TestConfig {
   readonly concurrency?: number;
   readonly coverage?: {
     readonly directory?: string;

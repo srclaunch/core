@@ -184,7 +184,7 @@ export declare const SRCLAUNCH_VALIDATION_DEPENDENCIES: {
     '@srclaunch/validation': string;
 };
 export declare const SRCLAUNCH_WEB_APPLICATION_STATE_DEPENDENCIES: {
-    '@srclaunch/web-application-state': string;
+    '@srclaunch/web-app': string;
 };
 export declare const SRCLAUNCH_WEB_ENVIRONMENT_DEPENDENCIES: {
     '@srclaunch/web-environment': string;

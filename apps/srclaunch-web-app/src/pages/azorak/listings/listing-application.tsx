@@ -33,11 +33,7 @@ import {
   Title,
   Workspace,
 } from '@srclaunch/ui';
-import {
-  RootState,
-  useDispatch,
-  useSelector,
-} from '@srclaunch/web-application-state';
+import { RootState, useDispatch, useSelector } from '@srclaunch/web-app';
 import { memo, ReactElement, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 

@@ -1,6 +1,6 @@
 import { css, SimpleInterpolation } from 'styled-components';
 
-import { ContainerProps } from '../../components/layout/Container';
+import { ContainerProps } from '../../components/layout/container';
 import { getCSSColorValue } from '../../lib/css/properties';
 import { Background, BackgroundColors, BorderColors } from '../../types';
 import { getContainerStyles } from './index';

@@ -1,7 +1,7 @@
 ---
-"@srclaunch/cli": patch
-"@srclaunch/ui": patch
-"@srclaunch/web-application-state": patch
+'@srclaunch/cli': patch
+'@srclaunch/ui': patch
+'@srclaunch/web-app': patch
 ---
 
 Update CLI version

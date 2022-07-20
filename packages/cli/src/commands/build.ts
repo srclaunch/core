@@ -1,9 +1,8 @@
 import {
-  BuildOptions,
+  BuildConfig,
   BuildTool,
   ESBuildOptions,
   ProjectConfig,
-  ProjectType,
   ViteBuildOptions,
 } from '@srclaunch/types';
 import * as fs from 'fs-extra';
@@ -36,12 +35,11 @@ export default new Command<ProjectConfig, BuildFlags>({
       name: 'esbuild',
       run: async ({
         config,
-        flags,
       }: {
         readonly config: ProjectConfig;
         readonly flags: BuildFlags;
       }) => {
-        const options = config.build as BuildOptions | BuildOptions[];
+        const options = config.build as BuildConfig | BuildConfig[];
 
         if (!options) {
           throw new Error('Missing build configuration');
@@ -99,10 +97,10 @@ export default new Command<ProjectConfig, BuildFlags>({
       description: 'Builds Typescript definitions',
       name: 'types',
       run: async ({ config, flags }) => {
-        const buildConfig = config.build as BuildOptions | BuildOptions[];
+        const buildConfig = config.build as BuildConfig | BuildConfig[];
 
         if (typeof buildConfig === 'object' && !Array.isArray(buildConfig)) {
-          const options = buildConfig as BuildOptions;
+          const options = buildConfig as BuildConfig;
           if (options.clean) {
             await fs.emptyDir(options.output?.directory ?? 'dist');
           }
@@ -110,7 +108,7 @@ export default new Command<ProjectConfig, BuildFlags>({
             ...options,
           });
         } else if (Array.isArray(buildConfig)) {
-          const options = buildConfig as BuildOptions[];
+          const options = buildConfig as BuildConfig[];
           for (const build of options) {
             if (build.clean) {
               await fs.emptyDir(build.output?.directory ?? 'dist');
@@ -145,14 +143,14 @@ export default new Command<ProjectConfig, BuildFlags>({
     readonly config: ProjectConfig;
     readonly flags: BuildFlags;
   }) => {
-    const buildConfig = config.build as BuildOptions | BuildOptions[];
+    const buildConfig = config.build as BuildConfig | BuildConfig[];
 
     if (!buildConfig) {
       throw new Error('Missing build configuration');
     }
 
     if (typeof buildConfig === 'object' && !Array.isArray(buildConfig)) {
-      const options = buildConfig as BuildOptions;
+      const options = buildConfig as BuildConfig;
       switch (options.tool) {
         case BuildTool.Vite:
           await vite({
@@ -179,7 +177,7 @@ export default new Command<ProjectConfig, BuildFlags>({
         });
       }
     } else if (Array.isArray(buildConfig)) {
-      const options = buildConfig as BuildOptions[];
+      const options = buildConfig as BuildConfig[];
       for (const build of options) {
         switch (build.tool) {
           case BuildTool.Vite:

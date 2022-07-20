@@ -13,7 +13,9 @@
     "deploy": "turbo run deploy --color --concurrency=1",
     "deploy:local": "dotenv -e .env turbo run 'deploy:local' --color --concurrency=1",
     "release": "turbo run release --color --concurrency=2",
-    "test": "turbo run test --color --concurrency=2"
+    "test": "turbo run test --color --concurrency=2",
+    "kebab-files": "node utils/kebab-case-filenames.js",
+    "kebab-index": "node utils/kebab-case-index.js"
   },
   "repository": {
     "type": "git",
@@ -37,6 +39,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
+    "@microsoft/eslint-plugin-sdl": "^0.2.0",
     "@srclaunch/cli": "workspace:*",
     "@srclaunch/dx": "workspace:*",
     "@srclaunch/types": "workspace:*",
@@ -73,7 +76,10 @@
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "eslint-plugin-sort-requires": "^2.1.0",
     "eslint-plugin-testing-library": "^5.5.1",
+    "eslint-plugin-tsdoc": "^0.2.16",
+    "eslint-plugin-typescript-sort-keys": "^2.1.0",
     "eslint-plugin-unicorn": "^42.0.0",
+    "glob": "^8.0.3",
     "husky": "^8.0.1",
     "madge": "^5.0.1",
     "prettier": "^2.7.0",

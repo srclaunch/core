@@ -1,4 +1,4 @@
-import { TestOptions } from '@srclaunch/types';
+import { TestConfig } from '@srclaunch/types';
 import { Report } from 'c8';
-export declare function run(config: TestOptions): Promise<Report>;
+export declare function run(config: TestConfig): Promise<Report>;
 //# sourceMappingURL=coverage.d.ts.map

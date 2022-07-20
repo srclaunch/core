@@ -1,4 +1,4 @@
-import { TestOptions } from '@srclaunch/types';
+import { TestConfig } from '@srclaunch/types';
 import { Report } from 'c8';
 import { emptyDir, ensureDir } from 'fs-extra';
 import path from 'node:path';
@@ -6,7 +6,7 @@ import pc from 'picocolors';
 
 import { DEFAULT_TEST_OPTIONS } from './index';
 
-export async function run(config: TestOptions): Promise<Report> {
+export async function run(config: TestConfig): Promise<Report> {
   try {
     const coverageDir = path.join(
       process.cwd(),

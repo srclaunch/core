@@ -12,7 +12,7 @@ export type PublishOptions = {
   readonly registry?: string;
 };
 
-export type ReleaseOptions = {
+export type ReleaseConfig = {
   readonly deployment?: DeploymentOptions | readonly DeploymentOptions[];
   readonly dryRun?: boolean;
   readonly local?: boolean;

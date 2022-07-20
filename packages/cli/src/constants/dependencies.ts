@@ -243,7 +243,7 @@ export const SRCLAUNCH_VALIDATION_DEPENDENCIES = {
 };
 
 export const SRCLAUNCH_WEB_APPLICATION_STATE_DEPENDENCIES = {
-  '@srclaunch/web-application-state': '^0.1.74',
+  '@srclaunch/web-app': '^0.1.74',
 };
 
 export const SRCLAUNCH_WEB_ENVIRONMENT_DEPENDENCIES = {

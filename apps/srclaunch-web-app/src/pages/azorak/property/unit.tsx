@@ -39,7 +39,7 @@ import {
   // useNavigate,
   useDispatch,
   useSelector,
-} from '@srclaunch/web-application-state';
+} from '@srclaunch/web-app';
 import { memo, ReactElement, useEffect } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 

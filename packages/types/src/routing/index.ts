@@ -1,3 +1,5 @@
+import React from 'react';
+
 export enum RouteRole {
   ForgotPassword = 'forgot_password',
   Index = 'index',

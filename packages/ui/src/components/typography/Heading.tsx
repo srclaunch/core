@@ -1,10 +1,9 @@
 import { memo, ReactElement } from 'react';
 
-import { Amount, Sizes, TextColors, TextSize, TextWeight } from '../../types';
-import { ContainerProps } from '../layout/Container';
-import { Label, LabelProps } from './Label';
+import { Sizes, TextColors, TextSize, TextWeight } from '../../types';
+import { Label, LabelProps as LabelProperties } from './label';
 
-type HeadingProps = LabelProps;
+type HeadingProperties = LabelProperties;
 
 export const Heading = memo(
   ({
@@ -15,8 +14,8 @@ export const Heading = memo(
     textWeight = TextWeight.More,
     textColor = TextColors.Dark,
     textSize = TextSize.Large,
-    ...props
-  }: HeadingProps): ReactElement => {
+    ...properties
+  }: HeadingProperties): ReactElement => {
     return (
       <Label
         as={as}
@@ -25,7 +24,7 @@ export const Heading = memo(
         textColor={textColor}
         textWeight={textWeight}
         textSize={textSize}
-        {...props}
+        {...properties}
       >
         {children}
       </Label>

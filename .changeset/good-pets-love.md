@@ -1,6 +1,6 @@
 ---
-"@srclaunch/ui": patch
-"@srclaunch/web-application-state": patch
+'@srclaunch/ui': patch
+'@srclaunch/web-app': patch
 ---
 
 Bump

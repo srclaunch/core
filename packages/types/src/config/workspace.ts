@@ -1,4 +1,4 @@
-import { DevelopmentEnvironment, RemoteEnvironment } from '../environment';
+import { RemoteEnvironmentConfig } from '../environment';
 
 export type WorkspacePackage = {
   readonly name?: string;
@@ -10,10 +10,10 @@ export type WorkspaceConfig = {
   readonly mediaDir?: string;
   readonly coreApi?: Omit<WorkspacePackage, 'name'> & {
     readonly environments: {
-      readonly development: DevelopmentEnvironment;
-      readonly preview: RemoteEnvironment;
-      readonly qa: RemoteEnvironment;
-      readonly production: RemoteEnvironment;
+      // readonly development: DevelopmentEnvironment;
+      readonly preview: RemoteEnvironmentConfig;
+      readonly qa: RemoteEnvironmentConfig;
+      readonly production: RemoteEnvironmentConfig;
     };
   };
   readonly dependencies?: {

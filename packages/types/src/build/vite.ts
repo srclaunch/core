@@ -1,4 +1,4 @@
-import { BuildFormat, BuildOptions, BuildTool } from '.';
+import { BuildConfig, BuildFormat, BuildTool } from '.';
 
 export type ViteBuildFormat =
   | BuildFormat.CJS
@@ -6,8 +6,9 @@ export type ViteBuildFormat =
   | BuildFormat.IIFE
   | BuildFormat.UMD;
 
-export type ViteBuildOptions = BuildOptions & {
+export type ViteBuildOptions = BuildConfig & {
   readonly assetsDir?: string;
+  readonly basePath?: string;
   readonly format?: ViteBuildFormat;
   readonly formats?: readonly ViteBuildFormat[];
   readonly manifest?: boolean;

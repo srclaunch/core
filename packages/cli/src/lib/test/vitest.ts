@@ -1,4 +1,4 @@
-import { TestOptions } from '@srclaunch/types';
+import { TestConfig } from '@srclaunch/types';
 // import path from 'node:path';
 import { createVitest, startVitest } from 'vitest/node';
 
@@ -9,7 +9,7 @@ export async function run({
   match,
   watch,
 }: {
-  readonly config: TestOptions;
+  readonly config: TestConfig;
   readonly match?: string;
   readonly watch?: boolean;
 }) {

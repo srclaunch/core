@@ -13,11 +13,13 @@ import {
 
 export function getPackageScripts({
   build = true,
+  development = true,
   release = true,
   run,
   test = true,
 }: {
   readonly build?: boolean;
+  readonly development?: boolean;
   readonly release?: boolean;
   readonly run?: ProjectConfig['environments'];
   readonly test?: boolean;
@@ -28,6 +30,13 @@ export function getPackageScripts({
 
   if (build) {
     scripts = { ...scripts, ...PROJECT_PACKAGE_JSON_BUILD_SCRIPTS };
+  }
+
+  if (development) {
+    scripts = {
+      ...scripts,
+      ...PROJECT_PACKAGE_JSON_DEV_SCRIPTS,
+    };
   }
 
   if (test) {
@@ -41,13 +50,6 @@ export function getPackageScripts({
     scripts = {
       ...scripts,
       ...PROJECT_PACKAGE_JSON_RELEASE_SCRIPTS,
-    };
-  }
-
-  if (run && run.development) {
-    scripts = {
-      ...scripts,
-      ...PROJECT_PACKAGE_JSON_DEV_SCRIPTS,
     };
   }
 

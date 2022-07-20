@@ -1,4 +1,4 @@
-import { TestOptions } from '@srclaunch/types';
+import { TestConfig } from '@srclaunch/types';
 import jest from 'jest';
 import path from 'node:path';
 
@@ -9,7 +9,7 @@ export async function run({
   match,
   watch,
 }: {
-  readonly config: TestOptions;
+  readonly config: TestConfig;
   readonly match?: string;
   readonly watch?: boolean;
 }) {

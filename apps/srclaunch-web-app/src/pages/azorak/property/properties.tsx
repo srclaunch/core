@@ -19,11 +19,7 @@ import {
   useEntityEditor,
   Workspace,
 } from '@srclaunch/ui';
-import {
-  RootState,
-  useDispatch,
-  useSelector,
-} from '@srclaunch/web-application-state';
+import { RootState, useDispatch, useSelector } from '@srclaunch/web-app';
 import { memo, ReactElement, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 

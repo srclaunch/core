@@ -2,16 +2,15 @@ import { memo, ReactElement } from 'react';
 import styled from 'styled-components';
 
 import { ContainerStyles } from '../../styles/container';
-
 import { StateStyles } from '../../styles/container/states';
 import {
   Border,
   BorderRadius,
   CommonComponentProps,
   Events,
-  States,
   Margin,
   Size,
+  States,
 } from '../../types';
 
 /**

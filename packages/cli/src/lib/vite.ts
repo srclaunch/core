@@ -13,26 +13,28 @@ export const getVitePlugins = ({
 }): readonly PluginOption[] => {
   let plugins: PluginOption[] = [];
 
-  if (reactApp) {
-    plugins = styledComponents
-      ? react({
-          babel: {
-            plugins: [
-              [
-                'babel-plugin-styled-components',
-                {
-                  displayName: true,
-                  fileName: false,
-                },
-              ],
+  if (reactApp && styledComponents) {
+    plugins = [
+      react({
+        babel: {
+          plugins: [
+            [
+              'babel-plugin-styled-components',
+              {
+                displayName: true,
+                fileName: false,
+              },
             ],
-          },
-        })
-      : react();
+          ],
+        },
+      }),
+    ];
+  } else if (reactApp && !styledComponents) {
+    plugins = [react()];
   }
+
   if (pwa) {
     plugins = [...plugins, VitePWA()];
   }
-
   return plugins;
 };

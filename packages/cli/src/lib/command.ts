@@ -6,9 +6,9 @@ export enum CommandType {
 }
 
 export type RunArguments<C, F> = {
-  cli: Result<AnyFlags>;
-  config: C;
-  flags: F;
+  readonly cli: Result<AnyFlags>;
+  readonly config: C;
+  readonly flags: F;
 };
 
 export type RunFunction<
@@ -20,26 +20,26 @@ export type CommandConstructorArgs<
   C,
   F = TypedFlags<AnyFlags> & Record<string, unknown>,
 > = {
-  description: string;
-  flags?: F;
-  name: string;
-  run?: RunFunction<C, F>;
-  commands?: Command<C, F>[];
-  type?: CommandType;
+  readonly description: string;
+  readonly flags?: F;
+  readonly name: string;
+  readonly run?: RunFunction<C, F>;
+  readonly commands?: readonly Command<C, F>[];
+  readonly type?: CommandType;
 };
 
 export class Command<C, F = TypedFlags<AnyFlags> & Record<string, unknown>> {
-  flags?: F;
-  name: string;
-  private runFunction?: RunFunction<
+  readonly flags?: F;
+  readonly name: string;
+  private readonly runFunction?: RunFunction<
     C,
     TypedFlags<AnyFlags> & Record<string, unknown>
   >;
-  commands: CommandConstructorArgs<
+  readonly commands: CommandConstructorArgs<
     C,
     TypedFlags<AnyFlags> & Record<string, unknown>
   >['commands'];
-  type: CommandType = CommandType.Project;
+  readonly type: CommandType = CommandType.Project;
 
   constructor(options: CommandConstructorArgs<C, F>) {
     this.name = options.name;
@@ -80,11 +80,14 @@ export async function handleCommand({
   commands,
   flags,
 }: {
-  cli: Result<AnyFlags>;
-  command: string[];
-  commands?: Command<any, TypedFlags<AnyFlags> & Record<string, unknown>>[];
-  config: Record<string, unknown>;
-  flags: TypedFlags<AnyFlags> & Record<string, unknown>;
+  readonly cli: Result<AnyFlags>;
+  readonly command: readonly string[];
+  readonly commands?: readonly Command<
+    any,
+    TypedFlags<AnyFlags> & Record<string, unknown>
+  >[];
+  readonly config: Record<string, unknown>;
+  readonly flags: TypedFlags<AnyFlags> & Record<string, unknown>;
 }): Promise<void> {
   if (!command || command.length === 0 || !command[0]) {
     console.error('No command specified');
@@ -113,9 +116,9 @@ export async function handleCommand({
   } else if (command.length > 1) {
     handleCommand({
       cli,
-      config,
       command: command.slice(1),
       commands: matchingCommand?.commands,
+      config,
       flags,
     });
   }

@@ -4,7 +4,6 @@ import {
   PropsWithChildren,
   ReactElement,
   ReactEventHandler,
-  RefCallback,
   useEffect,
   useState,
 } from 'react';
@@ -21,7 +20,7 @@ import {
   Background,
   Border,
   BorderRadius,
-  CommonComponentProps,
+  CommonComponentProps as CommonComponentProperties,
   Cursor,
   Depth,
   DepthShadow,
@@ -39,7 +38,7 @@ import {
 import { Transform } from '../../types/appearance/transform';
 
 export type ContainerProps = PropsWithChildren<
-  CommonComponentProps & {
+  CommonComponentProperties & {
     readonly alignment?: Alignment;
     readonly animations?: readonly Animation[];
     readonly background?: Background;
@@ -51,17 +50,18 @@ export type ContainerProps = PropsWithChildren<
     readonly margin?: Margin;
     readonly padding?: Padding;
     readonly position?: Position;
+    readonly scrollable?: boolean;
     readonly shadow?: DepthShadow | Shadow;
     readonly size?: Size;
+    readonly states?: States<ContainerProps>;
     readonly transform?: Transform;
     readonly visibility?: Visibility;
-    readonly states?: States<ContainerProps>;
   }
 >;
 
 const Wrapper = styled.div<ContainerProps>`
-  ${props => getContainerStyles(props)};
-  ${props => getContainerStatesStyles(props)};
+  ${properties => getContainerStyles(properties)};
+  ${properties => getContainerStatesStyles(properties)};
 `;
 
 export const Container = memo(
@@ -74,9 +74,9 @@ export const Container = memo(
         className = '',
         events = {},
         states = {},
-        ...props
+        ...properties
       },
-      ref,
+      reference,
     ): ReactElement => {
       const [eventHandlers, setEventHandlers] = useState<{
         [key: string]: ReactEventHandler;
@@ -107,9 +107,9 @@ export const Container = memo(
               hidden: states?.state?.visible === false,
             },
           }}
-          {...props}
+          {...properties}
           {...eventHandlers}
-          ref={ref}
+          ref={reference}
         >
           {children}
         </Wrapper>

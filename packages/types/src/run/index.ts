@@ -1,5 +1,4 @@
-import { WebAppOptions } from '../config/web-application';
-import { Environments } from '../environment';
+import { WebApplicationOptions } from '../config/web-application';
 
 export enum Runner {
   Node = 'node',
@@ -7,15 +6,6 @@ export enum Runner {
   Vite = 'vite',
 }
 
-export type RunOptions = {
-  readonly [key in Environments]?:
-    | (WebAppOptions & {
-        readonly runner?: Runner.Vite;
-      })
-    | {
-        readonly runner?: Runner.TSNode;
-      }
-    | {
-        readonly runner?: Runner.Node;
-      };
-};
+export type RunConfig<R = Record<string, unknown>> = {
+  readonly runner?: Runner.Vite | Runner.TSNode | Runner.Node;
+} & R;

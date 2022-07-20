@@ -11,10 +11,10 @@ import {
 
 import { Amount, FormField, States } from '../../types';
 // import { getFormFieldsFromModel } from '../../lib/forms/fields';
-import { Container, ContainerProps } from '../layout/Container';
-import { Button, ButtonProps, ButtonType } from './buttons/Button';
-import { FormActions } from './FormActions';
-import { FormFields } from './FormFields';
+import { Container, ContainerProps } from '../layout/container';
+import { Button, ButtonProps, ButtonType } from './buttons/button';
+import { FormActions } from './form-actions';
+import { FormFields } from './form-fields';
 
 type FormProps = {
   readonly cancelButton?: {

@@ -1,4 +1,5 @@
 import { memo, ReactElement } from 'react';
+
 import {
   AlignVertical,
   Sizes,
@@ -6,7 +7,7 @@ import {
   TextSize,
   TextWeight,
 } from '../../types';
-import { Label, LabelProps } from './Label';
+import { Label, LabelProps } from './label';
 
 export type TitleProps = LabelProps;
 

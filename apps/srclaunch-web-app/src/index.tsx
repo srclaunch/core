@@ -4,10 +4,7 @@
 // import { AppLabDarkTheme } from '@srclaunch/themes';
 // import { WebAppConfig } from '@srclaunch/types';
 import { WebApplication } from '@srclaunch/ui';
-import {
-  createStore,
-  renderReduxWebApp,
-} from '@srclaunch/web-application-state';
+import { createStore, renderReduxWebApp } from '@srclaunch/web-app';
 
 // import { AppLabDarkTheme } from '@srclaunch/themes';
 // import * as Models from '@azorakapp/azorak-applab-models';

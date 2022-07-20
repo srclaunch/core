@@ -2,7 +2,7 @@
 .husky/**
 .next/**
 .turbo/**
-node_modules/
+node_modules
 coverage/**
 dist/**
 docs/**

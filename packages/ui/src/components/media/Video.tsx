@@ -2,7 +2,7 @@ import { Video as VideoType } from '@srclaunch/types';
 import { memo, ReactElement } from 'react';
 import styled from 'styled-components';
 
-import { Container, ContainerProps } from '../layout/Container';
+import { Container, ContainerProps } from '../layout/container';
 
 export type VideoProps = {
   readonly className?: string;

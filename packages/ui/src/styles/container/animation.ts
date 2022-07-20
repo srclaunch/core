@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import { css, SimpleInterpolation } from 'styled-components';
 
-import { ContainerProps } from '../../components/layout/Container';
+import { ContainerProps } from '../../components/layout/container';
 import { Animation } from '../../types/index';
 import { getContainerStyles } from '.';
 

@@ -1,7 +1,7 @@
 import { ComponentType, CSSProperties, ForwardedRef } from 'react';
 
 export type CommonComponentProps = {
-  readonly as?: string | ComponentType<any>;
+  readonly as?: ComponentType<any> | string;
   readonly className?: string;
   readonly form?: string;
   readonly id?: string;

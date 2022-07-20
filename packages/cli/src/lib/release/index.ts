@@ -1,4 +1,4 @@
-import { ReleaseOptions } from '@srclaunch/types';
+import { ReleaseConfig } from '@srclaunch/types';
 import { Writable } from 'node:stream';
 import SemanticRelease from 'semantic-release';
 
@@ -9,7 +9,7 @@ export async function createSemanticRelease({
   dryRun,
   local,
   name,
-}: ReleaseOptions): Promise<
+}: ReleaseConfig): Promise<
   | {
       readonly commits?: number;
       readonly type?: string;

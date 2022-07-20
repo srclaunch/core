@@ -1,18 +1,18 @@
-import { validate, ValidationProblem } from '@srclaunch/validation';
+// import { validate, ValidationProblem } from '@srclaunch/validation';
 import {
   ChangeEvent,
-  forwardRef,
+  // forwardRef,
   memo,
   ReactElement,
   ReactEventHandler,
   useEffect,
-  useRef,
+  // useRef,
   useState,
 } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components'; //  css
 
 import { getEventHandlers } from '../../../../lib/events';
-import { getInputStyles, InputStyles } from '../../../../styles/forms/input';
+import { getInputStyles } from '../../../../styles/forms/input';
 import {
   AutoComplete,
   Background,
@@ -31,7 +31,7 @@ import {
   Validation,
   Visibility,
 } from '../../../../types';
-import { TextProps } from '../../../typography/Text';
+import { TextProps } from '../../../typography/text';
 
 // type IsNumberInput<V> = V extends number ? {} : {};
 
@@ -92,8 +92,8 @@ export type InputProps<V> = CommonComponentProps &
 export const Input = memo(
   ({
     autoComplete,
-    background = {},
-    border = {},
+    // background = {},
+    // border = {},
     className = '',
     cursor = Cursor.Text,
     defaultValue,
@@ -113,14 +113,14 @@ export const Input = memo(
     textColor = TextColors.InputControl,
     textWeight = TextWeight.Default,
     type,
-    ...props
-  }: InputProps<
+  }: // ...props
+  InputProps<
     ((string | number | readonly string[]) & string) | undefined
   >): ReactElement => {
     const [value, setValue] = useState(defaultValue);
     const [focused, setFocused] = useState(false);
     // const [problems, setProblems] = useState<ValidationProblem[]>();
-    const inputRef = useRef<HTMLInputElement | null>(null);
+    // const inputRef = useRef<HTMLInputElement | null>(null);
     const [eventHandlers, setEventHandlers] = useState<{
       [key: string]: ReactEventHandler;
     }>({});

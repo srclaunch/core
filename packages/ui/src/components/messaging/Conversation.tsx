@@ -1,13 +1,14 @@
-import { ReactElement, memo } from 'react';
 import { ChatMessage } from '@srclaunch/types';
+import { memo, ReactElement } from 'react';
+
 import {
   Amount,
   BackgroundColors,
   BorderColors,
   BorderStyle,
 } from '../../types';
-import { Container, ContainerProps } from '../layout/Container';
-import { MessagePreview } from './MessagePreview';
+import { Container, ContainerProps } from '../layout/container';
+import { MessagePreview } from './message-preview';
 
 type ConversationProps = ContainerProps;
 
@@ -17,7 +18,7 @@ export const Conversation = memo(
     borderRadius = {},
     className = '',
   }: ConversationProps): ReactElement => {
-    const items = new Array(5).fill(0);
+    const items = Array.from({ length: 5 }).fill(0);
     return (
       <Container
         borderRadius={{ all: Amount.Less, ...borderRadius }}

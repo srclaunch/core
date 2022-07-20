@@ -1,35 +1,35 @@
 export type Dependency = {
-  [name: string]: string | undefined;
+  readonly [name: string]: string | undefined;
 };
 
 export type Dependencies = Record<string, string>;
 
 export enum BrowserPackage {
   AmazonCognitoIdentityJS = 'amazon-cognito-identity-js',
-  JSFileDownload = 'js-file-download',
   History = 'history',
+  JSFileDownload = 'js-file-download',
   React = 'react',
   ReactColorful = 'react-colorful',
   ReactCountryFlag = 'react-country-flag',
   ReactDOM = 'react-dom',
   ReactDatePicker = 'react-date-picker',
   ReactDropzone = 'react-dropzone',
-  ReactSyntaxHighlighter = 'react-syntax-highlighter',
   ReactRedux = 'react-redux',
   ReactRouter = 'react-router',
-  SrcLaunchIcons = '@srclaunch/icons',
-  SrcLaunchReactHooks = '@srclaunch/react-hooks',
-  SrcLaunchThemes = '@srclaunch/themes',
-  SrcLaunchWebApplicationState = '@srclaunch/web-application-state',
-  SrcLaunchWebEnvironment = '@srclaunch/web-environment',
+  ReactSyntaxHighlighter = 'react-syntax-highlighter',
+  SourceLaunchIcons = '@srclaunch/icons',
+  SourceLaunchReactHooks = '@srclaunch/react-hooks',
+  SourceLaunchThemes = '@srclaunch/themes',
+  SourceLaunchWebApplicationState = '@srclaunch/web-app',
+  SourceLaunchWebEnvironment = '@srclaunch/web-environment',
   StyledComponents = 'styled-components',
 }
 
 export enum NodePackage {
   AsyncExitHook = 'async-exit-hook',
   AwsSDK = 'aws-sdk',
-  Compression = 'compression',
   CORS = 'cors',
+  Compression = 'compression',
   Config = 'config',
   Express = 'express',
   FSExtra = 'fs-extra',
@@ -37,17 +37,17 @@ export enum NodePackage {
   Multer = 'multer',
   Plaid = 'plaid',
   Sequelize = 'sequelize',
-  SrcLaunchDataClient = '@srclaunch/data-client',
-  SrcLaunchHttpServer = '@srclaunch/http-server',
-  SrcLaunchNodeEnvironment = '@srclaunch/node-environment',
+  SourceLaunchDataClient = '@srclaunch/data-client',
+  SourceLaunchHttpServer = '@srclaunch/http-server',
+  SourceLaunchNodeEnvironment = '@srclaunch/node-environment',
 }
 
 export enum UniversalPackage {
   Axios = 'axios',
   ChangeCase = 'change-case',
   ColorNamer = 'color-namer',
-  CurrencyCodes = 'currency-codes',
   CryptoJS = 'crypto-js',
+  CurrencyCodes = 'currency-codes',
   EmailValidator = 'email-validator',
   HexRGB = 'hex-rgb',
   JSYaml = 'js-yaml',
@@ -61,15 +61,15 @@ export enum UniversalPackage {
   Redux = 'redux',
   ReduxToolkit = '@reduxjs/toolkit',
   SerializeError = 'serialize-error',
-  SrcLaunchActions = '@srclaunch/actions',
-  SrcLaunchA11y = '@srclaunch/a11y',
-  SrcLaunchAuthentication = '@srclaunch/authentication',
-  SrcLaunchExceptions = '@srclaunch/exceptions',
-  SrcLaunchHttpClient = '@srclaunch/http-client',
-  SrcLaunchI18n = '@srclaunch/i18n',
-  SrcLaunchLogger = '@srclaunch/logger',
-  SrcLaunchTransform = '@srclaunch/transform',
-  SrcLaunchValidation = '@srclaunch/validation',
+  SourceLaunchA11y = '@srclaunch/a11y',
+  SourceLaunchActions = '@srclaunch/actions',
+  SourceLaunchAuthentication = '@srclaunch/authentication',
+  SourceLaunchExceptions = '@srclaunch/exceptions',
+  SourceLaunchHttpClient = '@srclaunch/http-client',
+  SourceLaunchI18n = '@srclaunch/i18n',
+  SourceLaunchLogger = '@srclaunch/logger',
+  SourceLaunchTransform = '@srclaunch/transform',
+  SourceLaunchValidation = '@srclaunch/validation',
   Uuid = 'uuid',
   Zxcvbn = 'zxcvbn',
 }
@@ -81,17 +81,21 @@ export enum TypesPackage {
 export type Package =
   | BrowserPackage
   | NodePackage
-  | UniversalPackage
-  | TypesPackage;
+  | TypesPackage
+  | UniversalPackage;
 
 export enum PackageType {
   CommonJS = 'commonjs',
   Module = 'module',
 }
 
-export type PackageOptions = {
-  readonly exports?: { import?: string; path: string; require?: string }[];
-  readonly files?: string[];
+export type PackageConfig = {
+  readonly exports?: readonly {
+    readonly import?: string;
+    readonly path: string;
+    readonly require?: string;
+  }[];
+  readonly files?: readonly string[];
   readonly main?: string;
   readonly module?: string;
   readonly scripts?: Record<string, string>;

@@ -1,6 +1,6 @@
 import { memo, ReactElement } from 'react';
 
-import { Container, ContainerProps } from '../layout/Container';
+import { Container, ContainerProps } from '../layout/container';
 
 type BadgeProps = ContainerProps & {
   readonly label?: string | number;

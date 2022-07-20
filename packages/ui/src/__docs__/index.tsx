@@ -1,34 +1,10 @@
-import { AppLabLightTheme } from '@srclaunch/themes';
-import { WebAppConfig, WebAppOptions } from '@srclaunch/types';
-import {
-  createStore,
-  renderReduxWebApp,
-} from '@srclaunch/web-application-state';
+import { renderComponentLibrary } from '@srclaunch/component-library';
 
-import { WebApplication } from '../../src/components/containers/WebApplication';
-import routes from './routes';
-import reducers from './state/index';
+// import { getConfig } from '@srclaunch/config';
+// import {
+//   ComponentLibraryConfig,
+//   ComponentLibraryDocumentationConfig,
+// } from '@srclaunch/types';
+import config from '../../.srclaunchrc';
 
-const options: WebAppOptions = {
-  basePath: '/ui',
-  ui: {
-    themes: {
-      default: AppLabLightTheme.id,
-    },
-  },
-};
-
-const store = createStore({
-  // @ts-ignore
-  reducers,
-});
-
-console.log('routes', routes);
-renderReduxWebApp({
-  authentication: false,
-  container: <WebApplication />,
-  options,
-  // @ts-ignore
-  routes,
-  store,
-});
+renderComponentLibrary(config.documentation);

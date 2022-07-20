@@ -38,7 +38,7 @@ import {
   UserLabel,
   Workspace,
 } from '@srclaunch/ui';
-import { useDispatch, useSelector } from '@srclaunch/web-application-state';
+import { useDispatch, useSelector } from '@srclaunch/web-app';
 import { memo, ReactElement, useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 

@@ -1,7 +1,7 @@
 import { memo, ReactElement } from 'react';
 
 import { Fill } from '../../types';
-import { Container, ContainerProps } from '../layout/Container';
+import { Container, ContainerProps } from './container';
 
 export type SpacerProps = ContainerProps;
 

@@ -2,10 +2,13 @@
 import { cloneElement, ElementType, memo, ReactElement } from 'react';
 
 import { AlignVertical, BackgroundColors, Fill, Overflow } from '../../types';
-import { Container, ContainerProps } from '../layout/Container';
-import { LoadingOverlay } from '../progress/LoadingOverlay';
+import {
+  Container,
+  ContainerProps as ContainerProperties,
+} from '../layout/container';
+import { LoadingOverlay } from '../progress/loading-overlay';
 
-type PageProps = ContainerProps & {
+type PageProperties = ContainerProperties & {
   readonly layout?: ElementType;
   readonly loading?: boolean;
   readonly loginRequired?: boolean;
@@ -18,12 +21,13 @@ export const Page = memo(
     background = {},
     children,
     className = '',
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     layout: Layout,
     states = {},
     size = {},
-    title,
-    ...props
-  }: PageProps): ReactElement => {
+    // title,
+    ...properties
+  }: PageProperties): ReactElement => {
     // useTitle(title ?? '');
 
     const PageComp = () => (
@@ -40,7 +44,7 @@ export const Page = memo(
           fill: Fill.Both,
           ...size,
         }}
-        {...props}
+        {...properties}
       >
         <LoadingOverlay
           states={{
@@ -54,12 +58,13 @@ export const Page = memo(
       </Container>
     );
 
-    const Child = () =>
-      Layout ? (
-        cloneElement(<Layout {...props} />, props, <PageComp />)
+    const Child = () => {
+      return Layout ? (
+        cloneElement(<Layout {...properties} />, properties, <PageComp />)
       ) : (
         <PageComp />
       );
+    };
 
     return <Child />;
   },
