@@ -1,0 +1,47 @@
+{
+  "name": "@srclaunch/actions",
+  "description": "Composable units of work",
+  "author": "Steven Bennett <steven@srclaunch.com>",
+  "license": "MIT",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=16"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "type": "module",
+  "main": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "package.json",
+    "dist"
+  ],
+  "module": "./dist/index.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
+  "scripts": {
+    "qr": "srclaunch changesets add --files \".\" --message \"Quick release\" --type \"chore\" && srclaunch release --push",
+    "build": "srclaunch build --clean --types",
+    "release": "srclaunch release",
+    "release:local": "srclaunch release --local",
+    "test": "srclaunch test",
+    "test:coverage": "srclaunch test --coverage",
+    "test:watch": "srclaunch test --watch"
+  },
+  "devDependencies": {
+    "@srclaunch/cli": "workspace:*",
+    "@srclaunch/dx": "workspace:*",
+    "@srclaunch/types": "workspace:*",
+    "@types/fs-extra": "^9.0.13"
+  },
+  "dependencies": {
+    "fs-extra": "^10.1.0",
+    "js-file-download": "^0.4.12"
+  }
+}

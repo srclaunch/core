@@ -1,0 +1,27 @@
+name: 'Deploy project'
+description: 'Deploys project to various platforms and services'
+author: '@srclaunch'
+
+inputs:
+  github_token:
+    description: GitHub token for creating release
+    required: true
+  npm_token:
+    description: NPM token for publishing package
+    required: true
+  turbo_team:
+    description: Turbo Team name
+  turbo_token:
+    description: Turbo Team token
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Deploy
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        NPM_TOKEN: ${{ inputs.npm_token }}
+        TURBO_TEAM: ${{ inputs.turbo_team }}
+        TURBO_TOKEN: ${{ inputs.turbo_token }}
+      run: pnpm deploy
+      shell: bash

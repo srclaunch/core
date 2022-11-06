@@ -1,0 +1,38 @@
+{
+  "name": "@srclaunch/rtk-slices-sdk",
+  "version": "0.1.0",
+  "description": "RTK Slices SDK",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+"
+  },
+  "keywords": [
+    "models",
+    "sdk"
+  ],
+  "type": "module",
+  "author": "SourceLaunch",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "@srclaunch/types-sdk": "workspace:^0.0.1"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.5",
+    "@srclaunch/exceptions": "workspace:^1.3.0",
+    "@srclaunch/http-client-sdk": "workspace:^0.0.1",
+    "@srclaunch/web-app-state": "workspace:^1.3.0"
+  }
+}

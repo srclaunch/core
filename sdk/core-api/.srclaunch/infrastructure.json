@@ -1,0 +1,228 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Task definition for ECS",
+  "Mappings": {
+    "EnvironmentMap": {
+      "dev": {
+        "ContainerCpu": "256",
+        "ContainerMemory": "512"
+      },
+      "test": {
+        "ContainerCpu": "256",
+        "ContainerMemory": "512"
+      },
+      "preview": {
+        "ContainerCpu": "256",
+        "ContainerMemory": "512"
+      },
+      "production": {
+        "ContainerCpu": "256",
+        "ContainerMemory": "512"
+      }
+    }
+  },
+  "Parameters": {
+    "ContainerPort": {
+      "Type": "Number",
+      "Default": "8080",
+      "Description": "Container Port"
+    },
+    "CustomRole": {
+      "Type": "String",
+      "Default": "",
+      "Description": "(Optional) An IAM role to give the services containers if the code within needs to access other AWS resources like S3 buckets, DynamoDB tables, etc."
+    },
+    "DockerImageUrl": {
+      "Type": "String",
+      "Description": "Url to a Docker image to use for the container."
+    },
+    "EnvironmentName": {
+      "Type": "String",
+      "AllowedValues": ["dev", "test", "preview", "production"]
+    },
+    "ProjectName": {
+      "Type": "String",
+      "Description": "The name of the SrcLaunch project."
+    },
+    "Region": {
+      "Type": "String",
+      "Default": "us-east-1",
+      "Description": "The AWS region to deploy to."
+    },
+    "ServiceName": {
+      "Type": "String",
+      "Description": "The name of the service."
+    }
+  },
+  "Conditions": {
+    "HasCustomRole": {
+      "Fn::Not": [
+        {
+          "Fn::Equals": [
+            {
+              "Ref": "CustomRole"
+            },
+            ""
+          ]
+        }
+      ]
+    }
+  },
+  "Resources": {
+    "TaskDefinition": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "Properties": {
+        "Family": {
+          "Fn::Sub": [
+            "srclaunch-${ProjectName}-${ServiceName}-${EnvironmentName}",
+            {
+              "ProjectName": {
+                "Ref": "ProjectName"
+              },
+              "ServiceName": {
+                "Ref": "ServiceName"
+              },
+              "EnvironmentName": {
+                "Ref": "EnvironmentName"
+              }
+            }
+          ]
+        },
+        "RequiresCompatibilities": ["FARGATE"],
+        "ContainerDefinitions": [
+          {
+            "Name": {
+              "Fn::Sub": [
+                "srclaunch-${ProjectName}-${ServiceName}-${EnvironmentName}",
+                {
+                  "EnvironmentName": {
+                    "Ref": "EnvironmentName"
+                  },
+                  "ProjectName": {
+                    "Ref": "ProjectName"
+                  },
+                  "ServiceName": {
+                    "Ref": "ServiceName"
+                  }
+                }
+              ]
+            },
+            "LogConfiguration": {
+              "LogDriver": "awslogs",
+              "Options": {
+                "awslogs-group": {
+                  "Fn::Sub": [
+                    "srclaunch-${ProjectName}-${ServiceName}-${EnvironmentName}-logs",
+                    {
+                      "EnvironmentName": {
+                        "Ref": "EnvironmentName"
+                      },
+                      "ProjectName": {
+                        "Ref": "ProjectName"
+                      },
+                      "ServiceName": {
+                        "Ref": "ServiceName"
+                      }
+                    }
+                  ]
+                },
+                "awslogs-region": {
+                  "Ref": "Region"
+                },
+                "awslogs-stream-prefix": {
+                  "Fn::Sub": [
+                    "${ServiceName}-${EnvironmentName}",
+                    {
+                      "EnvironmentName": {
+                        "Ref": "EnvironmentName"
+                      },
+                      "ServiceName": {
+                        "Ref": "ServiceName"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "Environment": [
+              {
+                "Name": "NODE_ENV",
+                "Value": {
+                  "Ref": "EnvironmentName"
+                }
+              }
+            ],
+            "PortMappings": [
+              {
+                "ContainerPort": {
+                  "Ref": "ContainerPort"
+                }
+              }
+            ],
+            "Image": {
+              "Ref": "DockerImageUrl"
+            },
+            "Cpu": {
+              "Fn::FindInMap": [
+                "EnvironmentMap",
+                {
+                  "Ref": "EnvironmentName"
+                },
+                "ContainerCpu"
+              ]
+            },
+            "Memory": {
+              "Fn::FindInMap": [
+                "EnvironmentMap",
+                {
+                  "Ref": "EnvironmentName"
+                },
+                "ContainerMemory"
+              ]
+            }
+          }
+        ],
+        "Cpu": {
+          "Fn::FindInMap": [
+            "EnvironmentMap",
+            {
+              "Ref": "EnvironmentName"
+            },
+            "ContainerCpu"
+          ]
+        },
+        "ExecutionRoleArn": {
+          "Fn::Sub": [
+            "arn:aws:iam::${AWS::AccountId}:role/srclaunch-${ProjectName}-ecs-task-execution-role",
+            {
+              "ProjectName": {
+                "Ref": "ProjectName"
+              }
+            }
+          ]
+        },
+        "Memory": {
+          "Fn::FindInMap": [
+            "EnvironmentMap",
+            {
+              "Ref": "EnvironmentName"
+            },
+            "ContainerMemory"
+          ]
+        },
+        "NetworkMode": "awsvpc",
+        "TaskRoleArn": {
+          "Fn::If": [
+            "HasCustomRole",
+            {
+              "Ref": "CustomRole"
+            },
+            {
+              "Ref": "AWS::NoValue"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

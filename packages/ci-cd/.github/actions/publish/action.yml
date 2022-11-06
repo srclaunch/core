@@ -1,0 +1,21 @@
+name: 'Publish package to NPM'
+description: 'Publish package to NPM'
+author: '@srclaunch'
+
+inputs:
+  npm_token:
+    description: NPM token for publishing package
+    required: true
+
+runs:
+  using: 'composite'
+  shell: bash
+  steps:
+    - name: Allow private package registry access
+      id: allow-private-package-registry-access
+      run: |
+        echo "//registry.npmjs.org/:_authToken=${{ inputs.npm_token }}" > ~/.npmrc
+
+    - name: Publish to NPM
+      run: pnpm publish
+      

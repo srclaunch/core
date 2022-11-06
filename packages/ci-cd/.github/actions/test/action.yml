@@ -1,0 +1,40 @@
+name: Run tests
+description: Runs tests and uploads coverage results to Coveralls
+author: '@srclaunch'
+
+inputs:
+  github_token:
+    description: GitHub token for publishing coverage results
+    required: true
+  repository_owner:
+    description: The owner of the repository
+    required: true
+  repository_name:
+    description: The name of the repository
+    required: true
+  turbo_team:
+    description: Turbo Team name
+  turbo_token:
+    description: Turbo Team token
+
+runs:
+  using: composite
+  steps:
+    - name: Run tests and collect testing coverage
+      run: pnpm test
+      shell: bash
+      env:
+        TURBO_TEAM: ${{ inputs.turbo_team }}
+        TURBO_TOKEN: ${{ inputs.turbo_token }}
+    # - name: Archive code coverage results
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: ${{ inputs.repository_owner }}-${{ inputs.repository_name }}-${{ inputs.branch }}-code-coverage.json
+    #     path: coverage/coverage-summary.json
+
+    # Send to SrcLaunch!!
+
+    # - name: Upload test coverage to Coveralls
+    #   uses: coverallsapp/github-action@master
+    #   with:
+    #     github-token: ${{ inputs.github_token }}

@@ -1,0 +1,7 @@
+{
+  "extends": "@srclaunch/dx/tsconfig.ui.json",
+  "compilerOptions": {
+    "types": ["vite/client"]
+  },
+  "include": ["src"]
+}

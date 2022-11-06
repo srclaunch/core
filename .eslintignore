@@ -1,0 +1,9 @@
+node_modules/**
+coverage/**
+dist/**
+docs
+release
+*.hbs
+.next/**
+.turbo/**
+.tsbuildinfo

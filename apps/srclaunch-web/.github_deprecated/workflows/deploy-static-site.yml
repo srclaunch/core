@@ -1,0 +1,336 @@
+name: Deploy to Production Environment
+
+on:
+  push:
+    branches:
+      - main
+  # workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  env-vars:
+    name: Initialize environment variables
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.get-branch.outputs.name }}
+      cloudformation-deploy: ${{ steps.get-roles.outputs.cloudformation-deploy }}
+      cloudformation-stack-role: ${{ steps.get-roles.outputs.cloudformation-stack-role }}
+      domain-name: ${{ steps.get-domain.outputs.name }}
+      docker-image-tag: ${{ steps.get-docker-image.outputs.tag }}
+      ecs-task-execution-role: ${{ steps.get-roles.outputs.ecs-task-execution-role }}
+      environment: ${{ steps.get-environment.outputs.name }}
+      project-name: ${{ steps.get-project-name.outputs.name }}
+      region: ${{ steps.get-region.outputs.name }}
+      release: ${{ steps.get-release.outputs.version }}
+      tag: ${{ steps.get-commit.outputs.tag }}
+      static-site-name: ${{ steps.get-static-site-name.outputs.name }}
+    steps:
+      # - name: Checkout
+      #   uses: actions/checkout@v2
+
+      - name: Get static site name
+        id: get-static-site-name
+        run: |
+          echo "::set-output name=name::${{ github.event.repository.owner.login }}-${{ github.event.repository.name }}"
+      
+      - name: Get project name
+        id: get-project-name
+        run: |
+          echo "::set-output name=name::${{ github.event.repository.owner.login }}-azorak"
+
+      - name: Get branch name
+        id: get-branch
+        run: |
+          echo "::set-output name=name::${GITHUB_REF#refs/heads/}"
+
+      - name: Get commit tag
+        id: get-commit
+        run: |
+          echo "::set-output name=tag::${GITHUB_REF#refs/tags/}"
+
+      - name: Get release version
+        id: get-release
+        run: |
+          echo "::set-output name=version::${GITHUB_REF#refs/releases/}"
+
+      - name: Get environment name
+        id: get-environment
+        env:
+          ENVIRONMENT: 'production'
+        run: |
+          export NODE_ENV=`echo $ENVIRONMENT | tr "/" "-"`
+          export ENVIRONMENT=`echo $ENVIRONMENT | tr "/" "-"`
+          echo "::set-output name=name::$ENVIRONMENT"
+
+      - name: Get static site S3 bucket name
+        id: get-s3-bucket-name
+        run: |
+          echo ::set-output name=name::${{ steps.get-static-site-name.outputs.name }}-${{ steps.get-region.outputs.name }}
+
+      # - name: Get docker image tag
+      #   id: get-docker-image
+      #   run: |
+      #     echo ::set-output name=tag::${{ steps.get-environment.outputs.name == 'prod' && steps.get-commit.outputs.version || github.sha }}
+
+      - name: Get AWS region
+        id: get-region
+        run: |
+          echo "::set-output name=name::us-east-1"
+
+      - name: Get roles
+        id: get-roles
+        run: |
+          echo "::set-output name=cloudformation-deploy::${{ github.event.repository.owner.login }}-azorak-cloudformation-deploy"
+          echo "::set-output name=cloudformation-stack-role::${{ github.event.repository.owner.login }}-azorak-cloudformation-stack-role"
+        # echo "::set-output name=ecs-task-execution-role::${{ steps.get-service.outputs.name }}-ecs-task-execution-role"
+
+      - name: Get full domain name
+        id: get-domain
+        run: |
+          if [[ "${{ steps.get-environment.outputs.name }}" == "production" ]]; then
+            echo "::set-output name=name::app.azorak.com"
+          fi
+          if [[ "${{ steps.get-environment.outputs.name }}" != "production" ]]; then
+            echo "::set-output name=name::${{ steps.get-environment.outputs.name }}.app.azorak.com"
+          fi
+
+      - run: |
+          echo "Variables:"
+          echo "branch: ${{ steps.get-branch.outputs.name }}"
+          echo "cloudformation-deploy: ${{ steps.get-roles.outputs.cloudformation-deploy }}"
+          echo "cloudformation-stack-role: ${{ steps.get-roles.outputs.cloudformation-stack-role }}"
+          echo "domain-name: ${{ steps.get-domain.outputs.name }}"
+          echo "project-name: ${{ steps.get-project-name.outputs.name }}"
+          echo "environment: ${{ steps.get-environment.outputs.name }}"
+          echo "region: ${{ steps.get-region.outputs.name }}"
+          echo "release: ${{ steps.get-release.outputs.version }}"
+          echo "static-site-name: ${{ steps.get-static-site-name.outputs.name }}"
+          echo "tag: ${{ steps.get-commit.outputs.tag }}"
+
+  parameters:
+    name: Retreive parameters
+    runs-on: ubuntu-latest
+    needs: env-vars
+    outputs:
+      identity-pool-id: ${{ steps.get-identity-pool-id.outputs.id }}
+      user-pool-id: ${{ steps.get-user-pool-id.outputs.id }}
+      user-pool-client-id: ${{ steps.get-user-pool-client-id.outputs.id }}
+    steps:
+      - name: Configure AWS credentials
+        id: creds
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ${{ needs.env-vars.outputs.region }}
+
+      - name: Get Cognito identity pool ID
+        id: get-identity-pool-id
+        run: |
+          echo "::set-output name=id::$(aws ssm get-parameter --name /${{ needs.env-vars.outputs.project-name }}/${{ needs.env-vars.outputs.environment }}/auth/identity-pool --output text --query 'Parameter.Value')"
+
+      - name: Get Cognito user pool ID
+        id: get-user-pool-id
+        run: |
+          echo "::set-output name=id::$(aws ssm get-parameter --name /${{ needs.env-vars.outputs.project-name }}/${{ needs.env-vars.outputs.environment }}/auth/user-pool --output text --query 'Parameter.Value')"
+
+      - name: Get Cognito user pool client ID
+        id: get-user-pool-client-id
+        run: |
+          echo "::set-output name=id::$(aws ssm get-parameter --name /${{ needs.env-vars.outputs.project-name }}/${{ needs.env-vars.outputs.environment }}/auth/user-pool-client --output text --query 'Parameter.Value')" 
+
+      - run: |
+          echo "Parameters:"
+          echo "identity-pool-id: ${{ steps.get-identity-pool-id.outputs.id }}"
+          echo "user-pool-id: ${{ steps.get-user-pool-id.outputs.id }}"
+          echo "user-pool-client-id: ${{ steps.get-user-pool-client-id.outputs.id }}"
+
+  deploy:
+    environment:
+      name: ${{ needs.env-vars.outputs.environment }}
+      url: "https://${{ needs.env-vars.outputs.domain-name }}"
+    needs:
+      - env-vars
+      - parameters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          # cache: 'yarn' # or npm
+
+      # - name: Cache 
+      #   id: cache
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: |
+      #       yarn.lock
+      #       .yarn
+      #       node_modules
+      #     key: ${{ runner.os }}-${{ needs.env-vars.outputs.static-site-name }}-build-${{ github.run_id }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-${{ needs.env-vars.outputs.static-site-name }}-build-
+
+      - name: Allow private package registry access
+        id: allow-private-package-registry-access
+        run: |
+          echo "nodeLinker: node-modules" > ./.yarnrc.yml
+          echo "npmScopes:" >> ./.yarnrc.yml
+          echo "  ${{ github.event.repository.owner.login }}:" >> ./.yarnrc.yml
+          echo "    npmRegistryServer: https://npm.pkg.github.com" >> ./.yarnrc.yml
+          echo "    npmAlwaysAuth: true" >> ./.yarnrc.yml
+          echo "    npmAuthToken: ${{ secrets.GH_PACKAGES_TOKEN }}" >> ./.yarnrc.yml
+
+      - name: Cat .yarnrc.yml
+        run: cat ./.yarnrc.yml
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Enable Yarn Berry
+        run: yarn set version stable
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::.yarn/cache"
+
+      # - uses: actions/cache@v1
+      #   id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      #   with:
+      #     path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+      #     key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-yarn-
+
+
+      - name: Configure AWS credentials
+        id: creds
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ${{ needs.env-vars.outputs.region }}
+
+      - name: Create .env file
+        run: |
+          echo "NODE_ENV=${{ needs.env-vars.outputs.environment }}" > .env
+          echo "VITE_AWS_REGION=${{ needs.env-vars.outputs.region }}" >> .env
+          echo "VITE_USER_POOL_ID=${{ needs.parameters.outputs.user-pool-id }}" >> .env
+          echo "VITE_USER_POOL_CLIENT_ID=${{ needs.parameters.outputs.user-pool-client-id }}" >> .env
+          echo "VITE_IDENTITY_POOL_ID=${{ needs.parameters.outputs.identity-pool-id }}" >> .env
+
+      - name: cat .env
+        run: cat .env
+
+      - name: Install project dependencies
+        # if: steps.yarn-cache.outputs.cache-hit != 'true' # Over here!
+        run: yarn install
+      # - name: Test
+      #   run: yarn test
+
+      - name: Build static site
+        env:
+          NODE_ENV: ${{ needs.env-vars.outputs.environment }}
+        run: yarn build
+
+      - name: Create static site stack
+        id: create-static-site-stack
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: ${{ needs.env-vars.outputs.static-site-name }}-${{ needs.env-vars.outputs.environment }}
+          template: .applab/infrastructure/static-site.yml
+          role-arn: arn:aws:iam::${{ steps.creds.outputs.aws-account-id }}:role/${{ needs.env-vars.outputs.cloudformation-stack-role }}
+          parameter-overrides: >-
+            EnvironmentName=${{ needs.env-vars.outputs.environment }},
+            ProjectName=${{ needs.env-vars.outputs.project-name }},
+            Region=${{ needs.env-vars.outputs.region }},
+            StaticSiteName=${{ needs.env-vars.outputs.static-site-name }}
+          no-fail-on-empty-changeset: "1"
+
+      - name: Get CloudFront distribution ID
+        id: get-cloudfront-distribution-id
+        run: |
+          echo "::set-output name=id::$(aws cloudformation describe-stack-resources --stack-name '${{ needs.env-vars.outputs.static-site-name }}-${{ needs.env-vars.outputs.environment }}' --query 'StackResources[?ResourceType==`AWS::CloudFront::Distribution`].PhysicalResourceId' --output text)"
+
+      - name: Copy static assets to S3 bucket
+        run: aws s3 sync ./dist/ s3://${{ needs.env-vars.outputs.domain-name }} --delete # Needs to add environment
+
+      - name: Invalidate Cloudfront cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ steps.get-cloudfront-distribution-id.outputs.id }} --paths '/*'
+
+      # - name: Deploy static site to S3 bucket
+        # run: aws s3 sync ./public/ s3://BUCKET_NAME --delete
+      # - name: Login ECR
+      #   id: login-ecr
+      #   uses: aws-actions/amazon-ecr-login@v1
+
+      # - name: Build, tag, and push app image
+      #   id: build-docker-image
+      #   env:
+      #     NPM_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
+      #     # PM2_PUBLIC_KEY: ${{ secrets.PM2_PUBLIC_KEY }}
+      #     # PM2_SECRET_KEY: ${{ secrets.PM2_SECRET_KEY }}
+      #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+      #     ECR_REPOSITORY: ${{ needs.env-vars.outputs.service }}-${{ needs.env-vars.outputs.environment }}
+      #     IMAGE_TAG: ${{ needs.env-vars.outputs.service }}-${{ needs.env-vars.outputs.environment}}-${{ needs.env-vars.outputs.docker-image-tag }}
+      #   run: |
+      #     docker build --build-arg NPM_TOKEN=${{ secrets.GH_PACKAGES_TOKEN }} --build-arg ENVIRONMENT=${{ needs.env-vars.outputs.environment }} -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+      #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+      #     echo "::set-output name=url::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+
+  # release:
+  #   needs: deploy
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Conventional Changelog Action
+  #       id: changelog
+  #       uses: TriPSs/conventional-changelog-action@v3
+  #       with:
+  #         github-token: ${{ github.token }}
+
+  #     - name: Create Release
+  #       uses: actions/create-release@v1
+  #       if: ${{ steps.changelog.outputs.skipped == 'false' }}
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.RELEASE_GH_TOKEN }}
+  #       with:
+  #         tag_name: ${{ steps.changelog.outputs.tag }}
+  #         release_name: ${{ steps.changelog.outputs.tag }}
+  #         body: ${{ steps.changelog.outputs.clean_changelog }}
+
+  # sync-test-branch:
+  #   needs: deploy-service
+  #   name: Reset Test Environment
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@master
+
+  #     - name: Merge main -> test
+  #       uses: devmasx/merge-branch@v1.3.1
+  #       with:
+  #         type: now
+  #         from_branch: main
+  #         target_branch: test
+  #         github_token: ${{ github.token }}
+
+  # jobs:
+  #   deploy:
+  #     name: Deploy ECS Service
+  #     runs-on: ubuntu-latest
+  #     steps:
+  #       - name: Checkout
+  #         uses: actions/checkout@v2
+
+  #       - name: Deploy to ECS
+  #         uses: ./.github/actions/deploy-to-ecs
+  #         with:
+  #           service: budgetbloom-web
+  #           environment: preview
+  #           region: us-east-1

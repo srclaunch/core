@@ -1,0 +1,19 @@
+name: Build project
+description: Build a project using SrcLaunch CLI
+author: '@srclaunch'
+
+inputs:
+  turbo_team:
+    description: Turbo Team name
+  turbo_token:
+    description: Turbo Team token
+
+runs:
+  using: composite
+  steps:
+    - name: Build packages with Turbo
+      env:
+        TURBO_TEAM: ${{ inputs.turbo_team }}
+        TURBO_TOKEN: ${{ inputs.turbo_token }}
+      run: pnpm build
+      shell: bash

@@ -1,0 +1,101 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: External, public facing load balancer, for forwarding public traffic to containers
+
+Parameters:
+  DockerImageUrl:
+    Type: String
+    Description: Url to Docker image
+  EnvironmentName:
+    Type: String
+    Description: The environment to deploy to
+  Region:
+    Default: us-east-1
+    Description: The region to deploy the service
+    Type: String
+  Role:
+    Type: String
+    Default: ''
+    Description: (Optional) An IAM role to give the service's containers if the code within needs to
+      access other AWS resources like S3 buckets, DynamoDB tables, etc
+  ServiceName:
+    Type: String
+    Default: unnamed-service
+    Description: The name of the service, usually the name of the app
+
+Mappings:
+  EnvironmentMap:
+    test:
+      ContainerCpu: 256
+      ContainerMemory: 512
+      DesiredCount: 1
+    prod:
+      ContainerCpu: 256
+      ContainerMemory: 512
+      DesiredCount: 1
+    # prod:
+    #   ContainerCpu: 1024
+    #   ContainerMemory: 2048
+    #   DesiredCount: 2
+
+Conditions:
+  HasCustomRole: !Not [!Equals [!Ref 'Role', '']]
+
+Resources:
+  # The task definition. This is a simple metadata description of what
+  # container to run, and what resource requirements it has.
+
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: !Sub '${ServiceName}-${EnvironmentName}'
+      Cpu: !FindInMap [EnvironmentMap, !Ref EnvironmentName, ContainerCpu]
+      Memory: !FindInMap [EnvironmentMap, !Ref EnvironmentName, ContainerMemory]
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      ExecutionRoleArn: !Sub 'arn:aws:iam::${AWS::AccountId}:role/${ServiceName}-ecs-task-execution-role'
+      TaskRoleArn:
+        Fn::If:
+          - 'HasCustomRole'
+          - !Ref 'Role'
+          - !Ref 'AWS::NoValue'
+      ContainerDefinitions:
+        - Name: !Sub '${ServiceName}-${EnvironmentName}'
+          Cpu: !FindInMap [EnvironmentMap, !Ref EnvironmentName, ContainerCpu]
+          Memory: !FindInMap [EnvironmentMap, !Ref EnvironmentName, ContainerMemory]
+          Image: !Sub '${DockerImageUrl}'
+          PortMappings:
+            - ContainerPort: 8080
+          LogConfiguration:
+            LogDriver: 'awslogs'
+            Options:
+              awslogs-group: !Sub '${ServiceName}-${EnvironmentName}'
+              awslogs-region: !Sub '${Region}'
+              awslogs-stream-prefix: !Sub '${ServiceName}'
+
+  # The service. The service is a resource which allows you to run multiple
+  # copies of a type of task, and gather up their logs and metrics, as well
+  # as monitor the number of running tasks and replace any that have crashed
+  Service:
+    Type: AWS::ECS::Service
+    Properties:
+      ServiceName: !Sub '${ServiceName}-${EnvironmentName}'
+      Cluster: !Sub '{{resolve:ssm:/${ServiceName}/${EnvironmentName}/ecs/cluster}}'
+      LaunchType: FARGATE
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 75
+      DesiredCount: !FindInMap [EnvironmentMap, !Ref EnvironmentName, DesiredCount]
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          SecurityGroups:
+            - !Sub '{{resolve:ssm:/${ServiceName}/${EnvironmentName}/ecs/container-security-group}}'
+          Subnets:
+            - !Sub '{{resolve:ssm:/${ServiceName}/network/public-subnet-a}}'
+            - !Sub '{{resolve:ssm:/${ServiceName}/network/public-subnet-b}}'
+      TaskDefinition: !Ref TaskDefinition
+      LoadBalancers:
+        - ContainerName: !Sub '${ServiceName}-${EnvironmentName}'
+          ContainerPort: 8080
+          TargetGroupArn: !Sub '{{resolve:ssm:/${ServiceName}-${EnvironmentName}/elb/target-group}}'

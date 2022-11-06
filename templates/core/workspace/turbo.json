@@ -1,0 +1,43 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "baseBranch": "origin/main",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "outputs": [],
+      "inputs": ["src/**/*.tsx", "src/**/*.ts"]
+    },
+    "release": {
+      "dependsOn": ["build", "test"],
+      "outputs": []
+    },
+    "release:local": {
+      "dependsOn": ["build", "test"],
+      "outputs": []
+    },
+    "deploy": {
+      "dependsOn": ["release"],
+      "outputs": []
+    },
+    "deploy:local": {
+      "cache": false,
+      "dependsOn": ["release:local"],
+      "outputs": []
+    },
+    "@srclaunch/cli#build": {
+      "dependsOn": ["@srclaunch/types#build"],
+      "outputs": []
+    },
+    "@srclaunch/types#release": {
+      "dependsOn": ["@srclaunch/cli#build"],
+      "outputs": []
+    },
+    "@srclaunch/types#release:local": {
+      "dependsOn": ["@srclaunch/cli#build"],
+      "outputs": []
+    }
+  }
+}

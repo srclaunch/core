@@ -1,0 +1,22 @@
+name: 'Publish pages to GitHub Pages'
+description: 'Publish pages to GitHub Pages'
+author: '@srclaunch'
+
+inputs:
+  branch:
+    description: Branch to publish
+    required: false
+    default: main
+  directory:
+    description: Directory to publish
+    required: false
+    default: docs
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4.3.3
+      with:
+        branch: ${{ inputs.branch }}
+        folder: ${{ inputs.directory }}

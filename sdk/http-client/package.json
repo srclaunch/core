@@ -1,0 +1,33 @@
+{
+  "name": "@srclaunch/http-client-sdk",
+  "version": "0.1.0",
+  "description": "HTTP Client SDK",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+"
+  },
+  "keywords": [
+    "models",
+    "sdk"
+  ],
+  "type": "module",
+  "author": "SourceLaunch",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {
+    "query-string": "^7.1.1"
+  },
+  "devDependencies": {}
+}

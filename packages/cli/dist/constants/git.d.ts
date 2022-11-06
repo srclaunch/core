@@ -1,0 +1,2 @@
+export declare const GITIGNORE_CONTENT = "# dotenv files\n*.env*\n\n# Mac OS artifacts\n.DS_Store\n\n# NPM dependencies\nnode_modules\n\n# Build output\ndist\n\n# Test coverage\ncoverage\n\n# Yarn 2 files\n.yarn/*\n!.yarn/cache\n!.yarn/patches\n!.yarn/plugins\n!.yarn/releases\n!.yarn/sdks\n!.yarn/versions\n";
+//# sourceMappingURL=git.d.ts.map

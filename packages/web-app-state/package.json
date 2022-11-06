@@ -1,0 +1,75 @@
+{
+  "name": "@srclaunch/web-app-state",
+  "description": "Redux state and utilities used by AppLab web applications",
+  "author": "Steven Bennett <steven@srclaunch.com>",
+  "license": "MIT",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=16"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "type": "module",
+  "main": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "package.json",
+    "dist"
+  ],
+  "module": "./dist/index.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
+  "scripts": {
+    "qr": "srclaunch changesets add --files \".\" --message \"Quick release\" --type \"chore\" && srclaunch release --push",
+    "build": "srclaunch build --clean --types",
+    "release": "srclaunch release",
+    "release:local": "srclaunch release --local",
+    "test": "srclaunch test",
+    "test:coverage": "srclaunch test --coverage",
+    "test:watch": "srclaunch test --watch"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.2",
+    "@srclaunch/exceptions": "workspace:*",
+    "@srclaunch/http-client": "workspace:*",
+    "@srclaunch/i18n": "workspace:*",
+    "@srclaunch/logger": "workspace:*",
+    "@srclaunch/themes": "workspace:*",
+    "@srclaunch/validation": "workspace:*",
+    "@srclaunch/web-environment": "workspace:*",
+    "amazon-cognito-identity-js": "^5.2.9",
+    "crypto-js": "^4.1.1",
+    "history": "^5.3.0",
+    "luxon": "^2.4.0",
+    "nanoid": "^3.3.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
+    "react-redux": "^8.0.2",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
+    "redux": "^4.2.0",
+    "redux-logger": "^3.0.6",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "@srclaunch/dx": "workspace:*",
+    "@srclaunch/cli": "workspace:*",
+    "@srclaunch/types": "workspace:*",
+    "@testing-library/dom": "^8.13.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^14.2.0",
+    "@types/jest": "27.5.0",
+    "@types/luxon": "^2.3.2",
+    "@types/react": "^18.0.10",
+    "@types/react-dom": "^18.0.5",
+    "@types/redux-logger": "^3.0.9"
+  }
+}

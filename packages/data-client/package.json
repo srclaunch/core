@@ -1,0 +1,60 @@
+{
+  "name": "@srclaunch/data-client",
+  "description": "Wrapper around Sequelize for basic CRUD operations",
+  "author": "Steven Bennett <steven@srclaunch.com>",
+  "license": "MIT",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=16"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "package.json",
+    "dist"
+  ],
+  "module": "./dist/index.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js"
+    }
+  },
+  "scripts": {
+    "build": "srclaunch build --clean --types",
+    "git:push": "git push --follow-tags origin main",
+    "qr": "pnpm build && git add . && git commit -m \"Quick release - patch\" && yarn release",
+    "release": "srclaunch release",
+    "release:local": "srclaunch release --local",
+    "test": "srclaunch test",
+    "test:coverage": "srclaunch test --coverage",
+    "test:watch": "srclaunch test --watch",
+    "version:patch": "standard-version",
+    "yui": "yarn upgrade-interactive"
+  },
+  "devDependencies": {
+    "@srclaunch/dx": "workspace:*",
+    "@srclaunch/cli": "workspace:*",
+    "@srclaunch/types": "workspace:*",
+    "@types/node": "^17.0.42",
+    "@types/pg": "^8.6.5",
+    "@types/pluralize": "^0.0.29",
+    "@types/tunnel-ssh": "^4.1.1"
+  },
+  "dependencies": {
+    "@srclaunch/exceptions": "workspace:*",
+    "@srclaunch/logger": "workspace:*",
+    "@srclaunch/node-environment": "workspace:*",
+    "change-case": "^4.1.2",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "pluralize": "^8.0.0",
+    "sequelize": "6.19.0",
+    "tunnel-ssh": "^4.1.6"
+  }
+}

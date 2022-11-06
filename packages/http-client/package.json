@@ -1,0 +1,49 @@
+{
+  "name": "@srclaunch/http-client",
+  "description": "Wrapper around Axios HTTP client",
+  "author": "Steven Bennett <steven@srclaunch.com>",
+  "license": "MIT",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=16"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "type": "module",
+  "main": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "package.json",
+    "dist"
+  ],
+  "module": "./dist/index.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
+  "scripts": {
+    "qr": "srclaunch changesets add --files \".\" --message \"Quick release\" --type \"chore\" && srclaunch release --push",
+    "build": "srclaunch build --clean --types",
+    "release": "srclaunch release",
+    "release:local": "srclaunch release --local",
+    "test": "srclaunch test",
+    "test:coverage": "srclaunch test --coverage",
+    "test:watch": "srclaunch test --watch"
+  },
+  "dependencies": {
+    "@srclaunch/exceptions": "workspace:*",
+    "@srclaunch/logger": "workspace:*",
+    "axios": "0.27.2",
+    "axios-retry": "3.2.5",
+    "nanoid": "3.3.4"
+  },
+  "devDependencies": {
+    "@srclaunch/dx": "workspace:*",
+    "@srclaunch/cli": "workspace:*",
+    "@srclaunch/types": "workspace:*"
+  }
+}

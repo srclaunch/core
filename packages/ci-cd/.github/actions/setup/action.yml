@@ -1,0 +1,60 @@
+name: Setup Workflow
+description: Setup workflow environment
+author: '@srclaunch'
+
+inputs:
+  turbo_team:
+    description: Turbo Team name
+  turbo_token:
+    description: Turbo Team token
+
+outputs:
+  branch:
+    description: Branch name
+    value: ${{ steps.get-branch.outputs.name }}
+  version:
+    description: Version
+    value: ${{ steps.get-version.outputs.tag }}
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+
+    - name: Get branch name
+      id: get-branch
+      run: echo "::set-output name=name::${GITHUB_REF#refs/heads/}"
+      shell: bash
+
+    - name: Get package.json version
+      id: get-version
+      run: echo "::set-output name=tag::$(jq -r .version package.json)"
+      shell: bash
+
+    - name: Setup PNPM
+      uses: 'srclaunch/core/packages/ci-cd/.github/actions/setup-pnpm@main'
+
+    - name: Setup Node.js
+      uses: 'srclaunch/core/packages/ci-cd/.github/actions/setup-node@main'
+
+    - name: Install dependencies
+      run: pnpm install
+      shell: bash
+
+    - name: 'Setup Turborepo cache'
+      id: cache-turbo
+      uses: actions/cache@v3
+      env:
+        TURBO_TEAM: ${{ inputs.turbo_team }}
+        TURBO_TOKEN: ${{ inputs.turbo_team }}
+      with:
+        path: node_modules/.cache/turbo
+        key: turbo-${{ github.job }}-${{ github.ref_name }}-${{ github.sha }}
+        # order of preference => turbo will re-check
+        restore-keys: |
+          turbo-${{ github.job }}-${{ github.ref_name }}-
+          turbo-${{ github.job }}-
+          turbo-

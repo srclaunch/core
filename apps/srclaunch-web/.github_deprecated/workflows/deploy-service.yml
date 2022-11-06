@@ -1,0 +1,327 @@
+on:
+  push:
+    branches:
+      - main
+# workflow_dispatch:
+# on:
+#   create:
+#     tags:
+#       - v*
+
+# on:
+#   release:
+#     branches:
+#       - main
+
+name: Deploy to Production Environment
+defaults:
+  run:
+    shell: bash
+jobs:
+  env-vars:
+    name: Initialize environment variables
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.get-branch.outputs.name }}
+      cloudformation-deploy: ${{ steps.get-roles.outputs.cloudformation-deploy }}
+      cloudformation-stack-role: ${{ steps.get-roles.outputs.cloudformation-stack-role }}
+      commit-message: ${{ steps.get-commit.outputs.message }}
+      domain-name: ${{ steps.get-domain.outputs.name }}
+      docker-image-tag: ${{ steps.get-docker-image.outputs.tag }}
+      ecs-task-execution-role: ${{ steps.get-roles.outputs.ecs-task-execution-role }}
+      project-name: ${{ steps.get-project.outputs.name }}
+      environment: ${{ steps.get-environment.outputs.name }}
+      region: ${{ steps.get-region.outputs.name }}
+      release: ${{ steps.get-release.outputs.version }}
+      service: ${{ steps.get-service.outputs.name }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      - name: Get AWS region
+        id: get-region
+        run: |
+          echo "::set-output name=name::us-east-1"
+
+      - name: Get branch name
+        id: get-branch
+        run: |
+          echo "::set-output name=name::${GITHUB_REF#refs/heads/}"
+
+      - name: Get commit
+        id: get-commit
+        run: |
+          echo "::set-output name=message::${{ format(github.event.head_commit.message, 'chore(release): ', '') }}"
+
+      - name: Get docker image tag
+        id: get-docker-image
+        run: |
+          echo "::set-output name=tag::${{ steps.get-environment.outputs.name == 'production' && steps.get-commit.outputs.version || github.sha }}"
+
+      - name: Get full domain name
+        id: get-domain
+        run: |
+          if [[ "${{ steps.get-environment.outputs.name }}" == "production" ]]; then
+            echo "::set-output name=name::https://core-api.azorak.com"
+          fi
+          if [[ "${{ steps.get-environment.outputs.name }}" != "production" ]]; then
+            echo "::set-output name=name::https://${{ steps.get-environment.outputs.name }}.core-api.azorak.com"
+          fi
+
+      - name: Get environment name
+        id: get-environment
+        env:
+          ENVIRONMENT: 'production'
+        run: |
+          ENVIRONMENT=`echo $ENVIRONMENT | tr "/" "-"`
+          echo "::set-output name=name::production"
+
+      - name: Get project name
+        id: get-project
+        run: |
+          echo "::set-output name=name::azorak"
+
+      - name: Get release version
+        id: get-release
+        run: |
+          KEYWORD="chore(release): "
+          ESCAPED_KEYWORD=$(printf '%s\n' "$KEYWORD" | sed -e 's/[]\/$*.^[]/\\&/g')
+          VERSION=$(sed "s/$ESCAPED_KEYWORD//g" <(echo "${{ steps.get-commit.outputs.message }}"))
+          echo "::set-output name=version::$VERSION"
+
+      - name: Get roles
+        id: get-roles
+        run: |
+          echo "::set-output name=cloudformation-deploy::${{ steps.get-project.outputs.name }}-cloudformation-deploy"
+          echo "::set-output name=cloudformation-stack-role::${{ steps.get-project.outputs.name }}-cloudformation-deployment-role"
+          echo "::set-output name=ecs-task-execution-role::${{ steps.get-project.outputs.name }}-ecs-task-execution-role"
+
+      - name: Get service name
+        id: get-service
+        run: |
+          echo "::set-output name=name::core-api"
+
+      - run: |
+          echo "Variables:"
+          echo "branch: ${{ steps.get-branch.outputs.name }}"
+          echo "cloudformation-deploy: ${{ steps.get-roles.outputs.cloudformation-deploy }}"
+          echo "cloudformation-stack-role: ${{ steps.get-roles.outputs.cloudformation-stack-role }}"
+          echo "commit message: ${{ steps.get-commit.outputs.message }}"
+          echo "docker-image-tag: ${{ steps.get-docker-image.outputs.tag }}"
+          echo "domain-name: ${{ steps.get-domain.outputs.name }}"
+          echo "project-name: ${{ steps.get-project.outputs.name }}"
+          echo "ecs-task-execution-role: ${{ steps.get-roles.outputs.ecs-task-execution-role }}"
+          echo "environment: ${{ steps.get-environment.outputs.name }}"
+          echo "region: ${{ steps.get-region.outputs.name }}"
+          echo "release: ${{ steps.get-release.outputs.version }}"
+          echo "service: ${{ steps.get-service.outputs.name }}"
+
+  parameters:
+    name: Retreive parameters
+    runs-on: ubuntu-latest
+    needs: env-vars
+    outputs:
+      core-db-host: ${{ steps.get-core-db-host.outputs.host }}
+      core-db-port: ${{ steps.get-core-db-port.outputs.port }}
+      core-db-name: ${{ steps.get-core-db-name.outputs.name }}
+      identity-pool-id: ${{ steps.get-identity-pool-id.outputs.id }}
+      s3-bucket-name: ${{ steps.get-s3-bucket-name.outputs.name }}
+      user-pool-id: ${{ steps.get-user-pool-id.outputs.id }}
+      user-pool-client-id: ${{ steps.get-user-pool-client-id.outputs.id }}
+    steps:
+      - name: Configure AWS credentials
+        id: creds
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ${{ needs.env-vars.outputs.region }}
+
+      - name: Get S3 bucket name
+        id: get-s3-bucket-name
+        run: |
+          echo "::set-output name=name::$(aws ssm get-parameter --name /srclaunch/${{ needs.env-vars.outputs.project-name }}/s3-bucket --output text --query 'Parameter.Value')"
+
+      - name: Get Cognito identity pool ID
+        id: get-identity-pool-id
+        run: |
+          echo "::set-output name=id::$(aws ssm get-parameter --name /srclaunch/${{ needs.env-vars.outputs.project-name }}/core-auth/${{ needs.env-vars.outputs.environment }}/identity-pool-id --output text --query 'Parameter.Value')"
+
+      - name: Get Cognito user pool ID
+        id: get-user-pool-id
+        run: |
+          echo "::set-output name=id::$(aws ssm get-parameter --name /srclaunch/${{ needs.env-vars.outputs.project-name }}/core-auth/${{ needs.env-vars.outputs.environment }}/user-pool-id --output text --query 'Parameter.Value')"
+
+      - name: Get Cognito user pool client ID
+        id: get-user-pool-client-id
+        run: |
+          echo "::set-output name=id::$(aws ssm get-parameter --name /srclaunch/${{ needs.env-vars.outputs.project-name }}/core-auth/${{ needs.env-vars.outputs.environment }}/user-pool-client-id --output text --query 'Parameter.Value')"
+
+      - name: Get Core DB host
+        id: get-core-db-host
+        run: |
+          echo "::set-output name=host::$(aws ssm get-parameter --name /srclaunch/${{ needs.env-vars.outputs.project-name }}/core-db/${{ needs.env-vars.outputs.environment }}/endpoint --output text --query 'Parameter.Value')"
+
+      - name: Get Core DB port
+        id: get-core-db-port
+        run: |
+          echo "::set-output name=port::$(aws ssm get-parameter --name /srclaunch/${{ needs.env-vars.outputs.project-name }}/core-db/${{ needs.env-vars.outputs.environment }}/port --output text --query 'Parameter.Value')"
+
+      - name: Get Core DB name
+        id: get-core-db-name
+        run: |
+          echo "::set-output name=name::coredb"
+
+      - run: |
+          echo "Parameters:"
+          echo "identity-pool-id: ${{ steps.get-identity-pool-id.outputs.id }}"
+          echo "user-pool-id: ${{ steps.get-user-pool-id.outputs.id }}"
+          echo "user-pool-client-id: ${{ steps.get-user-pool-client-id.outputs.id }}"
+          echo "core-db-host: ${{ steps.get-core-db-host.outputs.host }}"
+          echo "core-db-port: ${{ steps.get-core-db-port.outputs.port }}"
+          echo "core-db-name: ${{ steps.get-core-db-name.outputs.name }}"
+
+  secrets:
+    name: Retrieve Secrets
+    runs-on: ubuntu-latest
+    needs: env-vars
+    outputs:
+      core-db-username: ${{ steps.get-core-db-username.outputs.username }}
+      core-db-password: ${{ steps.get-core-db-password.outputs.password }}
+    steps:
+      - name: Configure AWS credentials
+        id: creds
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ${{ needs.env-vars.outputs.region }}
+
+      - name: Retrieve core db username from AWS
+        id: get-core-db-username
+        run: |
+          echo "::set-output name=username::$(aws secretsmanager get-secret-value --secret-id 'srclaunch-${{ needs.env-vars.outputs.project-name }}-core-db-${{ needs.env-vars.outputs.environment }}-master-user-username' --output text --query 'SecretString' | jq -r '.username')"
+        #  | jq --raw-output ".SecretString" | jq -r 'username'
+      - name: Retrieve core db username from AWS
+        id: get-core-db-password
+        run: |
+          echo "::set-output name=password::$(aws secretsmanager get-secret-value --secret-id 'srclaunch-${{ needs.env-vars.outputs.project-name }}-core-db-${{ needs.env-vars.outputs.environment }}-master-user-password' --output text --query 'SecretString' | jq -r '.password')"
+
+  deploy-service:
+    environment:
+      name: ${{ needs.env-vars.outputs.environment }}
+      url: ${{ needs.env-vars.outputs.domain-name }}
+    needs:
+      - env-vars
+      - parameters
+      - secrets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # - name: Conventional Changelog Action
+      #   id: changelog
+      #   uses: TriPSs/conventional-changelog-action@v3
+      #   with:
+      #     github-token: ${{ github.token }}
+
+      # - name: Create Release
+      #   uses: actions/create-release@v1
+      #   if: ${{ steps.changelog.outputs.skipped == 'false' }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
+      #   with:
+      #     tag_name: ${{ steps.changelog.outputs.tag }}
+      #     release_name: ${{ steps.changelog.outputs.tag }}
+      #     body: ${{ steps.changelog.outputs.clean_changelog }}
+
+      - name: Allow private package registry access
+        id: allow-private-package-registry-access
+        run: |
+          echo "nodeLinker: node-modules" > ./.yarnrc.yml
+          echo "npmScopes:" >> ./.yarnrc.yml
+          echo "  ${{ github.event.repository.owner.login }}:" >> ./.yarnrc.yml
+          echo "    npmRegistryServer: https://npm.pkg.github.com" >> ./.yarnrc.yml
+          echo "    npmAlwaysAuth: true" >> ./.yarnrc.yml
+          echo "    npmAuthToken: ${{ secrets.GITHUB_TOKEN }}" >> ./.yarnrc.yml
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Enable Yarn Berry
+        run: yarn set version stable
+
+      - name: Configure AWS credentials
+        id: creds
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ${{ needs.env-vars.outputs.region }}
+
+      - name: Create .env file
+        run: |
+          echo "AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }}" > .env
+          echo "AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }}" >> .env
+          echo "AWS_REGION=${{ needs.env-vars.outputs.region }}" >> .env
+          echo "AWS_S3_BUCKET_NAME=${{ needs.parameters.outputs.s3-bucket-name }}" >> .env
+          echo "CORE_DB_HOST=${{ needs.parameters.outputs.core-db-host }}" >> .env
+          echo "CORE_DB_PORT=${{ needs.parameters.outputs.core-db-port }}" >> .env
+          echo "CORE_DB_NAME=${{ needs.parameters.outputs.core-db-name }}" >> .env
+          echo "CORE_DB_USERNAME=${{ needs.secrets.outputs.core-db-username }}" >> .env
+          echo "CORE_DB_PASSWORD=${{ needs.secrets.outputs.core-db-password }}" >> .env
+          echo "USER_POOL_ID=${{ needs.parameters.outputs.user-pool-id }}" >> .env
+          echo "USER_POOL_CLIENT_ID=${{ needs.parameters.outputs.user-pool-client-id }}" >> .env
+          echo "IDENTITY_POOL_ID=${{ needs.parameters.outputs.identity-pool-id }}" >> .env
+
+      - name: Login ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      # - name: Create .npmrc file for private package registry access
+      #   run: |
+      #     echo "@azorakapp:registry=https://npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > .npmrc
+
+      - name: Build, tag, and push app image
+        id: build-docker-image
+        env:
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: srclaunch-${{ needs.env-vars.outputs.project-name }}-${{ needs.env-vars.outputs.service }}-${{ needs.env-vars.outputs.environment }}
+          IMAGE_TAG: ${{ needs.env-vars.outputs.service }}-${{ needs.env-vars.outputs.environment}}-${{ needs.env-vars.outputs.release }}
+        run: |
+          docker build --build-arg NPM_TOKEN=${{ secrets.GITHUB_TOKEN }} --build-arg ENVIRONMENT=${{ needs.env-vars.outputs.environment }} -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=url::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+      - name: Download task definition
+        run: |
+          aws ecs describe-task-definition --task-definition srclaunch-${{ needs.env-vars.outputs.project-name }}-${{ needs.env-vars.outputs.service }}-${{ needs.env-vars.outputs.environment }} --query taskDefinition > .applab/infrastructure/task-definition.json
+
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: .applab/infrastructure/task-definition.json
+          container-name: srclaunch-${{ needs.env-vars.outputs.project-name }}-${{ needs.env-vars.outputs.service }}-${{ needs.env-vars.outputs.environment }}
+          image: ${{ steps.build-docker-image.outputs.url }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: srclaunch-${{ needs.env-vars.outputs.project-name }}-${{ needs.env-vars.outputs.service }}-${{ needs.env-vars.outputs.environment }}
+          cluster: srclaunch-${{ needs.env-vars.outputs.project-name }}-${{ needs.env-vars.outputs.service }}-${{ needs.env-vars.outputs.environment }}
+          wait-for-service-stability: true

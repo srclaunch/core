@@ -1,0 +1,40 @@
+{
+  "name": "@srclaunch/ci-cd",
+  "description": "CI/CD workflows and tools",
+  "author": "Steven Bennett <steven@srclaunch.com>",
+  "license": "MIT",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=16"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    ".github",
+    "package.json",
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "module": "./dist/index.esm.js",
+  "scripts": {
+    "build:esbuild:esm": "esbuild --bundle --minify --outfile=dist/index.esm.js --format=esm --target=esnext --platform=node --sourcemap src/index.ts",
+    "build:esbuild:cjs": "esbuild --bundle --minify --outfile=dist/index.cjs --format=cjs --target=esnext --platform=node --sourcemap src/index.ts",
+    "build:types": "tsc",
+    "build": "rm -fr ./dist && pnpm build:esbuild:esm && pnpm build:esbuild:cjs && pnpm build:types",
+    "release": "semantic-release --local"
+  },
+  "devDependencies": {
+    "@srclaunch/dx": "workspace:*",
+    "@types/semantic-release": "^17.2.4"
+  }
+}

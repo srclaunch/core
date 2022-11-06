@@ -1,0 +1,88 @@
+{
+  "name": "@srclaunch/dx",
+  "description": "Quality of life configuration and tooling for development environments.",
+  "author": "Steven Bennett <steven@srclaunch.com>",
+  "license": "MIT",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "release": "semantic-release"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "type": "module",
+  "files": [
+    ".commitlintrc.mjs",
+    ".commitlintrc.cjs",
+    ".eslintrc.mjs",
+    ".eslintrc.cjs",
+    ".eslintrc.ui.mjs",
+    ".eslintrc.ui.cjs",
+    ".prettierrc.mjs",
+    ".prettierrc.cjs",
+    ".stylelintrc.mjs",
+    ".stylelintrc.cjs",
+    ".stylelintrc.ui.mjs",
+    ".stylelintrc.ui.cjs",
+    ".versionrc.mjs",
+    ".versionrc.cjs",
+    "ava.config.mjs",
+    "ava.config.cjs",
+    "jest.config.mjs",
+    "jest.config.cjs"
+  ],
+  "exports": {
+    "./.commitlintrc": {
+      "import": "./.commitlintrc.mjs",
+      "require": "./.commitlintrc.cjs"
+    },
+    "./.eslintrc": {
+      "import": "./.eslintrc.mjs",
+      "require": "./.eslintrc.cjs"
+    },
+    "./.eslintrc.ui": {
+      "import": "./.eslintrc.ui.mjs",
+      "require": "./.eslintrc.ui.cjs"
+    },
+    "./.prettierrc": {
+      "import": "./.prettierrc.mjs",
+      "require": "./.prettierrc.cjs"
+    },
+    "./.releaserc": {
+      "import": "./.releaserc.mjs",
+      "require": "./.releaserc.cjs"
+    },
+    "./.stylelintrc": {
+      "import": "./.stylelintrc.mjs",
+      "require": "./.stylelintrc.cjs"
+    },
+    "./.stylelintrc.ui": {
+      "import": "./.stylelintrc.ui.mjs",
+      "require": "./.stylelintrc.ui.cjs"
+    },
+    "./.versionrc": {
+      "import": "./.versionrc.mjs",
+      "require": "./.versionrc.cjs"
+    },
+    "./ava.config": {
+      "import": "./ava.config.mjs",
+      "require": "./ava.config.cjs"
+    },
+    "./jest.config": {
+      "import": "./jest.config.mjs",
+      "require": "./jest.config.cjs"
+    },
+    "./tsconfig.json": {
+      "import": "./tsconfig.json",
+      "require": "./tsconfig.json"
+    },
+    "./tsconfig.ui.json": {
+      "import": "./tsconfig.ui.json",
+      "require": "./tsconfig.ui.json"
+    }
+  }
+}

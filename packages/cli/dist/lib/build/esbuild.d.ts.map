@@ -1,0 +1,1 @@
+{"version":3,"file":"esbuild.d.ts","sourceRoot":"","sources":["../../../src/lib/build/esbuild.ts"],"names":[],"mappings":"AAAA,OAAO,EAIL,cAAc,EACf,MAAM,kBAAkB,CAAC;AAS1B,wBAAsB,KAAK,CAAC,EAC1B,MAAa,EACb,KAAY,EACZ,MAAM,EACN,OAA6C,EAC7C,KAAK,EACL,MAAa,EACb,MAAM,EACN,QAAkC,EAClC,SAAgB,EAChB,SAAgB,EAChB,MAA2B,EAC3B,WAAkB,GACnB,EAAE,cAAc,iBAmFhB"}

@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "wakatime.vscode-wakatime",
+    "arcanis.vscode-zipfs",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
+  ]
+}

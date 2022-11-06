@@ -1,0 +1,1 @@
+{"version":3,"file":"StatusOrb.d.ts","sourceRoot":"","sources":["../../src/components/StatusOrb.tsx"],"names":[],"mappings":"AAEA,OAAO,EAAE,SAAS,EAAE,MAAM,oCAAoC,CAAC;AAE/D,aAAK,cAAc,GAAG;IACpB,QAAQ,CAAC,MAAM,CAAC,EAAE,SAAS,CAAC;CAC7B,CAAC;AAEF,eAAO,MAAM,SAAS,eAAgB,cAAc,gBAiBnD,CAAC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"flags.d.ts","sourceRoot":"","sources":["../../src/lib/flags.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAY,MAAM,MAAM,CAAC;AAEtC,oBAAY,uBAAuB,GAAG;IACpC,QAAQ,CAAC,WAAW,EAAE,IAAI,CAAC,SAAS,EAAE,IAAI,EAAE,KAAK,CAAC,CAAC;CACpD,CAAC;AAEF,eAAO,MAAM,mBAAmB,EAAE,uBAMjC,CAAC"}

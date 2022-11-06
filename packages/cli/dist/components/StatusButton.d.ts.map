@@ -1,0 +1,1 @@
+{"version":3,"file":"StatusButton.d.ts","sourceRoot":"","sources":["../../src/components/StatusButton.tsx"],"names":[],"mappings":"AAGA,OAAO,EAAE,SAAS,EAAE,MAAM,oCAAoC,CAAC;AAC/D,OAAe,EAAE,WAAW,EAAE,MAAM,UAAU,CAAC;AAG/C,aAAK,iBAAiB,GAAG,WAAW,GAAG;IACrC,QAAQ,CAAC,MAAM,CAAC,EAAE,SAAS,CAAC;CAC7B,CAAC;AAEF,QAAA,MAAM,YAAY,gCAAiC,iBAAiB,gBAWnE,CAAC;AAEF,eAAe,YAAY,CAAC"}

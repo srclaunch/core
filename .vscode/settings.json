@@ -1,0 +1,141 @@
+{
+  /* Convention Commits */
+  "conventionalCommits.scopes": [
+    "dx",
+    "ci",
+    "performance",
+    "formatting",
+    "security",
+    "stability"
+  ],
+
+  /* Colorize plugin */
+  "colorize.languages": ["js", "tsx"],
+  "colorize.include": ["colors.css", "themes.css"],
+  "colorize.colorized_colors": ["BROWSERS_COLORS", "HEXA", "RGB", "HSL"],
+  /* Editor Settings */
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "editor.formatOnSave": true,
+  "editor.formatOnType": false,
+  "editor.tabCompletion": "on",
+  "editor.fontFamily": "Menlo, Consolas, DejaVu Sans Mono, monospace",
+  "editor.fontSize": 13,
+  "editor.suggestSelection": "first",
+  /* Workspace settings */
+  "explorer.compactFolders": false,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  /* ESLint */
+  "eslint.lintTask.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "editor.tabSize": 2,
+  "eslint.packageManager": "pnpm",
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+  /* Watchers */
+  "files.watcherExclude": {
+    "**/.bloop": true,
+    "**/.metals": true,
+    "**/.ammonite": true,
+    "**/target": true
+  },
+  /* i18n */
+  "i18n-ally.localesPaths": ["./translations"],
+  /* Jest */
+  "jestrunner.configPath": "jest.config.js",
+  "jest.showCoverageOnLoad": true,
+  "jest.rootPath": "src",
+  "jest.jestCommandLine": "npm run test --",
+  /* Scala env */
+  "metals.javaHome": "/Users/steven/.jabba/jdk/adopt@1.11.0-11/Contents/Home",
+  "notebook.cellToolbarLocation": {
+    "default": "left"
+  },
+  "prettier.documentSelectors": ["**/*.{ts,tsx,js,json}", "*.{ts,tsx,js,json}"],
+  "prettier.enable": true,
+  "prettier.eslintIntegration": true,
+  "prettier.stylelintIntegration": true,
+  "prettier.requireConfig": false,
+  "prettier.useEditorConfig": false,
+  /* Project manager plugin */
+  "projectManager.git.baseFolders": ["/Users/steven/Projects"],
+  /* Tabnine */
+  "tabnine.experimentalAutoImports": true,
+  /* Terminal */
+  "terminal.integrated.tabs.enabled": true,
+  "terminal.integrated.scrollback": 25000,
+  /* Depdendency audit plugin */
+  "redhat.telemetry.enabled": false,
+  /* Typescript */
+  "typescript.suggest.paths": true,
+  /* Workbench */
+  "workbench.colorTheme": "Bearded Theme Black & Emerald",
+  "workbench.editorAssociations": {
+    "*.html": "default"
+  },
+  "workbench.experimental.useCustomHover": true,
+  "workbench.settings.useSplitJSON": true,
+  /* Intellicode */
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  /* YAML */
+  "yaml.customTags": [
+    "!And",
+    "!And sequence",
+    "!If",
+    "!If sequence",
+    "!Not",
+    "!Not sequence",
+    "!Equals",
+    "!Equals sequence",
+    "!Or",
+    "!Or sequence",
+    "!FindInMap",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Join",
+    "!Join sequence",
+    "!Cidr",
+    "!Ref",
+    "!Sub",
+    "!Sub sequence",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!ImportValue sequence",
+    "!Select",
+    "!Select sequence",
+    "!Split",
+    "!Split sequence"
+  ],
+  "yaml.schemas": {
+    "file:///Users/steven/.vscode/extensions/atlassian.atlascode-2.8.6/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  },
+  "yaml.validate": false,
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "prettier.prettierPath": "",
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.formatOnSave": false,
+  "editor.definitionLinkOpensInPeek": false,
+  "prettier.configPath": ".prettierrc.cjs",
+  "svg.preview.background": "black",
+  "eslint.debug": false,
+  "eslint.format.enable": false,
+  "editor.formatOnPaste": false,
+  // "eslint.run": "onSave"
+}

@@ -1,0 +1,10 @@
+.env
+.DS_Store
+**/coverage/
+**/dist/
+!packages/cli/dist
+!packages/cli/docs
+node_modules/
+**/node_modules/
+.pnpm-debug.log
+.turbo

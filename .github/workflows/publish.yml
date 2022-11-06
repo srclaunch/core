@@ -1,0 +1,66 @@
+name: Publish to NPM
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: publish-${{ github.ref }}-1
+  cancel-in-progress: true
+
+jobs:
+  publish_package:
+    name: Publish package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup CI/CD environment
+        uses: 'srclaunch/core/packages/ci-cd/.github/actions/setup@main'
+        with:
+          turbo_team: ${{ secrets.TURBO_TEAM }}
+          turbo_token: ${{ secrets.TURBO_TOKEN }}
+
+      - name: Build project
+        uses: 'srclaunch/core/packages/ci-cd/.github/actions/build@main'
+        with:
+          turbo_team: ${{ secrets.TURBO_TEAM }}
+          turbo_token: ${{ secrets.TURBO_TOKEN }}
+
+      - name: Run tests and collect coverage
+        uses: 'srclaunch/core/packages/ci-cd/.github/actions/test@main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repository_owner: ${{ github.event.repository.owner.login }}
+          repository_name: ${{ github.event.repository.name }}
+          turbo_team: ${{ secrets.TURBO_TEAM }}
+          turbo_token: ${{ secrets.TURBO_TOKEN }}
+
+
+      - name: Release package
+        uses: 'srclaunch/core/packages/ci-cd/.github/actions/release@main'
+        with:
+          npm_token: ${{ secrets.NPM_ACCESS_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          turbo_team: ${{ secrets.TURBO_TEAM }}
+          turbo_token: ${{ secrets.TURBO_TOKEN }}
+          # repository_owner: ${{ github.event.repository.owner.login }}
+          # repository_name: ${{ github.event.repository.name }}
+
+      # - name: Deploy
+      #   uses: 'srclaunch/core/packages/ci-cd/.github/actions/deploy@main'
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     npm_token: ${{ secrets.NPM_ACCESS_TOKEN }}
+      #     turbo_team: ${{ secrets.TURBO_TEAM }}
+      #     turbo_token: ${{ secrets.TURBO_TOKEN }}
+
+      # - name: Publish to NPM
+      #   uses: 'srclaunch/core/packages/ci-cd/.github/actions/publish@main'
+      #   with:
+      #     npm_token: ${{ secrets.NPM_TOKEN }}
+
+      # - name: Deploy
+      #   uses: 'srclaunch/core/packages/ci-cd/.github/actions/deploy@main'
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}

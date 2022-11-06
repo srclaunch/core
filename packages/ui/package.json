@@ -1,0 +1,108 @@
+{
+  "name": "@srclaunch/ui",
+  "description": "SrcLaunch UI React component library",
+  "author": "Steven Bennett <steven@srclaunch.com>",
+  "homepage": "https://srclaunch.github.io/ui",
+  "license": "MIT",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=16"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "type": "module",
+  "main": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "package.json",
+    "dist"
+  ],
+  "module": "./dist/index.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
+  "scripts": {
+    "qr": "srclaunch changesets add --files \".\" --message \"Quick release\" --type \"chore\" && srclaunch release --push",
+    "build": "srclaunch build --clean --types",
+    "deploy": "srclaunch deploy",
+    "deploy:local": "srclaunch deploy --local",
+    "dev": "srclaunch dev",
+    "docs:generate": "srclaunch docs generate",
+    "release": "srclaunch release",
+    "release:local": "srclaunch release --local",
+    "test": "srclaunch test",
+    "test:coverage": "srclaunch test --coverage",
+    "test:watch": "srclaunch test --watch"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.2",
+    "@srclaunch/exceptions": "workspace:*",
+    "@srclaunch/http-client": "workspace:*",
+    "@srclaunch/i18n": "workspace:*",
+    "@srclaunch/icons": "workspace:*",
+    "@srclaunch/logger": "workspace:*",
+    "@srclaunch/themes": "workspace:*",
+    "@srclaunch/validation": "workspace:*",
+    "@srclaunch/web-app-state": "workspace:*",
+    "@srclaunch/web-environment": "workspace:*",
+    "@stripe/stripe-js": "^1.31.0",
+    "amazon-cognito-identity-js": "^5.2.8",
+    "change-case": "^4.1.2",
+    "color-namer": "^1.4.0",
+    "crypto-js": "^4.1.1",
+    "hex-rgb": "^5.0.0",
+    "history": "^5.3.0",
+    "i18n-iso-countries": "^7.4.0",
+    "luxon": "^2.4.0",
+    "nanoid": "^3.3.4",
+    "pluralize": "^8.0.0",
+    "prop-types": "^15.8.1",
+    "query-string": "^7.1.1",
+    "react": "^18.2.0",
+    "react-colorful": "^5.5.1",
+    "react-country-flag": "^3.0.2",
+    "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.1",
+    "react-is": "^18.2.0",
+    "react-markdown": "^8.0.3",
+    "react-redux": "^8.0.2",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
+    "react-syntax-highlighter": "^15.5.0",
+    "redux": "^4.2.0",
+    "rgb-hex": "^4.0.0",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "@srclaunch/cli": "workspace:*",
+    "@srclaunch/docs": "workspace:*",
+    "@srclaunch/dx": "workspace:*",
+    "@srclaunch/types": "workspace:*",
+    "@testing-library/dom": "^8.13.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.2.0",
+    "@testing-library/user-event": "^14.2.0",
+    "@types/luxon": "^2.3.2",
+    "@types/pluralize": "^0.0.29",
+    "@types/prop-types": "^15.7.5",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.4",
+    "@types/react-is": "^17.0.3",
+    "@types/react-router": "^5.1.18",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/styled-components": "^5.1.25"
+  },
+  "peerDependencies": {
+    "@reduxjs/toolkit": "^1.8.1",
+    "history": "^5.3.0",
+    "react-redux": "^8.0.1",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
+    "redux": "^4.2.0"
+  }
+}

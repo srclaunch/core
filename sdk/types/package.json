@@ -1,0 +1,32 @@
+{
+  "name": "@srclaunch/types-sdk",
+  "version": "0.1.0",
+  "description": "Types SDK",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+"
+  },
+  "keywords": [
+    "models",
+    "sdk"
+  ],
+  "type": "module",
+  "author": "SourceLaunch",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "@srclaunch/types": "workspace:^1.0.5"
+  }
+}

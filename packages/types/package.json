@@ -1,0 +1,39 @@
+{
+  "name": "@srclaunch/types",
+  "description": "TypeScript definitions used by SrcLaunch projects and workspaces.",
+  "author": "Steven Bennett <steven@srclaunch.com>",
+  "license": "MIT",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=16"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "type": "module",
+  "main": "dist/index.iife.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "package.json"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.iife.js"
+    }
+  },
+  "scripts": {
+    "build:esbuild:esm": "esbuild --bundle --minify --outfile=dist/index.esm.js --format=esm --target=esnext --platform=neutral --sourcemap src/index.ts",
+    "build:esbuild:iife": "esbuild --bundle --minify --outfile=dist/index.iife.js --format=iife --target=esnext --platform=neutral --sourcemap src/index.ts",
+    "build:types": "tsc",
+    "build": "rm -fr ./dist && pnpm build:esbuild:esm && pnpm build:esbuild:iife && pnpm build:types",
+    "release": "srclaunch release",
+    "release:local": "srclaunch release --local"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.9"
+  }
+}

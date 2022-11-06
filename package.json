@@ -1,0 +1,113 @@
+{
+  "name": "@srclaunch/core",
+  "description": "Monorepository containing core libraries that comprise the SrcLaunch platform",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=7.6.0"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "turbo run build --color",
+    "build:graph": "turbo run build --color --graph=media/images/dependencies-graph.svg",
+    "build:models": "srclaunch models build",
+    "create-test-workspace": "rm -fr ./test-workspace && mkdir ./test-workspace && cd ./test-workspace && srclaunch create workspace",
+    "deploy": "turbo run deploy --color --concurrency=1",
+    "deploy:local": "dotenv -e .env turbo run 'deploy:local' --color --concurrency=1",
+    "dev": "srclaunch dev",
+    "release": "turbo run release --color --concurrency=1",
+    "test": "turbo run test --color --concurrency=1",
+    "kebab-files": "node utils/kebab-case-filenames.js",
+    "kebab-index": "node utils/kebab-case-index.js",
+    "start-core-api": "node -r dotenv/config sdk/core-api/dist/index.esm.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srclaunch/core.git"
+  },
+  "packageManager": "pnpm@7.6.0",
+  "pnpm": {
+    "packageExtensions": {
+      "eslint-plugin-flowtype": {
+        "peerDependenciesMeta": {
+          "@babel/plugin-syntax-flow": {
+            "optional": true
+          },
+          "@babel/plugin-transform-react-jsx": {
+            "optional": true
+          }
+        }
+      }
+    },
+    "peerDependencyRules": {
+      "allowAny": [
+        "eslint"
+      ]
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@microsoft/eslint-plugin-sdl": "^0.2.0",
+    "@srclaunch/cli": "workspace:*",
+    "@srclaunch/dx": "workspace:*",
+    "@srclaunch/types": "workspace:*",
+    "@swc-node/jest": "^1.5.5",
+    "@swc/cli": "^0.1.57",
+    "@swc/core": "^1.3.10",
+    "@types/jest": "28.1.6",
+    "@types/node": "^18.11.3",
+    "@types/tape": "^4.13.2",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "ava": "^4.3.3",
+    "babel-plugin-styled-components": "^2.0.7",
+    "dotenv-cli": "^6.0.0",
+    "esbuild": "^0.14.50",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-config-stylelint": "^15.1.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-better-styled-components": "^1.1.2",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-functional": "^4.4.1",
+    "eslint-plugin-github": "^4.4.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.9.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-only-warn": "^1.0.3",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-regexp": "^1.9.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "eslint-plugin-sort-requires": "^2.1.0",
+    "eslint-plugin-testing-library": "^5.9.1",
+    "eslint-plugin-tsdoc": "^0.2.17",
+    "eslint-plugin-typescript-sort-keys": "^2.1.0",
+    "eslint-plugin-unicorn": "^43.0.2",
+    "glob": "^8.0.3",
+    "husky": "^8.0.1",
+    "madge": "^5.0.1",
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
+    "semantic-release": "^19.0.3",
+    "styled-components": "^5.3.5",
+    "stylelint": "^14.14.0",
+    "stylelint-config-idiomatic-order": "^8.1.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recommended": "^8.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-order": "^5.0.0",
+    "tape": "^5.5.3",
+    "ts-node": "^10.9.1",
+    "turbo": "^1.6.1",
+    "typescript": "^4.8.4",
+    "vitest": "^0.19.1"
+  }
+}
