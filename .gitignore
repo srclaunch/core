@@ -4,7 +4,7 @@
 **/dist/
 **/docs/
 !packages/cli/dist
-!packages/cli/docs
+!packages/cli/src/lib/docs
 node_modules/
 **/node_modules/
 .pnpm-debug.log
