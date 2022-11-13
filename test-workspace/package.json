@@ -2,7 +2,7 @@
 {
   "name": "@srclaunch/test",
   "description": "Test workspace",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "engines": {
     "node": ">=16",
     "pnpm": ">=7.6.0"
@@ -44,6 +44,9 @@
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "@microsoft/eslint-plugin-sdl": "^0.2.0",
+    "@srclaunch/cli": "^1.0.0",
+    "@srclaunch/dx": "^1.0.0",
+    "@srclaunch/types": "^1.0.0",
     "@types/node": "^18.6.2",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
