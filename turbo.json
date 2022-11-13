@@ -31,6 +31,10 @@
       "dependsOn": ["@srclaunch/ci-cd#build", "@srclaunch/types#build"],
       "outputs": []
     },
+    "@srclaunch/dx#release": {
+      "dependsOn": ["@srclaunch/ci-cd#release"],
+      "outputs": []
+    },
     "@srclaunch/types#release": {
       "dependsOn": ["@srclaunch/cli#build"],
       "outputs": []
