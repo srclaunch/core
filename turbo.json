@@ -11,7 +11,7 @@
       "inputs": ["src/**/*.test.tsx", "src/**/*.test.ts"]
     },
     "release": {
-      "dependsOn": ["build", "test", "^release"],
+      "dependsOn": ["build", "test", "release"],
       "outputs": []
     },
     "release:local": {
