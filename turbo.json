@@ -27,19 +27,15 @@
       "dependsOn": ["release:local"],
       "outputs": []
     },
-    "@srclaunch/cli#build": {
-      "dependsOn": ["@srclaunch/ci-cd#build", "@srclaunch/types#build"],
-      "outputs": []
-    },
     "@srclaunch/dx#release": {
       "dependsOn": ["@srclaunch/ci-cd#release"],
       "outputs": []
     },
-    "@srclaunch/types#release": {
-      "dependsOn": ["@srclaunch/cli#build"],
+    "@srclaunch/cli#build": {
+      "dependsOn": ["@srclaunch/types#build"],
       "outputs": []
     },
-    "@srclaunch/types#release:local": {
+    "@srclaunch/types#release": {
       "dependsOn": ["@srclaunch/cli#build"],
       "outputs": []
     }
