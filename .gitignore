@@ -5,6 +5,7 @@
 **/docs/
 !packages/cli/dist
 !packages/cli/src/lib/docs
+!packages/docs
 node_modules/
 **/node_modules/
 .pnpm-debug.log

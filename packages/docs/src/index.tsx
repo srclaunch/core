@@ -9,7 +9,6 @@ import {
   WebApplication,
 } from '@srclaunch/web-app-state';
 
-import { Introduction } from './pages/introduction';
 // import { getRoutes } from './lib/routes';
 import reducers from './state/index';
 
@@ -29,14 +28,9 @@ export async function renderDocumentation(config?: DocumentationConfig) {
           // console.log('routes', routes);
           renderReduxWebApp({
             authentication: false,
-
+            // container: <WebApplication />,
             options,
-            routes: [
-              {
-                component: Introduction,
-                path: '/',
-              },
-            ],
+            routes: [],
             store,
           });
         }

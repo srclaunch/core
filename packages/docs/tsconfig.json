@@ -1,0 +1,12 @@
+{
+  "extends": "@srclaunch/dx/tsconfig.ui.json",
+  "compilerOptions": {
+    "declarationDir": "./dist"
+  },
+  "include": [
+    "./src",
+    "../ui/src/__docs__/index.tsx",
+    "../ui/src/pages/component-category.tsx",
+    "../ui/src/layouts/component-library.tsx"
+  ]
+}
