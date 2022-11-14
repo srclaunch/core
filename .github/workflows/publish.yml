@@ -27,14 +27,14 @@ jobs:
           turbo_team: ${{ secrets.TURBO_TEAM }}
           turbo_token: ${{ secrets.TURBO_TOKEN }}
 
-      - name: Run tests and collect coverage
-        uses: 'srclaunch/core/packages/ci-cd/.github/actions/test@main'
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          repository_owner: ${{ github.event.repository.owner.login }}
-          repository_name: ${{ github.event.repository.name }}
-          turbo_team: ${{ secrets.TURBO_TEAM }}
-          turbo_token: ${{ secrets.TURBO_TOKEN }}
+      # - name: Run tests and collect coverage
+      #   uses: 'srclaunch/core/packages/ci-cd/.github/actions/test@main'
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     repository_owner: ${{ github.event.repository.owner.login }}
+      #     repository_name: ${{ github.event.repository.name }}
+      #     turbo_team: ${{ secrets.TURBO_TEAM }}
+      #     turbo_token: ${{ secrets.TURBO_TOKEN }}
 
 
       - name: Release package
