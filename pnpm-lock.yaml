@@ -216,10 +216,8 @@ importers:
 
   packages/ci-cd:
     specifiers:
-      '@srclaunch/dx': workspace:*
       '@types/semantic-release': ^17.2.4
     devDependencies:
-      '@srclaunch/dx': link:../dx
       '@types/semantic-release': 17.2.4
 
   packages/cli:

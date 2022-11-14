@@ -34,7 +34,6 @@
     "release": "semantic-release --local"
   },
   "devDependencies": {
-    "@srclaunch/dx": "workspace:*",
     "@types/semantic-release": "^17.2.4"
   }
 }
