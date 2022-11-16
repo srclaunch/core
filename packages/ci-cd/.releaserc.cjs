@@ -5,7 +5,8 @@ module.exports = {
       ],
       // pkgRoot: 'dist',
       plugins: [
-        './dist/index.cjs.js',
+        path.join(__dirname, './dist/index.cjs.js'),
+
    
         // '@semantic-release/commit-analyzer',
         // '@semantic-release/release-notes-generator',
