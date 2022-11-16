@@ -12,20 +12,13 @@
     "registry": "https://registry.npmjs.org/"
   },
   "type": "module",
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.cjs.js",
   "types": "./dist/index.d.ts",
   "files": [
     ".github",
     "package.json",
     "dist"
   ],
-  "exports": {
-    ".": {
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.cjs"
-    }
-  },
-  "module": "./dist/index.esm.js",
   "scripts": {
     "build:esbuild:esm": "esbuild --bundle --minify --outfile=dist/index.esm.js --format=esm --target=esnext --platform=node --sourcemap src/index.ts",
     "build:esbuild:cjs": "esbuild --bundle --minify --outfile=dist/index.cjs --format=cjs --target=esnext --platform=node --sourcemap src/index.ts",
