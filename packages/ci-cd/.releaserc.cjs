@@ -3,9 +3,9 @@ module.exports = {
       extends: [
         // 'semantic-release-commit-filter'
       ],
-      pkgRoot: 'dist',
+      // pkgRoot: 'dist',
       plugins: [
-        'index.cjs.js',
+        './dist/index.cjs.js',
    
         // '@semantic-release/commit-analyzer',
         // '@semantic-release/release-notes-generator',
