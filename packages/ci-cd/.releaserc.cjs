@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   branches: ['main' ],
       extends: [
@@ -5,8 +7,7 @@ module.exports = {
       ],
       // pkgRoot: 'dist',
       plugins: [
-        path.join(__dirname, './dist/index.cjs.js'),
-
+        path.join(path.resolve(), 'dist/index.cjs.js'),
    
         // '@semantic-release/commit-analyzer',
         // '@semantic-release/release-notes-generator',
