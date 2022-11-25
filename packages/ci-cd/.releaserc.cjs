@@ -7,7 +7,7 @@ module.exports = {
       ],
       // pkgRoot: 'dist',
       plugins: [
-        path.join(path.resolve(), 'dist/index.cjs.js'),
+        path.join(path.resolve(), 'dist/index.cjs'),
    
         // '@semantic-release/commit-analyzer',
         // '@semantic-release/release-notes-generator',
