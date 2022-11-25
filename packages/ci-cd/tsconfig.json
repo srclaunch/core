@@ -1,6 +1,7 @@
 {
   "extends": "../dx/tsconfig.json",
   "compilerOptions": {
+    "emitDeclarationOnly": true,
     "declarationDir": "./dist"
   },
   "include": ["./src"]
