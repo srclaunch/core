@@ -23,7 +23,7 @@
     "build:esbuild:cjs": "esbuild --bundle --minify --outfile=dist/index.cjs --format=cjs --target=esnext --platform=node --sourcemap src/index.ts",
     "build:types": "tsc",
     "build": "rm -fr ./dist && pnpm build:esbuild:esm && pnpm build:esbuild:cjs && pnpm build:types",
-    "release": "semantic-release"
+    "release": "semantic-release --no-ci"
   },
   "devDependencies": {
     "@types/semantic-release": "^17.2.4"
