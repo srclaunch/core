@@ -3,7 +3,7 @@
   "description": "CI/CD workflows and tools",
   "author": "Steven Bennett <steven@srclaunch.com>",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "engines": {
     "node": ">=16"
   },
@@ -22,8 +22,7 @@
     "build:esbuild:esm": "esbuild --bundle --minify --outfile=dist/index.esm.js --format=esm --target=esnext --platform=node --sourcemap src/index.ts",
     "build:esbuild:cjs": "esbuild --bundle --minify --outfile=dist/index.cjs --format=cjs --target=esnext --platform=node --sourcemap src/index.ts",
     "build:types": "tsc",
-    "build": "rm -fr ./dist && pnpm build:esbuild:esm && pnpm build:esbuild:cjs && pnpm build:types",
-    "release": "semantic-release --no-ci"
+    "build": "rm -fr ./dist && pnpm build:esbuild:esm && pnpm build:esbuild:cjs && pnpm build:types"
   },
   "devDependencies": {
     "@types/semantic-release": "^17.2.4"
