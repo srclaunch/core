@@ -18,5 +18,5 @@ runs:
 
     - name: Publish to NPM
       shell: bash
-      run: pnpm publish
+      run: pnpm publish-to-npm
       

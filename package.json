@@ -15,7 +15,7 @@
     "deploy": "turbo run deploy --color --concurrency=1",
     "deploy:local": "dotenv -e .env turbo run 'deploy:local' --color --concurrency=1",
     "dev": "srclaunch dev",
-    "publish": "changeset publish",
+    "publish-to-npm": "changeset publish",
     "release": "changeset version && git add . && git commit -m 'Release' && git push --follow-tags",
     "release-old": "turbo run release --color --concurrency=1",
     "test": "turbo run test --color --concurrency=1",
