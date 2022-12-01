@@ -3,5 +3,5 @@ export const getReadmeTemplate = ({
   owner,
 }: {
   readonly name: string;
-  readonly owner: string;
-}) => `# ${owner}/${name}`;
+  readonly owner?: string;
+}) => `# ${owner ? `@${owner}/` : ''}${name}`;

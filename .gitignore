@@ -3,6 +3,7 @@
 **/coverage/
 **/dist/
 **/docs/
+test-workspace/
 !packages/cli/dist
 !packages/cli/src/lib/docs
 !packages/docs

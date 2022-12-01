@@ -17,24 +17,24 @@ export type CreateFlags = TypedFlags<{
     readonly required: true;
     readonly type: 'string';
   };
-  readonly type: {
-    readonly required: true;
+  readonly owner: {
+    readonly required: false;
     readonly type: 'string';
   };
 }>;
 
 export default new Command<ProjectConfig & WorkspaceConfig>({
   commands: [
-    new Command<ProjectConfig>({
+    new Command<ProjectConfig, CreateFlags>({
       description: 'Create SrcLaunch workspace',
       name: 'workspace',
-      async run({ config }): Promise<void> {
+      async run({ config, flags }): Promise<void> {
         console.log('creating workspace');
 
         const generator = new SrcLaunchWorkspaceGenerator({
-          description: 'Test workspace',
-          name: 'test',
-          owner: 'srclaunch',
+          description: flags.description,
+          name: flags.name as string,
+          owner: flags.owner,
         });
 
         await generator.generate();

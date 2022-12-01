@@ -1,5 +1,5 @@
 export const getPrettierConfigTemplate = () => `
-const base = require('./packages/dx/.prettierrc.cjs');
+const base = require('@srclaunch/dx/.prettierrc.cjs');
 
 module.exports = {
   ...base,

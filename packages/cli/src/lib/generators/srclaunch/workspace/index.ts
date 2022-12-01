@@ -27,7 +27,7 @@ import { getPnpmWorkspaceConfigTemplate } from '../../../templates/workspace/pnp
 interface SrcLaunchWorkspaceGeneratorOptions {
   readonly description?: string;
   readonly name: string;
-  readonly owner: string;
+  readonly owner?: string;
 }
 
 export class SrcLaunchWorkspaceGenerator extends CodeGenWorkflow {

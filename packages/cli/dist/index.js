@@ -55,7 +55,7 @@ module.exports = {
 };
 `;s();var or=({paths:e})=>e.join(`
 `);s();var sr=()=>`
-const base = require('./packages/dx/.prettierrc.cjs');
+const base = require('@srclaunch/dx/.prettierrc.cjs');
 
 module.exports = {
   ...base,

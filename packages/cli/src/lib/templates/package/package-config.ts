@@ -5,7 +5,7 @@ export const getPackageConfigTemplate = ({
 }: {
   readonly description?: string;
   readonly name: string;
-  readonly owner: string;
+  readonly owner?: string;
 }) => `
 {
   "name": "@${owner}/${name}",
