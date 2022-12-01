@@ -1,6 +1,6 @@
 {
-  "name": "@srclaunch/docs",
-  "description": "React components and other utilities for generating documentation",
+  "name": "@srclaunch/api-docs",
+  "description": "Utilities for documenting APIs",
   "author": "Steven Bennett <steven@srclaunch.com>",
   "license": "MIT",
   "version": "3.19.23",

@@ -17,9 +17,9 @@ import {
 } from '@srclaunch/types';
 
 export default <LibraryConfig>{
-  name: '@srclaunch/docs',
+  name: '@srclaunch/api-docs',
   description:
-    'React components and other utilities for generating documentation',
+    'Utilities for documenting APIs',
   type: ProjectType.Library,
   build: [
     {
