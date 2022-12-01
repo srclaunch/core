@@ -23,7 +23,9 @@ runs:
       uses: actions/checkout@v3
       with:
         fetch-depth: 1
-
+    - run: git config --global user.name github-actions
+    - run: git config --global user.email github-actions@github.com
+    
     - name: Get branch name
       id: get-branch
       run: echo "::set-output name=name::${GITHUB_REF#refs/heads/}"
