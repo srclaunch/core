@@ -18,7 +18,7 @@ runs:
 
     - name: Publish to NPM
       shell: bash
-      run: pnpm publish-to-npm
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}      
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        NPM_TOKEN: ${{ inputs.npm_token }}  
+      run: pnpm publish-to-npm
