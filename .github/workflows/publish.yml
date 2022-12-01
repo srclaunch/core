@@ -47,6 +47,11 @@ jobs:
           # repository_owner: ${{ github.event.repository.owner.login }}
           # repository_name: ${{ github.event.repository.name }}
 
+      - name: Publish to NPM
+        uses: 'srclaunch/core/packages/ci-cd/.github/actions/publish@main'
+        with:
+          npm_token: ${{ secrets.NPM_TOKEN }}
+
       # - name: Deploy
       #   uses: 'srclaunch/core/packages/ci-cd/.github/actions/deploy@main'
       #   with:
@@ -54,11 +59,6 @@ jobs:
       #     npm_token: ${{ secrets.NPM_ACCESS_TOKEN }}
       #     turbo_team: ${{ secrets.TURBO_TEAM }}
       #     turbo_token: ${{ secrets.TURBO_TOKEN }}
-
-      # - name: Publish to NPM
-      #   uses: 'srclaunch/core/packages/ci-cd/.github/actions/publish@main'
-      #   with:
-      #     npm_token: ${{ secrets.NPM_TOKEN }}
 
       # - name: Deploy
       #   uses: 'srclaunch/core/packages/ci-cd/.github/actions/deploy@main'

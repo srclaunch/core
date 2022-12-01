@@ -15,7 +15,7 @@ runs:
       id: allow-private-package-registry-access
       run: |
         echo "//registry.npmjs.org/:_authToken=${{ inputs.npm_token }}" > ~/.npmrc
-
+        
     - name: Publish to NPM
       run: pnpm publish
       
