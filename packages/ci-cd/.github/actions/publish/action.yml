@@ -9,13 +9,14 @@ inputs:
 
 runs:
   using: 'composite'
-  shell: bash
   steps:
     - name: Allow private package registry access
       id: allow-private-package-registry-access
+      shell: bash
       run: |
         echo "//registry.npmjs.org/:_authToken=${{ inputs.npm_token }}" > ~/.npmrc
-        
+
     - name: Publish to NPM
+      shell: bash
       run: pnpm publish
       
