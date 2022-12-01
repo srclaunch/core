@@ -3,8 +3,8 @@ description: 'Publish package to NPM'
 author: '@srclaunch'
 
 inputs:
-  npm_token:
-    description: NPM token for publishing package
+  github_token:
+    description: GitHub token for creating release
     required: true
   npm_token:
     description: NPM token for publishing package
