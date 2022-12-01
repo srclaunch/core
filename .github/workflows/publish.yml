@@ -50,7 +50,8 @@ jobs:
       - name: Publish to NPM
         uses: 'srclaunch/core/packages/ci-cd/.github/actions/publish@main'
         with:
-          npm_token: ${{ secrets.NPM_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          npm_token: ${{ secrets.NPM_ACCESS_TOKEN }}
 
       # - name: Deploy
       #   uses: 'srclaunch/core/packages/ci-cd/.github/actions/deploy@main'

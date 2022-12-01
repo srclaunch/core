@@ -6,6 +6,9 @@ inputs:
   npm_token:
     description: NPM token for publishing package
     required: true
+  npm_token:
+    description: NPM token for publishing package
+    required: true
 
 runs:
   using: 'composite'
@@ -14,7 +17,7 @@ runs:
       id: allow-private-package-registry-access
       shell: bash
       run: |
-        echo "@srclaunch:registry=https://registry.npmjs.org/:_authToken=${{ inputs.npm_token }}" > .npmrc
+        echo "//registry.npmjs.org/:_authToken=${{ inputs.npm_token }}" > .npmrc
     
     # - name: Login to NPM
     #   id: login-to-npm
