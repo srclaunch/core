@@ -1,7 +1,7 @@
 import {
   BrowserPackage,
   BuildFormat,
-  BuildPlatform,
+  Platform,
   BuildTarget,
   BuildTool,
   CodeFormatter,
@@ -37,7 +37,7 @@ export default <LibraryConfig>{
         file: 'index.tsx',
       },
       library: true,
-      platform: BuildPlatform.Browser,
+      platform: Platform.Browser,
       react: true,
       styledComponents: true,
       target: BuildTarget.Modules,
@@ -59,7 +59,7 @@ export default <LibraryConfig>{
       output: {
         directory: 'docs',
       },
-      platform: BuildPlatform.Browser,
+      platform: Platform.Browser,
       react: true,
       target: BuildTarget.Modules,
       tool: BuildTool.Vite,

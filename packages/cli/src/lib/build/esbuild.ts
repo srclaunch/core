@@ -1,10 +1,14 @@
 import {
   BuildFormat,
-  BuildPlatform,
   BuildTarget,
   ESBuildOptions,
+  Platform,
 } from '@srclaunch/types';
-import { build as buildCommand, Format, Platform } from 'esbuild';
+import {
+  build as buildCommand,
+  Format,
+  Platform as ESBuildPlatform,
+} from 'esbuild';
 import * as fs from 'fs-extra';
 import path from 'node:path';
 import pc from 'picocolors';
@@ -20,7 +24,7 @@ export async function build({
   input,
   minify = true,
   output,
-  platform = BuildPlatform.Universal,
+  platform = Platform.Universal,
   sourcemap = true,
   splitting = true,
   target = BuildTarget.ESNext,
@@ -42,13 +46,13 @@ export async function build({
       ];
     };
 
-    const getPlatform = (): Platform => {
+    const getPlatform = (): ESBuildPlatform => {
       switch (platform) {
-        case BuildPlatform.Browser:
+        case Platform.Browser:
           return 'browser';
-        case BuildPlatform.Node:
+        case Platform.Node:
           return 'node';
-        case BuildPlatform.Universal:
+        case Platform.Universal:
           return 'neutral';
         default:
           return 'neutral';

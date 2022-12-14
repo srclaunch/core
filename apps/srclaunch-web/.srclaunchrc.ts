@@ -1,6 +1,5 @@
 import {
-  BuildFormat,
-  BuildPlatform,
+  Platform,
   BuildTarget,
   BuildTool,
   CodeFormatter,
@@ -8,15 +7,15 @@ import {
   ProjectType,
   Runner,
   StaticTyping,
-  WebAppProjectConfig,
+  WebApplicationProjectConfig,
 } from '@srclaunch/types';
 
-export default <WebAppProjectConfig>{
+export default <WebApplicationProjectConfig>{
   name: '@srclaunch/srclaunch-web',
   description: 'SrcLaunch Web App',
   type: ProjectType.WebApplication,
   build: {
-    platform: BuildPlatform.Browser,
+    platform: Platform.Browser,
     react: true,
     target: BuildTarget.Modules,
     tool: BuildTool.Vite,

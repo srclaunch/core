@@ -1,6 +1,6 @@
+import { Platform } from '../environment';
 import { BundleOptions } from './bundle';
 import { BuildFormat } from './format';
-import { BuildPlatform } from './platform';
 import { BuildTarget } from './target';
 import { BuildTool } from './tool';
 
@@ -27,7 +27,7 @@ export type BuildOptions = {
     readonly file?: string;
     readonly path?: string;
   };
-  readonly platform?: BuildPlatform;
+  readonly platform?: Platform;
   readonly react?: boolean;
   readonly sourcemap?: boolean;
   readonly splitting?: boolean;

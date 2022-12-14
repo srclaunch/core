@@ -1,7 +1,7 @@
 // import fs from 'fs-extra';
 // import path from 'node:path';
 // import { Exception } from '@srclaunch/exceptions';
-import { BuildFormat, BuildPlatform, WorkspaceConfig } from '@srclaunch/types';
+import { BuildFormat, Platform, WorkspaceConfig } from '@srclaunch/types';
 import path from 'node:path';
 import ora from 'ora';
 
@@ -70,7 +70,7 @@ export async function buildModels(config: WorkspaceConfig) {
       directory: 'sdk/types/dist',
       file: 'index.js',
     },
-    platform: BuildPlatform.Browser,
+    platform: Platform.Browser,
   });
   await buildTypes({
     input: {
@@ -99,7 +99,7 @@ export async function buildModels(config: WorkspaceConfig) {
       directory: 'sdk/sequelize-models/dist',
       file: 'index.js',
     },
-    platform: BuildPlatform.Node,
+    platform: Platform.Node,
   });
   await buildTypes({
     input: {
@@ -128,7 +128,7 @@ export async function buildModels(config: WorkspaceConfig) {
       directory: 'sdk/http-client/dist',
       file: 'index.js',
     },
-    platform: BuildPlatform.Browser,
+    platform: Platform.Browser,
   });
   await buildTypes({
     input: {
@@ -158,7 +158,7 @@ export async function buildModels(config: WorkspaceConfig) {
       directory: 'sdk/rtk-slices/dist',
       file: 'index.js',
     },
-    platform: BuildPlatform.Browser,
+    platform: Platform.Browser,
   });
   await buildTypes({
     input: {
@@ -192,7 +192,7 @@ export async function buildModels(config: WorkspaceConfig) {
       directory: 'sdk/core-api/dist',
       file: 'index.js',
     },
-    platform: BuildPlatform.Node,
+    platform: Platform.Node,
   });
   await buildTypes({
     input: {

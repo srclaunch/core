@@ -1,6 +1,6 @@
 import {
   BuildFormat,
-  BuildPlatform,
+  Platform,
   BuildTarget,
   BuildTool,
   CodeFormatter,
@@ -38,7 +38,7 @@ export default <LibraryConfig>{
     },
     formats: [BuildFormat.ESM, BuildFormat.IIFE],
     library: true,
-    platform: BuildPlatform.Universal,
+    platform: Platform.Universal,
     target: BuildTarget.ESNext,
     tool: BuildTool.ESBuild,
   },

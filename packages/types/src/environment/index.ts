@@ -2,6 +2,7 @@ import { DeploymentOptions } from '../deployment';
 import { DNSOptions } from '../deployment/infrastructure';
 import { CodeFormatter, CodeLinter, StaticTyping } from '../development';
 import { RunOptions } from '../run';
+export * from './platform';
 
 export enum EnvironmentType {
   CI = 'ci',

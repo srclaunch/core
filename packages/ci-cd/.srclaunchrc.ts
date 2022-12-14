@@ -1,6 +1,6 @@
 import {
   BuildFormat,
-  BuildPlatform,
+  Platform,
   BuildTarget,
   BuildTool,
   CodeFormatter,
@@ -36,7 +36,7 @@ export default <LibraryConfig>{
   },
   build: {
     formats: [BuildFormat.ESM, BuildFormat.CJS],
-    platform: BuildPlatform.Node,
+    platform: Platform.Node,
     tool: BuildTool.ESBuild,
   },
   release: {

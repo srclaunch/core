@@ -4,5 +4,5 @@ export const getPnpmWorkspaceConfigTemplate = ({
   readonly paths: ReadonlyArray<string>;
 }) =>
   `packages:
-  ${paths.map(path => `- ${path}`).join('\n')}
+    ${paths.map(path => `- ${path}`).join('\n')}
 `;

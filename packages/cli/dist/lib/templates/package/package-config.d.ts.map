@@ -1,1 +1,1 @@
-{"version":3,"file":"package-config.d.ts","sourceRoot":"","sources":["../../../../src/lib/templates/package/package-config.ts"],"names":[],"mappings":"AAAA,eAAO,MAAM,wBAAwB;;mBAMpB,MAAM;oBACL,MAAM;YAyFtB,CAAC"}
+{"version":3,"file":"package-config.d.ts","sourceRoot":"","sources":["../../../../src/lib/templates/package/package-config.ts"],"names":[],"mappings":"AAAA,eAAO,MAAM,wBAAwB;;mBAMpB,MAAM;;YA0FrB,CAAC"}

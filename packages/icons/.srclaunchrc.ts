@@ -1,7 +1,7 @@
 import {
   BrowserPackage,
   BuildFormat,
-  BuildPlatform,
+  Platform,
   BuildTarget,
   BuildTool,
   CodeFormatter,
@@ -34,7 +34,7 @@ export default <IconLibraryConfig>{
       // 'iconsets/dual-light/index.ts'
     },
     library: true,
-    platform: BuildPlatform.Browser,
+    platform: Platform.Browser,
     react: true,
     splitting: true,
     target: BuildTarget.Modules,

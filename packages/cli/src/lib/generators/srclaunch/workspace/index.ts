@@ -1,4 +1,4 @@
-import { Primitives } from '@srclaunch/types';
+import { Platform, Primitives } from '@srclaunch/types';
 
 import { CodeGenWorkflow } from '../../../codegen';
 import {
@@ -124,7 +124,10 @@ export class SrcLaunchWorkspaceGenerator extends CodeGenWorkflow {
           ],
         }),
       )
-      .addFile('.eslintrc.cjs', getESLintConfigTemplate())
+      .addFile(
+        '.eslintrc.cjs',
+        getESLintConfigTemplate({ platform: Platform.Universal }),
+      )
       .addFile(
         '.gitignore',
         getGitIgnoreTemplate({

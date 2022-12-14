@@ -1,7 +1,7 @@
 import {
   BrowserPackage,
   BuildFormat,
-  BuildPlatform,
+  Platform,
   BuildTarget,
   BuildTool,
   CodeFormatter,
@@ -31,7 +31,7 @@ export default <ThemeLibraryConfig>{
     },
     formats: [BuildFormat.ESM, BuildFormat.UMD],
     library: true,
-    platform: BuildPlatform.Browser,
+    platform: Platform.Browser,
     react: true,
     target: BuildTarget.Modules,
     tool: BuildTool.Vite,

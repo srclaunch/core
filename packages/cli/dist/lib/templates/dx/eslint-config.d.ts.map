@@ -1,1 +1,1 @@
-{"version":3,"file":"eslint-config.d.ts","sourceRoot":"","sources":["../../../../src/lib/templates/dx/eslint-config.ts"],"names":[],"mappings":"AAAA,eAAO,MAAM,uBAAuB,cAUnC,CAAC"}
+{"version":3,"file":"eslint-config.d.ts","sourceRoot":"","sources":["../../../../src/lib/templates/dx/eslint-config.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,kBAAkB,CAAC;AAE5C,eAAO,MAAM,uBAAuB;;;YAkBjC,CAAC"}

@@ -10,6 +10,10 @@ export declare type CreateFlags = TypedFlags<{
         readonly required: true;
         readonly type: 'string';
     };
+    readonly owner: {
+        readonly required: false;
+        readonly type: 'string';
+    };
     readonly type: {
         readonly required: true;
         readonly type: 'string';

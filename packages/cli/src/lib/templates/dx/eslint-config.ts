@@ -1,11 +1,21 @@
-export const getESLintConfigTemplate = () => `
-const base = require('@srclaunch/dx/.eslintrc.cjs');
+import { Platform } from '@srclaunch/types';
+
+export const getESLintConfigTemplate = ({
+  platform,
+  tsconfigPath,
+}: {
+  readonly platform?: Platform;
+  readonly tsconfigPath?: string;
+}) => `
+const base = require('@srclaunch/dx/.eslintrc.${
+  platform ? `${platform}.` : ''
+}cjs');
 
 module.exports = {
   ...base,
-  parserOptions: {
-    ...base.parserOptions,
-    project: './tsconfig.json',
-  },
-};
-`;
+  ${
+    tsconfigPath
+      ? `parserOptions: { ...base.parserOptions, project: '${tsconfigPath}' },`
+      : ''
+  };
+};`;

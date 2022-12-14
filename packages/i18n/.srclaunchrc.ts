@@ -1,6 +1,6 @@
 import {
   BuildFormat,
-  BuildPlatform,
+  Platform,
   BuildTarget,
   BuildTool,
   CodeFormatter,
@@ -28,7 +28,7 @@ export default <LibraryConfig>{
   build: {
     formats: [BuildFormat.ESM, BuildFormat.UMD],
     library: true,
-    platform: BuildPlatform.Node,
+    platform: Platform.Node,
     target: BuildTarget.Modules,
     tool: BuildTool.Vite,
   },

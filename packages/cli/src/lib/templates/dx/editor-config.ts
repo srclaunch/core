@@ -1,5 +1,4 @@
-export const getEditorConfigTemplate = () => `
-root = true
+export const getEditorConfigTemplate = () => `root = true
 
 [*]
 end_of_line = lf
