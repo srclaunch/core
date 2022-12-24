@@ -28,7 +28,6 @@ export async function renderDocumentation(config?: DocumentationConfig) {
           // console.log('routes', routes);
           renderReduxWebApp({
             authentication: false,
-            container: <WebApplication />,
             options,
             routes,
             store,

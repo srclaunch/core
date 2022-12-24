@@ -18,22 +18,25 @@
   "files": [
     ".commitlintrc.mjs",
     ".commitlintrc.cjs",
+    ".eslintrc.browser.mjs",
+    ".eslintrc.browser.cjs",
     ".eslintrc.mjs",
     ".eslintrc.cjs",
-    ".eslintrc.ui.mjs",
-    ".eslintrc.ui.cjs",
+    ".eslintrc.node.mjs",
+    ".eslintrc.node.cjs",
     ".prettierrc.mjs",
     ".prettierrc.cjs",
     ".stylelintrc.mjs",
     ".stylelintrc.cjs",
-    ".stylelintrc.ui.mjs",
-    ".stylelintrc.ui.cjs",
     ".versionrc.mjs",
     ".versionrc.cjs",
     "ava.config.mjs",
     "ava.config.cjs",
     "jest.config.mjs",
-    "jest.config.cjs"
+    "jest.config.cjs",
+    "tsconfig.json",
+    "tsconfig.browser.json",
+    "tsconfig.node.json"
   ],
   "exports": {
     "./.commitlintrc": {
@@ -44,9 +47,13 @@
       "import": "./.eslintrc.mjs",
       "require": "./.eslintrc.cjs"
     },
-    "./.eslintrc.ui": {
-      "import": "./.eslintrc.ui.mjs",
-      "require": "./.eslintrc.ui.cjs"
+    "./.eslintrc.browser": {
+      "import": "./.eslintrc.browser.mjs",
+      "require": "./.eslintrc.browser.cjs"
+    },
+    "./.eslintrc.node": {
+      "import": "./.eslintrc.node.mjs",
+      "require": "./.eslintrc.node.cjs"
     },
     "./.prettierrc": {
       "import": "./.prettierrc.mjs",
@@ -59,10 +66,6 @@
     "./.stylelintrc": {
       "import": "./.stylelintrc.mjs",
       "require": "./.stylelintrc.cjs"
-    },
-    "./.stylelintrc.ui": {
-      "import": "./.stylelintrc.ui.mjs",
-      "require": "./.stylelintrc.ui.cjs"
     },
     "./.versionrc": {
       "import": "./.versionrc.mjs",
@@ -80,9 +83,13 @@
       "import": "./tsconfig.json",
       "require": "./tsconfig.json"
     },
-    "./tsconfig.ui.json": {
-      "import": "./tsconfig.ui.json",
-      "require": "./tsconfig.ui.json"
+    "./tsconfig.browser.json": {
+      "import": "./tsconfig.browser.json",
+      "require": "./tsconfig.browser.json"
+    },
+    "./tsconfig.node.json": {
+      "import": "./tsconfig.node.json",
+      "require": "./tsconfig.node.json"
     }
   }
 }

@@ -12,6 +12,7 @@
     "build:graph": "turbo run build --color --graph=media/images/dependencies-graph.svg",
     "build:models": "srclaunch models build",
     "create-test-workspace": "rm -fr ./test-workspace && mkdir ./test-workspace && cd ./test-workspace && srclaunch create workspace",
+    "create-test-project": "pnpm create-test-workspace && rm -fr ./test-workspace/app/test && cd ./test-workspace && srclaunch create project --type=web-application --name=test",
     "deploy": "turbo run deploy --color --concurrency=1",
     "deploy:local": "dotenv -e .env turbo run 'deploy:local' --color --concurrency=1",
     "dev": "srclaunch dev",

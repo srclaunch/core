@@ -20,7 +20,7 @@ export default {
 };`;
 
 // .stylelintrc.js
-export const STYLELINT_UI_CONFIG_CONTENT = `import base from '@srclaunch/dx/.stylelintrc.ui';
+export const STYLELINT_UI_CONFIG_CONTENT = `import base from '@srclaunch/dx/.stylelintrc';
 
 export default {
   ...base

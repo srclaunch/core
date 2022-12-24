@@ -65,10 +65,10 @@ module.exports = {
 };
 ```
 
-Use `@srclaunch/dx/.eslintrc.ui` for configuration optimized for frontend development.
+Use `@srclaunch/dx/.eslintrc.browser` for configuration optimized for frontend development.
 
 ```js
-const base = require("@srclaunch/dx/.eslintrc.ui");
+const base = require("@srclaunch/dx/.eslintrc.browser");
 
 module.exports = {
   ...base,

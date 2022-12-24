@@ -20,6 +20,7 @@ import { getPackageConfigTemplate } from '../../../templates/package/package-con
 import { getChangeLogTemplate } from '../../../templates/project/changelog';
 import { getLicenseTemplate } from '../../../templates/project/license';
 import { getReadmeTemplate } from '../../../templates/project/readme';
+import { getExampleIndexPageComponent } from '../../../templates/project/web-application/example-index-page';
 import { getSrcLaunchModelTemplate } from '../../../templates/srclaunch/model';
 import { getSrcLaunchWorkspaceConfigTemplate } from '../../../templates/srclaunch/workspace-config';
 import { getPnpmWorkspaceConfigTemplate } from '../../../templates/workspace/pnpm-workspace';
@@ -37,45 +38,46 @@ export class SrcLaunchWebApplicationGenerator extends CodeGenWorkflow {
 
     const { description, name, owner } = options;
 
-    this.createDirectory('.github')
-      .createDirectory('.github/workflows')
-      .createDirectory('.srclaunch')
-      .createDirectory('assets')
-      .createDirectory('src')
-      .createDirectory('src/components')
-      .createDirectory('src/layouts')
-      .createDirectory('src/pages')
-      .createDirectory('src/state')
+    this.createDirectory(`./apps/${name}/.github`)
+      .createDirectory(`./apps/${name}/.github/workflows`)
+      .createDirectory(`./apps/${name}/.srclaunch`)
+      .addFile('./tsconfig.json', getTypeScriptConfigTemplate())
+      .createDirectory(`./apps/${name}/assets`)
+      .createDirectory(`./apps/${name}/src`)
+      .createDirectory(`./apps/${name}/src/components`)
+      .createDirectory(`./apps/${name}/src/layouts`)
+      .createDirectory(`./apps/${name}/src/pages`)
+      .addFile(`./apps/${name}/pages/index.tsx`, getExampleIndexPageComponent())
+      .createDirectory(`./apps/${name}/src/state`)
       // .addFile('src/index.html', getSrcLaunchWebApplicationIndexHtmlTemplate())
       // .addFile('src/index.tsx', getSrcLaunchWebApplicationIndexTsTemplate())
       // .addFile('src/react-app-env.d.ts', getSrcLaunchWebApplicationReactAppEnvDtsTemplate())
       // .addFile('src/routes.ts', getSrcLaunchWebApplicationRoutesTsTemplate())
 
       .addFile(
-        '.eslintrc.cjs',
+        `./apps/${name}/.eslintrc.cjs`,
         getESLintConfigTemplate({
           platform: Platform.Browser,
         }),
       )
-
-      .addFile('.prettierrc.cjs', getPrettierConfigTemplate())
+      .addFile(`./apps/${name}/.prettierrc.cjs`, getPrettierConfigTemplate())
       .addFile(
-        '.srclaunchrc.ts',
+        `./apps/${name}/.srclaunchrc.ts`,
         getSrcLaunchWorkspaceConfigTemplate({ name, owner }),
       )
-      .addFile('.stylelintrc.js', getStyleLintConfigTemplate())
-      .addFile('CHANGELOG.md', getChangeLogTemplate())
+      .addFile(`./apps/${name}/.stylelintrc.js`, getStyleLintConfigTemplate())
+      .addFile(`./apps/${name}/CHANGELOG.md`, getChangeLogTemplate())
       // .addFile('commitlint.config.cjs', '')
-      .addFile('LICENSE.md', getLicenseTemplate())
+      .addFile(`./apps/${name}/LICENSE.md`, getLicenseTemplate())
       .addFile(
-        'package.json',
+        `./apps/${name}/package.json`,
         getPackageConfigTemplate({
           description,
           name,
           owner,
         }),
       )
-      .addFile('tsconfig.json', getTypeScriptConfigTemplate())
-      .addFile('README.md', getReadmeTemplate({ name, owner }));
+      .addFile(`./apps/${name}/tsconfig.json`, getTypeScriptConfigTemplate())
+      .addFile(`./apps/${name}/README.md`, getReadmeTemplate({ name, owner }));
   }
 }

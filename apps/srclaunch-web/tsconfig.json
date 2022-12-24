@@ -1,5 +1,5 @@
 {
-  "extends": "@srclaunch/dx/tsconfig.ui.json",
+  "extends": "@srclaunch/dx/tsconfig.browser.json",
   "compilerOptions": {
     "types": ["vite/client"]
   },

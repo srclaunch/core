@@ -4,8 +4,8 @@ export const TYPESCRIPT_CONFIG_CONTENT = `{
   "include": ["src"] 
 }`;
 
-// tsconfig.ui.json
+// tsconfig.browser.json
 export const TYPESCRIPT_UI_CONFIG_CONTENT = `{
-  "extends": "@srclaunch/dx/tsconfig.ui.json",
+  "extends": "@srclaunch/dx/tsconfig.browser.json",
   "include": ["src"] 
 }`;

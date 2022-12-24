@@ -54,6 +54,16 @@ export default new Command<ProjectConfig & WorkspaceConfig>({
       description: 'Create a SrcLaunch project',
       name: 'project',
       async run({ flags }): Promise<void> {
+        console.info('Creating project...');
+
+        if (!flags.type) {
+          throw new Error('Project type is required');
+        }
+
+        if (!flags.name) {
+          throw new Error('Project name is required');
+        }
+
         switch (flags.type) {
           case ProjectType.WebApplication: {
             const generator = new SrcLaunchWebApplicationGenerator({

@@ -1,5 +1,9 @@
 export default {
-  extends: ["stylelint-config-recommended", "stylelint-config-prettier"],
+  extends: [
+    "stylelint-config-recommended",
+    "stylelint-config-prettier",
+    "stylelint-config-styled-components"
+  ],
   plugins: ["stylelint-order"],
   rules: {
     "block-opening-brace-newline-before": "always-single-line",
