@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.19.25
+
+### Patch Changes
+
+- Updated dependencies
+  - @srclaunch/web-environment@4.0.1
+
 ## 3.19.24
 
 ### Patch Changes

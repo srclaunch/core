@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.19.25
+
+### Patch Changes
+
+- @srclaunch/web-app-state@3.19.25
+
 ## 3.19.24
 
 ### Patch Changes

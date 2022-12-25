@@ -1,5 +1,5 @@
 import { Environment, EnvironmentType } from '@srclaunch/types';
-// COmment for deploy
+
 const developmentEnvironment: Environment = {
   description: 'Development environment',
   id: 'dev',

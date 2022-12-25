@@ -1,5 +1,13 @@
 # @srclaunch/ui
 
+## 3.20.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @srclaunch/web-environment@4.0.1
+  - @srclaunch/web-app-state@3.19.25
+
 ## 3.20.0
 
 ### Minor Changes
