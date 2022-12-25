@@ -1,0 +1,68 @@
+{
+  "description": "",
+  "file": {
+    "name": "modal.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/modals"
+  },
+  "hierarchy": [
+    "modals"
+  ],
+  "name": "Modal",
+  "props": {
+    "children": {
+      "defaultValue": null,
+      "description": "",
+      "name": "children",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/modals/modal.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "ReactElement<any, string | JSXElementConstructor<any>>"
+      }
+    },
+    "setVisible": {
+      "defaultValue": null,
+      "description": "",
+      "name": "setVisible",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/modals/modal.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "(visible: boolean) => unknown"
+      }
+    },
+    "visible": {
+      "defaultValue": null,
+      "description": "",
+      "name": "visible",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/modals/modal.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "enum",
+        "raw": "boolean",
+        "value": [
+          {
+            "value": "false"
+          },
+          {
+            "value": "true"
+          }
+        ]
+      }
+    }
+  },
+  "tags": {}
+}

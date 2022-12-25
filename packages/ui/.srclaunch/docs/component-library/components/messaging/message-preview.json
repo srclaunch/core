@@ -1,0 +1,13 @@
+{
+  "description": "",
+  "file": {
+    "name": "message-preview.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/messaging"
+  },
+  "hierarchy": [
+    "messaging"
+  ],
+  "name": "MessagePreview",
+  "props": {},
+  "tags": {}
+}

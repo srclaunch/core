@@ -1,0 +1,15 @@
+{
+  "description": "",
+  "file": {
+    "name": "subscription-modal.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/billing/subscriptions/plans"
+  },
+  "hierarchy": [
+    "billing",
+    "subscriptions",
+    "plans"
+  ],
+  "name": "SubscriptionModal",
+  "props": {},
+  "tags": {}
+}

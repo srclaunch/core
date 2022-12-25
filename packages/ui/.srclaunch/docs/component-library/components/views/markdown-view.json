@@ -1,0 +1,29 @@
+{
+  "description": "",
+  "file": {
+    "name": "markdown-view.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/views"
+  },
+  "hierarchy": [
+    "views"
+  ],
+  "name": "MarkdownView",
+  "props": {
+    "content": {
+      "defaultValue": null,
+      "description": "",
+      "name": "content",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/views/markdown-view.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "string"
+      }
+    }
+  },
+  "tags": {}
+}

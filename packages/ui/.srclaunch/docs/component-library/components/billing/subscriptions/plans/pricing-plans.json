@@ -1,0 +1,15 @@
+{
+  "description": "",
+  "file": {
+    "name": "pricing-plans.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/billing/subscriptions/plans"
+  },
+  "hierarchy": [
+    "billing",
+    "subscriptions",
+    "plans"
+  ],
+  "name": "PricingPlans",
+  "props": {},
+  "tags": {}
+}

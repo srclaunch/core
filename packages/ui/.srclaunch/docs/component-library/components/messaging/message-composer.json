@@ -1,0 +1,13 @@
+{
+  "description": "",
+  "file": {
+    "name": "message-composer.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/messaging"
+  },
+  "hierarchy": [
+    "messaging"
+  ],
+  "name": "MessageComposer",
+  "props": {},
+  "tags": {}
+}

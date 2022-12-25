@@ -1,0 +1,15 @@
+{
+  "description": "",
+  "file": {
+    "name": "tag-input.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/forms/inputs/menu"
+  },
+  "hierarchy": [
+    "forms",
+    "inputs",
+    "menu"
+  ],
+  "name": "TagInput",
+  "props": {},
+  "tags": {}
+}

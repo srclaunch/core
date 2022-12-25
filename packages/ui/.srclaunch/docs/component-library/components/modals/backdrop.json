@@ -1,0 +1,13 @@
+{
+  "description": "",
+  "file": {
+    "name": "backdrop.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/modals"
+  },
+  "hierarchy": [
+    "modals"
+  ],
+  "name": "Backdrop",
+  "props": {},
+  "tags": {}
+}

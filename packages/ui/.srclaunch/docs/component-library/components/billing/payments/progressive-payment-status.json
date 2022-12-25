@@ -1,0 +1,1125 @@
+{
+  "description": "",
+  "file": {
+    "name": "progressive-payment-status.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/billing/payments"
+  },
+  "hierarchy": [
+    "billing",
+    "payments"
+  ],
+  "name": "ProgressivePaymentStatus",
+  "props": {
+    "amountPaid": {
+      "defaultValue": null,
+      "description": "",
+      "name": "amountPaid",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/billing/payments/progressive-payment-status.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "number"
+      }
+    },
+    "color": {
+      "defaultValue": null,
+      "description": "",
+      "name": "color",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/billing/payments/progressive-payment-status.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "Color",
+        "value": [
+          {
+            "value": "\"var(--color-black-rgb)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--color-error-rgb)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--color-info-rgb)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"inherit\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--color-primary-rgb)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--color-secondary-rgb)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--color-success-rgb)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"transparent\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--color-warning-rgb)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--color-white-rgb)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          }
+        ]
+      }
+    },
+    "currency": {
+      "defaultValue": null,
+      "description": "",
+      "name": "currency",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/billing/payments/progressive-payment-status.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "CurrencyCode",
+        "value": [
+          {
+            "value": "\"AFN\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"ALL\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"AMD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"DZD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"WST\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"AOA\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"ARS\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"AUD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"AWG\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"AZN\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"BAM\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"BHD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"BBD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"BDT\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"BGN\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"BMD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"BND\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"BOB\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"BRL\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"BSD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"BTN\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"BWP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"BYN\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"BZD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"BIF\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"GBP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"CAD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"KHR\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"KMF\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"KYD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"CLP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"CNY\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"COP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"CRC\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"HRK\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"CUC\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"CUP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"CVE\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"CYP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"CZK\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"DJF\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"DKK\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"XCD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"DOP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"EGP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"SVC\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"GQE\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"ERN\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"EEK\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"ETB\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"EUR\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"FJD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"FKP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"GMD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"GEL\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"GHS\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"GIP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"GTQ\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"GGP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"GWP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"GYD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"HKD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"HNL\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"HTG\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"HUF\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"IDR\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"IMP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"ILS\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"INR\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"IQD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"IRR\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"ISK\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"JMD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"JPY\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"JEP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"JOD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"KZT\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"KES\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"KGS\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"KPW\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"KRW\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"KWD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"LAK\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"LBP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"LRD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"LSL\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"LYD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"LTL\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"LVL\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"MOP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"MVR\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"MWK\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"MTL\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"MUR\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"MNT\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"MAD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"MDL\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"MZN\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"MGA\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"MKD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"MXN\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"MYR\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"MMK\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"USD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"NIO\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"NAD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"ANG\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"XPF\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"NGN\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"XOF\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"NOK\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"NPR\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"NZD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"OMR\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"PAB\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"PEN\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"PGK\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"PHP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"PKR\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"PLN\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"PYG\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"QAR\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"RON\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"RSD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"LKR\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"RUB\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"RWF\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"SAR\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"SKK\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"SIT\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"SBD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"SCR\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"SDG\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"SEK\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"SGD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"SHP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"SLL\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"SOS\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"SRD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"SXD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"SYP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"SZL\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"CHF\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"THB\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"TJS\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"TMT\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"TND\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"TOP\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"TRY\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"TTD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"TWD\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"TZS\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"AED\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"UAH\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"UGX\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"UYU\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"UZS\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"VEF\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"VND\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"VUV\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"YER\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"ZAR\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"ZMW\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"ZWL\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          }
+        ]
+      }
+    },
+    "totalDue": {
+      "defaultValue": null,
+      "description": "",
+      "name": "totalDue",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/billing/payments/progressive-payment-status.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "number"
+      }
+    }
+  },
+  "tags": {}
+}

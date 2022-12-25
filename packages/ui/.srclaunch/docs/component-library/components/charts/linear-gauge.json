@@ -1,0 +1,221 @@
+{
+  "description": "",
+  "file": {
+    "name": "linear-gauge.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/charts"
+  },
+  "hierarchy": [
+    "charts"
+  ],
+  "name": "LinearGauge",
+  "props": {
+    "amount": {
+      "defaultValue": null,
+      "description": "",
+      "name": "amount",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/charts/linear-gauge.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "number"
+      }
+    },
+    "formatter": {
+      "defaultValue": null,
+      "description": "",
+      "name": "formatter",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/charts/linear-gauge.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "FormatterProps"
+      }
+    },
+    "label": {
+      "defaultValue": null,
+      "description": "",
+      "name": "label",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/charts/linear-gauge.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "showTickLabels": {
+      "defaultValue": null,
+      "description": "",
+      "name": "showTickLabels",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/charts/linear-gauge.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "boolean",
+        "value": [
+          {
+            "value": "false"
+          },
+          {
+            "value": "true"
+          }
+        ]
+      }
+    },
+    "showTicks": {
+      "defaultValue": null,
+      "description": "",
+      "name": "showTicks",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/charts/linear-gauge.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "boolean",
+        "value": [
+          {
+            "value": "false"
+          },
+          {
+            "value": "true"
+          }
+        ]
+      }
+    },
+    "showValue": {
+      "defaultValue": null,
+      "description": "",
+      "name": "showValue",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/charts/linear-gauge.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "boolean",
+        "value": [
+          {
+            "value": "false"
+          },
+          {
+            "value": "true"
+          }
+        ]
+      }
+    },
+    "size": {
+      "defaultValue": null,
+      "description": "",
+      "name": "size",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/charts/linear-gauge.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "Size",
+        "value": [
+          {
+            "value": "\"var(--size-default)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--size-large)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--size-larger)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--size-largest)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--size-small)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--size-smaller)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--size-smallest)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          }
+        ]
+      }
+    },
+    "tickCount": {
+      "defaultValue": null,
+      "description": "",
+      "name": "tickCount",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/charts/linear-gauge.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "number"
+      }
+    },
+    "total": {
+      "defaultValue": null,
+      "description": "",
+      "name": "total",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/charts/linear-gauge.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "number"
+      }
+    }
+  },
+  "tags": {}
+}

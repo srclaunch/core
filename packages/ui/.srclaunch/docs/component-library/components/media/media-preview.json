@@ -1,0 +1,13 @@
+{
+  "description": "",
+  "file": {
+    "name": "media-preview.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/media"
+  },
+  "hierarchy": [
+    "media"
+  ],
+  "name": "MediaPreview",
+  "props": {},
+  "tags": {}
+}

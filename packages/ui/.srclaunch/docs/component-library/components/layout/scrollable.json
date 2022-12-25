@@ -1,0 +1,13 @@
+{
+  "description": "",
+  "file": {
+    "name": "scrollable.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/layout"
+  },
+  "hierarchy": [
+    "layout"
+  ],
+  "name": "Scrollable",
+  "props": {},
+  "tags": {}
+}

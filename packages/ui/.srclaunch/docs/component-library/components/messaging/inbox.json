@@ -1,0 +1,13 @@
+{
+  "description": "",
+  "file": {
+    "name": "inbox.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/messaging"
+  },
+  "hierarchy": [
+    "messaging"
+  ],
+  "name": "Inbox",
+  "props": {},
+  "tags": {}
+}

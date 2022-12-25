@@ -1,0 +1,74 @@
+{
+  "description": "",
+  "file": {
+    "name": "progress-spinner.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/progress"
+  },
+  "hierarchy": [
+    "progress"
+  ],
+  "name": "ProgressSpinner",
+  "props": {
+    "size": {
+      "defaultValue": null,
+      "description": "",
+      "name": "size",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/progress/progress-spinner.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "Size",
+        "value": [
+          {
+            "value": "\"var(--size-default)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--size-large)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--size-larger)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--size-largest)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--size-small)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--size-smaller)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--size-smallest)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          }
+        ]
+      }
+    }
+  },
+  "tags": {}
+}

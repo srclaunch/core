@@ -1,0 +1,76 @@
+{
+  "description": "",
+  "file": {
+    "name": "container.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/layout"
+  },
+  "hierarchy": [
+    "layout"
+  ],
+  "name": "Container",
+  "props": {
+    "ref": {
+      "defaultValue": null,
+      "description": "",
+      "name": "ref",
+      "parent": {
+        "fileName": "srclaunch/node_modules/.pnpm/@types+react@18.0.14/node_modules/@types/react/index.d.ts",
+        "name": "RefAttributes"
+      },
+      "declarations": [
+        {
+          "fileName": "srclaunch/node_modules/.pnpm/@types+react@18.0.14/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "Ref<unknown>",
+        "value": [
+          {
+            "value": "(instance: unknown) => void",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "RefObject<unknown>",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          }
+        ]
+      }
+    },
+    "key": {
+      "defaultValue": null,
+      "description": "",
+      "name": "key",
+      "parent": {
+        "fileName": "srclaunch/node_modules/.pnpm/@types+react@18.0.14/node_modules/@types/react/index.d.ts",
+        "name": "Attributes"
+      },
+      "declarations": [
+        {
+          "fileName": "srclaunch/node_modules/.pnpm/@types+react@18.0.14/node_modules/@types/react/index.d.ts",
+          "name": "Attributes"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "Key",
+        "value": [
+          {
+            "value": "string"
+          },
+          {
+            "value": "number"
+          }
+        ]
+      }
+    }
+  },
+  "tags": {}
+}

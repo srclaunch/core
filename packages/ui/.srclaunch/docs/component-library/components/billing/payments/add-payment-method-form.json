@@ -1,0 +1,45 @@
+{
+  "description": "",
+  "file": {
+    "name": "add-payment-method-form.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/billing/payments"
+  },
+  "hierarchy": [
+    "billing",
+    "payments"
+  ],
+  "name": "AddPaymentMethodForm",
+  "props": {
+    "cancel": {
+      "defaultValue": null,
+      "description": "",
+      "name": "cancel",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/billing/payments/add-payment-method-form.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "() => unknown"
+      }
+    },
+    "paymentMethodsCount": {
+      "defaultValue": null,
+      "description": "",
+      "name": "paymentMethodsCount",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/billing/payments/add-payment-method-form.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "number"
+      }
+    }
+  },
+  "tags": {}
+}

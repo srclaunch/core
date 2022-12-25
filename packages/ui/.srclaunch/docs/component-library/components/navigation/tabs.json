@@ -1,0 +1,13 @@
+{
+  "description": "",
+  "file": {
+    "name": "tabs.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/navigation"
+  },
+  "hierarchy": [
+    "navigation"
+  ],
+  "name": "Tabs",
+  "props": {},
+  "tags": {}
+}

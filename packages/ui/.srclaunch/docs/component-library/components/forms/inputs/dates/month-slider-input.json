@@ -1,0 +1,15 @@
+{
+  "description": "",
+  "file": {
+    "name": "month-slider-input.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/forms/inputs/dates"
+  },
+  "hierarchy": [
+    "forms",
+    "inputs",
+    "dates"
+  ],
+  "name": "MonthSlider",
+  "props": {},
+  "tags": {}
+}

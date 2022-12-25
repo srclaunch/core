@@ -1,0 +1,13 @@
+{
+  "description": "",
+  "file": {
+    "name": "breadcrumb-navigation.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/navigation"
+  },
+  "hierarchy": [
+    "navigation"
+  ],
+  "name": "BreadcrumbNavigation",
+  "props": {},
+  "tags": {}
+}

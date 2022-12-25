@@ -1,0 +1,13 @@
+{
+  "description": "",
+  "file": {
+    "name": "image.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/media"
+  },
+  "hierarchy": [
+    "media"
+  ],
+  "name": "Image",
+  "props": {},
+  "tags": {}
+}

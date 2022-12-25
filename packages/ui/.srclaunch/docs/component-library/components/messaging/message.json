@@ -1,0 +1,224 @@
+{
+  "description": "",
+  "file": {
+    "name": "message.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/messaging"
+  },
+  "hierarchy": [
+    "messaging"
+  ],
+  "name": "Message",
+  "props": {
+    "attachments": {
+      "defaultValue": null,
+      "description": "",
+      "name": "attachments",
+      "declarations": [
+        {
+          "fileName": "packages/types/dist/communications/chat/message.d.ts",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "readonly { readonly type: ChatMessageAttachmentType; readonly url: string; }[]"
+      }
+    },
+    "body": {
+      "defaultValue": null,
+      "description": "",
+      "name": "body",
+      "declarations": [
+        {
+          "fileName": "packages/types/dist/communications/chat/message.d.ts",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "string"
+      }
+    },
+    "date": {
+      "defaultValue": null,
+      "description": "",
+      "name": "date",
+      "declarations": [
+        {
+          "fileName": "packages/types/dist/communications/chat/message.d.ts",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "string"
+      }
+    },
+    "id": {
+      "defaultValue": null,
+      "description": "",
+      "name": "id",
+      "declarations": [
+        {
+          "fileName": "packages/types/dist/communications/chat/message.d.ts",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "reactions": {
+      "defaultValue": null,
+      "description": "",
+      "name": "reactions",
+      "declarations": [
+        {
+          "fileName": "packages/types/dist/communications/chat/message.d.ts",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "readonly { readonly type: ChatMessageReactionType; }[]"
+      }
+    },
+    "recipients": {
+      "defaultValue": null,
+      "description": "",
+      "name": "recipients",
+      "declarations": [
+        {
+          "fileName": "packages/types/dist/communications/chat/message.d.ts",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "readonly Person[]"
+      }
+    },
+    "sender": {
+      "defaultValue": null,
+      "description": "",
+      "name": "sender",
+      "declarations": [
+        {
+          "fileName": "packages/types/dist/communications/chat/message.d.ts",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "{ readonly avatar?: string; readonly id: string; readonly name: string; }"
+      }
+    },
+    "status": {
+      "defaultValue": null,
+      "description": "",
+      "name": "status",
+      "declarations": [
+        {
+          "fileName": "packages/types/dist/communications/chat/message.d.ts",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "ChatMessageStatus",
+        "value": [
+          {
+            "value": "\"delivered\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"read\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"sending\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"sent\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          }
+        ]
+      }
+    },
+    "subject": {
+      "defaultValue": null,
+      "description": "",
+      "name": "subject",
+      "declarations": [
+        {
+          "fileName": "packages/types/dist/communications/chat/message.d.ts",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "type": {
+      "defaultValue": null,
+      "description": "",
+      "name": "type",
+      "declarations": [
+        {
+          "fileName": "packages/types/dist/communications/chat/message.d.ts",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "ChatMessageType",
+        "value": [
+          {
+            "value": "\"audio\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"file\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"image\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"text\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"video\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          }
+        ]
+      }
+    }
+  },
+  "tags": {}
+}

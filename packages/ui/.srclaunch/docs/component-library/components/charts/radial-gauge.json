@@ -1,0 +1,122 @@
+{
+  "description": "",
+  "file": {
+    "name": "radial-gauge.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/charts"
+  },
+  "hierarchy": [
+    "charts"
+  ],
+  "name": "RadialGauge",
+  "props": {
+    "color": {
+      "defaultValue": null,
+      "description": "",
+      "name": "color",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/charts/radial-gauge.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "enum",
+        "raw": "Color",
+        "value": [
+          {
+            "value": "\"var(--color-black-rgb)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--color-error-rgb)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--color-info-rgb)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"inherit\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--color-primary-rgb)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--color-secondary-rgb)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--color-success-rgb)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"transparent\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--color-warning-rgb)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "\"var(--color-white-rgb)\"",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          }
+        ]
+      }
+    },
+    "size": {
+      "defaultValue": null,
+      "description": "",
+      "name": "size",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/charts/radial-gauge.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "number"
+      }
+    },
+    "value": {
+      "defaultValue": null,
+      "description": "",
+      "name": "value",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/charts/radial-gauge.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "number"
+      }
+    }
+  },
+  "tags": {}
+}

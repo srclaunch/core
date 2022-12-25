@@ -1,0 +1,59 @@
+{
+  "description": "",
+  "file": {
+    "name": "connection-status.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/networking"
+  },
+  "hierarchy": [
+    "networking"
+  ],
+  "name": "ConnectionStatus",
+  "props": {
+    "pollingInterval": {
+      "defaultValue": null,
+      "description": "",
+      "name": "pollingInterval",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/networking/connection-status.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "number"
+      }
+    },
+    "successStatus": {
+      "defaultValue": null,
+      "description": "",
+      "name": "successStatus",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/networking/connection-status.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "number"
+      }
+    },
+    "url": {
+      "defaultValue": null,
+      "description": "",
+      "name": "url",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/networking/connection-status.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    }
+  },
+  "tags": {}
+}

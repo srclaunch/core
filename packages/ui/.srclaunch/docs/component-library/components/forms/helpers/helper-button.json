@@ -1,0 +1,30 @@
+{
+  "description": "",
+  "file": {
+    "name": "helper-button.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/forms/helpers"
+  },
+  "hierarchy": [
+    "forms",
+    "helpers"
+  ],
+  "name": "HelperButton",
+  "props": {
+    "content": {
+      "defaultValue": null,
+      "description": "",
+      "name": "content",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/forms/helpers/helper-button.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "ReactElement<any, string | JSXElementConstructor<any>>"
+      }
+    }
+  },
+  "tags": {}
+}

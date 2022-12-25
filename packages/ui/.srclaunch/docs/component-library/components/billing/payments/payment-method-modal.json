@@ -1,0 +1,69 @@
+{
+  "description": "",
+  "file": {
+    "name": "payment-method-modal.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/billing/payments"
+  },
+  "hierarchy": [
+    "billing",
+    "payments"
+  ],
+  "name": "PaymentMethodModal",
+  "props": {
+    "paymentMethods": {
+      "defaultValue": null,
+      "description": "",
+      "name": "paymentMethods",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/billing/payments/payment-method-modal.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "readonly PaymentMethod[]"
+      }
+    },
+    "premium": {
+      "defaultValue": null,
+      "description": "",
+      "name": "premium",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/billing/payments/payment-method-modal.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "UserMembershipDetails"
+      }
+    },
+    "visible": {
+      "defaultValue": null,
+      "description": "",
+      "name": "visible",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/billing/payments/payment-method-modal.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "enum",
+        "raw": "boolean",
+        "value": [
+          {
+            "value": "false"
+          },
+          {
+            "value": "true"
+          }
+        ]
+      }
+    }
+  },
+  "tags": {}
+}

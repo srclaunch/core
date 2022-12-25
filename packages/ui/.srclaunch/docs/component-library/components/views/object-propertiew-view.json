@@ -1,0 +1,13 @@
+{
+  "description": "",
+  "file": {
+    "name": "object-propertiew-view.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/views"
+  },
+  "hierarchy": [
+    "views"
+  ],
+  "name": "ObjectPropertiesView",
+  "props": {},
+  "tags": {}
+}

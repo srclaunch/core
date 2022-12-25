@@ -1,0 +1,101 @@
+{
+  "description": "",
+  "file": {
+    "name": "object-link.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/navigation"
+  },
+  "hierarchy": [
+    "navigation"
+  ],
+  "name": "ObjectLink",
+  "props": {
+    "children": {
+      "defaultValue": null,
+      "description": "",
+      "name": "children",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/navigation/object-link.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "ReactNode",
+        "value": [
+          {
+            "value": "string"
+          },
+          {
+            "value": "number"
+          },
+          {
+            "value": "false"
+          },
+          {
+            "value": "true"
+          },
+          {
+            "value": "ReactElement<any, string | JSXElementConstructor<any>>",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "ReactFragment",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          },
+          {
+            "value": "ReactPortal",
+            "description": "",
+            "fullComment": "",
+            "tags": {}
+          }
+        ]
+      }
+    },
+    "disabled": {
+      "defaultValue": null,
+      "description": "",
+      "name": "disabled",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/navigation/object-link.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "boolean",
+        "value": [
+          {
+            "value": "false"
+          },
+          {
+            "value": "true"
+          }
+        ]
+      }
+    },
+    "onClick": {
+      "defaultValue": null,
+      "description": "",
+      "name": "onClick",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/navigation/object-link.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "() => void"
+      }
+    }
+  },
+  "tags": {}
+}

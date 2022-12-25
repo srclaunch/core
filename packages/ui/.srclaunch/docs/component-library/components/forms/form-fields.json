@@ -1,0 +1,59 @@
+{
+  "description": "",
+  "file": {
+    "name": "form-fields.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/forms"
+  },
+  "hierarchy": [
+    "forms"
+  ],
+  "name": "FormFields",
+  "props": {
+    "entity": {
+      "defaultValue": null,
+      "description": "",
+      "name": "entity",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/forms/form-fields.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "{ readonly id?: string; } & { readonly [f: string]: unknown; }"
+      }
+    },
+    "fields": {
+      "defaultValue": null,
+      "description": "",
+      "name": "fields",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/forms/form-fields.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "readonly FormField[]"
+      }
+    },
+    "onChange": {
+      "defaultValue": null,
+      "description": "",
+      "name": "onChange",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/forms/form-fields.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "(fields: { readonly [name: string]: FormField; }) => unknown"
+      }
+    }
+  },
+  "tags": {}
+}

@@ -1,0 +1,14 @@
+{
+  "description": "",
+  "file": {
+    "name": "input-helper.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/forms/helpers"
+  },
+  "hierarchy": [
+    "forms",
+    "helpers"
+  ],
+  "name": "InputHelper",
+  "props": {},
+  "tags": {}
+}

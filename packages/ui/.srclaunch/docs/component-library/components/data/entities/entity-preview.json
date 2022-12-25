@@ -1,0 +1,45 @@
+{
+  "description": "",
+  "file": {
+    "name": "entity-preview.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/data/entities"
+  },
+  "hierarchy": [
+    "data",
+    "entities"
+  ],
+  "name": "EntityPreview",
+  "props": {
+    "id": {
+      "defaultValue": null,
+      "description": "",
+      "name": "id",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/data/entities/entity-preview.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "model": {
+      "defaultValue": null,
+      "description": "",
+      "name": "model",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/data/entities/entity-preview.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "Model"
+      }
+    }
+  },
+  "tags": {}
+}

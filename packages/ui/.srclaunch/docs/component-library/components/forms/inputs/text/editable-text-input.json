@@ -1,0 +1,46 @@
+{
+  "description": "",
+  "file": {
+    "name": "editable-text-input.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/forms/inputs/text"
+  },
+  "hierarchy": [
+    "forms",
+    "inputs",
+    "text"
+  ],
+  "name": "EditableTextInput",
+  "props": {
+    "defaultValue": {
+      "defaultValue": null,
+      "description": "",
+      "name": "defaultValue",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/forms/inputs/text/editable-text-input.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "onChange": {
+      "defaultValue": null,
+      "description": "",
+      "name": "onChange",
+      "declarations": [
+        {
+          "fileName": "ui/src/components/forms/inputs/text/editable-text-input.tsx",
+          "name": "TypeLiteral"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "(str?: string) => unknown"
+      }
+    }
+  },
+  "tags": {}
+}

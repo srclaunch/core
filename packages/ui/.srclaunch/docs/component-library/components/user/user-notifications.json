@@ -1,0 +1,13 @@
+{
+  "description": "",
+  "file": {
+    "name": "user-notifications.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/user"
+  },
+  "hierarchy": [
+    "user"
+  ],
+  "name": "UserNotifications",
+  "props": {},
+  "tags": {}
+}

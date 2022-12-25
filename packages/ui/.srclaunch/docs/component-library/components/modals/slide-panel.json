@@ -1,0 +1,13 @@
+{
+  "description": "",
+  "file": {
+    "name": "slide-panel.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/modals"
+  },
+  "hierarchy": [
+    "modals"
+  ],
+  "name": "SlidePanel",
+  "props": {},
+  "tags": {}
+}

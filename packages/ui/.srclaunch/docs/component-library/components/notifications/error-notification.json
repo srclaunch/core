@@ -1,0 +1,13 @@
+{
+  "description": "",
+  "file": {
+    "name": "error-notification.tsx",
+    "path": "/Users/steven/Projects/srclaunch/packages/ui/src/components/notifications"
+  },
+  "hierarchy": [
+    "notifications"
+  ],
+  "name": "ErrorNotification",
+  "props": {},
+  "tags": {}
+}
