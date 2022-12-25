@@ -3,7 +3,8 @@
 //   ComponentLibraryConfig,
 //   ComponentLibraryDocumentationConfig,
 // } from '@srclaunch/types';
-import config from '../../.srclaunchrc';
-import { renderComponentLibrary } from '../lib/docs';
+import { renderDocumentation } from '@srclaunch/docs';
 
-renderComponentLibrary(config.documentation);
+import config from '../../.srclaunchrc';
+
+renderDocumentation(config.documentation);
