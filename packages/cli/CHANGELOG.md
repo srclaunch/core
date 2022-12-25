@@ -1,5 +1,11 @@
 # @srclaunch/cli
 
+## 3.19.24
+
+### Patch Changes
+
+- 9734f6d: Update flags
+
 ## 0.1.3
 
 ### Patch Changes

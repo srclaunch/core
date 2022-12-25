@@ -3,7 +3,7 @@
   "description": "Quality of life configuration and tooling for development environments.",
   "author": "Steven Bennett <steven@srclaunch.com>",
   "license": "MIT",
-  "version": "3.19.23",
+  "version": "3.19.24",
   "engines": {
     "node": ">=16"
   },

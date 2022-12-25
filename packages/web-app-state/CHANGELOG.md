@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.19.24
+
+### Patch Changes
+
+- Updated dependencies [bb11b28]
+- Updated dependencies
+  - @srclaunch/web-environment@4.0.0
+  - @srclaunch/exceptions@3.19.23
+  - @srclaunch/http-client@3.19.23
+  - @srclaunch/i18n@3.19.23
+  - @srclaunch/logger@3.19.23
+  - @srclaunch/themes@3.19.23
+  - @srclaunch/validation@3.19.23
+
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ### [0.1.78](https://github.com/srclaunch/web-app/compare/v0.1.77...v0.1.78) (2022-05-11)

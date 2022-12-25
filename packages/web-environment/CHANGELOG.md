@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.0.0
+
+### Major Changes
+
+- bb11b28: Update logic
+
+### Patch Changes
+
+- Update
+
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ### [0.1.37](https://github.com/srclaunch/web-environment/compare/v0.1.36...v0.1.37) (2022-05-11)
