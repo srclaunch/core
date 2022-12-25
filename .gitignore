@@ -7,6 +7,7 @@ test-workspace/
 !packages/cli/dist
 !packages/cli/src/lib/docs
 !packages/docs
+!packages/ui/src/components/docs
 node_modules/
 **/node_modules/
 .pnpm-debug.log
