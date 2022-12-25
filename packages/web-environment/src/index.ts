@@ -29,26 +29,8 @@ const productionEnvironment: Environment = {
 };
 
 export function getEnvironment() {
-  if (
-    (
-      global as unknown as {
-        window: {
-          location: {
-            hostname: string;
-          };
-        };
-      }
-    ).window
-  ) {
-    const hostname = (
-      global as unknown as {
-        window: {
-          location: {
-            hostname: string;
-          };
-        };
-      }
-    ).window.location.hostname;
+  if (window) {
+    const hostname = window.location.hostname;
 
     if (hostname.includes('localhost') || hostname.includes('127.0.0.1')) {
       return developmentEnvironment;
