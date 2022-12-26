@@ -10,7 +10,6 @@ module.exports = {
   extends: [
     ...base.extends,
     'plugin:jsx-a11y/recommended',
-    'plugin:better-styled-components/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:testing-library/react',

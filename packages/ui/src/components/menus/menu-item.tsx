@@ -1,6 +1,5 @@
 import { memo, ReactElement } from 'react';
 
-import { IconProps } from '../media/icon';
 import {
   AlignHorizontal,
   Amount,
@@ -10,6 +9,7 @@ import {
   TextOverflow,
 } from '../../types';
 import { Button, ButtonProps, ButtonType } from '../forms/buttons/button';
+import { IconProps } from '../media/icon';
 import { NavigationLink } from '../navigation/navigation-link';
 import { Label } from '../typography/label';
 

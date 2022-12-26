@@ -12,7 +12,6 @@ export default {
     ...base.extends,
     // 'plugin:@microsoft/sdl/react', // Microsoft SDL React rules
     'plugin:jsx-a11y/recommended',
-    'plugin:better-styled-components/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:testing-library/react',

@@ -30,7 +30,6 @@ export const Menu = memo(
     backgroundColor = BackgroundColor.Lighter,
     padding = Amount.Least,
     onItemClick,
-    ...props
   }: MenuProps): ReactElement => {
     const renderItems = () => {
       return items.map((item, key: number) => {
