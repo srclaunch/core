@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.19.25
+
+### Patch Changes
+
+- 06bb36a: Update eslint plugin
+
 ## 3.19.24
 
 ### Patch Changes

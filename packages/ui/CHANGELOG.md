@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.1
+
+### Patch Changes
+
+- 06bb36a: Update eslint plugin
+
 ## 3.21.0
 
 ### Minor Changes
