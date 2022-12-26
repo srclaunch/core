@@ -3,7 +3,7 @@
   "description": "Wrapper around Sequelize for basic CRUD operations",
   "author": "Steven Bennett <steven@srclaunch.com>",
   "license": "MIT",
-  "version": "3.19.23",
+  "version": "3.20.0",
   "engines": {
     "node": ">=16"
   },
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@srclaunch/dx": "workspace:^3.19.24",
-    "@srclaunch/cli": "workspace:^3.19.24",
+    "@srclaunch/cli": "workspace:^3.20.0",
     "@srclaunch/types": "workspace:^3.19.23",
     "@types/node": "^17.0.42",
     "@types/pg": "^8.6.5",
@@ -47,9 +47,9 @@
     "@types/tunnel-ssh": "^4.1.1"
   },
   "dependencies": {
-    "@srclaunch/exceptions": "workspace:^3.19.23",
-    "@srclaunch/logger": "workspace:^3.19.23",
-    "@srclaunch/node-environment": "workspace:^3.19.23",
+    "@srclaunch/exceptions": "workspace:^3.20.0",
+    "@srclaunch/logger": "workspace:^3.20.0",
+    "@srclaunch/node-environment": "workspace:^3.20.0",
     "change-case": "^4.1.2",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",

@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.20.0
+
+### Minor Changes
+
+- db90d23: Updating deps
+
+### Patch Changes
+
+- Updated dependencies [db90d23]
+  - @srclaunch/exceptions@3.20.0
+  - @srclaunch/logger@3.20.0
+
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ### [0.0.6](https://github.com/srclaunch/secrets/compare/v0.0.5...v0.0.6) (2021-07-29)

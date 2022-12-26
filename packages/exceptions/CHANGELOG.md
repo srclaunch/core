@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.20.0
+
+### Minor Changes
+
+- db90d23: Updating deps
+
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ### [0.1.75](https://github.com/srclaunch/exceptions/compare/v0.1.74...v0.1.75) (2022-05-11)
@@ -162,10 +168,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [1.0.22](https://github.com/srclaunch/exceptions/compare/v0.0.98...v1.0.22) (2022-02-07)
 
-
 ### Chores
 
-* **release:** 1.0.1 ([c0c265f](https://github.com/srclaunch/exceptions/commit/c0c265f09c8e06af9b8bd7d2bae3792c6cff364b))
+- **release:** 1.0.1 ([c0c265f](https://github.com/srclaunch/exceptions/commit/c0c265f09c8e06af9b8bd7d2bae3792c6cff364b))
 
 ### [1.0.1](https://github.com/srclaunch/exceptions/compare/v0.0.98...v1.0.1) (2022-02-07)
 

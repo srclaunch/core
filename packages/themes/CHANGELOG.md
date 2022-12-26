@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.20.0
+
+### Minor Changes
+
+- db90d23: Updating deps
+
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ### [0.1.37](https://github.com/srclaunch/themes/compare/v0.1.36...v0.1.37) (2022-05-11)

@@ -3,7 +3,7 @@
   "description": "SrcLaunch Core API server",
   "author": "Steven Bennett <steven@srclaunch.com>",
   "license": "MIT",
-  "version": "3.19.23",
+  "version": "3.20.0",
   "engines": {
     "node": ">=16"
   },
@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@srclaunch/dx": "workspace:^3.19.24",
-    "@srclaunch/cli": "workspace:^3.19.24",
+    "@srclaunch/cli": "workspace:^3.20.0",
     "@srclaunch/types": "workspace:^3.19.23",
     "@types/express": "^4.17.13",
     "@types/keygrip": "^1.0.2",
@@ -59,11 +59,11 @@
     "typescript": "^4.6.3"
   },
   "dependencies": {
-    "@srclaunch/data-client": "workspace:^3.19.23",
-    "@srclaunch/exceptions": "workspace:^3.19.23",
-    "@srclaunch/http-server": "workspace:^3.19.23",
-    "@srclaunch/logger": "workspace:^3.19.23",
-    "@srclaunch/node-environment": "workspace:^3.19.23",
+    "@srclaunch/data-client": "workspace:^3.20.0",
+    "@srclaunch/exceptions": "workspace:^3.20.0",
+    "@srclaunch/http-server": "workspace:^3.20.0",
+    "@srclaunch/logger": "workspace:^3.20.0",
+    "@srclaunch/node-environment": "workspace:^3.20.0",
     "aws-sdk": "^2.1110.0",
     "change-case": "^4.1.2",
     "config": "^3.3.7",

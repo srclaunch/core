@@ -3,7 +3,7 @@
   "description": "Redux state and utilities used by AppLab web applications",
   "author": "Steven Bennett <steven@srclaunch.com>",
   "license": "MIT",
-  "version": "3.19.25",
+  "version": "3.20.0",
   "engines": {
     "node": ">=16"
   },
@@ -36,13 +36,13 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
-    "@srclaunch/exceptions": "workspace:^3.19.23",
-    "@srclaunch/http-client": "workspace:^3.19.23",
-    "@srclaunch/i18n": "workspace:^3.19.23",
-    "@srclaunch/logger": "workspace:^3.19.23",
-    "@srclaunch/themes": "workspace:^3.19.23",
-    "@srclaunch/validation": "workspace:^3.19.23",
-    "@srclaunch/web-environment": "workspace:^4.0.1",
+    "@srclaunch/exceptions": "workspace:^3.20.0",
+    "@srclaunch/http-client": "workspace:^3.20.0",
+    "@srclaunch/i18n": "workspace:^3.20.0",
+    "@srclaunch/logger": "workspace:^3.20.0",
+    "@srclaunch/themes": "workspace:^3.20.0",
+    "@srclaunch/validation": "workspace:^3.20.0",
+    "@srclaunch/web-environment": "workspace:^4.1.0",
     "amazon-cognito-identity-js": "^5.2.9",
     "crypto-js": "^4.1.1",
     "history": "^5.3.0",
@@ -60,7 +60,7 @@
   },
   "devDependencies": {
     "@srclaunch/dx": "workspace:^3.19.24",
-    "@srclaunch/cli": "workspace:^3.19.24",
+    "@srclaunch/cli": "workspace:^3.20.0",
     "@srclaunch/types": "workspace:^3.19.23",
     "@testing-library/dom": "^8.13.0",
     "@testing-library/jest-dom": "^5.16.4",

@@ -3,7 +3,7 @@
   "description": "Wrapper around Axios HTTP client",
   "author": "Steven Bennett <steven@srclaunch.com>",
   "license": "MIT",
-  "version": "3.19.23",
+  "version": "3.20.0",
   "engines": {
     "node": ">=16"
   },
@@ -35,15 +35,15 @@
     "test:watch": "srclaunch test --watch"
   },
   "dependencies": {
-    "@srclaunch/exceptions": "workspace:^3.19.23",
-    "@srclaunch/logger": "workspace:^3.19.23",
+    "@srclaunch/exceptions": "workspace:^3.20.0",
+    "@srclaunch/logger": "workspace:^3.20.0",
     "axios": "0.27.2",
     "axios-retry": "3.2.5",
     "nanoid": "3.3.4"
   },
   "devDependencies": {
     "@srclaunch/dx": "workspace:^3.19.24",
-    "@srclaunch/cli": "workspace:^3.19.24",
+    "@srclaunch/cli": "workspace:^3.20.0",
     "@srclaunch/types": "workspace:^3.19.23"
   }
 }

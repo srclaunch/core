@@ -1,5 +1,11 @@
 # @srclaunch/cli
 
+## 3.20.0
+
+### Minor Changes
+
+- db90d23: Updating deps
+
 ## 3.19.24
 
 ### Patch Changes

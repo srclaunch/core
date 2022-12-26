@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.20.0
+
+### Minor Changes
+
+- db90d23: Updating deps
+
+### Patch Changes
+
+- Updated dependencies [db90d23]
+  - @srclaunch/exceptions@3.20.0
+  - @srclaunch/icons@3.20.0
+  - @srclaunch/themes@3.20.0
+  - @srclaunch/web-app-state@3.20.0
+
 ## 3.19.25
 
 ### Patch Changes

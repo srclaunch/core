@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.0
+
+### Minor Changes
+
+- db90d23: Updating deps
+
 ## 4.0.1
 
 ### Patch Changes

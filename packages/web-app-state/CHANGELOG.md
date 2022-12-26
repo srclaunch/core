@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.20.0
+
+### Minor Changes
+
+- db90d23: Updating deps
+
+### Patch Changes
+
+- Updated dependencies [db90d23]
+  - @srclaunch/exceptions@3.20.0
+  - @srclaunch/http-client@3.20.0
+  - @srclaunch/i18n@3.20.0
+  - @srclaunch/logger@3.20.0
+  - @srclaunch/themes@3.20.0
+  - @srclaunch/validation@3.20.0
+  - @srclaunch/web-environment@4.1.0
+
 ## 3.19.25
 
 ### Patch Changes
