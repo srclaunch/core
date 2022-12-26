@@ -35,15 +35,15 @@
     "test:watch": "srclaunch test --watch"
   },
   "dependencies": {
-    "@srclaunch/exceptions": "workspace:*",
-    "@srclaunch/logger": "workspace:*",
+    "@srclaunch/exceptions": "workspace:^3.19.23",
+    "@srclaunch/logger": "workspace:^3.19.23",
     "axios": "0.27.2",
     "axios-retry": "3.2.5",
     "nanoid": "3.3.4"
   },
   "devDependencies": {
-    "@srclaunch/dx": "workspace:*",
-    "@srclaunch/cli": "workspace:*",
-    "@srclaunch/types": "workspace:*"
+    "@srclaunch/dx": "workspace:^3.19.24",
+    "@srclaunch/cli": "workspace:^3.19.24",
+    "@srclaunch/types": "workspace:^3.19.23"
   }
 }

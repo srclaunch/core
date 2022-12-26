@@ -40,9 +40,9 @@
     "serialize-error": "10.0.0"
   },
   "devDependencies": {
-    "@srclaunch/dx": "workspace:*",
-    "@srclaunch/cli": "workspace:*",
-    "@srclaunch/types": "workspace:*",
+    "@srclaunch/dx": "workspace:^3.19.24",
+    "@srclaunch/cli": "workspace:^3.19.24",
+    "@srclaunch/types": "workspace:^3.19.23",
     "@types/express": "^4.17.13"
   }
 }

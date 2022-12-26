@@ -38,18 +38,18 @@
     "yui": "yarn upgrade-interactive"
   },
   "devDependencies": {
-    "@srclaunch/dx": "workspace:*",
-    "@srclaunch/cli": "workspace:*",
-    "@srclaunch/types": "workspace:*",
+    "@srclaunch/dx": "workspace:^3.19.24",
+    "@srclaunch/cli": "workspace:^3.19.24",
+    "@srclaunch/types": "workspace:^3.19.23",
     "@types/node": "^17.0.42",
     "@types/pg": "^8.6.5",
     "@types/pluralize": "^0.0.29",
     "@types/tunnel-ssh": "^4.1.1"
   },
   "dependencies": {
-    "@srclaunch/exceptions": "workspace:*",
-    "@srclaunch/logger": "workspace:*",
-    "@srclaunch/node-environment": "workspace:*",
+    "@srclaunch/exceptions": "workspace:^3.19.23",
+    "@srclaunch/logger": "workspace:^3.19.23",
+    "@srclaunch/node-environment": "workspace:^3.19.23",
     "change-case": "^4.1.2",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",

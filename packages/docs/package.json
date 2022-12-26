@@ -36,20 +36,20 @@
     "test:watch": "srclaunch test --watch"
   },
   "dependencies": {
-    "@srclaunch/exceptions": "workspace:*",
-    "@srclaunch/icons": "workspace:*",
-    "@srclaunch/themes": "workspace:*",
-    "@srclaunch/web-app-state": "workspace:*",
+    "@srclaunch/exceptions": "workspace:^3.19.23",
+    "@srclaunch/icons": "workspace:^3.19.23",
+    "@srclaunch/themes": "workspace:^3.19.23",
+    "@srclaunch/web-app-state": "workspace:^3.19.25",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
-    "@srclaunch/cli": "workspace:*",
-    "@srclaunch/config": "workspace:*",
-    "@srclaunch/dx": "workspace:*",
-    "@srclaunch/types": "workspace:*",
+    "@srclaunch/cli": "workspace:^3.19.24",
+    "@srclaunch/config": "workspace:^3.19.23",
+    "@srclaunch/dx": "workspace:^3.19.24",
+    "@srclaunch/types": "workspace:^3.19.23",
     "@testing-library/dom": "^8.13.0",
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "13.2.0",

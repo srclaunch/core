@@ -35,9 +35,9 @@
     "test:watch": "srclaunch test --watch"
   },
   "devDependencies": {
-    "@srclaunch/cli": "workspace:*",
-    "@srclaunch/dx": "workspace:*",
-    "@srclaunch/types": "workspace:*",
+    "@srclaunch/cli": "workspace:^3.19.24",
+    "@srclaunch/dx": "workspace:^3.19.24",
+    "@srclaunch/types": "workspace:^3.19.23",
     "@types/fs-extra": "^9.0.13"
   },
   "dependencies": {

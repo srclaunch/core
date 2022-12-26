@@ -38,8 +38,8 @@
     "unconfig": "^0.3.4"
   },
   "devDependencies": {
-    "@srclaunch/cli": "workspace:*",
-    "@srclaunch/dx": "workspace:*",
-    "@srclaunch/types": "workspace:*"
+    "@srclaunch/cli": "workspace:^3.19.24",
+    "@srclaunch/dx": "workspace:^3.19.24",
+    "@srclaunch/types": "workspace:^3.19.23"
   }
 }

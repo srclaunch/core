@@ -41,9 +41,9 @@
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
-    "@srclaunch/dx": "workspace:*",
-    "@srclaunch/cli": "workspace:*",
-    "@srclaunch/types": "workspace:*",
+    "@srclaunch/dx": "workspace:^3.19.24",
+    "@srclaunch/cli": "workspace:^3.19.24",
+    "@srclaunch/types": "workspace:^3.19.23",
     "@testing-library/dom": "^8.13.0",
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "13.2.0",

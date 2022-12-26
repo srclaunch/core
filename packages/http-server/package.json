@@ -38,10 +38,10 @@
     "yui": "yarn upgrade-interactive"
   },
   "devDependencies": {
-    "@srclaunch/dx": "workspace:*",
-    "@srclaunch/cli": "workspace:*",
-    "@srclaunch/http-client": "workspace:*",
-    "@srclaunch/types": "workspace:*",
+    "@srclaunch/dx": "workspace:^3.19.24",
+    "@srclaunch/cli": "workspace:^3.19.24",
+    "@srclaunch/http-client": "workspace:^3.19.23",
+    "@srclaunch/types": "workspace:^3.19.23",
     "@types/async-exit-hook": "^2.0.0",
     "@types/compression": "^1.7.2",
     "@types/cors": "^2.8.12",
@@ -53,9 +53,9 @@
     "@types/node": "^17.0.42"
   },
   "dependencies": {
-    "@srclaunch/exceptions": "workspace:*",
-    "@srclaunch/logger": "workspace:*",
-    "@srclaunch/node-environment": "workspace:*",
+    "@srclaunch/exceptions": "workspace:^3.19.23",
+    "@srclaunch/logger": "workspace:^3.19.23",
+    "@srclaunch/node-environment": "workspace:^3.19.23",
     "async-exit-hook": "^2.0.1",
     "compression": "^1.7.4",
     "cors": "^2.8.5",

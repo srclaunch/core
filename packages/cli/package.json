@@ -34,7 +34,7 @@
     "test:watch": "ava --watch"
   },
   "devDependencies": {
-    "@srclaunch/dx": "workspace:*",
+    "@srclaunch/dx": "workspace:^3.19.24",
     "@types/diff": "^5.0.2",
     "@types/fs-extra": "^9.0.13",
     "@types/gh-pages": "^3.2.1",
@@ -57,7 +57,7 @@
   "dependencies": {
     "@microsoft/tsdoc": "^0.14.1",
     "@rauschma/stringio": "^1.4.0",
-    "@srclaunch/ci-cd": "workspace:*",
+    "@srclaunch/ci-cd": "workspace:^3.19.23",
     "@types/async": "^3.2.15",
     "@vitejs/plugin-react": "^1.3.2",
     "@yarnpkg/core": "^3.2.3",

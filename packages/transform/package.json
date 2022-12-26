@@ -38,9 +38,9 @@
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
-    "@srclaunch/dx": "workspace:*",
-    "@srclaunch/cli": "workspace:*",
-    "@srclaunch/types": "workspace:*",
+    "@srclaunch/dx": "workspace:^3.19.24",
+    "@srclaunch/cli": "workspace:^3.19.24",
+    "@srclaunch/types": "workspace:^3.19.23",
     "@types/js-yaml": "^4.0.5"
   }
 }
