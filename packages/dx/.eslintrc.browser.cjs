@@ -12,15 +12,15 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:testing-library/react'
+    'plugin:testing-library/react',
+    'stylelint'
   ],
   plugins: [
     ...base.plugins,
     'better-styled-components',
     'jsx-a11y',
     'react',
-    'react-hooks',
-    'stylelint'
+    'react-hooks'
   ],
   rules: {
     ...base.rules,

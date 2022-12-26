@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.19.27
+
+### Patch Changes
+
+- Fix stylelint issues
+
 ## 3.19.26
 
 ### Patch Changes

@@ -14,7 +14,8 @@ export default {
     'plugin:jsx-a11y/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:testing-library/react'
+    'plugin:testing-library/react',
+    'stylelint'
   ],
   plugins: [
     ...base.plugins,
@@ -22,7 +23,6 @@ export default {
     'jsx-a11y',
     'react',
     'react-hooks',
-    'stylelint'
   ],
   rules: {
     ...base.rules,
