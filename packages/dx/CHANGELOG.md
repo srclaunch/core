@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.19.26
+
+### Patch Changes
+
+- Update plugins
+
 ## 3.19.25
 
 ### Patch Changes
