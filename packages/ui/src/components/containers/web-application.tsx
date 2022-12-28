@@ -44,9 +44,9 @@ export const WebApplication = memo(
     );
 
     const indexPagePath =
-      routes.find(r => r.role === RouteRole.Index)?.path ?? '/';
+      routes?.find(r => r.role === RouteRole.Index)?.path ?? '/';
     const loginPagePath =
-      routes.find(r => r.role === RouteRole.Login)?.path ?? 'login';
+      routes?.find(r => r.role === RouteRole.Login)?.path ?? 'login';
 
     const checkAuth = () => {
       for (const route of routes) {

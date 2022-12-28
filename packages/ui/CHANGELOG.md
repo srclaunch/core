@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.3
+
+### Patch Changes
+
+- Better sanity check
+
 ## 3.21.2
 
 ### Patch Changes
