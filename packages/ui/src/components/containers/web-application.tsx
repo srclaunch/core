@@ -94,9 +94,7 @@ export const WebApplication = memo(
       if (authentication) checkAuth();
     }, []);
 
-    const { current, list } = useSelector(
-      (state: RootState) => state.ui?.themes,
-    );
+    const themes = useSelector((state: RootState) => state.ui?.themes);
     const loginCondition = authentication
       ? (loggedIn && (loginRequired || !loginRequired)) ||
         (!loggedIn && !loginRequired)
@@ -116,7 +114,7 @@ export const WebApplication = memo(
         fill={fill}
         {...props}
       >
-        <ThemeProvider theme={current} themes={list}>
+        <ThemeProvider theme={themes?.current} themes={themes?.list}>
           <LoadingOverlay
             states={{
               state: {
