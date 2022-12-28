@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.5
+
+### Patch Changes
+
+- d53a3f2: Better error handling
+
 ## 3.21.4
 
 ### Patch Changes

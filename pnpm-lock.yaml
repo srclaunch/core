@@ -952,7 +952,7 @@ importers:
       '@reduxjs/toolkit': ^1.8.2
       '@srclaunch/cli': workspace:^3.20.0
       '@srclaunch/docs': workspace:^3.20.0
-      '@srclaunch/dx': workspace:^3.19.25
+      '@srclaunch/dx': workspace:^3.19.28
       '@srclaunch/exceptions': workspace:^3.20.0
       '@srclaunch/http-client': workspace:^3.20.0
       '@srclaunch/i18n': workspace:^3.20.0

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import base from './.eslintrc.mjs';
 
 export default {
@@ -14,8 +13,7 @@ export default {
     'plugin:jsx-a11y/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:testing-library/react',
-    'stylelint'
+    'plugin:testing-library/react'
   ],
   plugins: [
     ...base.plugins,

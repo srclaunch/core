@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.19.28
+
+### Patch Changes
+
+- Remove stylelint from eslitn config
+
 ## 3.19.27
 
 ### Patch Changes
