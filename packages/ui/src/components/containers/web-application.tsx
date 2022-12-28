@@ -95,7 +95,7 @@ export const WebApplication = memo(
     }, []);
 
     const { current, list } = useSelector(
-      (state: RootState) => state.ui.themes,
+      (state: RootState) => state.ui?.themes,
     );
     const loginCondition = authentication
       ? (loggedIn && (loginRequired || !loginRequired)) ||
