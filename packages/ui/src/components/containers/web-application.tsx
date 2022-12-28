@@ -34,13 +34,13 @@ export const WebApplication = memo(
     const navigate = useNavigate();
 
     const inProgress = useSelector(
-      (state: RootState) => state.user.authentication.login.inProgress,
+      (state: RootState) => state.user?.authentication.login.inProgress,
     );
     const loggedIn = useSelector(
-      (state: RootState) => state.user.authentication.state.loggedIn,
+      (state: RootState) => state.user?.authentication.state.loggedIn,
     );
     const routes: Route[] = useSelector(
-      (state: RootState) => state.app.routes.list,
+      (state: RootState) => state.app?.routes.list,
     );
 
     const indexPagePath =

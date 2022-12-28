@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.2
+
+### Patch Changes
+
+- Updating state selectors
+
 ## 3.21.1
 
 ### Patch Changes
