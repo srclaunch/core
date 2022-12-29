@@ -42,14 +42,14 @@ export const Page = memo(
             : Overflow.ScrollHorizontal
         }
         alignHorizontal={
-          alignHorizontal ?? orientation === Orientation.Vertical
+          alignHorizontal ?? orientation === Orientation.Horizontal
             ? AlignHorizontal.Stretch
-            : AlignHorizontal.Left
+            : undefined
         }
         alignVertical={
           alignVertical ?? orientation === Orientation.Vertical
             ? AlignVertical.Top
-            : AlignVertical.Stretch
+            : undefined
         }
         backgroundColor={backgroundColor}
         className={`${className} page`}
