@@ -1,11 +1,11 @@
 export enum AlignVertical {
   Baseline = 'baseline',
-  Bottom = 'end',
+  Bottom = 'flex-end',
   Center = 'center',
   Default = 'default',
   SpaceAround = 'space-around',
   SpaceBetween = 'space-between',
   SpaceEvenly = 'space-evenly',
   Stretch = 'stretch',
-  Top = 'start',
+  Top = 'flex-start',
 }
