@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.7
+
+### Patch Changes
+
+- Update layout flow
+
 ## 3.21.6
 
 ### Patch Changes
