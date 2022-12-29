@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.6
+
+### Patch Changes
+
+- Update orientation flow
+
 ## 3.21.5
 
 ### Patch Changes
