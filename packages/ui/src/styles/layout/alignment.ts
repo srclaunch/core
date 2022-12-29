@@ -18,19 +18,19 @@ export function getHorizontalAlignStyle({
     switch (alignHorizontal) {
       case AlignHorizontal.Center:
         return css`
-          align-items: center;
+          justify-content: center;
         `;
       case AlignHorizontal.Right:
         return css`
-          align-items: flex-end;
+          justify-content: flex-end;
         `;
       case AlignHorizontal.Left:
         return css`
-          align-items: flex-start;
+          justify-content: flex-start;
         `;
       default:
         return css`
-          align-items: stretch;
+          justify-content: stretch;
         `;
     }
   }
@@ -38,19 +38,19 @@ export function getHorizontalAlignStyle({
   switch (alignHorizontal) {
     case AlignHorizontal.Center:
       return css`
-        justify-content: center;
+        align-items: center;
       `;
     case AlignHorizontal.Right:
       return css`
-        justify-content: flex-end;
+        align-items: flex-end;
       `;
     case AlignHorizontal.Left:
       return css`
-        justify-content: flex-start;
+        align-items: flex-start;
       `;
     default:
       return css`
-        justify-content: stretch;
+        align-items: stretch;
       `;
   }
 }
@@ -64,31 +64,30 @@ export function getVerticalAlignStyle({
     switch (alignVertical) {
       case AlignVertical.Bottom:
         return css`
-          justify-content: flex-end;
+          align-items: flex-end;
         `;
       case AlignVertical.Center:
         return css`
-          justify-content: center;
+          align-items: center;
         `;
       case AlignVertical.Top:
         return css`
-          justify-content: flex-start;
+          align-items: flex-start;
         `;
     }
   }
-
   switch (alignVertical) {
     case AlignVertical.Bottom:
       return css`
-        align-items: flex-end;
+        justify-content: flex-end;
       `;
     case AlignVertical.Center:
       return css`
-        align-items: center;
+        justify-content: center;
       `;
     case AlignVertical.Top:
       return css`
-        align-items: flex-start;
+        justify-content: flex-start;
       `;
   }
 }
