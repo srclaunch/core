@@ -22,8 +22,8 @@ export const Page = memo(
     orientation = Orientation.Vertical,
     // eslint-disable-next-line @typescript-eslint/naming-convention
     layout: Layout,
-    alignHorizontal,
-    alignVertical,
+    // alignHorizontal,
+    // alignVertical,
     state,
     // title,
     ...props
@@ -41,16 +41,16 @@ export const Page = memo(
             ? Overflow.ScrollVertical
             : Overflow.ScrollHorizontal
         }
-        alignHorizontal={
-          alignHorizontal ?? orientation === Orientation.Horizontal
-            ? AlignHorizontal.Stretch
-            : undefined
-        }
-        alignVertical={
-          alignVertical ?? orientation === Orientation.Vertical
-            ? AlignVertical.Top
-            : undefined
-        }
+        // alignHorizontal={
+        //   alignHorizontal ?? orientation === Orientation.Horizontal
+        //     ? AlignHorizontal.Stretch
+        //     : undefined
+        // }
+        // alignVertical={
+        //   alignVertical ?? orientation === Orientation.Vertical
+        //     ? AlignVertical.Top
+        //     : undefined
+        // }
         backgroundColor={backgroundColor}
         className={`${className} page`}
         fill={fill}

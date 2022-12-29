@@ -1,5 +1,12 @@
 # @srclaunch/ui
 
+## 3.21.8
+
+### Patch Changes
+
+- 404d63d: Update layout
+- Update
+
 ## 3.21.7
 
 ### Patch Changes
