@@ -74,10 +74,6 @@ export function getVerticalAlignStyle({
         return css`
           justify-content: flex-start;
         `;
-      default:
-        return css`
-          justify-content: stretch;
-        `;
     }
   }
 
@@ -93,10 +89,6 @@ export function getVerticalAlignStyle({
     case AlignVertical.Top:
       return css`
         align-items: flex-start;
-      `;
-    default:
-      return css`
-        align-items: stretch;
       `;
   }
 }
