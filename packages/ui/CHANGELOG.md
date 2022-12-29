@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.23
+
+### Patch Changes
+
+- Update modal
+
 ## 3.21.22
 
 ### Patch Changes

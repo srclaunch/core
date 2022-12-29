@@ -4,10 +4,9 @@ import {
   AlignHorizontal,
   AlignVertical,
   Amount,
-  ContainerProps,
   Orientation,
 } from '../../types';
-import { Container } from '../layout/container';
+import { Container, ContainerProps } from '../layout/container';
 import { Spacer } from '../layout/spacer';
 import { MoreMenu, MoreMenuProps } from '../menus/more-menu';
 import { Title } from '../typography/title';

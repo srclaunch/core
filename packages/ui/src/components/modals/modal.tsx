@@ -1,51 +1,156 @@
-import { memo, ReactElement } from 'react';
-import ReactDOM from 'react-dom';
-import styled from 'styled-components';
+import { PropsWithChildren, ReactElement } from 'react';
+import { createPortal } from 'react-dom';
+import styled, { css } from 'styled-components';
 
-type ModalProps = {
-  readonly children: ReactElement;
-  readonly setVisible: (visible: boolean) => unknown;
-  readonly visible: boolean;
-};
+import { MoreMenu } from '../menus/more-menu';
+import { CloseButton } from './close-button';
 
-export const Modal = memo(
-  ({ children, visible, setVisible }: ModalProps): ReactElement => {
-    return ReactDOM.createPortal(
+const Overlay = styled.div<{
+  readonly visible?: boolean;
+}>`
+  background: rgba(255, 255, 255, 0.9);
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  transition: opacity 0.15s ease-in-out;
+  width: 100%;
+
+  ${({ visible }) =>
+    visible &&
+    css`
+      opacity: 1;
+      pointer-events: all;
+    `}
+`;
+
+const Container = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  pointer-events: none;
+  position: fixed;
+  width: 100%;
+`;
+
+const ModalPanel = styled.div<{
+  readonly visible?: boolean;
+}>`
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0px 8px 50px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin: 32px;
+  max-height: calc(100% - 64px);
+  max-width: 600px;
+  opacity: 0;
+  pointer-events: none;
+  position: relative;
+  transform: scale(0.97) translateY(-25px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  width: 580px;
+
+  ${({ visible }) =>
+    visible &&
+    css`
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1) translateY(0px);
+    `}
+`;
+
+const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 32px;
+  overflow: hidden;
+  overflow-y: auto;
+`;
+
+const Title = styled.div`
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  padding: 32px;
+
+  h2 {
+    color: rgba(37, 40, 43, 1);
+    display: flex;
+    flex-grow: 1;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+`;
+
+const TitleActions = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const Menu = styled.div`
+  display: flex;
+  flex: 0;
+`;
+
+const Close = styled.div`
+  display: flex;
+  flex: 0;
+  margin-left: 16px;
+`;
+
+export const Modal = ({
+  children,
+  close,
+  moreMenu,
+  title,
+  visible,
+}: PropsWithChildren<{
+  readonly close?: () => void;
+  readonly moreMenu?: ReadonlyArray<
+    | {
+        readonly color?: string;
+        readonly disabled?: boolean;
+        readonly icon?: ReactElement;
+        readonly label: string;
+        readonly onClick: () => void;
+      }
+    | undefined
+  >;
+  readonly title?: string;
+  readonly visible?: boolean;
+}>): ReactElement =>
+  createPortal(
+    <>
+      <Overlay className="modal-overlay" visible={visible} />
+
       <Container
         className="modal-container"
-        visible={visible}
-        onClick={() => {
-          setVisible(false);
-        }}
+        aria-modal
+        aria-hidden
+        tabIndex={-1}
+        role="dialog"
       >
-        <Content>{children}</Content>
-      </Container>,
-      document.querySelector('#root') as HTMLElement,
-    );
-  },
-);
+        <ModalPanel className="modal" visible={visible}>
+          <Title>
+            {title && <h2>{title}</h2>}
 
-const Container = styled.div<{ readonly visible: boolean }>`
-  background: rgba(0, 0, 0, 0.3);
-  bottom: 0;
-  left: 0;
-  opacity: ${props => (props.visible ? '1' : '0')};
-  pointer-events: ${props => (props.visible ? 'auto' : 'none')};
-  position: fixed;
-  right: 0;
-  top: 0;
-  transition: opacity 0.2s ease-out;
-  z-index: 500000;
-`;
+            <TitleActions>
+              <Menu>{moreMenu && <MoreMenu menu={moreMenu} />}</Menu>
 
-const Content = styled.div`
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  padding: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-`;
+              <Close>
+                <CloseButton onClick={close} />
+              </Close>
+            </TitleActions>
+          </Title>
+
+          <ModalContent>{children}</ModalContent>
+        </ModalPanel>
+      </Container>
+    </>,
+    document.body,
+  );
