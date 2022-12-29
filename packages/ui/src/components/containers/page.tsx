@@ -1,25 +1,16 @@
 // import { useTitle } from '@srclaunch/react-hooks';
 import { cloneElement, ElementType, memo, ReactElement } from 'react';
 
-import {
-  AlignHorizontal,
-  AlignVertical,
-  BackgroundColor,
-  Fill,
-  Orientation,
-  Overflow,
-} from '../../types';
+import { BackgroundColor, Fill, Orientation } from '../../types';
 import { Container, ContainerProps } from '../layout/container';
 import { LoadingOverlay } from '../progress/loading-overlay';
 
 export const Page = memo(
   ({
-    alignHorizontal = AlignHorizontal.Stretch,
-    alignVertical = AlignVertical.Top,
     backgroundColor = BackgroundColor.Default,
     children,
     className = '',
-    fill = Fill.Both,
+    fill = Fill.Horizontal,
     orientation = Orientation.Vertical,
     // eslint-disable-next-line @typescript-eslint/naming-convention
     layout: Layout,
@@ -35,8 +26,6 @@ export const Page = memo(
 
     const PageComp = () => (
       <Container
-        alignHorizontal={alignHorizontal}
-        alignVertical={alignVertical}
         backgroundColor={backgroundColor}
         className={`${className} page`}
         fill={fill}

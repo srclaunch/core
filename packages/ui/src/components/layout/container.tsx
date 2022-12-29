@@ -66,7 +66,7 @@ export const Container = memo(
       {
         alignHorizontal = AlignHorizontal.Stretch,
         orientation = Orientation.Vertical,
-        fill = Fill.Both,
+        fill = Fill.Horizontal,
         alignVertical = AlignVertical.Stretch,
         as = 'div',
         overflow,
@@ -104,20 +104,20 @@ export const Container = memo(
             if (!child) return;
 
             if (!child.type) return child;
-            // Test
+
             if (child.type === Fragment) {
               const fragment = cloneElement(child, {
+                ...child.props,
                 children: child.props.children as ReactElement[],
                 parentProps,
-                ...child.props,
               });
 
               return fragment;
             }
 
             const element = cloneElement(child, {
-              parentProps,
               ...child.props,
+              parentProps,
             });
 
             return element;
