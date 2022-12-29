@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.18
+
+### Patch Changes
+
+- Remove parentprops
+
 ## 3.21.17
 
 ### Patch Changes
