@@ -16,14 +16,11 @@ export const Page = memo(
   ({
     backgroundColor = BackgroundColor.Default,
     children,
-    overflow,
     className = '',
     fill = Fill.Both,
     orientation = Orientation.Vertical,
     // eslint-disable-next-line @typescript-eslint/naming-convention
     layout: Layout,
-    // alignHorizontal,
-    // alignVertical,
     state,
     // title,
     ...props
@@ -36,21 +33,6 @@ export const Page = memo(
 
     const PageComp = () => (
       <Container
-        overflow={
-          overflow ?? orientation === Orientation.Vertical
-            ? Overflow.ScrollVertical
-            : Overflow.ScrollHorizontal
-        }
-        // alignHorizontal={
-        //   alignHorizontal ?? orientation === Orientation.Horizontal
-        //     ? AlignHorizontal.Stretch
-        //     : undefined
-        // }
-        // alignVertical={
-        //   alignVertical ?? orientation === Orientation.Vertical
-        //     ? AlignVertical.Top
-        //     : undefined
-        // }
         backgroundColor={backgroundColor}
         className={`${className} page`}
         fill={fill}
