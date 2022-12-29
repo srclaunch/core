@@ -9,51 +9,51 @@ import {
   Orientation,
 } from '../../types';
 
-export function getHorizontalAlignStyle({
-  alignHorizontal,
-  orientation,
-  parentProps,
-}: AlignmentProps): SimpleInterpolation {
-  if (orientation === Orientation.Horizontal) {
-    switch (alignHorizontal) {
-      case AlignHorizontal.Center:
-        return css`
-          justify-content: center;
-        `;
-      case AlignHorizontal.Right:
-        return css`
-          justify-content: flex-end;
-        `;
-      case AlignHorizontal.Left:
-        return css`
-          justify-content: flex-start;
-        `;
-      default:
-        return css`
-          justify-content: stretch;
-        `;
-    }
-  }
+// export function getHorizontalAlignStyle({
+//   alignHorizontal,
+//   orientation,
+//   parentProps,
+// }: AlignmentProps): SimpleInterpolation {
+//   if (orientation === Orientation.Horizontal) {
+//     switch (alignHorizontal) {
+//       case AlignHorizontal.Center:
+//         return css`
+//           justify-content: center;
+//         `;
+//       case AlignHorizontal.Right:
+//         return css`
+//           justify-content: flex-end;
+//         `;
+//       case AlignHorizontal.Left:
+//         return css`
+//           justify-content: flex-start;
+//         `;
+//       default:
+//         return css`
+//           justify-content: stretch;
+//         `;
+//     }
+//   }
 
-  switch (alignHorizontal) {
-    case AlignHorizontal.Center:
-      return css`
-        align-items: center;
-      `;
-    case AlignHorizontal.Right:
-      return css`
-        align-items: flex-end;
-      `;
-    case AlignHorizontal.Left:
-      return css`
-        align-items: flex-start;
-      `;
-    default:
-      return css`
-        align-items: stretch;
-      `;
-  }
-}
+//   switch (alignHorizontal) {
+//     case AlignHorizontal.Center:
+//       return css`
+//         align-items: center;
+//       `;
+//     case AlignHorizontal.Right:
+//       return css`
+//         align-items: flex-end;
+//       `;
+//     case AlignHorizontal.Left:
+//       return css`
+//         align-items: flex-start;
+//       `;
+//     default:
+//       return css`
+//         align-items: stretch;
+//       `;
+//   }
+// }
 
 export function getVerticalAlignStyle({
   alignVertical,
@@ -93,8 +93,9 @@ export function getVerticalAlignStyle({
 }
 
 export function getAlignmentStyles(props: AlignmentProps): SimpleInterpolation {
+  console.log('props', props);
   return css`
-    ${getHorizontalAlignStyle(props)}
+    /* $ {getHorizontalAlignStyle(props)} */
     ${getVerticalAlignStyle(props)}
   `;
 }
