@@ -14,6 +14,8 @@ import { LoadingOverlay } from '../progress/loading-overlay';
 
 export const Page = memo(
   ({
+    alignHorizontal = AlignHorizontal.Stretch,
+    alignVertical = AlignVertical.Stretch,
     backgroundColor = BackgroundColor.Default,
     children,
     className = '',
@@ -33,6 +35,8 @@ export const Page = memo(
 
     const PageComp = () => (
       <Container
+        alignHorizontal={alignHorizontal}
+        alignVertical={alignVertical}
         backgroundColor={backgroundColor}
         className={`${className} page`}
         fill={fill}
