@@ -2,8 +2,7 @@ import { Primitives } from '@srclaunch/types';
 import { memo, ReactElement, useEffect, useState } from 'react';
 
 import { getInputElementByFieldType } from '../../lib/forms/fields';
-import { Amount, FormField } from '../../types';
-import { ValidationProps } from '../../types/form/validation';
+import { Amount, FormField, ValidationProps } from '../../types';
 import { Container } from '../layout/container';
 import { InputRow } from './layout/input-row';
 
@@ -82,33 +81,20 @@ export const FormFields = memo(
             return null;
 
           return (
-            <InputRow
-              key={field.name}
-              style={{
-                height: field.type === Primitives.UUID ? 0 : undefined,
-                marginBottom: field.type === Primitives.UUID ? 0 : undefined,
-                visibility:
-                  field.type === Primitives.UUID ? 'hidden' : 'visible',
-              }}
-            >
+            <InputRow key={field.name}>
               {getInputElementByFieldType({
                 ...field,
-                events: {
-                  input: {
-                    onValueChange: ({
-                      validation,
-                      value,
-                    }: {
-                      validation?: ValidationProps;
-                      value?: any;
-                    }) => {
-                      setFieldValues({
-                        ...fieldValues,
-                        [field.name]: { ...field, validation, value },
-                      });
-                    },
-                  },
-                  ...field.events,
+                onValueChange: ({
+                  validation,
+                  value,
+                }: {
+                  validation?: ValidationProps;
+                  value?: any;
+                }) => {
+                  setFieldValues({
+                    ...fieldValues,
+                    [field.name]: { ...field, validation, value },
+                  });
                 },
               })}
             </InputRow>

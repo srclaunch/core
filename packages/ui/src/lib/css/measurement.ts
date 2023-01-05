@@ -1,8 +1,6 @@
-import { CSSMeasurement } from '../../types';
+import {} from '../../types';
 
-export function getCSSMeasurement(
-  value?: number | string,
-): CSSMeasurement | undefined {
+export function getCSSMeasurement(value?: number | string): string | undefined {
   if (typeof value === 'string' && value.includes('var(')) {
     return value;
   }
