@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.33
+
+### Patch Changes
+
+- Update z-index
+
 ## 3.21.32
 
 ### Patch Changes

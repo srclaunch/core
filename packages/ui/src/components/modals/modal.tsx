@@ -24,9 +24,9 @@ export const Modal = memo(
   }: ModalProps): ReactElement => {
     return createPortal(
       <>
-        <Overlay className={`modal-overlay ${className}`} visible={visible} />
-
         <Container className="modal-container">
+          <Overlay className={`modal-overlay ${className}`} visible={visible} />
+
           <ModalPanel visible={visible}>
             <ModalHeader moreMenu={moreMenu} onClose={onClose} title={title} />
 
@@ -42,13 +42,15 @@ export const Modal = memo(
 const Overlay = styled.div<{
   readonly visible?: boolean;
 }>`
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(3px);
   height: 100%;
   opacity: 0;
   pointer-events: none;
   position: fixed;
   transition: opacity 0.15s ease-in-out;
   width: 100%;
+  z-index: 100;
 
   ${({ visible }) =>
     visible &&
@@ -60,12 +62,16 @@ const Overlay = styled.div<{
 
 const Container = styled.div`
   align-items: center;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   height: 100%;
   justify-content: center;
+  left: 0;
   pointer-events: none;
   position: fixed;
+  right: 0;
+  top: 0;
   width: 100%;
 `;
 
