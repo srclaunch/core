@@ -42,6 +42,8 @@ export function getHeightStyle({
   }
   return css`
     height: ${getCSSMeasurement(height)};
+    max-height: ${getCSSMeasurement(height)};
+    min-height: ${getCSSMeasurement(height)};
   `;
 }
 
@@ -75,6 +77,8 @@ export function getWidthStyle({
   }
 
   return css`
+    max-width: ${getCSSMeasurement(width)};
+    min-width: ${getCSSMeasurement(width)};
     width: ${getCSSMeasurement(width)};
   `;
 }
