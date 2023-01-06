@@ -41,6 +41,7 @@ export const CurrencyAmountInput = memo(
     const inputReference = useRef<HTMLInputElement>(null);
     const [valueChanged, setValueChanged] = useState(false);
 
+    // Release comment remove me
     useEffect(() => {
       if (valueChanged) {
         if (validation?.conditions) {

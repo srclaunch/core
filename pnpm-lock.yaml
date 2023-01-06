@@ -992,6 +992,7 @@ importers:
       react: ^18.2.0
       react-colorful: ^5.5.1
       react-country-flag: ^3.0.2
+      react-currency-input-field: ^3.6.9
       react-dom: ^18.2.0
       react-dropzone: ^14.2.1
       react-is: ^18.2.0
@@ -1030,6 +1031,7 @@ importers:
       react: 18.2.0
       react-colorful: 5.5.1_biqbaboplfbrettd7655fr4n2y
       react-country-flag: 3.0.2_react@18.2.0
+      react-currency-input-field: 3.6.9_react@18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-dropzone: 14.2.1_react@18.2.0
       react-is: 18.2.0
@@ -13250,6 +13252,14 @@ packages:
     engines: {node: '>=12'}
     peerDependencies:
       react: '>=16'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /react-currency-input-field/3.6.9_react@18.2.0:
+    resolution: {integrity: sha512-GNqG1Np+dz3VfBhDc9pFPIyar9SgB/fRjIofFSXOoyFNffda5r24n6LSoXfqQ9L7IKRDoUwveMMJV5GCM2eByw==}
+    peerDependencies:
+      react: ^16.9.0 || ^17.0.0 || ^18.0.0
     dependencies:
       react: 18.2.0
     dev: false
