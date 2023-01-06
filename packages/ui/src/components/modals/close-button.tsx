@@ -33,6 +33,7 @@ export const CloseButton = memo(
         className={`${className} close-button`}
         depth={Depth.Higher}
         form="null"
+        height={size}
         icon={{
           name: BasicIcons.Close,
           size,
@@ -43,19 +44,13 @@ export const CloseButton = memo(
           backgroundColor: BackgroundColor.Primary,
           icon: { color: IconColor.PrimaryContrast },
         }}
+        width={size}
         {...props}
       >
         <Icon
           color={IconColor.CloseButton}
           name={BasicIcons.Close}
           size={Size.Smaller}
-          state={
-            {
-              // hovered: {
-              //   color: ForegroundColor.PrimaryContrast,
-              // },
-            }
-          }
           {...icon}
         />
       </Button>
