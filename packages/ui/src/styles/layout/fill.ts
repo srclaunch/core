@@ -39,7 +39,7 @@ export function getFillStyles({
       `;
     case Fill.None:
       return css`
-        flex-basis: 0;
+        /* flex-basis: 0; */
       `;
   }
 

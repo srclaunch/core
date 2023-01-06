@@ -17,6 +17,7 @@
     "deploy:local": "dotenv -e .env turbo run 'deploy:local' --color --concurrency=1",
     "dev": "srclaunch dev",
     "publish-to-npm": "changeset publish",
+    "qr": "changeset && pnpm release",
     "release": "changeset version",
     "release-old": "turbo run release --color --concurrency=1",
     "test": "turbo run test --color --concurrency=1",
