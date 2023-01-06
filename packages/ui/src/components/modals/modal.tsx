@@ -92,6 +92,7 @@ const ModalPanel = styled.div<{
   transform: scale(0.97) translateY(-25px);
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   width: 580px;
+  z-index: 101;
 
   ${({ visible }) =>
     visible &&
