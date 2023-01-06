@@ -109,7 +109,9 @@ export const Container = memo(
               const fragment = cloneElement(child, {
                 ...child.props,
                 children: child.props.children as ReactElement[],
-                parentProps,
+                properties: {
+                  parentProps,
+                },
               });
 
               return fragment;
@@ -117,7 +119,9 @@ export const Container = memo(
 
             const element = cloneElement(child, {
               ...child.props,
-              parentProps,
+              properties: {
+                parentProps,
+              },
             });
 
             return element;
