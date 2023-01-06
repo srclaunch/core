@@ -3,6 +3,7 @@ import {
   cloneElement,
   forwardRef,
   Fragment,
+  HTMLProps,
   memo,
   PropsWithChildren,
   ReactElement,

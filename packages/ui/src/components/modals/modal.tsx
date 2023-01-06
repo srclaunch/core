@@ -1,23 +1,30 @@
-import { memo, ReactElement } from 'react';
-import ReactDOM from 'react-dom';
+import { memo, PropsWithChildren, ReactElement, ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
-type ModalProps = {
-  readonly children: ReactElement;
-  readonly setVisible: (visible: boolean) => unknown;
-  readonly visible: boolean;
-};
+import { MoreMenuProps } from '../menus';
+import { ModalHeader } from './modal-header';
+
+type ModalProps = PropsWithChildren<{
+  readonly moreMenu?: MoreMenuProps;
+  readonly onClose?: () => void;
+  readonly title?: ReactElement | ReactNode | string;
+  readonly visible?: boolean;
+}>;
 
 export const Modal = memo(
-  ({ children, visible, setVisible }: ModalProps): ReactElement => {
-    return ReactDOM.createPortal(
-      <Container
-        className="modal-container"
-        visible={visible}
-        onClick={() => {
-          setVisible(false);
-        }}
-      >
+  ({
+    children,
+    moreMenu,
+    onClose,
+    title,
+    visible,
+  }: ModalProps): ReactElement => {
+    return createPortal(
+      <Container className="modal-container" visible={visible}>
+        {/* @ts-ignore */}
+        <ModalHeader moreMenu={moreMenu} onClose={onClose} title={title} />
+
         <Content>{children}</Content>
       </Container>,
       document.querySelector('#root') as HTMLElement,
@@ -25,7 +32,7 @@ export const Modal = memo(
   },
 );
 
-const Container = styled.div<{ readonly visible: boolean }>`
+const Container = styled.div<{ readonly visible?: boolean }>`
   background: rgba(0, 0, 0, 0.3);
   bottom: 0;
   left: 0;

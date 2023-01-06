@@ -28,8 +28,10 @@ type IconPropsType = ContainerProps<
 
 export type IconProps = IconPropsType & StateProps<IconPropsType>;
 
-const Wrapper = styled.i<IconProps>`
-  ${props => getContainerStyles(props)};
+const Wrapper = styled.i<IconProps & { readonly fillProp?: Fill }>`
+  ${props =>
+    //  @ts-ignore
+    getContainerStyles(props)};
   ${props => getContainerStateStyles(props)};
 
   svg {

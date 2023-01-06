@@ -1,4 +1,4 @@
-import { ComponentType, memo, ReactElement } from 'react';
+import { memo, ReactElement, ReactNode } from 'react';
 
 import {
   AlignHorizontal,
@@ -12,11 +12,14 @@ import { MoreMenu, MoreMenuProps } from '../menus/more-menu';
 import { Title } from '../typography/title';
 import { CloseButton } from './close-button';
 
-export type ModalHeaderProps = ContainerProps & {
-  readonly moreMenu?: MoreMenuProps;
-  readonly onCloseClick?: () => unknown;
-  readonly title?: ReactElement;
-};
+export type ModalHeaderProps = ContainerProps<
+  {
+    readonly moreMenu?: MoreMenuProps;
+    readonly onClose?: () => unknown;
+    readonly title?: ReactElement | ReactNode | string;
+  },
+  HTMLDivElement
+>;
 
 export const ModalHeader = memo(
   ({
@@ -24,7 +27,7 @@ export const ModalHeader = memo(
     orientation = Orientation.Horizontal,
     alignVertical = AlignVertical.Center,
     className = '',
-    onCloseClick,
+    onClose,
     moreMenu,
     padding = Amount.Default,
     title,
@@ -47,7 +50,7 @@ export const ModalHeader = memo(
           <MoreMenu alignHorizontal={AlignHorizontal.Right} {...moreMenu} />
         )}
 
-        <CloseButton onClick={onCloseClick} marginLeft={Amount.Less} />
+        <CloseButton onClick={onClose} marginLeft={Amount.Less} />
       </Container>
     );
   },
