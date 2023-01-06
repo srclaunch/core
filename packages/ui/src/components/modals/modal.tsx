@@ -1,11 +1,12 @@
 import { memo, PropsWithChildren, ReactElement, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
+import { ContainerProps } from '../layout';
 import { MoreMenuProps } from '../menus';
 import { ModalHeader } from './modal-header';
 
-type ModalProps = PropsWithChildren<{
+type ModalProps = ContainerProps<{
   readonly moreMenu?: MoreMenuProps;
   readonly onClose?: () => void;
   readonly title?: ReactElement | ReactNode | string;
@@ -15,44 +16,90 @@ type ModalProps = PropsWithChildren<{
 export const Modal = memo(
   ({
     children,
+    className = '',
     moreMenu,
     onClose,
     title,
     visible,
   }: ModalProps): ReactElement => {
     return createPortal(
-      <Container className="modal-container" visible={visible}>
-        {/* @ts-ignore */}
-        <ModalHeader moreMenu={moreMenu} onClose={onClose} title={title} />
+      <>
+        <Overlay className={`modal-overlay ${className}`} visible={visible} />
 
-        <Content>{children}</Content>
-      </Container>,
+        <Container className="modal-container">
+          <ModalPanel visible={visible}>
+            <ModalHeader moreMenu={moreMenu} onClose={onClose} title={title} />
+
+            <ModalContent>{children}</ModalContent>
+          </ModalPanel>
+        </Container>
+      </>,
       document.querySelector('#root') as HTMLElement,
     );
   },
 );
 
-const Container = styled.div<{ readonly visible?: boolean }>`
-  background: rgba(0, 0, 0, 0.3);
-  bottom: 0;
-  left: 0;
-  opacity: ${props => (props.visible ? '1' : '0')};
-  pointer-events: ${props => (props.visible ? 'auto' : 'none')};
+const Overlay = styled.div<{
+  readonly visible?: boolean;
+}>`
+  background: rgba(255, 255, 255, 0.9);
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
   position: fixed;
-  right: 0;
-  top: 0;
-  transition: opacity 0.2s ease-out;
-  z-index: 500000;
+  transition: opacity 0.15s ease-in-out;
+  width: 100%;
+
+  ${({ visible }) =>
+    visible &&
+    css`
+      opacity: 1;
+      pointer-events: all;
+    `}
 `;
 
-const Content = styled.div`
+const Container = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  pointer-events: none;
+  position: fixed;
+  width: 100%;
+`;
+
+const ModalPanel = styled.div<{
+  readonly visible?: boolean;
+}>`
   background: white;
-  border-radius: 15px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  padding: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
+  border-radius: 16px;
+  box-shadow: 0px 8px 50px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin: 32px;
+  max-height: calc(100% - 64px);
+  max-width: 600px;
+  opacity: 0;
+  pointer-events: none;
+  position: relative;
+  transform: scale(0.97) translateY(-25px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  width: 580px;
+
+  ${({ visible }) =>
+    visible &&
+    css`
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1) translateY(0px);
+    `}
+`;
+
+const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 32px;
+  overflow-y: scroll;
 `;
