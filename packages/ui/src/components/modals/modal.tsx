@@ -23,17 +23,16 @@ export const Modal = memo(
     visible,
   }: ModalProps): ReactElement => {
     return createPortal(
-      <>
-        <Container className="modal-container">
-          <Overlay className={`modal-overlay ${className}`} visible={visible} />
+      <Container className="modal-container">
+        <Overlay className={`modal-overlay ${className}`} visible={visible} />
 
-          <ModalPanel visible={visible}>
-            <ModalHeader moreMenu={moreMenu} onClose={onClose} title={title} />
+        <ModalPanel visible={visible}>
+          <ModalHeader moreMenu={moreMenu} onClose={onClose} title={title} />
 
-            <ModalContent>{children}</ModalContent>
-          </ModalPanel>
-        </Container>
-      </>,
+          <ModalContent>{children}</ModalContent>
+        </ModalPanel>
+      </Container>,
+
       document.querySelector('#root') as HTMLElement,
     );
   },
@@ -73,6 +72,7 @@ const Container = styled.div`
   right: 0;
   top: 0;
   width: 100%;
+  z-index: 100;
 `;
 
 const ModalPanel = styled.div<{
