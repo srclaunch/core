@@ -19,8 +19,10 @@ import { FormFields } from './form-fields';
 
 export const Form = memo(
   ({
+    cancelButton,
     className = '',
     entity,
+    onCancel,
     onSubmitted,
     fields,
     inProgress = false,
@@ -64,6 +66,13 @@ export const Form = memo(
       label: 'Submit',
       // size: Size.Large,
       type: ButtonType.Primary,
+      ...submitButton,
+    };
+
+    const cancelButtonProps = {
+      label: 'Cancel',
+      // size: Size.Large,
+      type: ButtonType.Secondary,
       ...submitButton,
     };
 
@@ -140,8 +149,14 @@ export const Form = memo(
           />
         )}
 
-        {submitButton && (
-          <FormActions>
+        <FormActions>
+          {cancelButton && (
+            <Button form={name} {...cancelButtonProps}>
+              {cancelButton.label}
+            </Button>
+          )}
+
+          {submitButton && (
             <Button
               form={name}
               state={{
@@ -151,8 +166,8 @@ export const Form = memo(
             >
               {submitButton.label}
             </Button>
-          </FormActions>
-        )}
+          )}
+        </FormActions>
       </Container>
     );
   },

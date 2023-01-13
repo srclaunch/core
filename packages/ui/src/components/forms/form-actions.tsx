@@ -1,6 +1,6 @@
 import { memo, ReactElement } from 'react';
 
-import { AlignHorizontal, Alignment, Amount, Orientation } from '../../types';
+import { AlignHorizontal, Amount, Orientation } from '../../types';
 import { Container, ContainerProps } from '../layout/container';
 
 export const FormActions = memo(
