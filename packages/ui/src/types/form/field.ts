@@ -18,6 +18,7 @@ import {
   VerificationCode,
 } from '@srclaunch/types';
 
+import { MenuProps } from '../../components';
 import { ImageInputProps } from '../../components/forms/inputs/media/image-input';
 import { FormInputEventProps } from '../event';
 import { ValidationProps } from '../validation';
@@ -46,8 +47,7 @@ export type FormField = CommonFormFieldProps &
     | FormFieldValueProps<
         // @ts-ignore
         readonly (File | Image)[],
-        {
-          readonly properties: ImageInputProps;
+        ImageInputProps & {
           readonly type: Primitives.Image;
         }
       >
@@ -113,6 +113,10 @@ export type FormField = CommonFormFieldProps &
         }
       >
     | FormFieldValueProps<
+        Primitive,
+        MenuProps & { readonly type: Primitives.Menu }
+      >
+    | FormFieldValueProps<
         SSN,
         {
           readonly type: Primitives.SSN;
@@ -144,5 +148,4 @@ export type FormField = CommonFormFieldProps &
     | FormFieldValueProps<Date, { readonly type: Primitives.Date }>
     | FormFieldValueProps<DateTime, { readonly type: Primitives.DateTime }>
     | FormFieldValueProps<JSONObject, { readonly type: Primitives.JSON }>
-    | FormFieldValueProps<Primitive, { readonly type: Primitives.Menu }>
   );
