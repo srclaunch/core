@@ -4,7 +4,7 @@ export type ParentProps<P> = CommonComponentProps<P>;
 
 export type CommonComponentProps<E = ReactElement['type']> = Omit<
   HTMLProps<E>,
-  'size'
+  'size' | 'visible'
 > & {
   readonly as?: ComponentType<unknown> | string;
   readonly parentProps?: ParentProps<CommonComponentProps>;

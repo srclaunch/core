@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.36
+
+### Patch Changes
+
+- Update visible prop
+
 ## 3.21.35
 
 ### Patch Changes
