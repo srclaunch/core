@@ -25,7 +25,6 @@ import { ValidationProps } from '../validation';
 import { AutoComplete } from './input/auto-complete';
 
 export type CommonFormFieldProps = {
-  readonly hidden?: boolean;
   readonly label?: string;
   readonly name: string;
   readonly properties?: Record<string, unknown>;

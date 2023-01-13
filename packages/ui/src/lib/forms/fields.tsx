@@ -210,7 +210,6 @@ export function getInputElementByFieldType(field: FormField) {
       return (
         <TextInput
           defaultValue={field.value}
-          hidden
           onChange={field.onChange}
           {...field}
         />

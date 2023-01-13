@@ -2,9 +2,9 @@ import { ComponentType, ForwardedRef, HTMLProps, ReactElement } from 'react';
 
 export type ParentProps<P> = CommonComponentProps<P>;
 
-export type CommonComponentProps<E = ReactElement['type']> = Omit<
+export type CommonComponentProps<E = ReactElement['type']> = Pick<
   HTMLProps<E>,
-  'size' | 'visible'
+  'className' | 'id' | 'style'
 > & {
   readonly as?: ComponentType<unknown> | string;
   readonly parentProps?: ParentProps<CommonComponentProps>;
