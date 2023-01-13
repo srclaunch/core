@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.40
+
+### Patch Changes
+
+- Update props
+
 ## 3.21.39
 
 ### Patch Changes

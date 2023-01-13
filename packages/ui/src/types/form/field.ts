@@ -20,6 +20,7 @@ import {
 
 import { MenuProps } from '../../components';
 import { ImageInputProps } from '../../components/forms/inputs/media/image-input';
+import { Size } from '../common';
 import { FormInputEventProps } from '../event';
 import { ValidationProps } from '../validation';
 import { AutoComplete } from './input/auto-complete';
@@ -28,6 +29,7 @@ export type CommonFormFieldProps = {
   readonly label?: string;
   readonly name: string;
   readonly properties?: Record<string, unknown>;
+  readonly size?: Size;
   readonly validation?: ValidationProps;
 };
 
@@ -113,7 +115,7 @@ export type FormField = CommonFormFieldProps &
       >
     | FormFieldValueProps<
         Primitive,
-        MenuProps & { readonly type: Primitives.Menu }
+        { readonly properties?: MenuProps; readonly type: Primitives.Menu }
       >
     | FormFieldValueProps<
         SSN,
