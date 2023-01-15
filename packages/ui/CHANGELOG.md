@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.45
+
+### Patch Changes
+
+- Update menu item props
+
 ## 3.21.44
 
 ### Patch Changes

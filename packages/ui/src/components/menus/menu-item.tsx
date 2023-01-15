@@ -121,17 +121,15 @@ export const MenuItem = memo(
         state={state}
         {...props}
       >
-        {component ?? (
-          <Label
-            icon={icon}
-            lineHeight={lineHeight}
-            textColor={textColor}
-            state={state}
-            {...props}
-          >
-            {label}
-          </Label>
-        )}
+        <Label
+          icon={icon}
+          lineHeight={lineHeight}
+          textColor={textColor}
+          state={state}
+          {...props}
+        >
+          {component ?? label}
+        </Label>
       </Button>
     );
     // return (
