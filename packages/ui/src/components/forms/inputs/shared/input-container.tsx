@@ -64,6 +64,7 @@ export const InputContainer = memo(
     // name,
     placeholder = '',
     shadow = Shadow.Low,
+    size = Size.Default,
     state,
     onBlur,
     textAlign = TextAlign.Left,
@@ -146,6 +147,7 @@ export const InputContainer = memo(
           className={`${className} input-container-wrapper`}
           lineHeight={lineHeight}
           shadow={shadow}
+          size={size}
           state={{
             ...state,
             error: problems,

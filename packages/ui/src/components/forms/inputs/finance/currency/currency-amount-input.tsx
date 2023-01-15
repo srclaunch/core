@@ -8,6 +8,7 @@ import {
   BackgroundColor,
   BorderColor,
   Shadow,
+  Size,
   TextColor,
   TextWeight,
 } from '../../../../../types';
@@ -30,6 +31,7 @@ export const CurrencyAmountInput = memo(
     label,
     name,
     shadow = Shadow.Low,
+    size = Size.Default,
     state,
     textColor = TextColor.InputControl,
     textWeight = TextWeight.Default,
@@ -83,6 +85,7 @@ export const CurrencyAmountInput = memo(
             if (inputReference.current) inputReference.current.focus();
           }}
           shadow={shadow}
+          size={size}
           state={state}
         >
           <Label
@@ -111,8 +114,8 @@ export const CurrencyAmountInput = memo(
               color: !value
                 ? `rgb(${TextColor.InputPlaceholder})`
                 : `rgb(${TextColor.InputControl})`,
-
               fontWeight: textWeight,
+              height: '100%',
             }}
           />
         </InputContainer>
