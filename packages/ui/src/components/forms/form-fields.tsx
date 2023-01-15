@@ -1,4 +1,3 @@
-import { Primitives } from '@srclaunch/types';
 import { memo, ReactElement, useEffect, useState } from 'react';
 
 import { getInputElementByFieldType } from '../../lib/forms/fields';
@@ -50,25 +49,25 @@ export const FormFields = memo(
           ]),
         ) as { [name: string]: FormField },
       );
-    }, [entity, fields]);
+    }, [fields]);
 
     useEffect(() => {
       if (onChange) onChange(fieldValues);
     }, [fieldValues]);
 
-    useEffect(() => {
-      setFieldValues(
-        Object.fromEntries(
-          fields.map(field => [
-            field.name,
-            {
-              ...field,
-              value: field.value ?? field.defaultValue,
-            },
-          ]),
-        ) as { [name: string]: FormField },
-      );
-    }, [entity]);
+    // useEffect(() => {
+    //   setFieldValues(
+    //     Object.fromEntries(
+    //       fields.map(field => [
+    //         field.name,
+    //         {
+    //           ...field,
+    //           value: field.value ?? field.defaultValue,
+    //         },
+    //       ]),
+    //     ) as { [name: string]: FormField },
+    //   );
+    // }, [entity]);
 
     return (
       <Container
