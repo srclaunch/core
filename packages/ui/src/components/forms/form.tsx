@@ -2,18 +2,17 @@
 import { Model } from '@srclaunch/types';
 import { ValidationProblem } from '@srclaunch/validation';
 import {
-  FormEvent,
   memo,
   ReactElement,
   useEffect,
   useRef,
-  useState,
+  useState
 } from 'react';
 
 import { Amount, Fill, FormEventProps, FormField } from '../../types';
 // import { getFormFieldsFromModel } from '../../lib/forms/fields';
 import { Container, ContainerProps } from '../layout/container';
-import { Button, ButtonProps, ButtonType } from './buttons/button';
+import { Button, ButtonType } from './buttons/button';
 import { FormActions } from './form-actions';
 import { FormFields } from './form-fields';
 
@@ -45,7 +44,7 @@ export const Form = memo(
       readonly name: string;
       readonly showCancelButton?: boolean;
       readonly showSubmitButton?: boolean;
-      readonly submitButtonLabel: string;
+      readonly submitButtonLabel?: string;
     }
   >): ReactElement => {
     const [fieldValues, setFieldValues] = useState<{
