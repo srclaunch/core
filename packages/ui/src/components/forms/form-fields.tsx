@@ -25,34 +25,23 @@ export const FormFields = memo(
   }: FormFieldsProps): ReactElement => {
     const [fieldValues, setFieldValues] = useState<{
       [name: string]: FormField;
-    }>(
-      Object.fromEntries(
-        fields.map(field => [
-          field.name,
-          {
-            ...field,
-            value: field.value ?? field.defaultValue,
-          },
-        ]),
-      ) as { [name: string]: FormField },
-    );
+    }>();
 
     useEffect(() => {
-      setFieldValues(
-        Object.fromEntries(
-          fields.map(field => [
-            field.name,
-            {
-              ...field,
-              ...fieldValues[field.name],
-            },
-          ]),
-        ) as { [name: string]: FormField },
-      );
+      let fieldData = {};
+
+      for (const field of fields) {
+        fieldData = {
+          ...fieldData,
+          [field.name]: field.defaultValue,
+        };
+      }
+
+      setFieldValues(fieldData);
     }, [fields]);
 
     useEffect(() => {
-      if (onChange) onChange(fieldValues);
+      if (onChange && fieldValues) onChange(fieldValues);
     }, [fieldValues]);
 
     // useEffect(() => {
@@ -75,7 +64,7 @@ export const FormFields = memo(
         borderRadius={{ all: Amount.More }}
         {...props}
       >
-        {Object.entries(fieldValues)?.map(([fieldName, field]) => {
+        {fields?.map(field => {
           if (field.name === 'created_date' || field.name === 'updated_date')
             return null;
 
