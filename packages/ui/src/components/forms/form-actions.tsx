@@ -7,14 +7,10 @@ export const FormActions = memo(
   ({ children, ...props }: ContainerProps): ReactElement => {
     return (
       <Container
-        alignment={{
-          horizontal: AlignHorizontal.SpaceBetween,
-          orientation: Orientation.Horizontal,
-        }}
+        alignHorizontal={AlignHorizontal.SpaceBetween}
+        orientation={Orientation.Horizontal}
         className="form-actions"
-        margin={{
-          top: Amount.More,
-        }}
+        marginTop={Amount.More}
         {...props}
       >
         {children}

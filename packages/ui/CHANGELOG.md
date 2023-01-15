@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.50
+
+### Patch Changes
+
+- Update form actions styling
+
 ## 3.21.49
 
 ### Patch Changes
