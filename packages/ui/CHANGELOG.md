@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.47
+
+### Patch Changes
+
+- Update field props
+
 ## 3.21.46
 
 ### Patch Changes

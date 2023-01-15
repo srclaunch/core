@@ -9,7 +9,7 @@ import { InputRow } from './layout/input-row';
 export type FormFieldsProps = {
   readonly entity?: {
     readonly id?: string;
-  } & { readonly [f: string]: unknown };
+  };
   readonly fields: readonly FormField[];
   readonly onChange?: (fields: {
     readonly [name: string]: FormField;
@@ -32,7 +32,7 @@ export const FormFields = memo(
           field.name,
           {
             ...field,
-            value: entity?.[field.name] ?? field.value ?? field.defaultValue,
+            value: field.value ?? field.defaultValue,
           },
         ]),
       ) as { [name: string]: FormField },
@@ -63,7 +63,7 @@ export const FormFields = memo(
             field.name,
             {
               ...field,
-              value: entity?.[field.name] ?? field.value ?? field.defaultValue,
+              value: field.value ?? field.defaultValue,
             },
           ]),
         ) as { [name: string]: FormField },

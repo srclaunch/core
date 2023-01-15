@@ -115,7 +115,7 @@ export type FormField = CommonFormFieldProps &
       >
     | FormFieldValueProps<
         Primitive,
-        { readonly properties?: MenuProps; readonly type: Primitives.Menu }
+        { readonly items: MenuProps['items']; readonly type: Primitives.Menu }
       >
     | FormFieldValueProps<
         SSN,
