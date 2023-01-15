@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.55
+
+### Patch Changes
+
+- Update modal header padding
+
 ## 3.21.54
 
 ### Patch Changes

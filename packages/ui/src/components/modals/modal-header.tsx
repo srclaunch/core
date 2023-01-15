@@ -4,7 +4,7 @@ import {
   AlignHorizontal,
   AlignVertical,
   Amount,
-  Orientation,
+  Orientation
 } from '../../types';
 import { Container, ContainerProps } from '../layout/container';
 import { Spacer } from '../layout/spacer';
@@ -29,7 +29,8 @@ export const ModalHeader = memo(
     className = '',
     onClose,
     moreMenu,
-    padding = Amount.Default,
+    padding = Amount.Most,
+    paddingBottom = Amount.None,
     title,
     ...props
   }: ModalHeaderProps): ReactElement => {
@@ -40,6 +41,7 @@ export const ModalHeader = memo(
         orientation={orientation}
         className={`${className} modal-header`}
         padding={padding}
+        paddingBottom={paddingBottom}
         {...props}
       >
         {title && <Title>{title}</Title>}
