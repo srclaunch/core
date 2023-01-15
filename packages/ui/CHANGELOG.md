@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.53
+
+### Patch Changes
+
+- Update form props
+
 ## 3.21.52
 
 ### Patch Changes

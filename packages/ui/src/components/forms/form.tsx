@@ -136,7 +136,10 @@ export const Form = memo(
             <Button
               fill={Fill.None}
               form={name}
-              onClick={onCancel}
+              onClick={e => {
+                e.preventDefault();
+                if (onCancel) onCancel();
+              }}
               type={ButtonType.Secondary}
             >
               {cancelButtonLabel ?? 'Cancel'}
@@ -148,7 +151,10 @@ export const Form = memo(
               fill={Fill.None}
               form={name}
               marginLeft={Amount.More}
-              onClick={submitForm}
+              onClick={e => {
+                e.preventDefault();
+                submitForm();
+              }}
               state={{
                 disabled: (requiresValidation && !isValidated) || inProgress,
               }}
