@@ -54,7 +54,8 @@ type ContainerPropsType<
 export type ContainerProps<
   P = Record<string, unknown>,
   E = HTMLDivElement,
-> = ContainerPropsType<P, E> & StateProps<ContainerPropsType<P, E>>;
+> = ContainerPropsType<P, E>;
+// & StateProps<ContainerPropsType<P, E>>;
 
 const Wrapper = styled.div<ContainerProps>`
   ${props => getContainerStyles(props)};
