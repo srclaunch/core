@@ -10,7 +10,7 @@ import {
   useState,
 } from 'react';
 
-import { Amount, FormEventProps, FormField } from '../../types';
+import { Amount, Fill, FormEventProps, FormField } from '../../types';
 // import { getFormFieldsFromModel } from '../../lib/forms/fields';
 import { Container, ContainerProps } from '../layout/container';
 import { Button, ButtonProps, ButtonType } from './buttons/button';
@@ -133,13 +133,19 @@ export const Form = memo(
 
         <FormActions>
           {showCancelButton && (
-            <Button onClick={onCancel} form={name} type={ButtonType.Secondary}>
+            <Button
+              fill={Fill.None}
+              form={name}
+              onClick={onCancel}
+              type={ButtonType.Secondary}
+            >
               {cancelButtonLabel ?? 'Cancel'}
             </Button>
           )}
 
           {showSubmitButton && (
             <Button
+              fill={Fill.None}
               form={name}
               onClick={submitForm}
               state={{
