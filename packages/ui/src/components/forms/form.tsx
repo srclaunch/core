@@ -1,13 +1,7 @@
 // import { Model } from '@srclaunch/types';
 import { Model } from '@srclaunch/types';
 import { ValidationProblem } from '@srclaunch/validation';
-import {
-  memo,
-  ReactElement,
-  useEffect,
-  useRef,
-  useState
-} from 'react';
+import { memo, ReactElement, useEffect, useRef, useState } from 'react';
 
 import { Amount, Fill, FormEventProps, FormField } from '../../types';
 // import { getFormFieldsFromModel } from '../../lib/forms/fields';
@@ -22,6 +16,7 @@ export const Form = memo(
     className = '',
     entity,
     onCancel,
+    onChange,
     onSubmit,
     fields,
     inProgress = false,
@@ -85,6 +80,21 @@ export const Form = memo(
 
       isValidatedReference.current = validated;
       setValidated(validated);
+
+      if (onChange) {
+        const data = Object.fromEntries(
+          Object.entries(fieldValues).map(field => [field[0], field[1].value]),
+        );
+
+        onChange({
+          data,
+          fields: fieldValues,
+          validation: {
+            problems,
+            validated,
+          },
+        });
+      }
     };
 
     useEffect(() => {
