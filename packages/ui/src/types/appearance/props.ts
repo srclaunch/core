@@ -21,6 +21,5 @@ type AppearancePropsType<P = Record<string, unknown>> = AnimationProps<P> &
   TransformProps &
   VisibilityProps;
 
-// Release comment :\
 export type AppearanceProps<P = Record<string, unknown>> =
   AppearancePropsType<P> & P & StateProps<P>;
