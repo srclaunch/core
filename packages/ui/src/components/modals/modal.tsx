@@ -22,13 +22,13 @@ export const Modal = memo(
     state,
   }: ModalProps): ReactElement => {
     return createPortal(
-      <Container className="modal-container">
+      <Container className={`modal-container ${className}`}>
         <Overlay
           className={`modal-overlay ${className}`}
           visible={state?.visible}
         />
 
-        <ModalPanel visible={state?.visible}>
+        <ModalPanel className="modal-panel" visible={state?.visible}>
           <ModalHeader moreMenu={moreMenu} onClose={onClose} title={title} />
 
           <ModalContent>{children}</ModalContent>
@@ -82,7 +82,7 @@ const ModalPanel = styled.div<{
 }>`
   background: white;
   border-radius: 16px;
-  box-shadow: 0px 8px 50px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 32px 96px rgb(0 0 0 / 20%);
   display: flex;
   flex-direction: column;
   margin: 32px;

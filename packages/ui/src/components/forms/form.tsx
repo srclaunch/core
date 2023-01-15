@@ -19,23 +19,23 @@ import { FormFields } from './form-fields';
 
 export const Form = memo(
   ({
-    cancelButton,
+    cancelButtonLabel,
     className = '',
     entity,
     onCancel,
-    onSubmitted,
+    onSubmit,
     fields,
     inProgress = false,
     // model,
     name,
     padding = Amount.None,
-    submitButton,
+    showCancelButton = true,
+    showSubmitButton = true,
+    submitButtonLabel,
     ...props
   }: ContainerProps<
     FormEventProps & {
-      readonly cancelButton?: {
-        readonly label: string;
-      };
+      readonly cancelButtonLabel?: string;
       readonly entity?:
         | ({ readonly [f: string]: unknown } & { readonly id?: string })
         | undefined;
@@ -43,11 +43,9 @@ export const Form = memo(
       readonly inProgress?: boolean;
       readonly model?: Model;
       readonly name: string;
-      readonly submitButton?:
-        | (ButtonProps & {
-            readonly label: string;
-          })
-        | null;
+      readonly showCancelButton?: boolean;
+      readonly showSubmitButton?: boolean;
+      readonly submitButtonLabel: string;
     }
   >): ReactElement => {
     const [fieldValues, setFieldValues] = useState<{
@@ -61,20 +59,6 @@ export const Form = memo(
     const requiresValidationReference = useRef(requiresValidation);
     const validationProblemsReference = useRef(validationProblems);
     const isValidatedReference = useRef(isValidated);
-
-    const submitButtonProps = {
-      label: 'Submit',
-      // size: Size.Large,
-      type: ButtonType.Primary,
-      ...submitButton,
-    };
-
-    const cancelButtonProps = {
-      label: 'Cancel',
-      // size: Size.Large,
-      type: ButtonType.Secondary,
-      ...submitButton,
-    };
 
     const checkValidation = () => {
       let problems: ValidationProblem[] = [];
@@ -108,10 +92,10 @@ export const Form = memo(
       checkValidation();
     }, [fieldValues]);
 
-    const submitForm = (event: FormEvent<HTMLFormElement>) => {
+    const submitForm = () => {
       if (requiresValidationReference.current) {
-        if (onSubmitted)
-          onSubmitted({
+        if (onSubmit)
+          onSubmit({
             fields: fieldValuesReference.current,
             validation: {
               problems: validationProblemsReference.current,
@@ -119,13 +103,11 @@ export const Form = memo(
             },
           });
       } else {
-        if (onSubmitted)
-          onSubmitted({
+        if (onSubmit)
+          onSubmit({
             fields: fieldValuesReference.current,
           });
       }
-
-      event.preventDefault();
     };
 
     return (
@@ -150,21 +132,22 @@ export const Form = memo(
         )}
 
         <FormActions>
-          {cancelButton && (
-            <Button form={name} {...cancelButtonProps}>
-              {cancelButton.label}
+          {showCancelButton && (
+            <Button onClick={onCancel} form={name} type={ButtonType.Secondary}>
+              {cancelButtonLabel ?? 'Cancel'}
             </Button>
           )}
 
-          {submitButton && (
+          {showSubmitButton && (
             <Button
               form={name}
+              onClick={submitForm}
               state={{
                 disabled: (requiresValidation && !isValidated) || inProgress,
               }}
-              {...submitButtonProps}
+              type={ButtonType.Primary}
             >
-              {submitButton.label}
+              {submitButtonLabel ?? 'Submit'}
             </Button>
           )}
         </FormActions>
