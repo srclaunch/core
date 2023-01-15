@@ -14,5 +14,5 @@ type LayoutPropsType<P = Record<string, unknown>> = AlignmentProps &
   PositionProps;
 
 export type LayoutProps<P = Record<string, unknown>> = LayoutPropsType<
-  P & ParentProps<LayoutPropsType> & StateProps<LayoutPropsType>
+  ParentProps<LayoutPropsType> & StateProps<LayoutPropsType>
 >;
