@@ -7,6 +7,7 @@ import {
   Amount,
   BackgroundColor,
   BorderColor,
+  Fill,
   Shadow,
   Size,
   TextColor,
@@ -91,7 +92,7 @@ export const CurrencyAmountInput = memo(
           <Label
             marginLeft={Amount.Less}
             marginRight={Amount.Less}
-
+            fill={Fill.None}
             // textColor={!value ? TextColor.InputPlaceholder : textColor}
           >
             $
@@ -114,6 +115,7 @@ export const CurrencyAmountInput = memo(
               color: !value
                 ? `rgb(${TextColor.InputPlaceholder})`
                 : `rgb(${TextColor.InputControl})`,
+              flex: '1',
               fontWeight: textWeight,
               height: '100%',
             }}

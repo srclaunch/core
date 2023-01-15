@@ -90,8 +90,10 @@ export function getSizeStyle({
   if (!size) return;
 
   return css`
-    ${getHeightStyle({ height: size, parentProps })}
-    ${getWidthStyle({ parentProps, width: size })}
+    ${getHeightStyle({
+      height: size,
+      parentProps,
+    })}/* $ { getWidthStyle({ parentProps, width: size })} */
   `;
 }
 
@@ -102,6 +104,7 @@ export function getSizeStyles(props: SizeProps): SimpleInterpolation {
     ${getHeightStyle(props)}
     ${getMaxWidthStyle(props)}
     ${getMinWidthStyle(props)}
+    ${getSizeStyle(props)}
     ${getWidthStyle(props)}
   `;
 }

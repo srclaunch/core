@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.48
+
+### Patch Changes
+
+- Update size prop
+
 ## 3.21.47
 
 ### Patch Changes
