@@ -147,6 +147,7 @@ export const Form = memo(
             <Button
               fill={Fill.None}
               form={name}
+              marginLeft={Amount.More}
               onClick={submitForm}
               state={{
                 disabled: (requiresValidation && !isValidated) || inProgress,
