@@ -10,7 +10,6 @@ type ModalProps = ContainerProps<{
   readonly moreMenu?: MoreMenuProps;
   readonly onClose?: () => void;
   readonly title?: ReactElement | ReactNode | string;
-  readonly visible?: boolean;
 }>;
 
 export const Modal = memo(
@@ -20,13 +19,16 @@ export const Modal = memo(
     moreMenu,
     onClose,
     title,
-    visible,
+    state,
   }: ModalProps): ReactElement => {
     return createPortal(
       <Container className="modal-container">
-        <Overlay className={`modal-overlay ${className}`} visible={visible} />
+        <Overlay
+          className={`modal-overlay ${className}`}
+          visible={state?.visible}
+        />
 
-        <ModalPanel visible={visible}>
+        <ModalPanel visible={state?.visible}>
           <ModalHeader moreMenu={moreMenu} onClose={onClose} title={title} />
 
           <ModalContent>{children}</ModalContent>
