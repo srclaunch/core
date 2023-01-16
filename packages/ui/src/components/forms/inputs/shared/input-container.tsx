@@ -5,7 +5,7 @@ import {
   ReactElement,
   useEffect,
   useRef,
-  useState,
+  useState
 } from 'react';
 
 import {
@@ -21,7 +21,7 @@ import {
   Size,
   TextAlign,
   TextColor,
-  TextSize,
+  TextSize
 } from '../../../../types';
 import { Container, ContainerProps } from '../../../layout/container';
 import { Icon, IconProps } from '../../../media/icon';
@@ -83,7 +83,7 @@ export const InputContainer = memo(
     const inputRef = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
-      if (valueChanged) {
+      if (valueChanged && value !== defaultValue) {
         if (validation?.conditions) {
           // const probs = validate(
           //   value,
@@ -188,12 +188,6 @@ export const InputContainer = memo(
               onValueChange={({ value: inputValue }) => {
                 setValueChanged(true);
                 setValue(inputValue);
-
-                if (onValueChange) {
-                  onValueChange({
-                    value: inputValue,
-                  });
-                }
               }}
               max={max}
               maxLength={maxLength}
