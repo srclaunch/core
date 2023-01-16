@@ -46,7 +46,7 @@ export const Form = memo(
       [name: string]: FormField;
     }>(
       Object.entries(fields ?? {}).reduce((accumulator, field) => {
-        accumulator[field[0]] = field[1].defaultValue;
+        accumulator[field[1].name] = field[1].defaultValue;
 
         return accumulator;
       }, {} as { [name: string]: any }),
