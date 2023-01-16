@@ -44,7 +44,15 @@ export const Form = memo(
   >): ReactElement => {
     const [fieldData, setFieldData] = useState<{
       [name: string]: FormField;
-    }>({});
+    }>(
+      Object.entries(fields ?? {}).reduce((accumulator, field) => {
+        accumulator[field[0]] = field[1].defaultValue;
+
+        return accumulator;
+      }, {} as { [name: string]: any }),
+    );
+    console.log('fieldData', fieldData);
+
     const [formData, setFormData] = useState<{
       [name: string]: FormField;
     }>({});
