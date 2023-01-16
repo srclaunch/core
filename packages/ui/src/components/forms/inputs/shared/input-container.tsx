@@ -2,9 +2,7 @@ import { ValidationProblem } from '@srclaunch/validation';
 import {
   memo,
   MouseEvent,
-  ReactElement,
-  useEffect,
-  useRef,
+  ReactElement, useRef,
   useState
 } from 'react';
 
@@ -82,34 +80,6 @@ export const InputContainer = memo(
     const [problems, setProblems] = useState<ValidationProblem[]>();
     const inputRef = useRef<HTMLInputElement | null>(null);
 
-    useEffect(() => {
-      if (valueChanged && value !== defaultValue) {
-        if (validation?.conditions) {
-          // const probs = validate(
-          //   value,
-          //   validation?.conditions,
-          // ) as ValidationProblem[];
-          const probs: ValidationProblem[] = [];
-          setProblems(probs && probs.length > 0 ? probs : undefined);
-
-          if (onValueChange)
-            onValueChange({
-              validation: {
-                problems: probs,
-                validated: probs.length === 0,
-              },
-              value,
-            });
-        } else {
-          if (onValueChange) {
-            onValueChange({
-              value,
-            });
-          }
-        }
-      }
-    }, [value]);
-
     return (
       <Container
         className={`${className} input-container`}
@@ -186,8 +156,29 @@ export const InputContainer = memo(
               }}
               onChange={onChange}
               onValueChange={({ value: inputValue }) => {
-                setValueChanged(true);
-                setValue(inputValue);
+                if (validation?.conditions) {
+                  // const problems = validate(
+                  //   value,
+                  //   validation?.conditions,
+                  // ) as ValidationProblem[];
+                  // const probs: ValidationProblem[] = [];
+                  // setProblems(probs && probs.length > 0 ? probs : undefined);
+
+                  if (onValueChange && inputValue !== defaultValue)
+                    onValueChange({
+                      validation: {
+                        problems: [],
+                        validated: true,
+                      },
+                      value: inputValue,
+                    });
+                } else {
+                  if (onValueChange && inputValue !== defaultValue) {
+                    onValueChange({
+                      value: inputValue,
+                    });
+                  }
+                }
               }}
               max={max}
               maxLength={maxLength}
