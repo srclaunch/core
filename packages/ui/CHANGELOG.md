@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.60
+
+### Patch Changes
+
+- Update form handling
+
 ## 3.21.59
 
 ### Patch Changes

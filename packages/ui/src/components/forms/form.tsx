@@ -1,7 +1,7 @@
 // import { Model } from '@srclaunch/types';
 import { Model } from '@srclaunch/types';
 import { ValidationProblem } from '@srclaunch/validation';
-import { memo, ReactElement, useState } from 'react';
+import { memo, ReactElement, useEffect, useState } from 'react';
 
 import { Amount, Fill, FormEventProps, FormField } from '../../types';
 // import { getFormFieldsFromModel } from '../../lib/forms/fields';
@@ -42,11 +42,13 @@ export const Form = memo(
       readonly submitButtonLabel?: string;
     }
   >): ReactElement => {
+    const [fieldData, setFieldData] = useState<{
+      [name: string]: FormField;
+    }>({});
     const [formData, setFormData] = useState<{
       [name: string]: FormField;
     }>({});
-    const [validationProblems, setValidationProblems] =
-      useState<ValidationProblem[]>();
+    const [problems, setProblems] = useState<ValidationProblem[]>([]);
     // const [isValidated, setValidated] = useState(false);
     // const [requiresValidation, setRequiresValidation] = useState(false);
     // const fieldValuesReference = useRef(fieldValues);
@@ -55,7 +57,7 @@ export const Form = memo(
     // const isValidatedReference = useRef(isValidated);
 
     // const checkValidation = () => {
-    //   let problems: ValidationProblem[] = [];
+
     //   let validationRequired = false;
 
     //   if (!fields) return;
@@ -65,9 +67,6 @@ export const Form = memo(
     //       validationRequired = true;
     //     }
 
-    //     if (field.validation?.problems) {
-    //       problems = [...problems, ...(field[1].validation?.problems ?? [])];
-    //     }
     //   }
 
     //   // requiresValidationReference.current = validationRequired;
@@ -99,20 +98,43 @@ export const Form = memo(
     //   }
     // };
 
-    // useEffect(() => {
-    //   checkValidation();
-    // }, [fieldValues]);
-
     const submitForm = () => {
       if (onSubmit) {
         onSubmit({
           data: formData,
+          fields: fieldData,
           validation: {
-            problems: validationProblems,
+            problems,
+            validated: problems?.length === 0,
           },
         });
       }
     };
+
+    useEffect(() => {
+      const data: { [name: string]: any } = {};
+      let problemos: ValidationProblem[] = [];
+      for (const field of Object.entries(fieldData)) {
+        if (field[1].validation?.problems) {
+          problemos = [...problemos, ...(field[1].validation?.problems ?? [])];
+        }
+
+        data[field[0]] = field[1].value;
+      }
+
+      setFormData(data);
+      setProblems(problemos);
+
+      if (onChange) {
+        onChange({
+          data,
+          fields: fieldData,
+          validation: {
+            problems,
+          },
+        });
+      }
+    }, [fieldData]);
 
     return (
       <Container
@@ -129,7 +151,7 @@ export const Form = memo(
             entity={entity}
             fields={fields}
             onChange={ff => {
-              setFormData(ff);
+              setFieldData(ff);
             }}
           />
         )}
