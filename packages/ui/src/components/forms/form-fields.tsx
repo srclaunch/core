@@ -23,26 +23,31 @@ export const FormFields = memo(
     // setFieldValues,
     ...props
   }: FormFieldsProps): ReactElement => {
-    const [fieldValues, setFieldValues] = useState<{
+    const [fieldData, setFieldData] = useState<{
       [name: string]: FormField;
-    }>();
+    }>(
+      Object.entries(fields).reduce((accumulator, field) => {
+        accumulator[field[1].name] = field[1];
+
+        return accumulator;
+      }, {} as { [name: string]: FormField }),
+    );
 
     useEffect(() => {
-      let fieldData = {};
-
+      let _data = {};
       for (const field of fields) {
-        fieldData = {
-          ...fieldData,
-          [field.name]: field.defaultValue,
+        _data = {
+          ..._data,
+          [field.name]: field,
         };
       }
 
-      setFieldValues(fieldData);
+      setFieldData(_data);
     }, [fields]);
 
     useEffect(() => {
-      if (onChange && fieldValues) onChange(fieldValues);
-    }, [fieldValues]);
+      if (onChange && fieldData) onChange(fieldData);
+    }, [fieldData]);
 
     // useEffect(() => {
     //   setFieldValues(
@@ -79,8 +84,8 @@ export const FormFields = memo(
                   validation?: ValidationProps;
                   value?: any;
                 }) => {
-                  setFieldValues({
-                    ...fieldValues,
+                  setFieldData({
+                    ...fieldData,
                     [field.name]: { ...field, validation, value },
                   });
                 },
