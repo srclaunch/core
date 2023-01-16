@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.67
+
+### Patch Changes
+
+- Update
+
 ## 3.21.66
 
 ### Patch Changes

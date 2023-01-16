@@ -1,3 +1,4 @@
+import deepEqual from 'deep-equal';
 import { memo, ReactElement, useEffect, useState } from 'react';
 
 import { getInputElementByFieldType } from '../../lib/forms/fields';
@@ -42,7 +43,9 @@ export const FormFields = memo(
         };
       }
 
-      setFieldData(_data);
+      if (!deepEqual(fieldData, _data)) {
+        setFieldData(_data);
+      }
     }, [fields]);
 
     useEffect(() => {
