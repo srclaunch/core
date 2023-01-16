@@ -129,10 +129,11 @@ export const Input = memo(
           focused,
         }}
         type={type}
+        {...props}
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
           const value = prefix + e.target?.value + suffix;
 
-          if (onValueChange) {
+          if (onValueChange && value !== defaultValue) {
             onValueChange({
               value,
             });
@@ -142,7 +143,6 @@ export const Input = memo(
             onChange(e);
           }
         }}
-        {...props}
       />
     );
   },
