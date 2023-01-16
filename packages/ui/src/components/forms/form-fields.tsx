@@ -49,7 +49,7 @@ export const FormFields = memo(
     }, [fields]);
 
     useEffect(() => {
-      if (onChange && fieldData) onChange(fieldData);
+      onChange?.(fieldData);
     }, [fieldData]);
 
     // useEffect(() => {
@@ -87,6 +87,7 @@ export const FormFields = memo(
                   validation?: ValidationProps;
                   value?: any;
                 }) => {
+                  console.log('onValueChange', field.name, value, validation);
                   setFieldData({
                     ...fieldData,
                     [field.name]: { ...field, validation, value },
