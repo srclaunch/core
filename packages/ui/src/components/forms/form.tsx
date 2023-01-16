@@ -42,7 +42,7 @@ export const Form = memo(
       readonly submitButtonLabel?: string;
     }
   >): ReactElement => {
-    const [fieldData, setFieldData] = useState<{
+    const [formData, setFormData] = useState<{
       [name: string]: FormField;
     }>(
       Object.entries(fields ?? {}).reduce((accumulator, field) => {
@@ -52,10 +52,22 @@ export const Form = memo(
       }, {} as { [name: string]: any }),
     );
 
-    const [formData, setFormData] = useState<{
+    const [fieldData, setFieldData] = useState<{
       [name: string]: FormField;
-    }>({});
+    }>();
     const [problems, setProblems] = useState<ValidationProblem[]>([]);
+
+    useEffect(() => {
+      if (fields) {
+        setFieldData(
+          Object.entries(fields).reduce((accumulator, field) => {
+            accumulator[field[1].name] = field[1];
+
+            return accumulator;
+          }, {} as { [name: string]: FormField }),
+        );
+      }
+    }, [fields]);
     // const [isValidated, setValidated] = useState(false);
     // const [requiresValidation, setRequiresValidation] = useState(false);
     // const fieldValuesReference = useRef(fieldValues);
@@ -106,7 +118,7 @@ export const Form = memo(
     // };
 
     const submitForm = () => {
-      if (onSubmit) {
+      if (onSubmit && fieldData) {
         onSubmit({
           data: formData,
           fields: fieldData,
@@ -119,27 +131,10 @@ export const Form = memo(
     };
 
     useEffect(() => {
-      console.log('L122', fieldData);
-      const data: { [name: string]: any } = {};
-      let problemos: ValidationProblem[] = [];
-
-      for (const field of Object.entries(fieldData)) {
-        if (field[1].validation?.problems) {
-          problemos = [...problemos, ...(field[1].validation?.problems ?? [])];
-        }
-
-        data[field[0]] = field[1].value;
-      }
-
-      console.log('L133', data);
-      console.log('L134', problemos);
-      setFormData(data);
-      setProblems(problemos);
-
       if (onChange) {
         onChange({
-          data,
-          fields: fieldData,
+          data: fieldData,
+          fields: fieldData ?? {},
           validation: {
             problems,
           },
@@ -163,7 +158,31 @@ export const Form = memo(
             fields={fields}
             onChange={ff => {
               console.log('FF', ff);
+
+              const problemos: ValidationProblem[] = [];
+
+              // for (const field of Object.entries(ff)) {
+              //   if (field[1].validation?.problems) {
+              //     problemos = [...problemos, ...(field[1].validation?.problems ?? [])];
+              //   }
+
+              // }
               setFieldData(ff);
+
+              if (onChange) {
+                const data = Object.fromEntries(
+                  Object.entries(ff).map(field => [field[0], field[1].value]),
+                );
+
+                onChange({
+                  data,
+                  fields: ff,
+                  validation: {
+                    problems: problemos,
+                    validated: problemos?.length === 0,
+                  },
+                });
+              }
             }}
           />
         )}
