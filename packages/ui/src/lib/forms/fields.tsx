@@ -1,7 +1,6 @@
 import { Condition, Entity, ModelProps, Primitives } from '@srclaunch/types';
 
 // import { StreetAddressInput } from '../../components/forms/inputs/locale/StreetAddressInput';
-import { PropertyEditor } from '../../components/editors/properties/property-editor';
 import { VerificationCodeInput } from '../../components/forms/inputs/authentication/verification-code-input';
 import { ToggleInput } from '../../components/forms/inputs/boolean/toggle-input';
 import { EmailAddressInput } from '../../components/forms/inputs/communication/email-address-input';
@@ -29,7 +28,7 @@ import { LongTextInput } from '../../components/forms/inputs/text/long-text-inpu
 import { PasswordInput } from '../../components/forms/inputs/text/password-input';
 import { TextInput } from '../../components/forms/inputs/text/text-input';
 // import { Exception } from '@srclaunch/exceptions';
-import { AutoComplete, FormField } from '../../types';
+import { FormField } from '../../types';
 
 export function getFormFieldsFromModel({
   entity,
@@ -68,71 +67,21 @@ export function getInputElementByFieldType(field: FormField) {
 
   switch (field.type) {
     case Primitives.Boolean:
-      return (
-        <ToggleInput
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field}
-        />
-      );
+      return <ToggleInput {...field} />;
     case Primitives.CountryCode:
-      return (
-        <CountryInput
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field}
-        />
-      );
+      return <CountryInput {...field} />;
     case Primitives.CurrencyAmount:
-      return (
-        <CurrencyAmountInput
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field}
-        />
-      );
+      return <CurrencyAmountInput {...field} />;
     case Primitives.CurrencyCode:
-      return (
-        <CurrencyInput
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field}
-        />
-      );
+      return <CurrencyInput {...field} />;
     case Primitives.Date:
-      return (
-        <DateInput
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field}
-        />
-      );
+      return <DateInput {...field} />;
     case Primitives.DateTime:
-      return (
-        <DateTimeInput
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field}
-        />
-      );
+      return <DateTimeInput {...field} />;
     case Primitives.EmailAddress:
-      return (
-        <EmailAddressInput
-          autoComplete={field.autoComplete}
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field}
-        />
-      );
+      return <EmailAddressInput {...field} />;
     case Primitives.Image:
-      return (
-        <ImageInput
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field.properties}
-          {...field}
-        />
-      );
+      return <ImageInput {...field} />;
     // case Primitives.JSON:
     //   return (
     //     <PropertyEditor
@@ -143,84 +92,28 @@ export function getInputElementByFieldType(field: FormField) {
     //   );
 
     case Primitives.LanguageCode:
-      return (
-        <LanguageInput
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field}
-        />
-      );
+      return <LanguageInput {...field} />;
     case Primitives.LongText:
-      return (
-        <LongTextInput
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field}
-        />
-      );
+      return <LongTextInput {...field} />;
     case Primitives.Menu:
-      return (
-        <DropdownInput
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field}
-        />
-      );
+      return <DropdownInput {...field} />;
     case Primitives.Number:
-      return (
-        <NumberInput
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field}
-        />
-      );
+      return <NumberInput {...field} />;
     case Primitives.Password:
-      return (
-        <PasswordInput
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field}
-        />
-      );
+      return <PasswordInput {...field} />;
     case Primitives.PhoneNumber:
-      return (
-        <PhoneNumberInput
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field}
-        />
-      );
+      return <PhoneNumberInput {...field} />;
     case Primitives.SSN:
-      return (
-        <SSNInput
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field}
-        />
-      );
+      return <SSNInput {...field} />;
     case Primitives.String:
-      return (
-        <TextInput
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field}
-        />
-      );
+      return <TextInput {...field} />;
     case Primitives.UUID:
-      return (
-        <TextInput
-          defaultValue={field.value}
-          onChange={field.onChange}
-          {...field}
-        />
-      );
+      return <TextInput {...field} />;
     case Primitives.VerificationCode:
       return (
         <VerificationCodeInput
-          autoComplete={AutoComplete.OneTimeCode}
           // @ts-ignore
-          defaultValue={field.value}
-          onChange={field.onChange}
+
           {...field}
         />
       );
