@@ -151,6 +151,7 @@ export const Form = memo(
             entity={entity}
             fields={fields}
             onChange={ff => {
+              console.log('FF', ff);
               setFieldData(ff);
             }}
           />

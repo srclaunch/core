@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.61
+
+### Patch Changes
+
+- Add logging
+
 ## 3.21.60
 
 ### Patch Changes
