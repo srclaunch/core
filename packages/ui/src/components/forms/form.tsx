@@ -170,19 +170,22 @@ export const Form = memo(
               // }
 
               if (onChange) {
-                const data = Object.entries(ff).reduce((accumulator, field) => {
-                  accumulator[field[0]] =
-                    field[1].value ?? field[1].defaultValue;
+                const data = Object.entries(fields).reduce(
+                  (accumulator, field) => {
+                    accumulator[field[0]] =
+                      ff[1]?.value ?? field[1].defaultValue;
 
-                  return accumulator;
-                }, {} as { [name: string]: any });
+                    return accumulator;
+                  },
+                  {} as { [name: string]: any },
+                );
 
                 console.log('data', data);
 
                 if (!deepEqual(ff, fieldData)) {
                   onChange({
                     data,
-                    fields: ff,
+                    fields: { ...fieldData, ...ff },
                     validation: {
                       problems: problemos,
                       validated: problemos?.length === 0,
