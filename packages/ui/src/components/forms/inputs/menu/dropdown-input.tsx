@@ -44,7 +44,6 @@ export const DropdownInput = memo(
     const [item, setItem] = useState<MenuItemProps | undefined>(
       items?.find((index: MenuItemProps) => index.value === defaultValue),
     );
-    const [valueChanged, setValueChanged] = useState(false);
 
     // useEffect(() => {
     //   if (onChange && item)
@@ -54,39 +53,13 @@ export const DropdownInput = memo(
     // }, [item]);
 
     useEffect(() => {
-      if (valueChanged) {
-        if (validation && validation?.conditions) {
-          // const probs = validate(
-          //   item,
-          //   validation.conditions,
-          // ) as ValidationProblem[];
-
-          const probs: ValidationProblem[] = [];
-          setProblems(probs);
-
-          if (onValueChange)
-            onValueChange({
-              validation: {
-                problems: probs,
-                validated: probs.length === 0,
-              },
-              value: item?.value,
-            });
-        } else {
-          if (onValueChange)
-            onValueChange({
-              value: item?.value,
-            });
-        }
+      if (item?.id !== defaultValue) {
+        setItem(
+          items?.find((index: MenuItemProps) => index.value === defaultValue) ??
+            item ??
+            undefined,
+        );
       }
-    }, [item]);
-
-    useEffect(() => {
-      setItem(
-        items?.find((index: MenuItemProps) => index.value === defaultValue) ??
-          item ??
-          undefined,
-      );
     }, [defaultValue]);
 
     return (
@@ -154,8 +127,32 @@ export const DropdownInput = memo(
             <Menu
               items={items}
               onItemClick={index => {
-                setValueChanged(true);
                 setItem(index);
+
+                if (validation && validation?.conditions) {
+                  // const probs = validate(
+                  //   item,
+                  //   validation.conditions,
+                  // ) as ValidationProblem[];
+
+                  const probs: ValidationProblem[] = [];
+                  // setProblems(probs);
+
+                  if (onValueChange)
+                    onValueChange({
+                      validation: {
+                        problems: probs,
+                        validated: probs.length === 0,
+                      },
+                      value: index.value,
+                    });
+                } else {
+                  if (onValueChange)
+                    onValueChange({
+                      value: index?.value,
+                    });
+                }
+
                 menuVisibleReference.current = false;
                 setMenuVisible(false);
               }}
