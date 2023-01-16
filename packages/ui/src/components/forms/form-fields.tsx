@@ -64,12 +64,12 @@ export const FormFields = memo(
                       accumulator[f[1].name] =
                         f[1].name === field.name
                           ? {
-                              ...f[1],
+                              ...field,
                               validation,
                               value,
                             }
                           : {
-                              ...f[1],
+                              ...field,
                             };
 
                       return accumulator;
