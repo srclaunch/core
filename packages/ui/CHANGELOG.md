@@ -1,5 +1,11 @@
 # @srclaunch/ui
 
+## 3.21.59
+
+### Patch Changes
+
+- Update
+
 ## 3.21.58
 
 ### Patch Changes

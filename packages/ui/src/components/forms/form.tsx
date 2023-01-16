@@ -1,7 +1,7 @@
 // import { Model } from '@srclaunch/types';
 import { Model } from '@srclaunch/types';
 import { ValidationProblem } from '@srclaunch/validation';
-import { memo, ReactElement, useEffect, useRef, useState } from 'react';
+import { memo, ReactElement, useState } from 'react';
 
 import { Amount, Fill, FormEventProps, FormField } from '../../types';
 // import { getFormFieldsFromModel } from '../../lib/forms/fields';
@@ -42,80 +42,75 @@ export const Form = memo(
       readonly submitButtonLabel?: string;
     }
   >): ReactElement => {
-    const [fieldValues, setFieldValues] = useState<{
+    const [formData, setFormData] = useState<{
       [name: string]: FormField;
     }>({});
     const [validationProblems, setValidationProblems] =
       useState<ValidationProblem[]>();
-    const [isValidated, setValidated] = useState(false);
-    const [requiresValidation, setRequiresValidation] = useState(false);
-    const fieldValuesReference = useRef(fieldValues);
-    const requiresValidationReference = useRef(requiresValidation);
-    const validationProblemsReference = useRef(validationProblems);
-    const isValidatedReference = useRef(isValidated);
+    // const [isValidated, setValidated] = useState(false);
+    // const [requiresValidation, setRequiresValidation] = useState(false);
+    // const fieldValuesReference = useRef(fieldValues);
+    // const requiresValidationReference = useRef(requiresValidation);
+    // const validationProblemsReference = useRef(validationProblems);
+    // const isValidatedReference = useRef(isValidated);
 
-    const checkValidation = () => {
-      let problems: ValidationProblem[] = [];
-      let validationRequired = false;
+    // const checkValidation = () => {
+    //   let problems: ValidationProblem[] = [];
+    //   let validationRequired = false;
 
-      for (const field of Object.entries(fieldValues)) {
-        if (field[1].validation) {
-          validationRequired = true;
-        }
+    //   if (!fields) return;
 
-        if (field[1].validation?.problems) {
-          problems = [...problems, ...(field[1].validation?.problems ?? [])];
-        }
-      }
+    //   for (const field of fields) {
+    //     if (field.validation) {
+    //       validationRequired = true;
+    //     }
 
-      requiresValidationReference.current = validationRequired;
-      setRequiresValidation(validationRequired);
-      validationProblemsReference.current = problems;
-      setValidationProblems(problems);
+    //     if (field.validation?.problems) {
+    //       problems = [...problems, ...(field[1].validation?.problems ?? [])];
+    //     }
+    //   }
 
-      const validated =
-        Object.values(fieldValues).filter(
-          field => field.validation && !field.validation?.validated,
-        ).length === 0;
+    //   // requiresValidationReference.current = validationRequired;
+    //   setRequiresValidation(validationRequired);
+    //   // validationProblemsReference.current = problems;
+    //   setValidationProblems(problems);
 
-      isValidatedReference.current = validated;
-      setValidated(validated);
+    //   // const validated =
+    //   //   Object.values(fieldValues).filter(
+    //   //     field => field.validation && !field.validation?.validated,
+    //   //   ).length === 0;
 
-      if (onChange) {
-        const data = Object.fromEntries(
-          Object.entries(fieldValues).map(field => [field[0], field[1].value]),
-        );
+    //   // isValidatedReference.current = validated;
+    //   // setValidated(validated);
 
-        onChange({
-          data,
-          fields: fieldValues,
-          validation: {
-            problems,
-            validated,
-          },
-        });
-      }
-    };
+    //   if (onChange) {
+    //     const data = Object.fromEntries(
+    //       Object.entries(fieldValues).map(field => [field[0], field[1].value]),
+    //     );
 
-    useEffect(() => {
-      checkValidation();
-    }, [fieldValues]);
+    //     onChange({
+    //       data,
+    //       fields: fieldValues,
+    //       validation: {
+    //         problems,
+    //         validated,
+    //       },
+    //     });
+    //   }
+    // };
+
+    // useEffect(() => {
+    //   checkValidation();
+    // }, [fieldValues]);
 
     const submitForm = () => {
-      if (requiresValidationReference.current) {
-        if (onSubmit)
-          onSubmit({
-            fields: fieldValuesReference.current,
-            validation: {
-              problems: validationProblemsReference.current,
-              validated: isValidatedReference.current,
-            },
-          });
-      } else {
-        if (onSubmit)
-          onSubmit({
-            fields: fieldValuesReference.current,
-          });
+      if (onSubmit) {
+        onSubmit({
+          data: formData,
+          validation: {
+            problems: validationProblems,
+          },
+        });
       }
     };
 
@@ -134,8 +129,7 @@ export const Form = memo(
             entity={entity}
             fields={fields}
             onChange={ff => {
-              fieldValuesReference.current = ff;
-              setFieldValues(ff);
+              setFormData(ff);
             }}
           />
         )}
@@ -165,7 +159,7 @@ export const Form = memo(
                 submitForm();
               }}
               state={{
-                disabled: (requiresValidation && !isValidated) || inProgress,
+                disabled: inProgress,
               }}
               type={ButtonType.Primary}
             >

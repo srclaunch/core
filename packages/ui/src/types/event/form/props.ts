@@ -21,12 +21,11 @@ export type FormEventProps<E = HTMLFormElement> = {
   readonly onInvalid?: FormEventHandler<E>;
   readonly onReset?: FormEventHandler<E>;
   readonly onSubmit?: (v: {
-    readonly fields: {
-      readonly [key: string]: FormField;
+    readonly data?: {
+      readonly [key: string]: any;
     };
     readonly validation?: {
       readonly problems?: ReadonlyArray<ValidationProblem>;
-      readonly validated?: boolean;
     };
   }) => void;
 };
