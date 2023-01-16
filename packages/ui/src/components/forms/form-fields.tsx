@@ -76,6 +76,9 @@ export const FormFields = memo(
                     },
                     {} as { [name: string]: FormField },
                   );
+
+                  console.log('fieldData', fieldData);
+
                   onChange?.(fieldData);
                 },
               })}
