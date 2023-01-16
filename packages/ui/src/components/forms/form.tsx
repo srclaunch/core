@@ -1,6 +1,7 @@
 // import { Model } from '@srclaunch/types';
 import { Model } from '@srclaunch/types';
 import { ValidationProblem } from '@srclaunch/validation';
+import deepEqual from 'deep-equal';
 import { memo, ReactElement, useEffect, useState } from 'react';
 
 import { Amount, Fill, FormEventProps, FormField } from '../../types';
@@ -167,21 +168,26 @@ export const Form = memo(
               //   }
 
               // }
-              setFieldData(ff);
 
               if (onChange) {
-                const data = Object.fromEntries(
-                  Object.entries(ff).map(field => [field[0], field[1].value]),
-                );
+                const data = Object.entries(ff).reduce((accumulator, field) => {
+                  accumulator[field[0]] = field[1].value;
 
-                onChange({
-                  data,
-                  fields: ff,
-                  validation: {
-                    problems: problemos,
-                    validated: problemos?.length === 0,
-                  },
-                });
+                  return accumulator;
+                }, {} as { [name: string]: any });
+
+                if (!deepEqual(ff, fieldData)) {
+                  onChange({
+                    data,
+                    fields: ff,
+                    validation: {
+                      problems: problemos,
+                      validated: problemos?.length === 0,
+                    },
+                  });
+
+                  setFieldData(ff);
+                }
               }
             }}
           />
