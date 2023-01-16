@@ -4,9 +4,8 @@ import {
   // forwardRef,
   memo,
   ReactElement,
-  useEffect,
   // useRef,
-  useState,
+  useState
 } from 'react';
 import styled from 'styled-components'; //  css
 
@@ -20,7 +19,7 @@ import {
   TextAlign,
   TextColor,
   TextSize,
-  TextWeight,
+  TextWeight
 } from '../../../../types';
 import { TextProps } from '../../../typography';
 
@@ -90,7 +89,6 @@ export const Input = memo(
     ...props
   }: // ...props
   InputProps<unknown>): ReactElement => {
-    const [value, setValue] = useState(defaultValue);
     const [focused, setFocused] = useState(false);
     // const [problems, setProblems] = useState<ValidationProblem[]>();
     // const inputRef = useRef<HTMLInputElement | null>(null);
@@ -103,20 +101,6 @@ export const Input = memo(
     //     setEventHandlers(getEventHandlers(events));
     //   }
     // }, []);
-
-    useEffect(() => {
-      if (defaultValue !== value) {
-        setValue(defaultValue);
-      }
-    }, [defaultValue]);
-
-    useEffect(() => {
-      if (onValueChange)
-        onValueChange({
-          value,
-        });
-    }, [value]);
-
     return (
       <InputElement
         as={as}
@@ -146,7 +130,14 @@ export const Input = memo(
         }}
         type={type}
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
-          setValue(prefix + e.target?.value + suffix);
+          const value = prefix + e.target?.value + suffix;
+
+          if (onValueChange) {
+            onValueChange({
+              value,
+            });
+          }
+
           if (onChange) {
             onChange(e);
           }
