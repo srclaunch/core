@@ -1,5 +1,4 @@
-import deepEqual from 'deep-equal';
-import { memo, ReactElement, useEffect, useState } from 'react';
+import { memo, ReactElement } from 'react';
 
 import { getInputElementByFieldType } from '../../lib/forms/fields';
 import { Amount, FormField, ValidationProps } from '../../types';
@@ -24,34 +23,6 @@ export const FormFields = memo(
     // setFieldValues,
     ...props
   }: FormFieldsProps): ReactElement => {
-    const [fieldData, setFieldData] = useState<{
-      [name: string]: FormField;
-    }>(
-      Object.entries(fields).reduce((accumulator, field) => {
-        accumulator[field[1].name] = field[1];
-
-        return accumulator;
-      }, {} as { [name: string]: FormField }),
-    );
-
-    useEffect(() => {
-      let _data = {};
-      for (const field of fields) {
-        _data = {
-          ..._data,
-          [field.name]: field,
-        };
-      }
-
-      if (!deepEqual(fieldData, _data)) {
-        setFieldData(_data);
-      }
-    }, [fields]);
-
-    useEffect(() => {
-      onChange?.(fieldData);
-    }, [fieldData]);
-
     // useEffect(() => {
     //   setFieldValues(
     //     Object.fromEntries(
@@ -88,10 +59,24 @@ export const FormFields = memo(
                   value?: any;
                 }) => {
                   console.log('onValueChange', field.name, value, validation);
-                  setFieldData({
-                    ...fieldData,
-                    [field.name]: { ...field, validation, value },
-                  });
+                  const fieldData = Object.entries(fields).reduce(
+                    (accumulator, f) => {
+                      accumulator[f[1].name] =
+                        f[1].name === field.name
+                          ? {
+                              ...f[1],
+                              validation,
+                              value,
+                            }
+                          : {
+                              ...f[1],
+                            };
+
+                      return accumulator;
+                    },
+                    {} as { [name: string]: FormField },
+                  );
+                  onChange?.(fieldData);
                 },
               })}
             </InputRow>
