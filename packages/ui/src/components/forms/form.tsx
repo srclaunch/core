@@ -51,7 +51,6 @@ export const Form = memo(
         return accumulator;
       }, {} as { [name: string]: any }),
     );
-    console.log('fieldData', fieldData);
 
     const [formData, setFormData] = useState<{
       [name: string]: FormField;
@@ -120,8 +119,10 @@ export const Form = memo(
     };
 
     useEffect(() => {
+      console.log('L122', fieldData);
       const data: { [name: string]: any } = {};
       let problemos: ValidationProblem[] = [];
+
       for (const field of Object.entries(fieldData)) {
         if (field[1].validation?.problems) {
           problemos = [...problemos, ...(field[1].validation?.problems ?? [])];
@@ -130,6 +131,8 @@ export const Form = memo(
         data[field[0]] = field[1].value;
       }
 
+      console.log('L133', data);
+      console.log('L134', problemos);
       setFormData(data);
       setProblems(problemos);
 
