@@ -131,18 +131,6 @@ export const Form = memo(
       }
     };
 
-    useEffect(() => {
-      if (onChange) {
-        onChange({
-          data: fieldData,
-          fields: fieldData ?? {},
-          validation: {
-            problems,
-          },
-        });
-      }
-    }, [fieldData]);
-
     return (
       <Container
         as="form"
@@ -158,25 +146,22 @@ export const Form = memo(
             entity={entity}
             fields={fields}
             onChange={ff => {
-              console.log('FF', ff);
+              let problemos: ValidationProblem[] = [];
 
-              const problemos: ValidationProblem[] = [];
-
-              // for (const field of Object.entries(ff)) {
-              //   if (field[1].validation?.problems) {
-              //     problemos = [...problemos, ...(field[1].validation?.problems ?? [])];
-              //   }
-
-              // }
+              for (const field of Object.entries(ff)) {
+                if (field[1].validation?.problems) {
+                  problemos = [
+                    ...problemos,
+                    ...(field[1].validation?.problems ?? []),
+                  ];
+                }
+              }
 
               if (onChange) {
-                const data = Object.entries(ff).reduce((accumulator, field) => {
-                  accumulator[field[0]] = field[1]?.value;
-
-                  return accumulator;
-                }, {} as { [name: string]: any });
-
-                console.log('data', data);
+                let data = {};
+                for (const field of Object.entries(ff)) {
+                  data = { ...data, [field[0]]: field[1].value };
+                }
 
                 if (!deepEqual(ff, fieldData)) {
                   onChange({
