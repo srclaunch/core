@@ -1,4 +1,4 @@
-import { memo, ReactElement } from 'react';
+import { memo, ReactElement, useEffect, useState } from 'react';
 
 import { getInputElementByFieldType } from '../../lib/forms/fields';
 import { Amount, FormField, ValidationProps } from '../../types';
@@ -23,6 +23,10 @@ export const FormFields = memo(
     // setFieldValues,
     ...props
   }: FormFieldsProps): ReactElement => {
+    const [fieldData, setFieldData] = useState<{
+      [name: string]: FormField;
+    }>();
+
     // useEffect(() => {
     //   setFieldValues(
     //     Object.fromEntries(
@@ -37,6 +41,9 @@ export const FormFields = memo(
     //   );
     // }, [entity]);
 
+    useEffect(() => {
+      if (onChange && fieldData) onChange(fieldData);
+    }, [fieldData]);
     return (
       <Container
         className="form-fields"
@@ -58,28 +65,14 @@ export const FormFields = memo(
                   validation?: ValidationProps;
                   value?: any;
                 }) => {
-                  console.log('onValueChange', field.name, value, validation);
-                  const fieldData = Object.entries(fields).reduce(
-                    (accumulator, f) => {
-                      accumulator[f[1].name] =
-                        f[1].name === field.name
-                          ? {
-                              ...field,
-                              validation,
-                              value,
-                            }
-                          : {
-                              ...field,
-                            };
-
-                      return accumulator;
+                  setFieldData({
+                    ...fieldData,
+                    [field.name]: {
+                      ...field,
+                      validation,
+                      value,
                     },
-                    {} as { [name: string]: FormField },
-                  );
-
-                  console.log('fieldData', fieldData);
-
-                  onChange?.(fieldData);
+                  });
                 },
               })}
             </InputRow>
