@@ -170,15 +170,11 @@ export const Form = memo(
               // }
 
               if (onChange) {
-                const data = Object.entries(fields).reduce(
-                  (accumulator, field) => {
-                    accumulator[field[0]] =
-                      ff[1]?.value ?? field[1].defaultValue;
+                const data = Object.entries(ff).reduce((accumulator, field) => {
+                  accumulator[field[0]] = ff[1]?.value;
 
-                    return accumulator;
-                  },
-                  {} as { [name: string]: any },
-                );
+                  return accumulator;
+                }, {} as { [name: string]: any });
 
                 console.log('data', data);
 
