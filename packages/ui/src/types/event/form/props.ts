@@ -1,9 +1,9 @@
 import { ValidationProblem } from '@srclaunch/validation';
-import { FormEventHandler } from 'react';
+import { FormEventHandler, HTMLProps } from 'react';
 
 import { FormField } from '../../form';
 
-export type FormEventProps<E = HTMLFormElement> = {
+export type FormEventProps<E = Omit<HTMLProps<HTMLFormElement>, 'onChange'>> = {
   readonly onCancel?: () => void;
   readonly onChange?: (v: {
     readonly data?: {
