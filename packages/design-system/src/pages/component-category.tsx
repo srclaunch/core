@@ -25,8 +25,6 @@
 import { memo, ReactElement } from 'react';
 
 // import { getRoutes } from '../__docs__/routes';
-// import componentLibrary from '../component-library';
-import { Documentation } from '../layouts/documentation';
 
 export const ComponentCategoryPage = memo((): ReactElement => {
   // const location = useLocation();
@@ -107,7 +105,7 @@ export const ComponentCategoryPage = memo((): ReactElement => {
   // <Container
   //   background={{ color: BackgroundColor.Lightest }}
   //   borderRadius={{ all: Amount.Less }}
-  //   padding={{ all: Amount.All }}
+  //   padding={{ all: Amount.Full }}
   // >
   {
     /* <Title textSize={TextSize.Largest}>{matchedRoute.title}</Title> */
@@ -125,7 +123,7 @@ export const ComponentCategoryPage = memo((): ReactElement => {
             },
           }}
           margin={{
-            bottom: Amount.All,
+            bottom: Amount.Full,
           }}
           size={{
             height: Size.Default,

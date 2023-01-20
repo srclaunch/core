@@ -8,19 +8,19 @@ import styled from 'styled-components';
 
 import { ShadowStyles } from '../../../../styles/appearance/shadow';
 import {
-  AlignHorizontal,
-  AlignVertical,
-  Amount,
-  BackgroundColor,
-  BorderColor,
-  Color,
-  Cursor,
-  IconColor,
-  Shadow,
-  Size,
-  TextColor,
-  TextSize,
-  TextWeight,
+    AlignHorizontal,
+    AlignVertical,
+    Amount,
+    BackgroundColor,
+    BorderColor,
+    Color,
+    Cursor,
+    IconColor,
+    Shadow,
+    Size,
+    TextColor,
+    TextSize,
+    TextWeight
 } from '../../../../types';
 import { Container } from '../../../layout/container';
 import { Icon } from '../../../media/icon';
@@ -165,7 +165,7 @@ const Wrapper = styled.div<{
     .react-calendar__navigation__label {
       background-color: transparent;
       border: none;
-      border-radius: ${Amount.All};
+      border-radius: ${Amount.Full};
       color: rgb(${TextColor.Default});
       cursor: ${Cursor.Pointer};
       font-weight: ${TextWeight.More};

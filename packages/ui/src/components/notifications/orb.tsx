@@ -11,7 +11,7 @@ export const Orb = memo(
   ({
     backgroundColor = BackgroundColor.Default,
     className = '',
-    borderRadius = Amount.All,
+    borderRadius = Amount.Full,
     size = Size.Smallest,
     ...props
   }: OrbProps): ReactElement => {

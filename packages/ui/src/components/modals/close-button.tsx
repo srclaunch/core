@@ -2,13 +2,13 @@ import { BasicIcons } from '@srclaunch/icons';
 import { memo, ReactElement } from 'react';
 
 import {
-  AlignHorizontal,
-  AlignVertical,
-  Amount,
-  BackgroundColor,
-  Depth,
-  IconColor,
-  Size,
+    AlignHorizontal,
+    AlignVertical,
+    Amount,
+    BackgroundColor,
+    Depth,
+    IconColor,
+    Size
 } from '../../types';
 import { Button, ButtonProps } from '../forms/buttons/button';
 import { Icon } from '../media/icon';
@@ -18,7 +18,7 @@ export type CloseButtonProps = ButtonProps;
 export const CloseButton = memo(
   ({
     backgroundColor = BackgroundColor.CloseButton,
-    borderRadius = Amount.All,
+    borderRadius = Amount.Full,
     icon = {},
     className = '',
     size = Size.Default,
@@ -80,7 +80,7 @@ export const CloseButton = memo(
 //   }
 
 //   &:before {
-//     border-radius: ${Amount.All};
+//     border-radius: ${Amount.Full};
 //   content: '';
 //   display: flex;
 //   border: 2px solid rgba(var(--color-secondary-rgb), 0.6);

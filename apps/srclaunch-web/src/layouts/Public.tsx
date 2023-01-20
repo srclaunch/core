@@ -1,28 +1,12 @@
-import { DualLightIcons } from '@srclaunch/icons';
 import {
-  // Workspace,
-  AlignHorizontal,
-  AlignVertical,
-  Amount,
-  // Logo,
-  // Page,
-  BackgroundColor,
-  BorderColor,
-  BorderStyle,
-  Container,
-  Depth,
-  Icon,
-  Image,
-  Label,
-  NavigationLink,
-  Orientation,
-  Overflow,
-  Size,
-  TextColor,
-  TextSize,
-  TextWeight,
-  // PageContainer,
-  // Panel,
+    // Workspace,
+    AlignHorizontal,
+    AlignVertical,
+    Amount,
+    // Logo,
+    // Page,
+    BackgroundColor, Container, Label, Orientation,
+    Overflow, TextColor
 } from '@srclaunch/ui';
 import { memo, PropsWithChildren, ReactElement } from 'react';
 
@@ -72,7 +56,7 @@ export const Public = memo(
             orientation: Orientation.Horizontal,
             vertical: AlignVertical.Center,
           }}
-          margin={{ top: Amount.All }}
+          margin={{ top: Amount.Full }}
           padding={{ all: Amount.Default }}
         >
           <Label margin={{ right: Amount.Less }}>Powered by</Label>

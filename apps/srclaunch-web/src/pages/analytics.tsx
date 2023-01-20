@@ -2,13 +2,13 @@
 // import { useTitle } from '@srclaunch/hooks';
 import { BasicIcons } from '@srclaunch/icons';
 import {
-  AlignVertical,
-  Amount,
-  Container,
-  Label,
-  Orientation,
-  TitleCard,
-  Workspace,
+    AlignVertical,
+    Amount,
+    Container,
+    Label,
+    Orientation,
+    TitleCard,
+    Workspace
 } from '@srclaunch/ui';
 import { memo, ReactElement } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -44,7 +44,7 @@ export const Analytics = memo((): ReactElement => {
       layout={WebApp}
       title="Analytics"
     >
-      <Container marginBottom={Amount.All}>
+      <Container marginBottom={Amount.Full}>
         <TitleCard
           label="Total Projects"
           value={7}

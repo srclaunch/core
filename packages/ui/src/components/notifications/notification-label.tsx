@@ -2,16 +2,16 @@ import { NotificationType } from '@srclaunch/types';
 import { memo, ReactElement } from 'react';
 
 import {
-  AlignHorizontal,
-  AlignVertical,
-  Amount,
-  BackgroundColor,
-  Color,
-  ContainerProps,
-  Orientation,
-  Size,
-  TextColor,
-  TextWeight,
+    AlignHorizontal,
+    AlignVertical,
+    Amount,
+    BackgroundColor,
+    Color,
+    ContainerProps,
+    Orientation,
+    Size,
+    TextColor,
+    TextWeight
 } from '../../types';
 import { Container } from '../layout/container';
 import { Label } from '../typography/label';
@@ -29,7 +29,7 @@ export type NotificationLabelProps = ContainerProps<
 export const NotificationLabel = memo(
   ({
     backgroundColor = BackgroundColor.Light,
-    borderRadius = Amount.All,
+    borderRadius = Amount.Full,
     children,
     className = '',
     label = '',

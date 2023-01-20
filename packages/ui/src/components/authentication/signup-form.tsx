@@ -1,24 +1,24 @@
 import { Condition, Primitives } from '@srclaunch/types';
 import {
-  RootState,
-  signUp,
-  useDispatch,
-  useSelector,
+    RootState,
+    signUp,
+    useDispatch,
+    useSelector
 } from '@srclaunch/web-app-state';
 import { memo, ReactElement, useEffect } from 'react';
 
 import {
-  AlignHorizontal,
-  AlignVertical,
-  Amount,
-  AutoComplete,
-  BackgroundColor,
-  Fill,
-  Orientation,
-  Shadow,
-  Size,
-  TextAlign,
-  TextDecorationPosition,
+    AlignHorizontal,
+    AlignVertical,
+    Amount,
+    AutoComplete,
+    BackgroundColor,
+    Fill,
+    Orientation,
+    Shadow,
+    Size,
+    TextAlign,
+    TextDecorationPosition
 } from '../../types';
 import { Form } from '../forms/form';
 import { Container, ContainerProps } from '../layout/container';
@@ -95,7 +95,7 @@ export const SignupForm = memo(
           orientation={Orientation.Horizontal}
           alignVertical={AlignVertical.Center}
           margin={Amount.Most}
-          marginBottom={Amount.All}
+          marginBottom={Amount.Full}
           showOrb={false}
           textAlign={TextAlign.Center}
         >

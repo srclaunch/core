@@ -60,7 +60,7 @@ export const MoreMenu = memo(
               : backgroundColor
           }
           backgroundColorOpacity={menuVisibleReference.current ? 70 : 100}
-          borderRadius={Amount.All}
+          borderRadius={Amount.Full}
           depth={Depth.Surface}
           onBlur={() => setFocused(false)}
           onFocus={() => setFocused(true)}
@@ -87,7 +87,7 @@ export const MoreMenu = memo(
             .fill(0)
             .map((color, index) => (
               <Container
-                borderRadius={Amount.All}
+                borderRadius={Amount.Full}
                 backgroundColor={dotFillColor}
                 key={index}
                 marginLeft={1}

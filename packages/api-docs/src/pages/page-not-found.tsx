@@ -1,20 +1,6 @@
 import { memo, ReactElement } from 'react';
 
 // import {
-//   AlignHorizontal,
-//   AlignVertical,
-//   Amount,
-//   Container,
-//   Page,
-//   Paragraph,
-//   Title,
-//   Workspace,
-// } from '../../../ui';
-// import componentLibrary from '../component-library';
-// import { PageRole } from '@srclaunch/types';
-// import NotAuthenticated from '../layouts/NotAuthenticated';
-// import styled from 'styled-components';
-import { Documentation } from '../layouts/documentation';
 export const PageNotFound = memo((): ReactElement => {
   return (
     <>404</>
@@ -29,7 +15,7 @@ export const PageNotFound = memo((): ReactElement => {
     //       vertical: AlignVertical.Center,
     //     }}
     //     padding={{
-    //       all: Amount.All,
+    //       all: Amount.Full,
     //     }}
     //   >
     //     <Title

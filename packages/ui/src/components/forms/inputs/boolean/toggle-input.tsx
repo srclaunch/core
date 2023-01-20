@@ -4,20 +4,20 @@ import { memo, useEffect, useRef, useState } from 'react';
 
 import { getCSSMeasurement } from '../../../../lib';
 import {
-  AlignHorizontal,
-  AlignVertical,
-  Amount,
-  BackgroundColor,
-  BorderColor,
-  Color,
-  Cursor,
-  Depth,
-  FormInputProps,
-  IconColor,
-  Orientation,
-  Shadow,
-  Size,
-  TextColor,
+    AlignHorizontal,
+    AlignVertical,
+    Amount,
+    BackgroundColor,
+    BorderColor,
+    Color,
+    Cursor,
+    Depth,
+    FormInputProps,
+    IconColor,
+    Orientation,
+    Shadow,
+    Size,
+    TextColor
 } from '../../../../types';
 import { Container, ContainerProps } from '../../../layout/container';
 import { Icon } from '../../../media/icon';
@@ -100,7 +100,7 @@ export const ToggleInput = memo(
             alignVertical={AlignVertical.Center}
             as="button"
             backgroundColor={BackgroundColor.Lightest}
-            borderRadius={Amount.All}
+            borderRadius={Amount.Full}
             borderColor={BorderColor.Light}
             cursor={cursor}
             onBlur={() => setFocused(false)}
@@ -123,7 +123,7 @@ export const ToggleInput = memo(
                   ? Color.Primary
                   : Color.Error
               }
-              borderRadius={Amount.All}
+              borderRadius={Amount.Full}
               cursor={cursor}
               depth={Depth.High}
               shadow={Shadow.High}
@@ -190,7 +190,7 @@ export const ToggleInput = memo(
 // >`
 //   ${FocusStyles};
 
-//   border-radius: ${Amount.All};
+//   border-radius: ${Amount.Full};
 //   height: ${props => `calc(${props.size} - 8px)`};
 //   transform: translateX(0);
 //   transition: background 0.1s ease-in-out, transform 0.1s ease-in-out;

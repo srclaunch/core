@@ -29,7 +29,7 @@ export const PageNotFound = memo((): ReactElement => {
     //       vertical: AlignVertical.Center,
     //     }}
     //     padding={{
-    //       all: Amount.All,
+    //       all: Amount.Full,
     //     }}
     //   >
     //     <Title

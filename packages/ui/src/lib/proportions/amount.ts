@@ -2,7 +2,7 @@ import { Amount } from '../../types';
 
 export function getSmallerAmount(amount: Amount): Amount {
   switch (amount) {
-    case Amount.All:
+    case Amount.Full:
       return Amount.Most;
     case Amount.Most:
       return Amount.More;
@@ -32,8 +32,8 @@ export function getLargerAmount(amount: Amount): Amount {
     case Amount.More:
       return Amount.Most;
     case Amount.Most:
-      return Amount.All;
-    case Amount.All:
-      return Amount.All;
+      return Amount.Full;
+    case Amount.Full:
+      return Amount.Full;
   }
 }

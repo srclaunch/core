@@ -18,7 +18,7 @@ type UserLabelProps = LinkProps &
 
 export const UserLabel = memo(
   ({
-    borderRadius = Amount.All,
+    borderRadius = Amount.Full,
     className = '',
     to,
     id,

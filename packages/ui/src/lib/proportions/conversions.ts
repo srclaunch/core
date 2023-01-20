@@ -14,7 +14,7 @@ export function convertAmountToSize(amount: Amount): Size {
       return Size.Large;
     case Amount.Most:
       return Size.Larger;
-    case Amount.All:
+    case Amount.Full:
       return Size.Largest;
   }
 }
@@ -36,7 +36,7 @@ export function convertSizeToAmount(size?: Size): Amount {
     case Size.Larger:
       return Amount.Most;
     case Size.Largest:
-      return Amount.All;
+      return Amount.Full;
   }
 }
 

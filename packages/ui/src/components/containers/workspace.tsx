@@ -2,14 +2,14 @@ import { cloneElement, ElementType, memo, ReactElement } from 'react';
 
 // import { useTitle } from '@srclaunch/react-hooks';
 import {
-  AlignHorizontal,
-  AlignVertical,
-  Amount,
-  BackgroundColor,
-  Fill,
-  Orientation,
-  Overflow,
-  Size,
+    AlignHorizontal,
+    AlignVertical,
+    Amount,
+    BackgroundColor,
+    Fill,
+    Orientation,
+    Overflow,
+    Size
 } from '../../types';
 import { Container, ContainerProps } from '../layout/container';
 import { LoadingOverlay } from '../progress/loading-overlay';
@@ -62,7 +62,7 @@ export const Workspace = memo(
             orientation={Orientation.Horizontal}
             alignVertical={AlignVertical.Top}
             className="workspace-header"
-            marginBottom={Amount.All}
+            marginBottom={Amount.Full}
           >
             {(title || subTitle) && (
               <Container fill={Fill.Horizontal}>

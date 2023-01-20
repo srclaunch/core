@@ -1,19 +1,19 @@
 import { ComponentType, memo, ReactElement, useEffect, useState } from 'react';
 
 import {
-  AlignHorizontal,
-  AlignVertical,
-  Amount,
-  BackgroundColor,
-  BorderStyle,
-  Cursor,
-  Orientation,
-  Size,
-  TextAlign,
-  TextColor,
-  TextDecorationPosition,
-  TextSize,
-  TextWeight,
+    AlignHorizontal,
+    AlignVertical,
+    Amount,
+    BackgroundColor,
+    BorderStyle,
+    Cursor,
+    Orientation,
+    Size,
+    TextAlign,
+    TextColor,
+    TextDecorationPosition,
+    TextSize,
+    TextWeight
 } from '../../../types/index';
 import { Container, ContainerProps } from '../../layout/container';
 import { Label, LabelProps } from '../../typography/label';
@@ -73,7 +73,7 @@ export type ButtonProps = ContainerProps<
 //       padding-right: calc($ {props.size} / 5) !important;
 
 //       &:before {
-//         border-radius: ${Amount.All};
+//         border-radius: ${Amount.Full};
 //         left: -9px;
 //         right: -9px;
 //       }
@@ -103,7 +103,7 @@ export const Button = memo(
     as = 'button',
     backgroundColor,
     borderStyle = BorderStyle.None,
-    borderRadius = Amount.All,
+    borderRadius = Amount.Full,
     children,
     className = '',
     hovered,

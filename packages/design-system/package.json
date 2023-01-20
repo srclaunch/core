@@ -3,7 +3,7 @@
   "description": "React components and other utilities for generating documentation",
   "author": "Steven Bennett <steven@srclaunch.com>",
   "license": "MIT",
-  "version": "3.20.0",
+  "version": "3.20.1",
   "engines": {
     "node": ">=16"
   },

@@ -1,28 +1,24 @@
 import { DualLightIcons } from '@srclaunch/icons';
 import {
-  AlignHorizontal,
-  AlignVertical,
-  // Workspace,
-  Amount,
-  // Logo,
-  // Page,
-  BackgroundColor,
-  BorderColor,
-  BorderStyle,
-  Container,
-  Depth,
-  Fill,
-  Icon,
-  Label,
-  NavigationLink,
-  Orientation,
-  Overflow,
-  Size,
-  TextColor,
-  TextSize,
-  TextWeight,
-  // PageContainer,
-  // Panel,
+    AlignHorizontal,
+    AlignVertical,
+    // Workspace,
+    Amount,
+    // Logo,
+    // Page,
+    BackgroundColor,
+    BorderColor, Container,
+    Depth,
+    Fill,
+    Icon,
+    Label,
+    NavigationLink,
+    Orientation,
+    Overflow,
+    Size,
+    TextColor,
+    TextSize,
+    TextWeight
 } from '@srclaunch/ui';
 import { memo, PropsWithChildren, ReactElement } from 'react';
 
@@ -44,7 +40,7 @@ export const NotAuthenticated = memo(
         >
           <NavigationLink
             alignHorizontal={AlignHorizontal.Center}
-            borderRadius={Amount.All}
+            borderRadius={Amount.Full}
             paddingLeft={Amount.More}
             paddingRight={Amount.More}
             to="/"

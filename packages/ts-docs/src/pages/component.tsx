@@ -1,39 +1,9 @@
-import {
-  ComponentLibraryDocumentationConfig,
-  ComponentSpec,
-} from '@srclaunch/types';
-import { useLocation, useMatch } from '@srclaunch/web-app-state';
+import { useLocation } from '@srclaunch/web-app-state';
 import { memo, ReactElement } from 'react';
 
 import {
-  AlignHorizontal,
-  AlignVertical,
-  Amount,
-  BackgroundColor,
-  BorderColor,
-  BreadcrumbNavigation,
-  // CodeBlock,
-  Container,
-  Fill,
-  Heading,
-  Label,
-  LineBreak,
-  NavigationLink,
-  ObjectPropertiesView,
-  Paragraph,
-  PropertyEditor,
-  // Depth,
-  Shadow,
-  Size,
-  Tab,
-  Tabs,
-  TextSize,
-  Title,
-  UnorderedList,
-  Workspace,
+    Amount, BorderColor, LineBreak, Size
 } from '../../index';
-import componentLibrary from '../components.json';
-import { getRoutes } from '../routes';
 
 export const ComponentPage = memo(({ routes }): ReactElement => {
   const location = useLocation();
@@ -114,7 +84,7 @@ export const ComponentPage = memo(({ routes }): ReactElement => {
       // alignment={{ horizontal: AlignHorizontal.Stretch }}
       // background={{ color: BackgroundColor.Lightest }}
       // borderRadius={{ all: Amount.Less }}
-      // padding={{ all: Amount.All }}
+      // padding={{ all: Amount.Full }}
       >
         {/* <Title textSize={TextSize.Largest}>&lt;{matchedRoute.name} /&gt;</Title> */}
 
@@ -127,7 +97,7 @@ export const ComponentPage = memo(({ routes }): ReactElement => {
             },
           }}
           margin={{
-            bottom: Amount.All,
+            bottom: Amount.Full,
           }}
           size={{
             height: Size.Default,
@@ -137,7 +107,7 @@ export const ComponentPage = memo(({ routes }): ReactElement => {
         {matchedRoute?.components && (
           <Container
             margin={{
-              bottom: Amount.All,
+              bottom: Amount.Full,
             }}
           >
             <Heading textSize={TextSize.Larger}>Components</Heading>
@@ -157,7 +127,7 @@ export const ComponentPage = memo(({ routes }): ReactElement => {
         {matchedRoute?.properties && (
           <Container
             margin={{
-              bottom: Amount.All,
+              bottom: Amount.Full,
             }}
           >
             <Heading textSize={TextSize.Larger}>Properties</Heading>
@@ -214,7 +184,7 @@ export const ComponentPage = memo(({ routes }): ReactElement => {
                           borderRadius={{ all: Amount.Least }}
                           className="component-example-container"
                           margin={{ bottom: Amount.Default }}
-                          padding={{ all: Amount.All }}
+                          padding={{ all: Amount.Full }}
                           shadow={Shadow.Low}
                           size={{
                             fill: Fill.Both,
@@ -262,8 +232,8 @@ export const ComponentPage = memo(({ routes }): ReactElement => {
                         },
                       }}
                       margin={{
-                        bottom: Amount.All,
-                        top: Amount.All,
+                        bottom: Amount.Full,
+                        top: Amount.Full,
                       }}
                       size={{
                         height: Size.Default,

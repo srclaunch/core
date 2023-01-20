@@ -2,16 +2,16 @@ import { ChatMessage } from '@srclaunch/types';
 import { memo, ReactElement } from 'react';
 
 import {
-  AlignHorizontal,
-  AlignVertical,
-  Amount,
-  ContainerProps,
-  Fill,
-  Orientation,
-  Size,
-  TextColor,
-  TextSize,
-  TextWeight,
+    AlignHorizontal,
+    AlignVertical,
+    Amount,
+    ContainerProps,
+    Fill,
+    Orientation,
+    Size,
+    TextColor,
+    TextSize,
+    TextWeight
 } from '../../types';
 import { Container } from '../layout/container';
 import { Spacer } from '../layout/spacer';
@@ -58,7 +58,7 @@ export const MessagePreview = memo(
           // marginTop={Amount.Less}
         >
           {/* <Image
-            borderRadius={{ all: Amount.All }}
+            borderRadius={{ all: Amount.Full }}
             margin={{ right: Amount.More }}
             url="http://localhost:3000/public/assets/images/placeholders/people/person1.png"
             // size={Size.Default}

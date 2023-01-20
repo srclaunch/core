@@ -1,15 +1,11 @@
 import { Image as ImageProps } from '@srclaunch/types';
 import { memo, ReactElement } from 'react';
 
-import { getSmallerAmount } from '../../../../lib/proportions/amount';
-import { convertSizeToAmount } from '../../../../lib/proportions/conversions';
 import {
-  AlignVertical,
-  Amount,
-  Orientation,
-  Size,
-  TextSize,
-  TextWeight,
+    AlignVertical,
+    Amount,
+    Orientation, TextSize,
+    TextWeight
 } from '../../../../types';
 import { Container } from '../../../layout/container';
 import { Image } from '../../../media/image';
@@ -37,7 +33,7 @@ export const PersonLabel = memo(
         {...props}
       >
         <Image
-          borderRadius={{ all: Amount.All }}
+          borderRadius={{ all: Amount.Full }}
           // margin={{ right: getSmallerAmount(convertSizeToAmount(size))}}
           path={image?.path}
           url={image?.url}
