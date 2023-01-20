@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.20.1
+
+### Patch Changes
+
+- Update
+
 ## 3.20.0
 
 ### Minor Changes

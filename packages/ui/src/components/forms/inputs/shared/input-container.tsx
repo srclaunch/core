@@ -1,10 +1,5 @@
 import { ValidationProblem } from '@srclaunch/validation';
-import {
-  memo,
-  MouseEvent,
-  ReactElement, useRef,
-  useState
-} from 'react';
+import { memo, MouseEvent, ReactElement, useRef, useState } from 'react';
 
 import {
   AlignVertical,
@@ -48,7 +43,7 @@ export const InputContainer = memo(
     onValueChange,
     onChange,
     icon,
-    backgroundColor = BackgroundColor.InputControl,
+    backgroundColor = BackgroundColor.Lighter,
     borderColor = BorderColor.Default,
     label,
     onClick,
