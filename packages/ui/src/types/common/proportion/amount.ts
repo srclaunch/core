@@ -1,9 +1,9 @@
 export enum Amount {
-  All = 'var(--amount-all)',
-  Default = 'var(--amount-default)',
-  Least = 'var(--amount-least)',
-  Less = 'var(--amount-less)',
-  More = 'var(--amount-more)',
-  Most = 'var(--amount-most)',
-  None = 'var(--amount-none)',
+  Default = 'var(--default-amount)',
+  Full = 'var(--full-amount)',
+  Least = 'var(--least-amount)',
+  Less = 'var(--less-amount)',
+  More = 'var(--more-amount)',
+  Most = 'var(--most-amount)',
+  None = 'var(--none-amount)',
 }
