@@ -4,7 +4,7 @@
   "author": "Steven Bennett <steven@srclaunch.com>",
   "homepage": "https://srclaunch.github.io/ui",
   "license": "MIT",
-  "version": "3.21.87",
+  "version": "3.21.88",
   "engines": {
     "node": ">=16"
   },

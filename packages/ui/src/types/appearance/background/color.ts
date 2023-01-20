@@ -1,9 +1,9 @@
 export enum BackgroundColor {
-  Dark = 'var(--background-color-dark)',
-  Darker = 'var(--background-color-darker)',
-  Darkest = 'var(--background-color-darkest)',
-  Default = 'var(--background-color-default)',
-  Light = 'var(--background-color-light)',
-  Lighter = 'var(--background-color-lighter)',
-  Lightest = 'var(--background-color-lightest)',
+  Dark = 'var(--dark-background-color)',
+  Darker = 'var(--darker-background-color)',
+  Darkest = 'var(--darkest-background-color)',
+  Default = 'var(--default-background-color)',
+  Light = 'var(--light-background-color)',
+  Lighter = 'var(--lighter-background-color)',
+  Lightest = 'var(--lightest-background-color)',
 }
