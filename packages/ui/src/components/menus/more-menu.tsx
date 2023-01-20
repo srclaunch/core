@@ -7,12 +7,11 @@ import {
   Amount,
   BackgroundColor,
   Color,
-  ContrastColor,
   Cursor,
   Depth,
   Orientation,
   Shadow,
-  Size,
+  Size
 } from '../../types';
 import { Button } from '../forms/buttons/button';
 import { Container } from '../layout/container';
@@ -38,8 +37,7 @@ export const MoreMenu = memo(
     const [focused, setFocused] = useState(false);
     const [hovered, setHovered] = useState(false);
     const menuVisibleReference = useRef(menuVisible);
-    const dotFillColor =
-      menuVisible || hovered ? ContrastColor.Primary : dotColor;
+    const dotFillColor = menuVisible || hovered ? Color.Primary : dotColor;
 
     return (
       // @ts-ignore
@@ -58,7 +56,7 @@ export const MoreMenu = memo(
           cursor={Cursor.Pointer}
           backgroundColor={
             menuVisibleReference.current
-              ? BackgroundColor.Primary
+              ? BackgroundColor.Default
               : backgroundColor
           }
           backgroundColorOpacity={menuVisibleReference.current ? 70 : 100}
@@ -76,14 +74,14 @@ export const MoreMenu = memo(
           onMouseLeave={() => setHovered(false)}
           height={size ?? Size.Default}
           width={size ?? Size.Default}
-          hovered={{
-            backgroundColor: BackgroundColor.Primary,
-          }}
-          state={{
-            focused,
-            ...state,
-          }}
-          {...props}
+          // hovered={{
+          //   backgroundColor: BackgroundColor.Darker,
+          // }}
+          // state={{
+          //   // focused,
+          //   ...state,
+          // }}
+          // {...props}
         >
           {Array.from({ length: 3 })
             .fill(0)
@@ -113,7 +111,7 @@ export const MoreMenu = memo(
           {...props}
         >
           <Menu
-            backgroundColor={BackgroundColor.Transparent}
+            backgroundColor={BackgroundColor.Dark}
             items={items}
             onClick={() => {
               menuVisibleReference.current = false;

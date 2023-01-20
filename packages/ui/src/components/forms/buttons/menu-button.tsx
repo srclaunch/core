@@ -3,11 +3,10 @@ import { memo, ReactElement, useEffect, useRef, useState } from 'react';
 import { getDropdownMinHeight } from '../../../lib/forms/dropdowns';
 import {
   Amount,
-  Color,
-  ContrastColor,
-  Depth,
+  BackgroundColor, Depth,
   Shadow,
   Size,
+  TextColor
 } from '../../../types';
 import { Container, ContainerProps } from '../../layout/container';
 import { Menu, MenuProps } from '../../menus/menu';
@@ -24,7 +23,7 @@ export type MenuButtonProps = ContainerProps<
 
 export const MenuButton = memo(
   ({
-    backgroundColor = Color.Black,
+    backgroundColor = BackgroundColor.Darkest,
     borderRadius = Amount.Least,
     className = '',
     items,
@@ -32,7 +31,7 @@ export const MenuButton = memo(
     size = Size.Default,
     state,
     padding = Amount.Least,
-    textColor = ContrastColor.Black,
+    textColor = TextColor.Lightest,
     ...props
   }: MenuButtonProps): ReactElement => {
     const [focused, setFocused] = useState(state?.focused ?? false);
@@ -75,20 +74,20 @@ export const MenuButton = memo(
             menuVisibleReference.current = !menuVisibleReference.current;
             setMenuVisible(menuVisibleReference.current);
           }}
-          label={label}
+          // label={label}
           shadow={menuVisible ? Shadow.Surface : Shadow.High}
           size={size}
           state={{
             dropdownVisible:
               state?.dropdownVisible ?? menuVisibleReference.current,
           }}
-          textColor={menuVisible ? ContrastColor.Black : textColor}
+          textColor={menuVisible ? TextColor.Black : textColor}
         />
 
         <DropdownPanel
           backgroundColor={backgroundColor}
           padding={padding}
-          position={{ top: `calc(${Size.Default} - 3px)` }}
+          // position={{ top: `calc(${Size.Default} - 3px)` }}
           maxHeight={320}
           minHeight={getDropdownMinHeight(items?.length ?? 1, Amount.Least)}
           state={{
@@ -98,7 +97,7 @@ export const MenuButton = memo(
           {...props}
         >
           <Menu
-            backgroundColor={Color.Transparent}
+            // backgroundColor={Color.Transparent}
             items={items}
             onClick={() => {
               menuVisibleReference.current = false;

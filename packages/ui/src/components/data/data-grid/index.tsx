@@ -12,27 +12,26 @@ import {
   BackgroundColor,
   BorderColor,
   Color,
-  ContrastColor,
   Cursor,
   Fill,
   Orientation,
   Shadow,
   Size,
   TextColor,
-  TextSize,
+  TextSize
 } from '../../../types';
 import {
   Button,
   ButtonProps as ButtonProperties,
-  ButtonType,
+  ButtonType
 } from '../../forms/buttons/button';
 import {
   MenuButton,
-  MenuButtonProps as MenuButtonProperties,
+  MenuButtonProps as MenuButtonProperties
 } from '../../forms/buttons/menu-button';
 import {
   SearchInput,
-  SearchInputProps as SearchInputProperties,
+  SearchInputProps as SearchInputProperties
 } from '../../forms/inputs/text/search-input';
 import { Container, ContainerProps } from '../../layout/container';
 import { Scrollable } from '../../layout/scrollable';
@@ -387,3 +386,4 @@ export * from './data-grid-cell';
 export * from './data-grid-column';
 export * from './data-grid-header';
 export * from './data-grid-row';
+
