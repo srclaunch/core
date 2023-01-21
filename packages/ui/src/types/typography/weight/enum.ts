@@ -1,7 +1,7 @@
 export enum TextWeight {
-  Default = 'var(--text-weight-default)',
-  Least = 'var(--text-weight-least)',
-  Less = 'var(--text-weight-less)',
-  More = 'var(--text-weight-more)',
-  Most = 'var(--text-weight-most)',
+  Default = 'var(--default-text-weight)',
+  Least = 'var(--least-text-weight)',
+  Less = 'var(--less-text-weight)',
+  More = 'var(--more-text-weight)',
+  Most = 'var(--most-text-weight)',
 }

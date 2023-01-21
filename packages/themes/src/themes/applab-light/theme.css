@@ -46,8 +46,6 @@ code {
 html,
 body,
 #root {
-  background-color: var(--bg-color-default);
-
   /* Proportions */
   --no-amount: 0px;
   --least-amount: 5.5px;
