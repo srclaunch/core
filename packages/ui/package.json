@@ -4,7 +4,7 @@
   "author": "Steven Bennett <steven@srclaunch.com>",
   "homepage": "https://srclaunch.github.io/ui",
   "license": "MIT",
-  "version": "3.21.92",
+  "version": "3.21.93",
   "engines": {
     "node": ">=16"
   },
@@ -46,7 +46,7 @@
     "@srclaunch/i18n": "workspace:^3.20.0",
     "@srclaunch/icons": "workspace:^3.20.0",
     "@srclaunch/logger": "workspace:^3.20.0",
-    "@srclaunch/themes": "workspace:^3.20.2",
+    "@srclaunch/themes": "workspace:^3.20.3",
     "@srclaunch/validation": "workspace:^3.20.0",
     "@srclaunch/web-app-state": "workspace:^3.20.0",
     "@srclaunch/web-environment": "workspace:^4.1.0",

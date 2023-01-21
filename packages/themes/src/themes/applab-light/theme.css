@@ -63,43 +63,43 @@ body,
   --larger-size: 52px;
   --largest-size: 64px;
 
-  --lightest-background-color: rgb(255, 255, 255);
-  --lighter-background-color: rgb(245, 245, 245);
-  --light-background-color: rgb(220, 220, 220);
-  --default-background-color: rgb(195, 195, 195);
-  --dark-background-color: rgb(170, 170, 170);
-  --darker-background-color: rgb(145, 145, 145);
-  --darkest-background-color: rgb(120, 120, 120);
+  --lightest-background-color: 255, 255, 255;
+  --lighter-background-color: 245, 245, 245;
+  --light-background-color: 220, 220, 220;
+  --default-background-color: 195, 195, 195;
+  --dark-background-color: 170, 170, 170;
+  --darker-background-color: 145, 145, 145;
+  --darkest-background-color: 120, 120, 120;
 
-  --lightest-border-color: rgb(240, 240, 240);
-  --lighter-border-color: rgb(215, 215, 215);
-  --light-border-color: rgb(190, 190, 190);
-  --default-border-color: rgb(165, 165, 165);
-  --dark-border-color: rgb(140, 140, 140);
-  --darker-border-color: rgb(115, 115, 115);
-  --darkest-border-color: rgb(90, 90, 90);
+  --lightest-border-color: 240, 240, 240;
+  --lighter-border-color: 215, 215, 215;
+  --light-border-color: 190, 190, 190;
+  --default-border-color: 165, 165, 165;
+  --dark-border-color: 140, 140, 140;
+  --darker-border-color: 115, 115, 115;
+  --darkest-border-color: 90, 90, 90;
 
-  --lightest-foreground-color: rgb(153, 153, 153);
-  --lighter-foreground-color: rgb(128, 128, 128);
-  --light-foreground-color: rgb(102, 102, 102);
-  --default-foreground-color: rgb(76, 76, 76);
-  --dark-foreground-color: rgb(51, 51, 51);
-  --darker-foreground-color: rgb(25, 25, 25);
-  --darkest-foreground-color: rgb(0, 0, 0);
+  --lightest-foreground-color: 153, 153, 153;
+  --lighter-foreground-color: 128, 128, 128;
+  --light-foreground-color: 102, 102, 102;
+  --default-foreground-color: 76, 76, 76;
+  --dark-foreground-color: 51, 51, 51;
+  --darker-foreground-color: 25, 25, 25;
+  --darkest-foreground-color: 0, 0, 0;
 
-  --black-color: rgb(17, 17, 17);
-  --near-black-color: rgb(34, 34, 34);
-  --white-color: rgb(255, 255, 255);
-  --pink-color: rgb(235, 111, 139);
-  --primary-color: rgb(0, 137, 53);
-  --blue-color: rgb(65, 83, 175);
-  --turquoise-color: rgb(64, 255, 253);
-  --lime-color: rgb(231, 251, 76);
-  --secondary-color: rgb(200, 200, 200);
-  --success-color: rgb(98, 196, 116);
-  --info-color: rgb(15, 193, 223);
-  --error-color: rgb(227, 24, 55);
-  --warning-color: rgb(255, 209, 0);
+  --black-color: 17, 17, 17;
+  --near-black-color: 34, 34, 34;
+  --white-color: 255, 255, 255;
+  --pink-color: 235, 111, 139;
+  --primary-color: 0, 137, 53;
+  --blue-color: 65, 83, 175;
+  --turquoise-color: 64, 255, 253;
+  --lime-color: 231, 251, 76;
+  --secondary-color: 200, 200, 200;
+  --success-color: 98, 196, 116;
+  --info-color: 15, 193, 223;
+  --error-color: 227, 24, 55;
+  --warning-color: 255, 209, 0;
 
   /* Text Size */
   --smallest-text-size:8px;

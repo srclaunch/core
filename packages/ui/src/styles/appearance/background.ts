@@ -4,12 +4,11 @@ import { getCSSColor } from '../../lib';
 import {
   BackgroundImageRepeat,
   BackgroundImageSize,
-  BackgroundProps,
-  CSSColor,
+  BackgroundProps
 } from '../../types';
 
 export function getBackgroundColorStyle(
-  color?: CSSColor,
+  color?: string,
   opacity?: number,
 ): SimpleInterpolation {
   if (!color && !opacity) return;
