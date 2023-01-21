@@ -1,5 +1,13 @@
 # @srclaunch/ui
 
+## 3.21.92
+
+### Patch Changes
+
+- Update vars
+- Updated dependencies
+  - @srclaunch/themes@3.20.2
+
 ## 3.21.91
 
 ### Patch Changes

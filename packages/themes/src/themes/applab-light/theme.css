@@ -110,6 +110,7 @@ body,
   --larger-text-size: 24px;
   --largest-text-size: 32px;
 
+  /* Text Weight */
   --least-text-weight: 300;
   --less-text-weight: 400;
   --default-text-weight: 500;

@@ -1,9 +1,9 @@
 export enum TextSize {
-  Default = 'var(--text-size-default)',
-  Large = 'var(--text-size-large)',
-  Larger = 'var(--text-size-larger)',
-  Largest = 'var(--text-size-largest)',
-  Small = 'var(--text-size-small)',
-  Smaller = 'var(--text-size-smaller)',
-  Smallest = 'var(--text-size-smallest)',
+  Default = 'var(--default-text-size)',
+  Large = 'var(--large-text-size)',
+  Larger = 'var(--larger-text-size)',
+  Largest = 'var(--largest-text-size)',
+  Small = 'var(--small-text-size)',
+  Smaller = 'var(--smaller-text-size)',
+  Smallest = 'var(--smallest-text-size)',
 }

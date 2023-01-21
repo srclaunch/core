@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.20.2
+
+### Patch Changes
+
+- Update vars
+
 ## 3.20.1
 
 ### Patch Changes

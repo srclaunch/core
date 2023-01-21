@@ -958,7 +958,7 @@ importers:
       '@srclaunch/i18n': workspace:^3.20.0
       '@srclaunch/icons': workspace:^3.20.0
       '@srclaunch/logger': workspace:^3.20.0
-      '@srclaunch/themes': workspace:^3.20.1
+      '@srclaunch/themes': workspace:^3.20.2
       '@srclaunch/types': workspace:^3.19.23
       '@srclaunch/validation': workspace:^3.20.0
       '@srclaunch/web-app-state': workspace:^3.20.0
